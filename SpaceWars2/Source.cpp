@@ -1,4 +1,6 @@
 ﻿# include <Siv3D.hpp>
+# include "define.h"
+# include "function.cpp"
 
 void Main()
 {
