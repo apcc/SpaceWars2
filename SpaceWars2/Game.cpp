@@ -19,5 +19,5 @@ void Game::update() {
 }
 
 void Game::draw() const {
-	CicaR32(L"I am game scene! Hello!").drawCenter(y/*200*/);
+	CicaR32(L"I am game scene! Hello!").drawCenter(y/*200*/, Color(L"#000000"));
 }

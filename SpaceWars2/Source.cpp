@@ -17,6 +17,7 @@ void Main(){
 
 	Window::SetTitle(L"SPACE WARS 2");
 	Window::Resize(1280, 800);
+	Graphics::SetBackground(Color(L"#ffffff"));
 	if (!FontManager::Register(L"fonts/Cica-Regular.ttf"))  return;
 	//CicaR32 = Font(32, L"Cica");
 

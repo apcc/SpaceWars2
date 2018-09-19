@@ -19,5 +19,5 @@
 	}
 
 	void Opening::draw() const{
-		CicaR32(L"SpaceWars2").drawCenter(y/*200*/);
+		CicaR32(L"SpaceWars2").drawCenter(y/*200*/, Color(L"#000000"));
 	}
