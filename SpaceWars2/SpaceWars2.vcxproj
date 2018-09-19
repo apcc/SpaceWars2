@@ -162,6 +162,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Ending.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Opening.cpp" />
     <ClCompile Include="Source.cpp" />
@@ -280,6 +281,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonData.h" />
+    <ClInclude Include="Ending.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Opening.h" />
   </ItemGroup>

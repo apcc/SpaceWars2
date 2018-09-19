@@ -7,6 +7,7 @@
 // Scenes
 #include"Opening.h"
 #include"Game.h"
+#include"Ending.h"
 
 
 Font CicaR32;
@@ -24,6 +25,7 @@ void Main(){
 	SceneManager<String,CommonData> manager;
 	manager.add<Opening>(L"Opening");
 	manager.add<Game>(L"Game");
+	manager.add<Ending>(L"Ending");
 
 
 	while (System::Update()){
