@@ -1,23 +1,23 @@
 #include "Opening.h"
 
 
-	void Opening::init(){
-		this->CicaR32 = Font(32, L"Cica"); // :ac:
-		m_data->count++;
-		Println(m_data->count);
-	}
+void Opening::init(){
+	this->CicaR32 = Font(32, L"Cica"); // :ac:
+	m_data->count++;
+	Println(m_data->count);
+}
 
-	void Opening::update(){
-		if (Input::MouseL.clicked)
-			changeScene(L"Game");
-		if (this->mode)
-			y++;
-		else
-			y--;
-		if (y < 0)mode = true;
-		if (y > 720)mode = false;
-	}
+void Opening::update(){
+	if (Input::MouseL.clicked)
+		changeScene(L"Game");
+	if (this->mode)
+		y++;
+	else
+		y--;
+	if (y < 0)mode = true;
+	if (y > 720)mode = false;
+}
 
-	void Opening::draw() const{
-		CicaR32(L"SpaceWars2").drawCenter(y/*200*/, Color(L"#000000"));
-	}
+void Opening::draw() const{
+	CicaR32(L"SpaceWars2").drawCenter(y/*200*/, Color(L"#000000"));
+}
