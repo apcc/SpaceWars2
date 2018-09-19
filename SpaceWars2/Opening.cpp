@@ -8,7 +8,7 @@ void Opening::init(){
 }
 
 void Opening::update(){
-	if (Input::MouseL.clicked)
+	if (Input::KeyEnter.clicked)
 		changeScene(L"Game");
 	if (this->mode)
 		y++;

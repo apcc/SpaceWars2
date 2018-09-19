@@ -8,7 +8,7 @@ void Game::init() {
 }
 
 void Game::update() {
-	if (Input::MouseL.clicked)
+	if (Input::KeyEnter.clicked)
 		changeScene(L"Ending");
 	if (this->mode)
 		y++;

@@ -8,7 +8,7 @@ void Ending::init() {
 }
 
 void Ending::update() {
-	if (Input::MouseL.clicked)
+	if (Input::KeyEnter.clicked)
 		changeScene(L"Opening");
 	if (this->mode)
 		y++;
