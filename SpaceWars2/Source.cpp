@@ -2,7 +2,7 @@
 //# include "define.h"
 //# include "function.cpp"
 
-
+#include"config.h"
 #include"CommonData.h"
 // Scenes
 #include"Opening.h"
@@ -16,8 +16,8 @@ enum Mode gamemode;
 void Main(){
 	
 
-	Window::SetTitle(L"SPACE WARS 2");
-	Window::Resize(1280, 800);
+	Window::SetTitle(WindowTitle);
+	Window::Resize(WindowWidth, WindowHeight);
 	Graphics::SetBackground(Color(L"#ffffff"));
 	if (!FontManager::Register(L"fonts/Cica-Regular.ttf"))  return;
 	//CicaR32 = Font(32, L"Cica");
