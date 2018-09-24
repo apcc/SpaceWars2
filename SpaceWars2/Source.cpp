@@ -14,11 +14,10 @@ Font CicaR32;
 enum Mode gamemode;
 
 void Main(){
-	
 
-	Window::SetTitle(WindowTitle);
-	Window::Resize(WindowWidth, WindowHeight);
-	Graphics::SetBackground(Color(L"#ffffff"));
+	Window::SetTitle(Config::Title);
+	Window::Resize(Config::Width, Config::Height);
+	Graphics::SetBackground(Color(Config::Background));
 	if (!FontManager::Register(L"fonts/Cica-Regular.ttf"))  return;
 	//CicaR32 = Font(32, L"Cica");
 
