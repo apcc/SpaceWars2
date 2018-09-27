@@ -9,7 +9,7 @@ void Opening::init(){
 
 void Opening::update(){
 	if (Input::KeyEnter.clicked)
-		changeScene(L"Game");
+		changeScene(L"ControlGuidance");
 	if (this->mode)
 		y++;
 	else

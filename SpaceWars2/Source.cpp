@@ -6,7 +6,10 @@
 #include"CommonData.h"
 // Scenes
 #include"Opening.h"
+#include"ControlGuidance.h"
+#include"ScreenGuidance.h"
 #include"Game.h"
+#include"Finish.h"
 #include"Ending.h"
 
 
@@ -23,7 +26,10 @@ void Main(){
 
 	SceneManager<String,CommonData> manager;
 	manager.add<Opening>(L"Opening");
+	manager.add<ControlGuidance>(L"ControlGuidance");
+	manager.add<ScreenGuidance>(L"ScreenGuidance");
 	manager.add<Game>(L"Game");
+	manager.add<Finish>(L"Finish");
 	manager.add<Ending>(L"Ending");
 
 

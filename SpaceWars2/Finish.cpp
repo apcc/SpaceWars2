@@ -1,15 +1,15 @@
-#include "Game.h"
+#include "Finish.h"
 
-void Game::init() {
+void Finish::init() {
 	this->CicaR32 = Font(32, L"Cica"); // :ac:
 	m_data->count++;
 	Println(m_data->count);
 
 }
 
-void Game::update() {
+void Finish::update() {
 	if (Input::KeyEnter.clicked)
-		changeScene(L"Finish");
+		changeScene(L"Ending");
 	if (this->mode)
 		y++;
 	else
@@ -18,6 +18,6 @@ void Game::update() {
 	if (y > 800)mode = false;
 }
 
-void Game::draw() const {
-	CicaR32(L"I am game scene! Hello!").drawCenter(y/*200*/, Color(L"#000000"));
+void Finish::draw() const {
+	CicaR32(L"RED WIN!（知らんけど").drawCenter(y/*200*/, Color(L"#000000"));
 }
