@@ -99,6 +99,7 @@
       <SDLCheck>true</SDLCheck>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalOptions>/source-charset:utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -162,9 +163,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ControlGuidance.cpp" />
     <ClCompile Include="Ending.cpp" />
+    <ClCompile Include="Finish.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Opening.cpp" />
+    <ClCompile Include="ScreenGuidance.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -282,9 +286,12 @@
   <ItemGroup>
     <ClInclude Include="CommonData.h" />
     <ClInclude Include="config.h" />
+    <ClInclude Include="ControlGuidance.h" />
     <ClInclude Include="Ending.h" />
+    <ClInclude Include="Finish.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Opening.h" />
+    <ClInclude Include="ScreenGuidance.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
