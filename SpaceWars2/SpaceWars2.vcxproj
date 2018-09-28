@@ -167,6 +167,7 @@
     <ClCompile Include="Ending.cpp" />
     <ClCompile Include="Finish.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameFunc.cpp" />
     <ClCompile Include="Opening.cpp" />
     <ClCompile Include="ScreenGuidance.cpp" />
     <ClCompile Include="Source.cpp" />

@@ -14,3 +14,21 @@ public:
 	void draw() const override;
 };
 
+
+//////// 変数 ////////
+
+struct Ship {
+	int32 x;
+	int32 y;
+	int32 angle;
+	int32 hp;
+	int32 power;
+	int32 temperature;
+};
+
+extern Ship leftShip;
+extern Ship rightShip;
+
+//////// 関数 ////////
+
+void InitShip ();
