@@ -1,4 +1,4 @@
-#include "Finish.h"
+#include "Finish.hpp"
 
 void Finish::init() {
 	this->CicaR32 = Font(32, L"Cica"); // :ac:

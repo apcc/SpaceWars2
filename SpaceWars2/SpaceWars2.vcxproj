@@ -168,9 +168,9 @@
     <ClCompile Include="Finish.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameFunc.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="Opening.cpp" />
     <ClCompile Include="ScreenGuidance.cpp" />
-    <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc" />
@@ -256,6 +256,8 @@
     <None Include="Example\Test.json" />
     <None Include="Example\Well\Well.mtl" />
     <None Include="Example\Well\Well.wavefrontobj" />
+    <None Include="Resource.aps" />
+    <None Include="SpaceWars2_log.html" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Engine\dll(x64)\libmpg123\COPYING.txt" />
@@ -285,14 +287,14 @@
     <Font Include="Example\YomogiFont.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CommonData.h" />
-    <ClInclude Include="config.h" />
-    <ClInclude Include="ControlGuidance.h" />
-    <ClInclude Include="Ending.h" />
-    <ClInclude Include="Finish.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="Opening.h" />
-    <ClInclude Include="ScreenGuidance.h" />
+    <ClInclude Include="CommonData.hpp" />
+    <ClInclude Include="config.hpp" />
+    <ClInclude Include="ControlGuidance.hpp" />
+    <ClInclude Include="Ending.hpp" />
+    <ClInclude Include="Finish.hpp" />
+    <ClInclude Include="Game.hpp" />
+    <ClInclude Include="Opening.hpp" />
+    <ClInclude Include="ScreenGuidance.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

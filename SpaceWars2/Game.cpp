@@ -1,4 +1,4 @@
-#include "Game.h"
+#include "Game.hpp"
 
 void Game::init() {
 	this->CicaR32 = Font(32, L"Cica"); // :ac:

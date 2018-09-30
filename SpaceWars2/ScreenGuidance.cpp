@@ -1,4 +1,4 @@
-#include "ScreenGuidance.h"
+#include "ScreenGuidance.hpp"
 
 void ScreenGuidance::init() {
 	this->CicaR32 = Font(32, L"Cica"); // :ac:

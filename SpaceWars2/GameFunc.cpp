@@ -1,6 +1,6 @@
 #pragma once
 #include<Siv3D.hpp>
-#include"Game.h"
+#include"Game.hpp"
 
 Ship leftShip;
 Ship rightShip;

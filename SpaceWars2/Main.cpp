@@ -1,16 +1,16 @@
 ﻿# include <Siv3D.hpp>
-//# include "define.h"
+//# include "define.hpp"
 //# include "function.cpp"
 
-#include"config.h"
-#include"CommonData.h"
+#include"config.hpp"
+#include"CommonData.hpp"
 // Scenes
-#include"Opening.h"
-#include"ControlGuidance.h"
-#include"ScreenGuidance.h"
-#include"Game.h"
-#include"Finish.h"
-#include"Ending.h"
+#include"Opening.hpp"
+#include"ControlGuidance.hpp"
+#include"ScreenGuidance.hpp"
+#include"Game.hpp"
+#include"Finish.hpp"
+#include"Ending.hpp"
 
 
 Font CicaR32;
