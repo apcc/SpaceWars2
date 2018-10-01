@@ -1,4 +1,7 @@
+#pragma once
 #include "Finish.hpp"
+#include "config.hpp"
+#include "CommonData.hpp"
 
 void Finish::init() {
 	this->CicaR32 = Font(32, L"Cica"); // :ac:
@@ -19,5 +22,6 @@ void Finish::update() {
 }
 
 void Finish::draw() const {
-	CicaR32(L"RED WIN!（知らんけど").drawCenter(y/*200*/, Color(L"#000000"));
+	m_data->background.resize(Config::Width, Config::Height).draw();
+	CicaR32(L"RED WIN!（知らんけど").drawCenter(y/*200*/, Color(L"#ffffff"));
 }

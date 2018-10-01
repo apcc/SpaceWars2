@@ -1,10 +1,12 @@
+#pragma once
+#include "config.hpp"
 #include "Game.hpp"
+#include "CommonData.hpp"
 
 void Game::init() {
 	this->CicaR32 = Font(32, L"Cica"); // :ac:
 	m_data->count++;
 	Println(m_data->count);
-
 }
 
 void Game::update() {
@@ -19,5 +21,6 @@ void Game::update() {
 }
 
 void Game::draw() const {
-	CicaR32(L"I am game scene! Hello!").drawCenter(y/*200*/, Color(L"#000000"));
+	m_data->background.resize(Config::Width, Config::Height).draw();
+	CicaR32(L"I am game scene! Hello!").drawCenter(y/*200*/, Color(L"#ffffff"));
 }

@@ -1,4 +1,7 @@
+#pragma once
 #include "ScreenGuidance.hpp"
+#include "config.hpp"
+#include "CommonData.hpp"
 
 void ScreenGuidance::init() {
 	this->CicaR32 = Font(32, L"Cica"); // :ac:
@@ -19,5 +22,6 @@ void ScreenGuidance::update() {
 }
 
 void ScreenGuidance::draw() const {
-	CicaR32(L"ScreenGuidance").drawCenter(y/*200*/, Color(L"#000000"));
+	m_data->background.resize(Config::Width, Config::Height).draw();
+	CicaR32(L"ScreenGuidance").drawCenter(y/*200*/, Color(L"#ffffff"));
 }

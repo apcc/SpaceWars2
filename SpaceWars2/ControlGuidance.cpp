@@ -1,4 +1,7 @@
+#pragma once
 #include "ControlGuidance.hpp"
+#include "Config.hpp"
+#include "CommonData.hpp"
 
 void ControlGuidance::init() {
 	this->CicaR32 = Font(32, L"Cica"); // :ac:
@@ -19,5 +22,6 @@ void ControlGuidance::update() {
 }
 
 void ControlGuidance::draw() const {
-	CicaR32(L"ControlGuidance").drawCenter(y/*200*/, Color(L"#000000"));
+	m_data->background.resize(Config::Width, Config::Height).draw();
+	CicaR32(L"ControlGuidance").drawCenter(y/*200*/, Color(L"#ffffff"));
 }

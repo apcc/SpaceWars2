@@ -1,5 +1,7 @@
+#pragma once
 #include "Opening.hpp"
-
+#include "config.hpp"
+#include "CommonData.hpp"
 
 void Opening::init(){
 	this->CicaR32 = Font(32, L"Cica"); // :ac:
@@ -19,5 +21,6 @@ void Opening::update(){
 }
 
 void Opening::draw() const{
-	CicaR32(L"SpaceWars2").drawCenter(y/*200*/, Color(L"#000000"));
+	m_data->background.resize(Config::Width, Config::Height).draw();
+	CicaR32(L"SpaceWars2").drawCenter(y/*200*/, Color(L"#ffffff"));
 }
