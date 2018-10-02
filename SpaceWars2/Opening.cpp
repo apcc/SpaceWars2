@@ -1,7 +1,6 @@
 #pragma once
 #include "Opening.hpp"
-#include "config.hpp"
-#include "CommonData.hpp"
+#include "Config.hpp"
 
 void Opening::init(){
 	this->CicaR32 = Font(32, L"Cica"); // :ac:

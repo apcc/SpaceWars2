@@ -1,7 +1,6 @@
 #pragma once
 #include "Ending.hpp"
-#include "config.hpp"
-#include "CommonData.hpp"
+#include "Config.hpp"
 
 void Ending::init() {
 	this->CicaR32 = Font(32, L"Cica"); // :ac:

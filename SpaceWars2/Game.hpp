@@ -1,7 +1,8 @@
 #pragma once
-#include<Siv3D.hpp>
-#include<HamFramework.hpp>
-#include"CommonData.hpp"
+#include <Siv3D.hpp>
+#include <HamFramework.hpp>
+#include "Config.hpp"
+#include "CommonData.hpp"
 
 class Game : public SceneManager<String,CommonData>::Scene {
 private:

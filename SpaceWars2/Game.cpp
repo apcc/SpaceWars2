@@ -1,7 +1,6 @@
 #pragma once
-#include "config.hpp"
 #include "Game.hpp"
-#include "CommonData.hpp"
+#include "Config.hpp"
 
 void Game::init() {
 	this->CicaR32 = Font(32, L"Cica"); // :ac:

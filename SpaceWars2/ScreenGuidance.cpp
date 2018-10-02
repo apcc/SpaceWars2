@@ -1,7 +1,6 @@
 #pragma once
 #include "ScreenGuidance.hpp"
-#include "config.hpp"
-#include "CommonData.hpp"
+#include "Config.hpp"
 
 void ScreenGuidance::init() {
 	this->CicaR32 = Font(32, L"Cica"); // :ac:

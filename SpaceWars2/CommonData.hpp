@@ -1,5 +1,6 @@
 #pragma once
-#include<Siv3D.hpp>
+#include <Siv3D.hpp>
+#include "Config.hpp"
 
 typedef struct {
 	int count = 0;
