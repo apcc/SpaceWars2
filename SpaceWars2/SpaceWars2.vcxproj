@@ -166,8 +166,8 @@
     <ClCompile Include="ControlGuidance.cpp" />
     <ClCompile Include="Ending.cpp" />
     <ClCompile Include="Finish.cpp" />
+    <ClCompile Include="functions\Player.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GameFunc.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Opening.cpp" />
     <ClCompile Include="ScreenGuidance.cpp" />
@@ -292,6 +292,7 @@
     <ClInclude Include="ControlGuidance.hpp" />
     <ClInclude Include="Ending.hpp" />
     <ClInclude Include="Finish.hpp" />
+    <ClInclude Include="functions\Player.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="Opening.hpp" />
     <ClInclude Include="ScreenGuidance.hpp" />
