@@ -1,10 +1,10 @@
 #pragma once
 #include <Siv3D.hpp>
 #include <HamFramework.hpp>
-#include "Config.hpp"
-#include "CommonData.hpp"
+#include "../Config.hpp"
+#include "../CommonData.hpp"
 
-class Ending : public SceneManager<String, CommonData>::Scene {
+class Opening : public SceneManager<String, CommonData>::Scene{
 private:
 	Font CicaR32;
 	int y = 0;

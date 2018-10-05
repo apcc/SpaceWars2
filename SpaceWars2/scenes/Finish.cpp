@@ -1,17 +1,17 @@
 #pragma once
-#include "ControlGuidance.hpp"
-#include "Config.hpp"
+#include "Finish.hpp"
+#include "../Config.hpp"
 
-void ControlGuidance::init() {
+void Finish::init() {
 	this->CicaR32 = Font(32, L"Cica"); // :ac:
 	m_data->count++;
 	Println(m_data->count);
 
 }
 
-void ControlGuidance::update() {
+void Finish::update() {
 	if (Input::KeyEnter.clicked)
-		changeScene(L"ScreenGuidance");
+		changeScene(L"Ending");
 	if (this->mode)
 		y++;
 	else
@@ -20,7 +20,7 @@ void ControlGuidance::update() {
 	if (y > 800)mode = false;
 }
 
-void ControlGuidance::draw() const {
+void Finish::draw() const {
 	m_data->background.resize(Config::Width, Config::Height).draw();
-	CicaR32(L"ControlGuidance").drawCenter(y/*200*/, Color(L"#ffffff"));
+	CicaR32(L"RED WIN!（知らんけど").drawCenter(y/*200*/, Color(L"#ffffff"));
 }

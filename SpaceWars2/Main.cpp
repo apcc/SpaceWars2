@@ -3,12 +3,12 @@
 #include "CommonData.hpp"
 
 // Scenes
-#include "Opening.hpp"
-#include "ControlGuidance.hpp"
-#include "ScreenGuidance.hpp"
-#include "Game.hpp"
-#include "Finish.hpp"
-#include "Ending.hpp"
+#include "scenes/Opening.hpp"
+#include "scenes/ControlGuidance.hpp"
+#include "scenes/ScreenGuidance.hpp"
+#include "scenes/Game.hpp"
+#include "scenes/Finish.hpp"
+#include "scenes/Ending.hpp"
 
 
 Font CicaR32;
