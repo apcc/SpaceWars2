@@ -8,8 +8,8 @@ void Game::init() {
 	this->CicaR32 = Font(32, L"Cica"); // :ac:
 	m_data->count++;
 	Println(m_data->count);
-	m_data->LPlayer.Init(40, 360, true);
-	m_data->RPlayer.Init(1240, 360, false);
+	m_data->LPlayer.Init(40, 540, true);
+	m_data->RPlayer.Init(1880, 540, false);
 }
 
 void Game::update() {
