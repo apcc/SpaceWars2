@@ -6,6 +6,7 @@
 #include "scenes/Opening.hpp"
 #include "scenes/ControlGuidance.hpp"
 #include "scenes/ScreenGuidance.hpp"
+#include "scenes/SkillSelect.hpp"
 #include "scenes/Game.hpp"
 #include "scenes/Finish.hpp"
 #include "scenes/Ending.hpp"
@@ -26,6 +27,7 @@ void Main(){
 	manager.add<Opening>(L"Opening");
 	manager.add<ControlGuidance>(L"ControlGuidance");
 	manager.add<ScreenGuidance>(L"ScreenGuidance");
+	manager.add<SkillSelect>(L"SkillSelect");
 	manager.add<Game>(L"Game");
 	manager.add<Finish>(L"Finish");
 	manager.add<Ending>(L"Ending");

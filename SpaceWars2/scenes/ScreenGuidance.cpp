@@ -11,7 +11,7 @@ void ScreenGuidance::init() {
 
 void ScreenGuidance::update() {
 	if (Input::KeyEnter.clicked)
-		changeScene(L"Game");
+		changeScene(L"SkillSelect");
 	if (this->mode)
 		y++;
 	else

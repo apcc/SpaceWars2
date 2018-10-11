@@ -171,6 +171,7 @@
     <ClCompile Include="Scenes\Game.cpp" />
     <ClCompile Include="Scenes\Opening.cpp" />
     <ClCompile Include="Scenes\ScreenGuidance.cpp" />
+    <ClCompile Include="scenes\SkillSelect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc" />
@@ -296,6 +297,7 @@
     <ClInclude Include="Scenes\Game.hpp" />
     <ClInclude Include="Scenes\Opening.hpp" />
     <ClInclude Include="Scenes\ScreenGuidance.hpp" />
+    <ClInclude Include="scenes\SkillSelect.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
