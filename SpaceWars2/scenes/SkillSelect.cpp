@@ -6,8 +6,8 @@ void SkillSelect::init() {
 	this->CicaR32 = Font(32, L"Cica"); // :ac:
 	m_data->count++;
 	Println(m_data->count);
-	m_data->LPlayer.Init(40, Config::Height / 2, true);  //‰~‚Ì”¼Œa
-	m_data->RPlayer.Init(1240, Config::Height / 2, false); //Width-‰~‚Ì”¼Œa
+	m_data->LPlayer.Init(40, Config::Height / 2, true);
+	m_data->RPlayer.Init(1240, Config::Height / 2, false);
 }
 
 void SkillSelect::update() {
