@@ -27,12 +27,7 @@ class Player {
 	int32 posY;
 	bool isLeft;
 	Circle ship;
-
-	public:
-	MainSkill whatMainSKill;
-	SubSkill whatSubSkill;
-	SpecialSkill whatSpecialSKill;
-
+	
 	void Shot();
 	void Grenade();
 	void Laser();
@@ -47,6 +42,11 @@ class Player {
 	void LockOn();
 	void SummonPartner();
 	void InversionRecovery();
+
+	public:
+	MainSkill whatMainSKill;
+	SubSkill whatSubSkill;
+	SpecialSkill whatSpecialSKill;
 
 	void DoMainSkill();
 	void DoSubSkill();
