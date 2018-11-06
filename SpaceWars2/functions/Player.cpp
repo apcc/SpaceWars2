@@ -3,22 +3,23 @@
 
 #define PLAYER_SPEED 10
 
+
 void Player::DoMainSkill(){
 	switch(this->whatMainSKill){
-		case Shot:
-
+		case SHOT:
+			Player::Shot();
 		break;
 
-		case Grenade:
-
+		case GRENADE:
+			Player::Grenade();
 		break;
 
-		case Laser:
-
+		case LASER:
+			Player::Laser();
 		break;
 
-		case Crusher:
-
+		case CRUSHER:
+			Player::Crusher();
 		break;
 
 		default:
@@ -28,20 +29,20 @@ void Player::DoMainSkill(){
 
 void Player::DoSubSkill(){
 	switch(this->whatSubSkill){
-		case Jump:
-
+		case JUMP:
+			Player::Jump();
 		break;
 
-		case Shield:
-
+		case SHIELD:
+			Player::Shield();
 		break;
 
-		case Missile:
-
+		case MISSILE:
+			Player::Missile();
 		break;
 
-		case Bomb:
-
+		case BOMB:
+			Player::Bomb();
 		break;
 
 		default:
@@ -51,20 +52,20 @@ void Player::DoSubSkill(){
 
 void Player::DoSpacialSkill(){
 	switch(this->whatSpecialSKill){
-		case JudgmentTime:
-
+		case JUDGEMENT_TIME:
+			Player::JudgementTime();
 		break;
 
-		case LockOn:
-
+		case LOCK_ON:
+			Player::LockOn();
 		break;
 
-		case SummonPartner:
-
+		case SUMMON_PARTNER:
+			Player::SummonPartner();
 		break;
 
-		case InversionRecovery:
-
+		case INVERESION_RECOVERY:
+			Player::InversionRecovery();
 		break;
 
 		default:

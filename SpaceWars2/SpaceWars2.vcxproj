@@ -163,7 +163,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="functions\MainSkill.cpp" />
     <ClCompile Include="functions\Player.cpp" />
+    <ClCompile Include="functions\SpecialSkill.cpp" />
+    <ClCompile Include="functions\SubSkill.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Scenes\ControlGuidance.cpp" />
     <ClCompile Include="Scenes\Ending.cpp" />

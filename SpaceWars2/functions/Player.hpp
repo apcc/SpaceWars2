@@ -3,22 +3,22 @@
 #include "../Config.hpp"
 
 enum MainSkill {
-	Shot,
-	Grenade,
-	Laser,
-	Crusher,
+	SHOT,
+	GRENADE,
+	LASER,
+	CRUSHER,
 };
 enum SubSkill {
-	Jump,
-	Shield,
-	Missile,
-	Bomb,
+	JUMP,
+	SHIELD,
+	MISSILE,
+	BOMB,
 };
 enum SpecialSkill {
-	JudgmentTime,
-	LockOn,
-	SummonPartner,
-	InversionRecovery,
+	JUDGEMENT_TIME,
+	LOCK_ON,
+	SUMMON_PARTNER,
+	INVERESION_RECOVERY,
 };
 
 class Player {
@@ -33,24 +33,20 @@ class Player {
 	SubSkill whatSubSkill;
 	SpecialSkill whatSpecialSKill;
 
-	class Skill {
-		public:
+	void Shot();
+	void Grenade();
+	void Laser();
+	void Crusher();
 
-		void Shot(Player&);
-		void Grenade(Player&);
-		void Laser(Player&);
-		void Crusher(Player&);
+	void Jump();
+	void Shield();
+	void Missile();
+	void Bomb();
 
-		void Jump(Player&);
-		void Shield(Player&);
-		void Missile(Player&);
-		void Bomb(Player&);
-
-		void JudgmentTime(Player&);
-		void LockOn(Player&);
-		void SummonPartner(Player&);
-		void InversionRecovery(Player&);
-	};
+	void JudgementTime();
+	void LockOn();
+	void SummonPartner();
+	void InversionRecovery();
 
 	void DoMainSkill();
 	void DoSubSkill();
