@@ -27,6 +27,9 @@ class Player {
 	int32 posY;
 	bool isLeft;
 	Circle ship;
+	int selectedType;
+
+	
 	
 	void Shot();
 	void Grenade();
@@ -44,9 +47,9 @@ class Player {
 	void InversionRecovery();
 
 	public:
-	MainSkill whatMainSKill;
+	MainSkill whatMainSkill;
 	SubSkill whatSubSkill;
-	SpecialSkill whatSpecialSKill;
+	SpecialSkill whatSpecialSkill;
 
 	void DoMainSkill();
 	void DoSubSkill();
@@ -54,5 +57,6 @@ class Player {
 
 	void Init(int32, int32, bool);
 	void Control();
+	void SkillSelect();
 	void DrawShip();
 };

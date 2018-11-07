@@ -2,10 +2,11 @@
 #include "Player.hpp"
 
 #define PLAYER_SPEED 10
+#define NUMBER_OF_SKILL 3
 
 
 void Player::DoMainSkill(){
-	switch(this->whatMainSKill){
+	switch(this->whatMainSkill){
 		case SHOT:
 			Player::Shot();
 		break;
@@ -51,7 +52,7 @@ void Player::DoSubSkill(){
 }
 
 void Player::DoSpacialSkill(){
-	switch(this->whatSpecialSKill){
+	switch(this->whatSpecialSkill){
 		case JUDGEMENT_TIME:
 			Player::JudgementTime();
 		break;
@@ -96,6 +97,56 @@ void Player::Control(){
 		if(Input::KeyL.pressed && tmpZoon.contains(Circle(posX, posY + PLAYER_SPEED, 40)))			posY += PLAYER_SPEED;
 	}
 	ship = Circle(posX, posY, 40);
+}
+
+void Player::SkillSelect(){
+
+	switch(selectedType){
+		case 0:	//MainSkill
+			if(isLeft){
+				//if(Input::KeyW.clicked) 
+				if(Input::KeyS.clicked)	++selectedType;
+				if(Input::KeyA.clicked && whatMainSkill < NUMBER_OF_SKILL)	whatMainSkill = static_cast<MainSkill>(whatMainSkill + 1);
+				if(Input::KeyD.clicked && whatMainSkill > 0)				whatMainSkill = static_cast<MainSkill>(whatMainSkill - 1);
+			}else{
+				//if(Input::KeyO.clicked) 
+				if(Input::KeyL.clicked)	++selectedType;
+				if(Input::KeyK.clicked && whatMainSkill < NUMBER_OF_SKILL)	whatMainSkill = static_cast<MainSkill>(whatMainSkill + 1);
+				if(Input::KeySemicolon.clicked && whatMainSkill > 0)		whatMainSkill = static_cast<MainSkill>(whatMainSkill - 1);
+			}
+		break;
+
+		case 1:	//SubSkill
+			if(isLeft){
+				if(Input::KeyW.clicked)	--selectedType;
+				if(Input::KeyS.clicked)	++selectedType;
+				if(Input::KeyA.clicked && whatSubSkill < NUMBER_OF_SKILL)	whatSubSkill = static_cast<SubSkill>(whatSubSkill + 1);
+				if(Input::KeyD.clicked && whatSubSkill > 0)					whatSubSkill = static_cast<SubSkill>(whatSubSkill - 1);
+			}else{
+				if(Input::KeyO.clicked)	--selectedType;
+				if(Input::KeyL.clicked)	++selectedType;
+				if(Input::KeyK.clicked && whatSubSkill < NUMBER_OF_SKILL)	whatSubSkill = static_cast<SubSkill>(whatSubSkill + 1);
+				if(Input::KeySemicolon.clicked && whatSubSkill > 0)			whatSubSkill = static_cast<SubSkill>(whatSubSkill - 1);
+			}
+		break;
+
+		case 2:	//SpecialSkill
+			if(isLeft){
+				if(Input::KeyW.clicked)	--selectedType;
+				//if(Input::KeyS.clicked)	
+				if(Input::KeyA.clicked && whatSpecialSkill < NUMBER_OF_SKILL)	whatSpecialSkill = static_cast<SpecialSkill>(whatSpecialSkill + 1);
+				if(Input::KeyD.clicked && whatSpecialSkill > 0)					whatSpecialSkill = static_cast<SpecialSkill>(whatSpecialSkill - 1);
+			}else{
+				if(Input::KeyO.clicked)	--selectedType;
+				//if(Input::KeyL.clicked)	
+				if(Input::KeyK.clicked && whatSpecialSkill < NUMBER_OF_SKILL)	whatSpecialSkill = static_cast<SpecialSkill>(whatSpecialSkill + 1);
+				if(Input::KeySemicolon.clicked && whatSpecialSkill > 0)			whatSpecialSkill = static_cast<SpecialSkill>(whatSpecialSkill - 1);
+			}
+		break;
+		
+		default:
+			LOG(L"[ERROR] SkillSelecterで意図しない値が参照されました。");
+	}
 }
 
 void Player::DrawShip(){
