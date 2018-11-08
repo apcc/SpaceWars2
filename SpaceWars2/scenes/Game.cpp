@@ -20,6 +20,6 @@ void Game::update() {
 void Game::draw() const {
 	m_data->background.resize(Config::Width, Config::Height).draw();
 	CicaR32(L"I am game scene! Hello!").drawCenter(y/*200*/, Color(L"#ffffff"));
-	m_data->LPlayer.ship.draw(Color(L"#ff0000"));
-	m_data->RPlayer.ship.draw(Color(L"#0000ff"));
+	m_data->LPlayer.DrawShip();
+	m_data->RPlayer.DrawShip();
 }

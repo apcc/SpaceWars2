@@ -163,7 +163,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="functions\MainSkill.cpp" />
     <ClCompile Include="functions\Player.cpp" />
+    <ClCompile Include="functions\SpecialSkill.cpp" />
+    <ClCompile Include="functions\SubSkill.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Scenes\ControlGuidance.cpp" />
     <ClCompile Include="Scenes\Ending.cpp" />
@@ -171,6 +174,7 @@
     <ClCompile Include="Scenes\Game.cpp" />
     <ClCompile Include="Scenes\Opening.cpp" />
     <ClCompile Include="Scenes\ScreenGuidance.cpp" />
+    <ClCompile Include="scenes\SkillSelect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc" />
@@ -296,6 +300,7 @@
     <ClInclude Include="Scenes\Game.hpp" />
     <ClInclude Include="Scenes\Opening.hpp" />
     <ClInclude Include="Scenes\ScreenGuidance.hpp" />
+    <ClInclude Include="scenes\SkillSelect.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
