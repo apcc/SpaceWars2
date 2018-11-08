@@ -3,7 +3,6 @@
 #include "../Config.hpp"
 
 void Ending::init() {
-	this->CicaR32 = Font(32, L"Cica"); // :ac:
 	m_data->count++;
 	Println(m_data->count);
 
@@ -22,5 +21,5 @@ void Ending::update() {
 
 void Ending::draw() const {
 	m_data->background.resize(Config::Width, Config::Height).draw();
-	CicaR32(L"Thank you for playing!").drawCenter(y/*200*/, Color(L"#ffffff"));
+	m_data->CicaR32(L"Thank you for playing!").drawCenter(y/*200*/, Color(L"#ffffff"));
 }

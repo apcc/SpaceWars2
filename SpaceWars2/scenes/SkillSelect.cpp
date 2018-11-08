@@ -5,7 +5,6 @@
 #include "../functions/Player.hpp"
 
 void SkillSelect::init() {
-	this->CicaR32 = Font(32, L"Cica"); // :ac:
 	m_data->count++;
 	Println(m_data->count);
 	m_data->LPlayer.Init(40, Config::Height / 2, true);
@@ -29,13 +28,13 @@ void SkillSelect::update() {
 
 void SkillSelect::draw() const {
 	m_data->background.resize(Config::Width, Config::Height).draw();
-	CicaR32(L"SkillSelect").drawCenter(y/*200*/, Color(L"#ffffff"));
+	m_data->CicaR32(L"SkillSelect").drawCenter(y/*200*/, Color(L"#ffffff"));
 	
-	CicaR32(m_data->LPlayer.whatMainSkill).draw(40, 40);
-	CicaR32(m_data->LPlayer.whatSubSkill).draw(40, 80);
-	CicaR32(m_data->LPlayer.whatSpecialSkill).draw(40, 120);
+	m_data->CicaR32(m_data->LPlayer.whatMainSkill).draw(40, 40);
+	m_data->CicaR32(m_data->LPlayer.whatSubSkill).draw(40, 80);
+	m_data->CicaR32(m_data->LPlayer.whatSpecialSkill).draw(40, 120);
 
-	CicaR32(m_data->RPlayer.whatMainSkill).draw(1240, 40);
-	CicaR32(m_data->RPlayer.whatSubSkill).draw(1240, 80);
-	CicaR32(m_data->RPlayer.whatSpecialSkill).draw(1240, 120);
+	m_data->CicaR32(m_data->RPlayer.whatMainSkill).draw(1240, 40);
+	m_data->CicaR32(m_data->RPlayer.whatSubSkill).draw(1240, 80);
+	m_data->CicaR32(m_data->RPlayer.whatSpecialSkill).draw(1240, 120);
 }
