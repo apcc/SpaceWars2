@@ -10,15 +10,9 @@ void Opening::init(){
 void Opening::update(){
 	if (Input::KeyEnter.clicked)
 		changeScene(L"ControlGuidance");
-	if (this->mode)
-		y++;
-	else
-		y--;
-	if (y < 0)mode = true;
-	if (y > 720)mode = false;
 }
 
 void Opening::draw() const{
 	m_data->background.resize(Config::Width, Config::Height).draw();
-	m_data->CicaR32(L"SpaceWars2").drawCenter(y/*200*/, Color(L"#ffffff"));
+	m_data->CicaR32(L"SpaceWars2").drawCenter(40, Color(L"#ffffff"));
 }
