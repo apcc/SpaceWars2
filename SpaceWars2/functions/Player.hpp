@@ -28,9 +28,13 @@ class Player {
 	bool isLeft;
 	Circle ship;
 	int selectedType;
+	
+	int HP;
+	int temperature;
+	int charge;
+	int coolDown;
 
-	
-	
+
 	void Shot();
 	void Grenade();
 	void Laser();
@@ -59,4 +63,5 @@ class Player {
 	void Control();
 	void SkillSelect();
 	void DrawShip();
+	void DrawGauge();
 };
