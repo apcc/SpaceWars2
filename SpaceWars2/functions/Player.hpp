@@ -29,10 +29,10 @@ class Player {
 	Circle ship;
 	int selectedType;
 	
-	int HP;
-	int temperature;
-	int charge;
-	int coolDown;
+	int HP;				//体力
+	int temperature;	//Overheat管理
+	int charge;			//SpecialSkill管理
+	int coolDown;		//SubSkill管理
 
 
 	void Shot();
