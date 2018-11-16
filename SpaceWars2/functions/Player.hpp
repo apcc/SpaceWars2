@@ -28,9 +28,13 @@ class Player {
 	bool isLeft;
 	Circle ship;
 	int selectedType;
+	
+	int HP;				//体力
+	int temperature;	//Overheat管理
+	int charge;			//SpecialSkill管理
+	int coolDown;		//SubSkill管理
 
-	
-	
+
 	void Shot();
 	void Grenade();
 	void Laser();
@@ -59,4 +63,5 @@ class Player {
 	void Control();
 	void SkillSelect();
 	void DrawShip();
+	void DrawGauge();
 };

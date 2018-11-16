@@ -3,6 +3,8 @@
 
 #define PLAYER_SPEED 10
 #define NUMBER_OF_SKILL 3
+#define HP_LIMIT 100.0
+#define GAUGE_WIDTH (Config::Width / 2.0 / HP_LIMIT)
 
 
 void Player::DoMainSkill(){
@@ -78,6 +80,10 @@ void Player::Init(int32 _x, int32 _y, bool _isLeft){
 	posX = _x;
 	posY = _y;
 	isLeft = _isLeft;
+	HP = 100;
+	temperature = 0;
+	charge = 0;
+	coolDown = 0;
 }
 
 void Player::Control(){
@@ -154,5 +160,19 @@ void Player::DrawShip(){
 		ship.draw(Color(L"#ff0000"));
 	}else{
 		ship.draw(Color(L"#0000ff"));
+	}
+}
+
+void Player::DrawGauge(){
+	if(isLeft){
+		RectF(0, 0,  HP * GAUGE_WIDTH, 20).draw(Color(L"#ff0000"));
+		RectF(0, 20, temperature * GAUGE_WIDTH, 40).draw(Color(L"#00ff00"));
+		RectF(0, 40, charge * GAUGE_WIDTH, 60).draw(Color(L"#ffff00"));
+		RectF(0, 60, coolDown * GAUGE_WIDTH, 80).draw(Color(L"#0000ff"));
+	}else{
+		RectF(Config::Width - HP * GAUGE_WIDTH, 0,  Config::Width, 20).draw(Color(L"#ff0000"));
+		RectF(Config::Width - temperature * GAUGE_WIDTH, 20, Config::Width, 40).draw(Color(L"#00ff00"));
+		RectF(Config::Width - charge * GAUGE_WIDTH, 40, Config::Width, 60).draw(Color(L"#ffff00"));
+		RectF(Config::Width - coolDown * GAUGE_WIDTH, 60, Config::Width, 80).draw(Color(L"#0000ff"));
 	}
 }
