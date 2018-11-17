@@ -20,8 +20,8 @@ void Main(){
 	Window::SetTitle(Config::Title);
 	Window::Resize(Config::Width, Config::Height);
 	Graphics::SetBackground(Color(Config::Background));
-	if (!FontManager::Register(L"fonts/Cica-Regular.ttf"))  return;
-	//CicaR32 = Font(32, L"Cica");
+	FontManager::Register(L"/7701");
+	FontAsset::Register(L"CicaR32", 32, L"Cica");
 
 	SceneManager<String,CommonData> manager;
 	manager.add<Opening>(L"Opening");

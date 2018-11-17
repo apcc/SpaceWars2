@@ -13,5 +13,5 @@ void Ending::update() {
 
 void Ending::draw() const {
 	m_data->background.resize(Config::Width, Config::Height).draw();
-	m_data->CicaR32(L"Thank you for playing!").drawCenter(40, Color(L"#ffffff"));
+	FontAsset(L"CicaR32")(L"Thank you for playing!").drawCenter(40, Color(L"#ffffff"));
 }

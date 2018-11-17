@@ -13,5 +13,5 @@ void ControlGuidance::update() {
 
 void ControlGuidance::draw() const {
 	m_data->background.resize(Config::Width, Config::Height).draw();
-	m_data->CicaR32(L"ControlGuidance").drawCenter(40, Color(L"#ffffff"));
+	FontAsset(L"CicaR32")(L"ControlGuidance").drawCenter(40, Color(L"#ffffff"));
 }
