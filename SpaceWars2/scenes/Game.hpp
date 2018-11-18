@@ -1,8 +1,11 @@
 #pragma once
 #include <Siv3D.hpp>
 #include <HamFramework.hpp>
+#include <vector>
 #include "../Config.hpp"
 #include "../CommonData.hpp"
+
+#include "../functions/Bullet.hpp"
 
 class Game : public SceneManager<String,CommonData>::Scene {
 private:

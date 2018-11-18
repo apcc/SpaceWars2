@@ -2,19 +2,60 @@
 
 #include "./Player.hpp"
 
-// MainSkill
-void Player::Shot(){
-	
+
+void Player::DoMainSkill(){
+	switch(this->whatMainSkill){
+		case SHOT:
+		break;
+
+		case GRENADE:
+		break;
+
+		case LASER:
+		break;
+
+		case CRUSHER:
+		break;
+
+		default:
+		LOG(L"[ERROR] DoMainSkillで意図しない値が参照されました。");
+	}
 }
 
-void Player::Grenade(){
-	
+void Player::UpdateMainSkill(){
+	switch(this->whatMainSkill){
+		case SHOT:
+		break;
+
+		case GRENADE:
+		break;
+
+		case LASER:
+		break;
+
+		case CRUSHER:
+		break;
+
+		default:
+		LOG(L"[ERROR] UpdateMainSkillで意図しない値が参照されました。");
+	}
 }
 
-void Player::Laser(){
-	
-}
+void Player::DrawMainSkill(){
+	switch(this->whatMainSkill){
+		case SHOT:
+		break;
 
-void Player::Crusher(){
-	
+		case GRENADE:
+		break;
+
+		case LASER:
+		break;
+
+		case CRUSHER:
+		break;
+
+		default:
+		LOG(L"[ERROR] DrawMainSkillで意図しない値が参照されました。");
+	}
 }

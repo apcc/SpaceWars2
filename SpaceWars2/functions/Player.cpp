@@ -6,76 +6,6 @@
 #define HP_LIMIT 100.0
 #define GAUGE_WIDTH (Config::Width / 2.0 / HP_LIMIT)
 
-
-void Player::DoMainSkill(){
-	switch(this->whatMainSkill){
-		case SHOT:
-			Player::Shot();
-		break;
-
-		case GRENADE:
-			Player::Grenade();
-		break;
-
-		case LASER:
-			Player::Laser();
-		break;
-
-		case CRUSHER:
-			Player::Crusher();
-		break;
-
-		default:
-		LOG(L"[ERROR] MainSkillで意図しない値が参照されました。");
-	}
-}
-
-void Player::DoSubSkill(){
-	switch(this->whatSubSkill){
-		case JUMP:
-			Player::Jump();
-		break;
-
-		case SHIELD:
-			Player::Shield();
-		break;
-
-		case MISSILE:
-			Player::Missile();
-		break;
-
-		case BOMB:
-			Player::Bomb();
-		break;
-
-		default:
-		LOG(L"[ERROR] SubSkillで意図しない値が参照されました。");
-	}
-}
-
-void Player::DoSpacialSkill(){
-	switch(this->whatSpecialSkill){
-		case JUDGEMENT_TIME:
-			Player::JudgementTime();
-		break;
-
-		case LOCK_ON:
-			Player::LockOn();
-		break;
-
-		case SUMMON_PARTNER:
-			Player::SummonPartner();
-		break;
-
-		case INVERESION_RECOVERY:
-			Player::InversionRecovery();
-		break;
-
-		default:
-		LOG(L"[ERROR] SpecialSkillで意図しない値が参照されました。");
-	}
-}
-
 void Player::Init(int32 _x, int32 _y, bool _isLeft){	
 	posX = _x;
 	posY = _y;
@@ -88,7 +18,6 @@ void Player::Init(int32 _x, int32 _y, bool _isLeft){
 
 void Player::Control(){
 	Rect tmpZoon;
-
 	if(isLeft){
 		tmpZoon = Rect(0, 0, Config::Width / 2 + 1, Config::Height + 1);
 		if(Input::KeyD.pressed && tmpZoon.contains(Circle(posX + PLAYER_SPEED, posY, 40)))			posX += PLAYER_SPEED;
@@ -103,6 +32,16 @@ void Player::Control(){
 		if(Input::KeyL.pressed && tmpZoon.contains(Circle(posX, posY + PLAYER_SPEED, 40)))			posY += PLAYER_SPEED;
 	}
 	ship = Circle(posX, posY, 40);
+
+	if(isLeft){
+		if(Input::KeyQ.pressed)			DoMainSkill();
+		if(Input::KeyE.pressed)			DoSubSkill();
+		if(Input::KeyLShift.pressed)	DoSpacialSkill();
+	}else{
+		if(Input::KeyI.pressed)			DoMainSkill();
+		if(Input::KeyP.pressed)			DoSubSkill();
+		if(Input::KeyRShift.pressed)	DoSpacialSkill();
+	}
 }
 
 void Player::SkillSelect(){

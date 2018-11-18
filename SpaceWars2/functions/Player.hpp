@@ -1,6 +1,9 @@
 #pragma once
 #include <Siv3D.hpp>
+#include <vector>
 #include "../Config.hpp"
+
+#include "./Bullet.hpp"
 
 enum MainSkill {
 	SHOT,
@@ -28,27 +31,12 @@ class Player {
 	bool isLeft;
 	Circle ship;
 	int selectedType;
-	
+
 	int HP;				//体力
 	int temperature;	//Overheat管理
 	int charge;			//SpecialSkill管理
 	int coolDown;		//SubSkill管理
 
-
-	void Shot();
-	void Grenade();
-	void Laser();
-	void Crusher();
-
-	void Jump();
-	void Shield();
-	void Missile();
-	void Bomb();
-
-	void JudgementTime();
-	void LockOn();
-	void SummonPartner();
-	void InversionRecovery();
 
 	public:
 	MainSkill whatMainSkill;
@@ -58,6 +46,14 @@ class Player {
 	void DoMainSkill();
 	void DoSubSkill();
 	void DoSpacialSkill();
+
+	void UpdateMainSkill();
+	void UpdateSubSkill();
+	void UpdateSpecialSkill();
+
+	void DrawMainSkill();
+	void DrawSubSkill();
+	void DrawSpecialSkill();
 
 	void Init(int32, int32, bool);
 	void Control();
