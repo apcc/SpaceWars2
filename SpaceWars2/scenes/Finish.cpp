@@ -12,6 +12,6 @@ void Finish::update() {
 }
 
 void Finish::draw() const {
-	m_data->background.resize(Config::Width, Config::Height).draw();
+	TextureAsset(L"background").resize(Config::Width, Config::Height).draw();
 	FontAsset(L"CicaR32")(L"RED WIN!（知らんけど").drawCenter(40, Color(L"#ffffff"));
 }

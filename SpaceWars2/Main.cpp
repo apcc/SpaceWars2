@@ -20,6 +20,8 @@ void Main(){
 	Window::SetTitle(Config::Title);
 	Window::Resize(Config::Width, Config::Height);
 	Graphics::SetBackground(Color(Config::Background));
+
+	TextureAsset::Register(L"background", L"/7801");
 	FontManager::Register(L"/7701");
 	FontAsset::Register(L"CicaR32", 32, L"Cica");
 
