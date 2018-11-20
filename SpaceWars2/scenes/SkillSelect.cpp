@@ -19,14 +19,14 @@ void SkillSelect::update() {
 }
 
 void SkillSelect::draw() const {
-	m_data->background.resize(Config::Width, Config::Height).draw();
-	m_data->CicaR32(L"SkillSelect").drawCenter(40, Color(L"#ffffff"));
+	TextureAsset(L"background").resize(Config::Width, Config::Height).draw();
+	FontAsset(L"CicaR32")(L"SkillSelect").drawCenter(40, Color(L"#ffffff"));
 	
-	m_data->CicaR32(m_data->LPlayer.whatMainSkill).draw(40, 40);
-	m_data->CicaR32(m_data->LPlayer.whatSubSkill).draw(40, 80);
-	m_data->CicaR32(m_data->LPlayer.whatSpecialSkill).draw(40, 120);
+	FontAsset(L"CicaR32")(m_data->LPlayer.whatMainSkill).draw(40, 40);
+	FontAsset(L"CicaR32")(m_data->LPlayer.whatSubSkill).draw(40, 80);
+	FontAsset(L"CicaR32")(m_data->LPlayer.whatSpecialSkill).draw(40, 120);
 
-	m_data->CicaR32(m_data->RPlayer.whatMainSkill).draw(1240, 40);
-	m_data->CicaR32(m_data->RPlayer.whatSubSkill).draw(1240, 80);
-	m_data->CicaR32(m_data->RPlayer.whatSpecialSkill).draw(1240, 120);
+	FontAsset(L"CicaR32")(m_data->RPlayer.whatMainSkill).draw(1240, 40);
+	FontAsset(L"CicaR32")(m_data->RPlayer.whatSubSkill).draw(1240, 80);
+	FontAsset(L"CicaR32")(m_data->RPlayer.whatSpecialSkill).draw(1240, 120);
 }
