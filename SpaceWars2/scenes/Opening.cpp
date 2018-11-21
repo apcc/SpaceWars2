@@ -3,8 +3,8 @@
 #include "../Config.hpp"
 
 void Opening::init(){
-	m_data->LPlayer.Init(40,   Config::Height/2, true);  //円の半径
-	m_data->RPlayer.Init(1240, Config::Height/2, false); //Width-円の半径
+	m_data->LPlayer.Init(Vec2(  80, Config::Height/2), true);  //円の半径
+	m_data->RPlayer.Init(Vec2(1200, Config::Height/2), false); //Width-円の半径
 }
 
 void Opening::update(){

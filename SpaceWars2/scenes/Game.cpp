@@ -15,10 +15,10 @@ void Game::update() {
 	m_data->LPlayer.Control();
 	m_data->RPlayer.Control();
 
-	m_data->LPlayer.UpdateMainSkill();
+	m_data->LPlayer.UpdateMainSkill(m_data->RPlayer.circle());
 	m_data->LPlayer.UpdateSubSkill();
 	m_data->LPlayer.UpdateSpecialSkill();
-	m_data->RPlayer.UpdateMainSkill();
+	m_data->RPlayer.UpdateMainSkill(m_data->LPlayer.circle());
 	m_data->RPlayer.UpdateSubSkill();
 	m_data->RPlayer.UpdateSpecialSkill();
 }

@@ -5,7 +5,7 @@
 #include "../Config.hpp"
 #include "../CommonData.hpp"
 
-#include "../functions/Bullet.hpp"
+#include "../skills/Bullet.hpp"
 
 class Game : public SceneManager<String,CommonData>::Scene {
 private:

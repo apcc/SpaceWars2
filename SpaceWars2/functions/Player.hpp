@@ -3,7 +3,7 @@
 #include <vector>
 #include "../Config.hpp"
 
-#include "./Bullet.hpp"
+#include "../skills/Bullet.hpp"
 
 enum MainSkill {
 	SHOT,
@@ -26,10 +26,8 @@ enum SpecialSkill {
 
 class Player {
 	private:
-	int32 posX;
-	int32 posY;
+	Vec2 pos;
 	bool isLeft;
-	Circle ship;
 	int selectedType;
 
 	int HP;				//体力
@@ -39,15 +37,18 @@ class Player {
 
 
 	public:
+
 	MainSkill whatMainSkill;
 	SubSkill whatSubSkill;
 	SpecialSkill whatSpecialSkill;
+
+	std::vector<Bullet*> bullets;
 
 	void DoMainSkill();
 	void DoSubSkill();
 	void DoSpacialSkill();
 
-	void UpdateMainSkill();
+	void UpdateMainSkill(Circle rivalCircle);
 	void UpdateSubSkill();
 	void UpdateSpecialSkill();
 
@@ -55,7 +56,8 @@ class Player {
 	void DrawSubSkill();
 	void DrawSpecialSkill();
 
-	void Init(int32, int32, bool);
+	void Init(Vec2 pos, bool isLeft);
+	Circle circle();
 	void Control();
 	void SkillSelect();
 	void DrawShip();

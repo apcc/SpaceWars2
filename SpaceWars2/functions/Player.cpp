@@ -6,9 +6,8 @@
 #define HP_LIMIT 100.0
 #define GAUGE_WIDTH (Config::Width / 2.0 / HP_LIMIT)
 
-void Player::Init(int32 _x, int32 _y, bool _isLeft){	
-	posX = _x;
-	posY = _y;
+void Player::Init(Vec2 p, bool _isLeft){
+	pos = p;
 	isLeft = _isLeft;
 	HP = 100;
 	temperature = 0;
@@ -16,22 +15,30 @@ void Player::Init(int32 _x, int32 _y, bool _isLeft){
 	coolDown = 0;
 }
 
+Circle Player::circle(){
+	return Circle(pos, 40);
+}
+
 void Player::Control(){
-	Rect tmpZoon;
+	Rect zone;
+	Vec2 tmp = pos;
 	if(isLeft){
-		tmpZoon = Rect(0, 0, Config::Width / 2 + 1, Config::Height + 1);
-		if(Input::KeyD.pressed && tmpZoon.contains(Circle(posX + PLAYER_SPEED, posY, 40)))			posX += PLAYER_SPEED;
-		if(Input::KeyA.pressed && tmpZoon.contains(Circle(posX - PLAYER_SPEED, posY, 40)))			posX -= PLAYER_SPEED;
-		if(Input::KeyW.pressed && tmpZoon.contains(Circle(posX, posY - PLAYER_SPEED, 40)))			posY -= PLAYER_SPEED;
-		if(Input::KeyS.pressed && tmpZoon.contains(Circle(posX, posY + PLAYER_SPEED, 40)))			posY += PLAYER_SPEED;
+		zone = Rect(0, 0, Config::Width / 2 + 1, Config::Height + 1);
+		if(Input::KeyD.pressed)			pos.x += PLAYER_SPEED;
+		if(Input::KeyA.pressed)			pos.x -= PLAYER_SPEED;
+		if(Input::KeyW.pressed)			pos.y -= PLAYER_SPEED;
+		if(Input::KeyS.pressed)			pos.y += PLAYER_SPEED;
 	}else{
-		tmpZoon = Rect(Config::Width/2, 0, Config::Width / 2 + 1, Config::Height + 1);
-		if(Input::KeySemicolon.pressed && tmpZoon.contains(Circle(posX + PLAYER_SPEED, posY, 40)))	posX += PLAYER_SPEED;
-		if(Input::KeyK.pressed && tmpZoon.contains(Circle(posX - PLAYER_SPEED, posY, 40)))			posX -= PLAYER_SPEED;
-		if(Input::KeyO.pressed && tmpZoon.contains(Circle(posX, posY - PLAYER_SPEED, 40)))			posY -= PLAYER_SPEED;
-		if(Input::KeyL.pressed && tmpZoon.contains(Circle(posX, posY + PLAYER_SPEED, 40)))			posY += PLAYER_SPEED;
+		zone = Rect(Config::Width/2, 0, Config::Width / 2 + 1, Config::Height + 1);
+		if(Input::KeySemicolon.pressed)	pos.x += PLAYER_SPEED;
+		if(Input::KeyK.pressed)			pos.x -= PLAYER_SPEED;
+		if(Input::KeyO.pressed)			pos.y -= PLAYER_SPEED;
+		if(Input::KeyL.pressed)			pos.y += PLAYER_SPEED;
 	}
-	ship = Circle(posX, posY, 40);
+	if(zone.contains(Circle(pos, 40)) == false)
+		pos = tmp;
+	//pos.x=max(tmpZoon.x)
+
 
 	if(isLeft){
 		if(Input::KeyQ.pressed)			DoMainSkill();
@@ -96,9 +103,9 @@ void Player::SkillSelect(){
 
 void Player::DrawShip(){
 	if(isLeft){
-		ship.draw(Color(L"#ff0000"));
+		circle().draw(Color(L"#ff0000"));
 	}else{
-		ship.draw(Color(L"#0000ff"));
+		circle().draw(Color(L"#0000ff"));
 	}
 }
 

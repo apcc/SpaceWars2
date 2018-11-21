@@ -163,7 +163,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="functions\Bullet.cpp" />
     <ClCompile Include="functions\MainSkill.cpp" />
     <ClCompile Include="functions\Player.cpp" />
     <ClCompile Include="functions\SpecialSkill.cpp" />
@@ -176,6 +175,8 @@
     <ClCompile Include="Scenes\Opening.cpp" />
     <ClCompile Include="Scenes\ScreenGuidance.cpp" />
     <ClCompile Include="scenes\SkillSelect.cpp" />
+    <ClCompile Include="skills\Bullet.cpp" />
+    <ClCompile Include="skills\Shot.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc" />
@@ -294,7 +295,7 @@
   <ItemGroup>
     <ClInclude Include="CommonData.hpp" />
     <ClInclude Include="config.hpp" />
-    <ClInclude Include="functions\Bullet.hpp" />
+    <ClInclude Include="functions\MainSkill.hpp" />
     <ClInclude Include="functions\Player.hpp" />
     <ClInclude Include="Scenes\ControlGuidance.hpp" />
     <ClInclude Include="Scenes\Ending.hpp" />
@@ -303,6 +304,8 @@
     <ClInclude Include="Scenes\Opening.hpp" />
     <ClInclude Include="Scenes\ScreenGuidance.hpp" />
     <ClInclude Include="scenes\SkillSelect.hpp" />
+    <ClCompile Include="skills\Bullet.hpp" />
+    <ClCompile Include="skills\Shot.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

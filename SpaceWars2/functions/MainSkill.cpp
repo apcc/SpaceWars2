@@ -1,11 +1,14 @@
 #pragma once
 
+#include "./MainSkill.hpp"
 #include "./Player.hpp"
-
+#include "../skills/Shot.hpp"
 
 void Player::DoMainSkill(){
 	switch(this->whatMainSkill){
 		case SHOT:
+			if(System::FrameCount() % 8 == 0)
+				bullets.push_back(new Shot(pos, isLeft));
 		break;
 
 		case GRENADE:
@@ -22,9 +25,18 @@ void Player::DoMainSkill(){
 	}
 }
 
-void Player::UpdateMainSkill(){
+void Player::UpdateMainSkill(Circle rivalCircle){
 	switch(this->whatMainSkill){
 		case SHOT:
+			for(auto itr = bullets.begin(); itr != bullets.end();){
+				(**itr).update(rivalCircle);
+				if (!Circle((**itr).pos, 10).intersects(Rect(0, 0, Config::Width + 1, Config::Height + 1))){
+					delete *itr;
+					itr = bullets.erase(itr);
+				}else{
+					itr++;
+				}
+			}
 		break;
 
 		case GRENADE:
@@ -42,20 +54,7 @@ void Player::UpdateMainSkill(){
 }
 
 void Player::DrawMainSkill(){
-	switch(this->whatMainSkill){
-		case SHOT:
-		break;
-
-		case GRENADE:
-		break;
-
-		case LASER:
-		break;
-
-		case CRUSHER:
-		break;
-
-		default:
-		LOG(L"[ERROR] DrawMainSkillで意図しない値が参照されました。");
+	for(auto bul : bullets){
+		bul->draw();
 	}
 }
