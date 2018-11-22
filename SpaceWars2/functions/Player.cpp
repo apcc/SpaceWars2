@@ -35,7 +35,7 @@ void Player::Control(){
 		if(Input::KeyO.pressed)			pos.y -= PLAYER_SPEED;
 		if(Input::KeyL.pressed)			pos.y += PLAYER_SPEED;
 	}
-	if(zone.contains(Circle(pos, 40)) == false)
+	if(zone.contains(Player::circle()) == false)
 		pos = tmp;
 	//pos.x=max(tmpZoon.x)
 
