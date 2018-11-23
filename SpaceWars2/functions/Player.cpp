@@ -16,7 +16,7 @@ void Player::Init(Vec2 p, bool _isLeft){
 }
 
 Circle Player::circle(){
-	return Circle(pos, 40);
+	return Circle(pos, 30);
 }
 
 void Player::Control(){
