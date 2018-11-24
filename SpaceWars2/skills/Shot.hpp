@@ -10,6 +10,6 @@ class Shot : public Bullet {
 	void update();
 	void draw();
 
-	const static int bulletSpeed = 10;
+	const static int bulletSpeed = 20;
 	const static int damage = 2;
 };

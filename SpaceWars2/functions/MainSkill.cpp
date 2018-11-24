@@ -7,7 +7,7 @@
 void Player::DoMainSkill(){
 	switch(this->whatMainSkill){
 		case SHOT:
-			if(System::FrameCount() % 8 == 0)
+			if(System::FrameCount() % 5 == 0)
 				bullets.push_back(new Shot(pos, isLeft));
 		break;
 
