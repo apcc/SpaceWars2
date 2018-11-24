@@ -7,7 +7,7 @@ class Shot : public Bullet {
 	Shot(){};
 	Shot(Vec2 pos, bool isLeft);
 
-	int update(Circle rivalPlayer);
+	void update();
 	void draw();
 
 	const static int bulletSpeed = 10;

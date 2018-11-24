@@ -48,7 +48,7 @@ class Player {
 	void DoSubSkill();
 	void DoSpacialSkill();
 
-	void UpdateMainSkill(Circle rivalCircle);
+	int  UpdateMainSkill(Circle rivalCircle);
 	void UpdateSubSkill();
 	void UpdateSpecialSkill();
 
@@ -58,6 +58,8 @@ class Player {
 
 	void Init(Vec2 pos, bool isLeft);
 	Circle circle();
+	void receiveDamage(int damage);
+	bool gameEnd();
 	void Control();
 	void SkillSelect();
 	void DrawShip();

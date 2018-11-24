@@ -5,9 +5,8 @@ Shot::Shot(Vec2 p, bool isLeft){
 	vel = Vec2(bulletSpeed * (isLeft ? 1 : -1), 0).rotate(Radians(2 * Random(-5, 5)));
 }
 
-int Shot::update(Circle rivalPlayer){
+void Shot::update(){
 	pos += vel;
-	return 0;
 }
 
 void Shot::draw(){

@@ -9,6 +9,6 @@ public:
 
 	Vec2 pos,vel;
 
-	virtual int update(Circle rivalCircle){ (void)(rivalCircle);/*WarningC4100対策*/ return 0; };
+	virtual void update(){};
 	virtual void draw(){};
 };

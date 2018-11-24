@@ -19,6 +19,19 @@ Circle Player::circle(){
 	return Circle(pos, 30);
 }
 
+void Player::receiveDamage(int damage){
+	HP -= damage;
+}
+
+bool Player::gameEnd(){
+	if(HP < 0){
+		HP = 0;
+		return true;
+	}else{
+		return false;
+	}
+}
+
 void Player::Control(){
 	Rect zone;
 	Vec2 tmp = pos;
