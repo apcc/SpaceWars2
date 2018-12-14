@@ -13,8 +13,7 @@ public:
 	bool update() override;
 	void draw() override;
 	bool isInvisible() override;
-	bool intersects(Circle circle) override;
-	int getDamage() override { return 2; }
+	int getDamage(Circle circle) override;
 
 	const static int bulletSpeed = 20;
 };

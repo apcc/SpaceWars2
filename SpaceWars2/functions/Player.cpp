@@ -63,11 +63,13 @@ void Player::Update(std::vector<Bullet*> &bullets){
 		if(Input::KeyRShift.pressed)	DoSpacialSkill(bullets);
 	}
 
-	for (auto itr = bullets.begin(); itr < bullets.end();) {
-		if (isLeft != (*itr)->isLeft && (*itr)->intersects(this->circle())) {
-			this->receiveDamage((*itr)->getDamage());
-			itr = bullets.erase(itr);
-		} else itr++;
+	for (auto i : bullets) {
+		if(isLeft == i->isLeft) continue;
+		int damage = i->getDamage(this->circle());
+		if(damage){
+			this->receiveDamage(damage);
+		}
+
 	}
 }
 

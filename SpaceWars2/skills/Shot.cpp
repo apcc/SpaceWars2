@@ -12,6 +12,10 @@ bool Shot::isInvisible(){
 	return !getShape().intersects(Rect(0, 0, Config::Width + 1, Config::Height + 1));
 }
 
-bool Shot::intersects(Circle circle) {
-	return circle.intersects(this->getShape());
+int Shot::getDamage(Circle circle) {
+	if(circle.intersects(this->getShape())){
+		shouldBeDestroyed=true;
+		return 2;
+	}
+	return 0;
 }
