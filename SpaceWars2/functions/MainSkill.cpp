@@ -1,5 +1,7 @@
 #include "./Player.hpp"
 #include "../skills/Shot.hpp"
+#include "../skills/Grenade.hpp"
+
 
 void Player::DoMainSkill(std::vector<Bullet*>& bullets){
 	switch(this->whatMainSkill){
@@ -9,6 +11,8 @@ void Player::DoMainSkill(std::vector<Bullet*>& bullets){
 		break;
 
 		case GRENADE:
+			if(System::FrameCount() % 20 == 0)
+				bullets.push_back(new Grenade(pos, isLeft));
 		break;
 
 		case LASER:

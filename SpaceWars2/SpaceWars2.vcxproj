@@ -303,8 +303,10 @@
     <ClInclude Include="Scenes\ScreenGuidance.hpp" />
     <ClInclude Include="scenes\SkillSelect.hpp" />
     <ClCompile Include="skills\Bullet.cpp" />
+    <ClCompile Include="skills\Grenade.cpp" />
     <ClCompile Include="skills\Shot.cpp" />
     <ClInclude Include="skills\Bullet.hpp" />
+    <ClInclude Include="skills\Grenade.hpp" />
     <ClInclude Include="skills\Shot.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
