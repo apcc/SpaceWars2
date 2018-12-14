@@ -65,7 +65,6 @@ void Player::Update(std::vector<Bullet*> &bullets){
 
 	for (auto itr = bullets.begin(); itr < bullets.end();) {
 		if (isLeft != (*itr)->isLeft && (*itr)->intersects(this->circle())) {
-			if ((*itr)->getDamage() > 1000) Println(L"F==k");
 			this->receiveDamage((*itr)->getDamage());
 			itr = bullets.erase(itr);
 		} else itr++;
