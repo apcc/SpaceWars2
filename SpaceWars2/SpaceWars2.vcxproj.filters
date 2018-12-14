@@ -398,9 +398,6 @@
     <ClCompile Include="functions\Player.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Scenes\ControlGuidance.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Scenes\Ending.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -428,17 +425,14 @@
     <ClCompile Include="functions\SpecialSkill.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="skills\Bullet.cpp">
+    <ClCompile Include="Scenes\ControlGuidance.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="skills\Shot.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="skills\Bullet.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="skills\Shot.hpp">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClCompile Include="skills\Bullet.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -473,6 +467,12 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="functions\MainSkill.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="skills\Shot.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="skills\Bullet.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

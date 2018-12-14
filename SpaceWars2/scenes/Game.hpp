@@ -9,7 +9,7 @@
 
 class Game : public SceneManager<String,CommonData>::Scene {
 private:
-
+	std::vector<Bullet*> bullets;
 public:
 	void init() override;
 	void update() override;

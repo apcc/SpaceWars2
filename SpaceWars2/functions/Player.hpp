@@ -4,6 +4,7 @@
 #include "../Config.hpp"
 
 #include "../skills/Bullet.hpp"
+#include "../skills/Shot.hpp"
 
 enum MainSkill {
 	SHOT,
@@ -25,7 +26,7 @@ enum SpecialSkill {
 };
 
 class Player {
-	private:
+private:
 	Vec2 pos;
 	bool isLeft;
 	int selectedType;
@@ -36,23 +37,21 @@ class Player {
 	int coolDown;		//SubSkill管理
 
 
-	public:
+public:
 
 	MainSkill whatMainSkill;
 	SubSkill whatSubSkill;
 	SpecialSkill whatSpecialSkill;
 
-	std::vector<Bullet*> bullets;
+	void DoMainSkill(std::vector<Bullet*>& bullets);
+	void DoSubSkill(std::vector<Bullet*>& bullets);
+	void DoSpacialSkill(std::vector<Bullet*>& bullets);
 
-	void DoMainSkill();
-	void DoSubSkill();
-	void DoSpacialSkill();
-
-	int  UpdateMainSkill(Circle rivalCircle);
+	//int  UpdateMainSkill(Circle rivalCircle);
 	void UpdateSubSkill();
 	void UpdateSpecialSkill();
 
-	void DrawMainSkill();
+	// void DrawMainSkill();
 	void DrawSubSkill();
 	void DrawSpecialSkill();
 
@@ -60,7 +59,7 @@ class Player {
 	Circle circle();
 	void receiveDamage(int damage);
 	bool gameEnd();
-	void Control();
+	void Update(std::vector<Bullet*> &bullets);
 	void SkillSelect();
 	void DrawShip();
 	void DrawGauge();

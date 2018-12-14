@@ -175,8 +175,6 @@
     <ClCompile Include="Scenes\Opening.cpp" />
     <ClCompile Include="Scenes\ScreenGuidance.cpp" />
     <ClCompile Include="scenes\SkillSelect.cpp" />
-    <ClCompile Include="skills\Bullet.cpp" />
-    <ClCompile Include="skills\Shot.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc" />
@@ -304,8 +302,10 @@
     <ClInclude Include="Scenes\Opening.hpp" />
     <ClInclude Include="Scenes\ScreenGuidance.hpp" />
     <ClInclude Include="scenes\SkillSelect.hpp" />
-    <ClCompile Include="skills\Bullet.hpp" />
-    <ClCompile Include="skills\Shot.hpp" />
+    <ClCompile Include="skills\Bullet.cpp" />
+    <ClCompile Include="skills\Shot.cpp" />
+    <ClInclude Include="skills\Bullet.hpp" />
+    <ClInclude Include="skills\Shot.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

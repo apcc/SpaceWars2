@@ -1,9 +1,7 @@
-#pragma once
-
 #include "./Player.hpp"
 
 
-void Player::DoSubSkill(){
+void Player::DoSubSkill(std::vector<Bullet*>& bullets){
 	switch(this->whatSubSkill){
 		case JUMP:
 		break;

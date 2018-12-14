@@ -1,5 +1,4 @@
-#pragma once
-#include "Player.hpp"
+#include "./Player.hpp"
 
 #define PLAYER_SPEED 15
 #define NUMBER_OF_SKILL 3
@@ -21,6 +20,7 @@ Circle Player::circle(){
 
 void Player::receiveDamage(int damage){
 	HP -= damage;
+	if (HP < 0) HP = 0;
 }
 
 bool Player::gameEnd(){
@@ -32,7 +32,7 @@ bool Player::gameEnd(){
 	}
 }
 
-void Player::Control(){
+void Player::Update(std::vector<Bullet*> &bullets){
 	Rect zone;
 	Vec2 tmp = pos;
 	if(isLeft){
@@ -54,13 +54,21 @@ void Player::Control(){
 
 
 	if(isLeft){
-		if(Input::KeyQ.pressed)			DoMainSkill();
-		if(Input::KeyE.pressed)			DoSubSkill();
-		if(Input::KeyLShift.pressed)	DoSpacialSkill();
+		if(Input::KeyQ.pressed)			DoMainSkill(bullets);
+		if(Input::KeyE.pressed)			DoSubSkill(bullets);
+		if(Input::KeyLShift.pressed)	DoSpacialSkill(bullets);
 	}else{
-		if(Input::KeyI.pressed)			DoMainSkill();
-		if(Input::KeyP.pressed)			DoSubSkill();
-		if(Input::KeyRShift.pressed)	DoSpacialSkill();
+		if(Input::KeyI.pressed)			DoMainSkill(bullets);
+		if(Input::KeyP.pressed)			DoSubSkill(bullets);
+		if(Input::KeyRShift.pressed)	DoSpacialSkill(bullets);
+	}
+
+	for (auto itr = bullets.begin(); itr < bullets.end();) {
+		if (isLeft != (*itr)->isLeft && (*itr)->intersects(this->circle())) {
+			if ((*itr)->getDamage() > 1000) Println(L"F==k");
+			this->receiveDamage((*itr)->getDamage());
+			itr = bullets.erase(itr);
+		} else itr++;
 	}
 }
 

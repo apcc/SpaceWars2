@@ -1,5 +1,4 @@
-#pragma once
-#include "Finish.hpp"
+#include "./Finish.hpp"
 #include "../Config.hpp"
 
 void Finish::init() {

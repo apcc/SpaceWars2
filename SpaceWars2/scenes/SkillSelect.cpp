@@ -1,5 +1,4 @@
-#pragma once
-#include "SkillSelect.hpp"
+#include "./SkillSelect.hpp"
 #include "../Config.hpp"
 
 #include "../functions/Player.hpp"

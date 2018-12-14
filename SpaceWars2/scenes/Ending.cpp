@@ -1,5 +1,4 @@
-#pragma once
-#include "Ending.hpp"
+#include "./Ending.hpp"
 #include "../Config.hpp"
 
 void Ending::init() {

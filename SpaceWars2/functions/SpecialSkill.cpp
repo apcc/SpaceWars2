@@ -1,9 +1,7 @@
-#pragma once
-
 #include "./Player.hpp"
 
 
-void Player::DoSpacialSkill(){
+void Player::DoSpacialSkill(std::vector<Bullet*>& bullets){
 	switch(this->whatSpecialSkill){
 		case JUDGEMENT_TIME:
 		break;

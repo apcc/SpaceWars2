@@ -1,5 +1,4 @@
-#pragma once
-#include "Opening.hpp"
+#include "./Opening.hpp"
 #include "../Config.hpp"
 
 void Opening::init(){

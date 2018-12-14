@@ -1,14 +1,17 @@
 #include "./Shot.hpp"
 
-Shot::Shot(Vec2 p, bool isLeft){
-	pos = p;
-	vel = Vec2(bulletSpeed * (isLeft ? 1 : -1), 0).rotate(Radians(Random(-5, 5)));
-}
-
-void Shot::update(){
-	pos += vel;
+bool Shot::update() {
+	return Bullet::update();
 }
 
 void Shot::draw(){
-	Circle(pos, 8).draw(Color(L"#ffff00"));
+	this->getShape().draw(Color(L"#ffff00"));
+}
+
+bool Shot::isInvisible(){
+	return !Circle(pos, 8).intersects(Rect(0, 0, Config::Width + 1, Config::Height + 1));
+}
+
+bool Shot::intersects(Circle circle) {
+	return circle.intersects(this->getShape());
 }
