@@ -24,8 +24,7 @@ void Player::receiveDamage(int damage){
 }
 
 bool Player::gameEnd(){
-	if(HP < 0){
-		HP = 0;
+	if(HP == 0){
 		return true;
 	}else{
 		return false;
