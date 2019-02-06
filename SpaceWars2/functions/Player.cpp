@@ -12,6 +12,9 @@ void Player::Init(Vec2 p, bool _isLeft){
 	temperature = 0;
 	charge = 0;
 	coolDown = 0;
+	whatMainSkill = static_cast<MainSkill>(0);
+	whatSubSkill = static_cast<SubSkill>(0);
+	whatSpecialSkill = static_cast<SpecialSkill>(0);
 }
 
 Circle Player::circle(){
@@ -77,12 +80,12 @@ void Player::SkillSelect(){
 	switch(selectedType){
 		case 0:	//MainSkill
 			if(isLeft){
-				//if(Input::KeyW.clicked) 
+				//if(Input::KeyW.clicked)
 				if(Input::KeyS.clicked)	++selectedType;
 				if(Input::KeyA.clicked && whatMainSkill < NUMBER_OF_SKILL)	whatMainSkill = static_cast<MainSkill>(whatMainSkill + 1);
 				if(Input::KeyD.clicked && whatMainSkill > 0)				whatMainSkill = static_cast<MainSkill>(whatMainSkill - 1);
 			}else{
-				//if(Input::KeyO.clicked) 
+				//if(Input::KeyO.clicked)
 				if(Input::KeyL.clicked)	++selectedType;
 				if(Input::KeyK.clicked && whatMainSkill < NUMBER_OF_SKILL)	whatMainSkill = static_cast<MainSkill>(whatMainSkill + 1);
 				if(Input::KeySemicolon.clicked && whatMainSkill > 0)		whatMainSkill = static_cast<MainSkill>(whatMainSkill - 1);
@@ -106,17 +109,17 @@ void Player::SkillSelect(){
 		case 2:	//SpecialSkill
 			if(isLeft){
 				if(Input::KeyW.clicked)	--selectedType;
-				//if(Input::KeyS.clicked)	
+				//if(Input::KeyS.clicked)
 				if(Input::KeyA.clicked && whatSpecialSkill < NUMBER_OF_SKILL)	whatSpecialSkill = static_cast<SpecialSkill>(whatSpecialSkill + 1);
 				if(Input::KeyD.clicked && whatSpecialSkill > 0)					whatSpecialSkill = static_cast<SpecialSkill>(whatSpecialSkill - 1);
 			}else{
 				if(Input::KeyO.clicked)	--selectedType;
-				//if(Input::KeyL.clicked)	
+				//if(Input::KeyL.clicked)
 				if(Input::KeyK.clicked && whatSpecialSkill < NUMBER_OF_SKILL)	whatSpecialSkill = static_cast<SpecialSkill>(whatSpecialSkill + 1);
 				if(Input::KeySemicolon.clicked && whatSpecialSkill > 0)			whatSpecialSkill = static_cast<SpecialSkill>(whatSpecialSkill - 1);
 			}
 		break;
-		
+
 		default:
 			LOG(L"[ERROR] SkillSelecterで意図しない値が参照されました。");
 	}
