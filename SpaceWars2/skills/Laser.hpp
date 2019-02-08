@@ -8,6 +8,7 @@ private:
 	int energy = 1;
 	int DamageDeal = 0;
 	Vec2 *ppos;
+	bool isLeft;
 	bool isInvalid = false;
 	static bool isInvoked;
 
@@ -15,12 +16,19 @@ private:
 	const static int WAITING_TIME = 100; // 実行までにかかるwaiting時間
 	const static int COOLDOWN_TIME = 1000; // 実行後のクールダウン時間（要検討）
 
-	RectF getShapeShooten(){ return RectF(*ppos - Vec2(0, energy), Config::Width, energy * 2); }
-	Circle getShapeCharging(){ return Circle(*ppos, energy); }
+	RectF getShapeShooten(){
+		if(isLeft)	return RectF(*ppos - Vec2(0, energy),  Config::Width, energy * 2);
+		else		return RectF(*ppos - Vec2(Config::Width, energy), Config::Width, energy * 2);
+	}
+	Circle getShapeCharging(){
+		if(isLeft)	return Circle(*ppos + Vec2( 25 + energy, 0), energy);
+		else		return Circle(*ppos + Vec2(-25 - energy, 0), energy);
+	}
 
 public:
 	Laser(Vec2 *p, bool left) : Bullet(p, left) {
 		ppos = p;
+		isLeft = left;
 		if (isInvoked) { // if another instance is already created and still alive...
 			isInvalid = true; // this laser is disabled
 		} else isInvoked = true;
