@@ -14,14 +14,16 @@ bool Laser::update() {
 		if (energy < 0) energy = 0;
 	}
 
+	if(energy >= 180) isCharging = false;
+
 	return Bullet::update();
 }
 
 void Laser::draw(){
 	if(!isCharging)
-		getShapeShooten().draw(Color(L"#ff7700"));
+		getShapeShooten().draw(HSV(60 - (energy / 3), 1, 1));
 	else
-		getShapeCharging().draw(Color(L"#fffb00"));
+		getShapeCharging().draw(HSV(60 - (energy / 3), 1, 1));
 }
 
 int Laser::getDamage(Circle circle){
