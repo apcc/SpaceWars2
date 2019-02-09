@@ -1,6 +1,10 @@
 #pragma once
 #include <Siv3D.hpp>
+#include <vector>
 #include "../Config.hpp"
+
+#include "../skills/Bullet.hpp"
+#include "../skills/Shot.hpp"
 
 enum MainSkill {
 	SHOT,
@@ -22,45 +26,40 @@ enum SpecialSkill {
 };
 
 class Player {
-	private:
-	int32 posX;
-	int32 posY;
+private:
+	Vec2 pos;
 	bool isLeft;
-	Circle ship;
 	int selectedType;
-	
+
 	int HP;				//体力
 	int temperature;	//Overheat管理
 	int charge;			//SpecialSkill管理
 	int coolDown;		//SubSkill管理
 
 
-	void Shot();
-	void Grenade();
-	void Laser();
-	void Crusher();
+public:
 
-	void Jump();
-	void Shield();
-	void Missile();
-	void Bomb();
-
-	void JudgementTime();
-	void LockOn();
-	void SummonPartner();
-	void InversionRecovery();
-
-	public:
 	MainSkill whatMainSkill;
 	SubSkill whatSubSkill;
 	SpecialSkill whatSpecialSkill;
 
-	void DoMainSkill();
-	void DoSubSkill();
-	void DoSpacialSkill();
+	void DoMainSkill(std::vector<Bullet*>& bullets);
+	void DoSubSkill(std::vector<Bullet*>& bullets);
+	void DoSpacialSkill(std::vector<Bullet*>& bullets);
 
-	void Init(int32, int32, bool);
-	void Control();
+	//int  UpdateMainSkill(Circle rivalCircle);
+	void UpdateSubSkill();
+	void UpdateSpecialSkill();
+
+	// void DrawMainSkill();
+	void DrawSubSkill();
+	void DrawSpecialSkill();
+
+	void Init(Vec2 pos, bool isLeft);
+	Circle circle();
+	void receiveDamage(int damage);
+	bool gameEnd();
+	void Update(std::vector<Bullet*> &bullets);
 	void SkillSelect();
 	void DrawShip();
 	void DrawGauge();

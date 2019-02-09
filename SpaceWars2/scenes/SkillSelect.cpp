@@ -1,12 +1,10 @@
-#pragma once
-#include "SkillSelect.hpp"
+#include "./SkillSelect.hpp"
 #include "../Config.hpp"
 
 #include "../functions/Player.hpp"
 
 void SkillSelect::init() {
-	m_data->LPlayer.Init(40, Config::Height / 2, true);
-	m_data->RPlayer.Init(1240, Config::Height / 2, false);
+
 }
 
 void SkillSelect::update() {

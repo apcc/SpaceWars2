@@ -1,108 +1,78 @@
-#pragma once
-#include "Player.hpp"
+#include "./Player.hpp"
 
-#define PLAYER_SPEED 10
+#define PLAYER_SPEED 15
 #define NUMBER_OF_SKILL 3
 #define HP_LIMIT 100.0
 #define GAUGE_WIDTH (Config::Width / 2.0 / HP_LIMIT)
 
-
-void Player::DoMainSkill(){
-	switch(this->whatMainSkill){
-		case SHOT:
-			Player::Shot();
-		break;
-
-		case GRENADE:
-			Player::Grenade();
-		break;
-
-		case LASER:
-			Player::Laser();
-		break;
-
-		case CRUSHER:
-			Player::Crusher();
-		break;
-
-		default:
-		LOG(L"[ERROR] MainSkillで意図しない値が参照されました。");
-	}
-}
-
-void Player::DoSubSkill(){
-	switch(this->whatSubSkill){
-		case JUMP:
-			Player::Jump();
-		break;
-
-		case SHIELD:
-			Player::Shield();
-		break;
-
-		case MISSILE:
-			Player::Missile();
-		break;
-
-		case BOMB:
-			Player::Bomb();
-		break;
-
-		default:
-		LOG(L"[ERROR] SubSkillで意図しない値が参照されました。");
-	}
-}
-
-void Player::DoSpacialSkill(){
-	switch(this->whatSpecialSkill){
-		case JUDGEMENT_TIME:
-			Player::JudgementTime();
-		break;
-
-		case LOCK_ON:
-			Player::LockOn();
-		break;
-
-		case SUMMON_PARTNER:
-			Player::SummonPartner();
-		break;
-
-		case INVERESION_RECOVERY:
-			Player::InversionRecovery();
-		break;
-
-		default:
-		LOG(L"[ERROR] SpecialSkillで意図しない値が参照されました。");
-	}
-}
-
-void Player::Init(int32 _x, int32 _y, bool _isLeft){	
-	posX = _x;
-	posY = _y;
+void Player::Init(Vec2 p, bool _isLeft){
+	pos = p;
 	isLeft = _isLeft;
 	HP = 100;
 	temperature = 0;
 	charge = 0;
 	coolDown = 0;
+	whatMainSkill = static_cast<MainSkill>(0);
+	whatSubSkill = static_cast<SubSkill>(0);
+	whatSpecialSkill = static_cast<SpecialSkill>(0);
 }
 
-void Player::Control(){
-	Rect tmpZoon;
+Circle Player::circle(){
+	return Circle(pos, 30);
+}
+
+void Player::receiveDamage(int damage){
+	HP -= damage;
+	if (HP < 0) HP = 0;
+}
+
+bool Player::gameEnd(){
+	if(HP == 0){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+void Player::Update(std::vector<Bullet*> &bullets){
+	Rect zone;
+	Vec2 tmp = pos;
+	if(isLeft){
+		zone = Rect(0, 0, Config::Width / 2 + 1, Config::Height + 1);
+		if(Input::KeyD.pressed)			pos.x += PLAYER_SPEED;
+		if(Input::KeyA.pressed)			pos.x -= PLAYER_SPEED;
+		if(Input::KeyW.pressed)			pos.y -= PLAYER_SPEED;
+		if(Input::KeyS.pressed)			pos.y += PLAYER_SPEED;
+	}else{
+		zone = Rect(Config::Width/2, 0, Config::Width / 2 + 1, Config::Height + 1);
+		if(Input::KeySemicolon.pressed)	pos.x += PLAYER_SPEED;
+		if(Input::KeyK.pressed)			pos.x -= PLAYER_SPEED;
+		if(Input::KeyO.pressed)			pos.y -= PLAYER_SPEED;
+		if(Input::KeyL.pressed)			pos.y += PLAYER_SPEED;
+	}
+	if(zone.contains(Player::circle()) == false)
+		pos = tmp;
+	//pos.x=max(tmpZoon.x)
+
 
 	if(isLeft){
-		tmpZoon = Rect(0, 0, Config::Width / 2 + 1, Config::Height + 1);
-		if(Input::KeyD.pressed && tmpZoon.contains(Circle(posX + PLAYER_SPEED, posY, 40)))			posX += PLAYER_SPEED;
-		if(Input::KeyA.pressed && tmpZoon.contains(Circle(posX - PLAYER_SPEED, posY, 40)))			posX -= PLAYER_SPEED;
-		if(Input::KeyW.pressed && tmpZoon.contains(Circle(posX, posY - PLAYER_SPEED, 40)))			posY -= PLAYER_SPEED;
-		if(Input::KeyS.pressed && tmpZoon.contains(Circle(posX, posY + PLAYER_SPEED, 40)))			posY += PLAYER_SPEED;
+		if(Input::KeyQ.pressed)			DoMainSkill(bullets);
+		if(Input::KeyE.pressed)			DoSubSkill(bullets);
+		if(Input::KeyLShift.pressed)	DoSpacialSkill(bullets);
 	}else{
-		tmpZoon = Rect(Config::Width/2, 0, Config::Width / 2 + 1, Config::Height + 1);
-		if(Input::KeySemicolon.pressed && tmpZoon.contains(Circle(posX + PLAYER_SPEED, posY, 40)))	posX += PLAYER_SPEED;
-		if(Input::KeyK.pressed && tmpZoon.contains(Circle(posX - PLAYER_SPEED, posY, 40)))			posX -= PLAYER_SPEED;
-		if(Input::KeyO.pressed && tmpZoon.contains(Circle(posX, posY - PLAYER_SPEED, 40)))			posY -= PLAYER_SPEED;
-		if(Input::KeyL.pressed && tmpZoon.contains(Circle(posX, posY + PLAYER_SPEED, 40)))			posY += PLAYER_SPEED;
+		if(Input::KeyI.pressed)			DoMainSkill(bullets);
+		if(Input::KeyP.pressed)			DoSubSkill(bullets);
+		if(Input::KeyRShift.pressed)	DoSpacialSkill(bullets);
 	}
-	ship = Circle(posX, posY, 40);
+
+	for (auto i : bullets) {
+		if(isLeft == i->isLeft) continue;
+		int damage = i->getDamage(this->circle());
+		if(damage){
+			this->receiveDamage(damage);
+		}
+
+	}
 }
 
 void Player::SkillSelect(){
@@ -110,12 +80,12 @@ void Player::SkillSelect(){
 	switch(selectedType){
 		case 0:	//MainSkill
 			if(isLeft){
-				//if(Input::KeyW.clicked) 
+				//if(Input::KeyW.clicked)
 				if(Input::KeyS.clicked)	++selectedType;
 				if(Input::KeyA.clicked && whatMainSkill < NUMBER_OF_SKILL)	whatMainSkill = static_cast<MainSkill>(whatMainSkill + 1);
 				if(Input::KeyD.clicked && whatMainSkill > 0)				whatMainSkill = static_cast<MainSkill>(whatMainSkill - 1);
 			}else{
-				//if(Input::KeyO.clicked) 
+				//if(Input::KeyO.clicked)
 				if(Input::KeyL.clicked)	++selectedType;
 				if(Input::KeyK.clicked && whatMainSkill < NUMBER_OF_SKILL)	whatMainSkill = static_cast<MainSkill>(whatMainSkill + 1);
 				if(Input::KeySemicolon.clicked && whatMainSkill > 0)		whatMainSkill = static_cast<MainSkill>(whatMainSkill - 1);
@@ -139,17 +109,17 @@ void Player::SkillSelect(){
 		case 2:	//SpecialSkill
 			if(isLeft){
 				if(Input::KeyW.clicked)	--selectedType;
-				//if(Input::KeyS.clicked)	
+				//if(Input::KeyS.clicked)
 				if(Input::KeyA.clicked && whatSpecialSkill < NUMBER_OF_SKILL)	whatSpecialSkill = static_cast<SpecialSkill>(whatSpecialSkill + 1);
 				if(Input::KeyD.clicked && whatSpecialSkill > 0)					whatSpecialSkill = static_cast<SpecialSkill>(whatSpecialSkill - 1);
 			}else{
 				if(Input::KeyO.clicked)	--selectedType;
-				//if(Input::KeyL.clicked)	
+				//if(Input::KeyL.clicked)
 				if(Input::KeyK.clicked && whatSpecialSkill < NUMBER_OF_SKILL)	whatSpecialSkill = static_cast<SpecialSkill>(whatSpecialSkill + 1);
 				if(Input::KeySemicolon.clicked && whatSpecialSkill > 0)			whatSpecialSkill = static_cast<SpecialSkill>(whatSpecialSkill - 1);
 			}
 		break;
-		
+
 		default:
 			LOG(L"[ERROR] SkillSelecterで意図しない値が参照されました。");
 	}
@@ -157,9 +127,9 @@ void Player::SkillSelect(){
 
 void Player::DrawShip(){
 	if(isLeft){
-		ship.draw(Color(L"#ff0000"));
+		circle().draw(Color(L"#ff0000"));
 	}else{
-		ship.draw(Color(L"#0000ff"));
+		circle().draw(Color(L"#0000ff"));
 	}
 }
 

@@ -4,7 +4,8 @@
 
 #include "./functions/Player.hpp"
 
-typedef struct {
+
+struct CommonData {
 	Player LPlayer;
 	Player RPlayer;
-} CommonData;
+};

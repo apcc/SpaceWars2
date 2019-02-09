@@ -1,5 +1,4 @@
-#pragma once
-#include "ControlGuidance.hpp"
+#include "./ControlGuidance.hpp"
 #include "../Config.hpp"
 
 void ControlGuidance::init() {

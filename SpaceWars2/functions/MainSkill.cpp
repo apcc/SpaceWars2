@@ -1,20 +1,30 @@
-#pragma once
-
 #include "./Player.hpp"
+#include "../skills/Shot.hpp"
+#include "../skills/Grenade.hpp"
+#include "../skills/Bullet.hpp"
+#include "../skills/Laser.hpp"
 
-// MainSkill
-void Player::Shot(){
-	
-}
 
-void Player::Grenade(){
-	
-}
+void Player::DoMainSkill(std::vector<Bullet*>& bullets){
+	switch(this->whatMainSkill){
+		case SHOT:
+			if(System::FrameCount() % 5 == 0)
+				bullets.push_back(new Shot(&pos, isLeft));
+		break;
 
-void Player::Laser(){
-	
-}
+		case GRENADE:
+			if(System::FrameCount() % 20 == 0)
+				bullets.push_back(new Grenade(&pos, isLeft));
+		break;
 
-void Player::Crusher(){
-	
+		case LASER:
+			bullets.push_back(new Laser(&pos, isLeft));
+		break;
+
+		case CRUSHER:
+		break;
+
+		default:
+		LOG(L"[ERROR] DoMainSkillで意図しない値が参照されました。");
+	}
 }

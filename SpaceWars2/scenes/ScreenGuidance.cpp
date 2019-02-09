@@ -1,5 +1,4 @@
-#pragma once
-#include "ScreenGuidance.hpp"
+#include "./ScreenGuidance.hpp"
 #include "../Config.hpp"
 
 void ScreenGuidance::init() {
