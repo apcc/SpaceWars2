@@ -6,6 +6,7 @@ void ControlGuidance::init() {
 }
 
 void ControlGuidance::update() {
+	changeScene(m_data->debug.inputFnKey(), 250);
 	if (Input::KeyEnter.clicked)
 		changeScene(L"ScreenGuidance", 500);
 }

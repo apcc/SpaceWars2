@@ -8,6 +8,7 @@ void SkillSelect::init() {
 }
 
 void SkillSelect::update() {
+	changeScene(m_data->debug.inputFnKey(), 250);
 	if (Input::KeyEnter.clicked)
 		changeScene(L"Game", 500);
 

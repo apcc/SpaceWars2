@@ -6,6 +6,7 @@ void Ending::init() {
 }
 
 void Ending::update() {
+	changeScene(m_data->debug.inputFnKey(), 250);
 	if (Input::KeyEnter.clicked)
 		changeScene(L"Opening");
 }
