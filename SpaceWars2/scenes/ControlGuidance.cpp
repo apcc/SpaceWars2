@@ -7,7 +7,7 @@ void ControlGuidance::init() {
 
 void ControlGuidance::update() {
 	if (Input::KeyEnter.clicked)
-		changeScene(L"ScreenGuidance");
+		changeScene(L"ScreenGuidance", 500);
 }
 
 void ControlGuidance::draw() const {

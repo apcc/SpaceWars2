@@ -7,7 +7,7 @@ void ScreenGuidance::init() {
 
 void ScreenGuidance::update() {
 	if (Input::KeyEnter.clicked)
-		changeScene(L"SkillSelect");
+		changeScene(L"SkillSelect", 500);
 }
 
 void ScreenGuidance::draw() const {

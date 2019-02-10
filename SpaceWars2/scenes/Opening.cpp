@@ -8,7 +8,7 @@ void Opening::init(){
 
 void Opening::update(){
 	if (Input::KeyEnter.clicked)
-		changeScene(L"ControlGuidance");
+		changeScene(L"ControlGuidance", 500);
 }
 
 void Opening::draw() const{

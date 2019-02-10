@@ -7,7 +7,7 @@ void Finish::init() {
 
 void Finish::update() {
 	if (Input::KeyEnter.clicked)
-		changeScene(L"Ending");
+		changeScene(L"Ending", 500);
 }
 
 void Finish::draw() const {
