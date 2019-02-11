@@ -1,12 +1,13 @@
 #include "./ControlGuidance.hpp"
 #include "../Config.hpp"
+#include "../functions/Debug.hpp"
 
 void ControlGuidance::init() {
 
 }
 
 void ControlGuidance::update() {
-	changeScene(m_data->debug.inputFnKey(), 250);
+	changeScene(Debug::inputFnKey(), 250);
 	if (Input::KeyEnter.clicked)
 		changeScene(L"ScreenGuidance", 500);
 }

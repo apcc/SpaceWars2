@@ -1,5 +1,6 @@
 #include "./SkillSelect.hpp"
 #include "../Config.hpp"
+#include "../functions/Debug.hpp"
 
 #include "../functions/Player.hpp"
 
@@ -8,7 +9,7 @@ void SkillSelect::init() {
 }
 
 void SkillSelect::update() {
-	changeScene(m_data->debug.inputFnKey(), 250);
+	changeScene(Debug::inputFnKey(), 250);
 	if (Input::KeyEnter.clicked)
 		changeScene(L"Game", 500);
 

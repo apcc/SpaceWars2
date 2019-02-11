@@ -1,5 +1,6 @@
 #include "./Game.hpp"
 #include "../Config.hpp"
+#include "../functions/Debug.hpp"
 
 #include "../functions/Player.hpp"
 
@@ -8,7 +9,7 @@ void Game::init() {
 }
 
 void Game::update() {
-	changeScene(m_data->debug.inputFnKey(), 250);
+	changeScene(Debug::inputFnKey(), 250);
 	if (Input::KeyEnter.clicked)
 		changeScene(L"Finish", 500);
 

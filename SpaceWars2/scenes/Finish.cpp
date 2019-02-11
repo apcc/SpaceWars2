@@ -1,12 +1,13 @@
 #include "./Finish.hpp"
 #include "../Config.hpp"
+#include "../functions/Debug.hpp"
 
 void Finish::init() {
 
 }
 
 void Finish::update() {
-	changeScene(m_data->debug.inputFnKey(), 250);
+	changeScene(Debug::inputFnKey(), 250);
 	if (Input::KeyEnter.clicked)
 		changeScene(L"Ending", 500);
 }
