@@ -163,6 +163,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="functions\Debug.cpp" />
     <ClCompile Include="functions\MainSkill.cpp" />
     <ClCompile Include="functions\Player.cpp" />
     <ClCompile Include="functions\SpecialSkill.cpp" />
@@ -293,6 +294,7 @@
   <ItemGroup>
     <ClInclude Include="CommonData.hpp" />
     <ClInclude Include="config.hpp" />
+    <ClInclude Include="functions\Debug.hpp" />
     <ClInclude Include="functions\MainSkill.hpp" />
     <ClInclude Include="functions\Player.hpp" />
     <ClInclude Include="Scenes\ControlGuidance.hpp" />

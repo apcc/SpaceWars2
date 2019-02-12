@@ -1,13 +1,15 @@
 #include "./ScreenGuidance.hpp"
 #include "../Config.hpp"
+#include "../functions/Debug.hpp"
 
 void ScreenGuidance::init() {
 
 }
 
 void ScreenGuidance::update() {
+	changeScene(Debug::inputFnKey(), 250);
 	if (Input::KeyEnter.clicked)
-		changeScene(L"SkillSelect");
+		changeScene(L"SkillSelect", 500);
 }
 
 void ScreenGuidance::draw() const {

@@ -1,5 +1,6 @@
 #include "./Game.hpp"
 #include "../Config.hpp"
+#include "../functions/Debug.hpp"
 
 #include "../functions/Player.hpp"
 
@@ -8,8 +9,9 @@ void Game::init() {
 }
 
 void Game::update() {
+	changeScene(Debug::inputFnKey(), 250);
 	if (Input::KeyEnter.clicked)
-		changeScene(L"Finish");
+		changeScene(L"Finish", 500);
 
 	m_data->LPlayer.Update(bullets);
 	m_data->RPlayer.Update(bullets);
@@ -49,7 +51,7 @@ void Game::draw() const {
 	for(auto bul : bullets){
 		bul->draw();
 	}
-  
+
 	m_data->LPlayer.DrawShip();
 	m_data->RPlayer.DrawShip();
 	m_data->LPlayer.DrawGauge();

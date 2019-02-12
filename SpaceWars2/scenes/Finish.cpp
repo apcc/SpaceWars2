@@ -1,13 +1,15 @@
 #include "./Finish.hpp"
 #include "../Config.hpp"
+#include "../functions/Debug.hpp"
 
 void Finish::init() {
 
 }
 
 void Finish::update() {
+	changeScene(Debug::inputFnKey(), 250);
 	if (Input::KeyEnter.clicked)
-		changeScene(L"Ending");
+		changeScene(L"Ending", 500);
 }
 
 void Finish::draw() const {

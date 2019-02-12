@@ -1,5 +1,6 @@
 #include "./Opening.hpp"
 #include "../Config.hpp"
+#include "../functions/Debug.hpp"
 
 void Opening::init(){
 	m_data->LPlayer.Init(Vec2(  80, Config::Height/2), true);  //円の半径
@@ -7,8 +8,9 @@ void Opening::init(){
 }
 
 void Opening::update(){
+	changeScene(Debug::inputFnKey(), 250);
 	if (Input::KeyEnter.clicked)
-		changeScene(L"ControlGuidance");
+		changeScene(L"ControlGuidance", 500);
 }
 
 void Opening::draw() const{
