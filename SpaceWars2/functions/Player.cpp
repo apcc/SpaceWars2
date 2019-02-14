@@ -41,17 +41,27 @@ void Player::Update(std::vector<Bullet*> &bullets){
 		zone = Rect(0, 0, Config::Width / 2 + 1, Config::Height + 1);
 		if(Input::KeyD.pressed)			pos.x += PLAYER_SPEED;
 		if(Input::KeyA.pressed)			pos.x -= PLAYER_SPEED;
+		if (zone.contains(Player::circle()) == false)
+			pos = tmp;
+		tmp = pos;
 		if(Input::KeyW.pressed)			pos.y -= PLAYER_SPEED;
 		if(Input::KeyS.pressed)			pos.y += PLAYER_SPEED;
+		if (zone.contains(Player::circle()) == false)
+			pos = tmp;
+		tmp = pos;
 	}else{
 		zone = Rect(Config::Width/2, 0, Config::Width / 2 + 1, Config::Height + 1);
 		if(Input::KeySemicolon.pressed)	pos.x += PLAYER_SPEED;
 		if(Input::KeyK.pressed)			pos.x -= PLAYER_SPEED;
+		if (zone.contains(Player::circle()) == false)
+			pos = tmp;
+		tmp = pos;
 		if(Input::KeyO.pressed)			pos.y -= PLAYER_SPEED;
 		if(Input::KeyL.pressed)			pos.y += PLAYER_SPEED;
+		if (zone.contains(Player::circle()) == false)
+			pos = tmp;
+		tmp = pos;
 	}
-	if(zone.contains(Player::circle()) == false)
-		pos = tmp;
 	//pos.x=max(tmpZoon.x)
 
 
