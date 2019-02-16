@@ -10,7 +10,7 @@ public:
 		vel = Vec2(bulletSpeed * (left ? 1 : -1), 0).rotate(Radians(Random(-5, 5)));
 	}
 
-	bool update() override;
+	bool update(Vec2 myPos, Vec2 oppPos) override;
 	void draw() override;
 	bool isInvisible() override;
 	int getDamage(Circle circle) override;

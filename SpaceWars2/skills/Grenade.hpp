@@ -14,7 +14,7 @@ public:
 		fuse = 1 * 60 + EXPLODE_TIMING;
 	}
 
-	bool update() override;
+	bool update(Vec2 myPos, Vec2 oppPos) override;
 	void draw() override;
 	bool isInvisible() override;
 	int getDamage(Circle circle) override;

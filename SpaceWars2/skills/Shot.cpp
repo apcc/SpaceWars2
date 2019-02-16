@@ -1,7 +1,7 @@
 #include "./Shot.hpp"
 
-bool Shot::update() {
-	return Bullet::update();
+bool Shot::update(Vec2 myPos, Vec2 oppPos) {
+	return Bullet::update(myPos, oppPos);
 }
 
 void Shot::draw(){
