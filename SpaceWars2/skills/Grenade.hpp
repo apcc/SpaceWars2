@@ -9,7 +9,7 @@ private:
 	const static int EXPLODE_TIMING=20;
 	const static int EXPLODE_RADIUS=300;
 public:
-	Grenade(Vec2 *p, bool left) : Bullet(p, left) {
+	Grenade(Vec2 p, bool left) : Bullet(p, left) {
 		vel = Vec2(bulletSpeed * (left ? 1 : -1), 0).rotate(Radians(Random(-5, 5)));
 		fuse = 1 * 60 + EXPLODE_TIMING;
 	}

@@ -8,8 +8,8 @@ protected:
 	bool shouldBeDestroyed=false;
 public:
 	Bullet():pos(Vec2(0,0)),isLeft(false){};
-	Bullet(Vec2 *pos, bool isLeft):
-		pos(*pos),
+	Bullet(Vec2 pos, bool isLeft):
+		pos(pos),
 		isLeft(isLeft){}
 	// Bullet(int32 x, int32 y, bool isLeft){};
 	virtual ~Bullet() {};

@@ -6,7 +6,7 @@ class Shot : public Bullet {
 private:
 	Circle getShape() { return Circle(pos,8); }
 public:
-	Shot(Vec2 *p, bool left) : Bullet(p, left) {
+	Shot(Vec2 p, bool left) : Bullet(p, left) {
 		vel = Vec2(bulletSpeed * (left ? 1 : -1), 0).rotate(Radians(Random(-5, 5)));
 	}
 
