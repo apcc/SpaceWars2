@@ -2,7 +2,8 @@
 
 bool Laser::isInvoked = false;
 
-bool Laser::update() {
+bool Laser::update(Vec2 myPos, Vec2 oppPos) {
+	ppos = myPos;
 	if(isCharging){
 		if((isLeft && Input::KeyQ.pressed) || (!isLeft && Input::KeyI.pressed)){
 			++energy;
@@ -16,7 +17,7 @@ bool Laser::update() {
 
 	if(energy >= 180) isCharging = false;
 
-	return Bullet::update();
+	return Bullet::update(myPos, oppPos);
 }
 
 void Laser::draw(){

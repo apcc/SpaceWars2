@@ -8,13 +8,13 @@ protected:
 	bool shouldBeDestroyed=false;
 public:
 	Bullet():pos(Vec2(0,0)),isLeft(false){};
-	Bullet(Vec2 *pos, bool isLeft):
-		pos(*pos),
+	Bullet(Vec2 pos, bool isLeft):
+		pos(pos),
 		isLeft(isLeft){}
 	// Bullet(int32 x, int32 y, bool isLeft){};
 	virtual ~Bullet() {};
 
-	virtual bool update() = 0;
+	virtual bool update(Vec2, Vec2) = 0;
 	virtual void draw() = 0;
 	virtual bool isInvisible() = 0;
 	virtual int getDamage(Circle circle) = 0;

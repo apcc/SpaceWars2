@@ -1,10 +1,10 @@
 #include "./Grenade.hpp"
 
-bool Grenade::update() {
+bool Grenade::update(Vec2 myPos, Vec2 oppPos) {
 	if(fuse == 0) return true;
 	if(fuse <= EXPLODE_TIMING) vel.set(0,0);
 	--fuse;
-	return Bullet::update();
+	return Bullet::update(myPos, oppPos);
 }
 
 void Grenade::draw(){

@@ -26,7 +26,9 @@ void Game::update() {
 	m_data->RPlayer.UpdateSpecialSkill();*/
 
 	for(auto itr = bullets.begin(); itr != bullets.end();){
-		if((**itr).update()){
+		Vec2 myPos = ((**itr).isLeft ? m_data->LPlayer : m_data->RPlayer).circle().center;
+		Vec2 oppPos = ((**itr).isLeft ? m_data->RPlayer : m_data->LPlayer).circle().center;
+		if((**itr).update(myPos, oppPos)){
 			delete *itr;
 			itr = bullets.erase(itr);
 		}else{
