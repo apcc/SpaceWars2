@@ -9,8 +9,10 @@ private:
 	int DamageDeal = 0;
 	Vec2 ppos;
 	bool isLeft;
-	bool isInvalid = false;
-	static bool isInvoked;
+	bool isLInvalid = false;
+	bool isRInvalid = false;
+	static bool isLShooting;
+	static bool isRShooting;
 
 	const static int CHARGE_TIME_LIMIT = 1000; // charge時間の上限
 	const static int WAITING_TIME = 100; // 実行までにかかるwaiting時間
@@ -28,13 +30,13 @@ private:
 public:
 	Laser(Vec2 p, bool left) : Bullet(p, left) {
 		isLeft = left;
-		if (isInvoked) { // if another instance is already created and still alive...
-			isInvalid = true; // this laser is disabled
-		} else isInvoked = true;
+		if (isLeft ? isLShooting : isRShooting) { // if another instance is already created and still alive...
+			(isLeft ? isLInvalid : isRInvalid) = true; // this laser is disabled
+		} else (isLeft ? isLShooting : isRShooting) = true;
 	}
 	~Laser() override {
-		if (!isInvalid)
-			isInvoked = false;
+		if (!(isLeft ? isLInvalid : isRInvalid))
+			(isLeft ? isLShooting : isRShooting) = false;
 	};
 
 	bool update(Vec2 myPos, Vec2 oppPos) override;

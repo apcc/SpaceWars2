@@ -1,6 +1,7 @@
 #include "./Laser.hpp"
 
-bool Laser::isInvoked = false;
+bool Laser::isLShooting = false;
+bool Laser::isRShooting = false;
 
 bool Laser::update(Vec2 myPos, Vec2 oppPos) {
 	ppos = myPos;
@@ -36,7 +37,7 @@ int Laser::getDamage(Circle circle){
 }
 
 bool Laser::isInvisible(){
-	if (isInvalid)   return true;
+	if (isLeft ? isLInvalid : isRInvalid) return true;
 	if (energy <= 0) return true;
 	return false;
 }
