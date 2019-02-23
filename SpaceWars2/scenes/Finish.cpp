@@ -3,7 +3,12 @@
 #include "../functions/Debug.hpp"
 
 void Finish::init() {
-
+	if (m_data->LPlayer.gameEnd() && m_data->RPlayer.gameEnd())
+		isDraw = true;
+	if (m_data->LPlayer.gameEnd())
+		isLeftWin = false;
+	if (m_data->RPlayer.gameEnd())
+		isLeftWin = true;
 }
 
 void Finish::update() {
@@ -14,5 +19,17 @@ void Finish::update() {
 
 void Finish::draw() const {
 	TextureAsset(L"background").resize(Config::Width, Config::Height).draw();
-	FontAsset(L"CicaR32")(L"RED WIN!（知らんけど").drawCenter(40, Color(L"#ffffff"));
+	FontAsset(L"CicaR32")(winner()).drawCenter(40, Color(L"#ffffff"));
+}
+
+
+String Finish::winner() const{
+	if (isDraw)
+		return L"引き分け！";
+	if (isLeftWin)
+		return  L"REDの勝ち！";
+	else
+		return L"BLUEの勝ち！";
+	
+	return String();
 }
