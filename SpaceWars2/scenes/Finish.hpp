@@ -8,8 +8,7 @@ class Finish : public SceneManager<String,CommonData>::Scene {
 private:
 	bool isDraw = false;
 	bool isLeftWin = true;
-
-	String winner() const;
+	String winner;
 
 public:
 
