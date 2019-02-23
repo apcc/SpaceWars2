@@ -36,7 +36,7 @@ void Game::update() {
 		}
 	}
 
-	if(m_data->LPlayer.gameEnd() || m_data->RPlayer.gameEnd())
+	if(m_data->LPlayer.isHPRunOut() || m_data->RPlayer.isHPRunOut())
 		changeScene(L"Finish");
 }
 

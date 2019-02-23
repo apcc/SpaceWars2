@@ -3,11 +3,11 @@
 #include "../functions/Debug.hpp"
 
 void Finish::init() {
-	if (m_data->LPlayer.gameEnd() && m_data->RPlayer.gameEnd())
+	if (m_data->LPlayer.isHPRunOut() && m_data->RPlayer.isHPRunOut())
 		isDraw = true;
-	if (m_data->LPlayer.gameEnd())
+	if (m_data->LPlayer.isHPRunOut())
 		isLeftWin = false;
-	if (m_data->RPlayer.gameEnd())
+	if (m_data->RPlayer.isHPRunOut())
 		isLeftWin = true;
 }
 
