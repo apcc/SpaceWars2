@@ -26,7 +26,7 @@ void Player::receiveDamage(int damage){
 	if (HP < 0) HP = 0;
 }
 
-bool Player::gameEnd(){
+bool Player::isHPRunOut(){
 	if(HP == 0){
 		return true;
 	}else{

@@ -58,7 +58,7 @@ public:
 	void Init(Vec2 pos, bool isLeft);
 	Circle circle();
 	void receiveDamage(int damage);
-	bool gameEnd();
+	bool isHPRunOut();
 	void Update(std::vector<Bullet*> &bullets);
 	void SkillSelect();
 	void DrawShip();
