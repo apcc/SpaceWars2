@@ -19,8 +19,8 @@ private:
 	const static int COOLDOWN_TIME = 1000; // 実行後のクールダウン時間（要検討）
 
 	RectF getShapeShooten(){
-		if(isLeft)	return RectF(ppos - Vec2(0, energy),  Config::Width, energy * 2);
-		else		return RectF(ppos - Vec2(Config::Width, energy), Config::Width, energy * 2);
+		if(isLeft)	return RectF(ppos - Vec2(0, energy),  Config::WIDTH, energy * 2);
+		else		return RectF(ppos - Vec2(Config::WIDTH, energy), Config::WIDTH, energy * 2);
 	}
 	Circle getShapeCharging(){
 		if(isLeft)	return Circle(ppos + Vec2( 25 + energy, 0), energy);

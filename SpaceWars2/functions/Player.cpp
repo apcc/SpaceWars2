@@ -3,7 +3,7 @@
 #define PLAYER_SPEED 15
 #define NUMBER_OF_SKILL 3
 #define HP_LIMIT 100.0
-#define GAUGE_WIDTH (Config::Width / 2.0 / HP_LIMIT)
+#define GAUGE_WIDTH (Config::WIDTH / 2.0 / HP_LIMIT)
 
 void Player::Init(Vec2 p, bool _isLeft){
 	pos = p;
@@ -38,7 +38,7 @@ void Player::Update(std::vector<Bullet*> &bullets){
 	Rect zone;
 	Vec2 tmp = pos;
 	if(isLeft){
-		zone = Rect(0, 0, Config::Width / 2 + 1, Config::Height + 1);
+		zone = Rect(0, 0, Config::WIDTH / 2 + 1, Config::HEIGHT + 1);
 		if(Input::KeyD.pressed)			pos.x += PLAYER_SPEED;
 		if(Input::KeyA.pressed)			pos.x -= PLAYER_SPEED;
 		if (zone.contains(Player::circle()) == false)
@@ -50,7 +50,7 @@ void Player::Update(std::vector<Bullet*> &bullets){
 			pos = tmp;
 		tmp = pos;
 	}else{
-		zone = Rect(Config::Width/2, 0, Config::Width / 2 + 1, Config::Height + 1);
+		zone = Rect(Config::WIDTH/2, 0, Config::WIDTH / 2 + 1, Config::HEIGHT + 1);
 		if(Input::KeySemicolon.pressed)	pos.x += PLAYER_SPEED;
 		if(Input::KeyK.pressed)			pos.x -= PLAYER_SPEED;
 		if (zone.contains(Player::circle()) == false)
@@ -150,9 +150,9 @@ void Player::DrawGauge(){
 		RectF(0, 40, charge * GAUGE_WIDTH, 60).draw(Color(L"#ffff00"));
 		RectF(0, 60, coolDown * GAUGE_WIDTH, 80).draw(Color(L"#0000ff"));
 	}else{
-		RectF(Config::Width - HP * GAUGE_WIDTH, 0,  Config::Width, 20).draw(Color(L"#ff0000"));
-		RectF(Config::Width - temperature * GAUGE_WIDTH, 20, Config::Width, 40).draw(Color(L"#00ff00"));
-		RectF(Config::Width - charge * GAUGE_WIDTH, 40, Config::Width, 60).draw(Color(L"#ffff00"));
-		RectF(Config::Width - coolDown * GAUGE_WIDTH, 60, Config::Width, 80).draw(Color(L"#0000ff"));
+		RectF(Config::WIDTH - HP * GAUGE_WIDTH, 0,  Config::WIDTH, 20).draw(Color(L"#ff0000"));
+		RectF(Config::WIDTH - temperature * GAUGE_WIDTH, 20, Config::WIDTH, 40).draw(Color(L"#00ff00"));
+		RectF(Config::WIDTH - charge * GAUGE_WIDTH, 40, Config::WIDTH, 60).draw(Color(L"#ffff00"));
+		RectF(Config::WIDTH - coolDown * GAUGE_WIDTH, 60, Config::WIDTH, 80).draw(Color(L"#0000ff"));
 	}
 }
