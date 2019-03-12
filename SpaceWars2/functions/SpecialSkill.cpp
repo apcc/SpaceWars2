@@ -3,7 +3,7 @@
 
 void Player::DoSpacialSkill(std::vector<Bullet*>& bullets){
 	switch(this->whatSpecialSkill){
-		case JUDGEMENT_TIME:
+		case JUDGMENT_TIME:
 		break;
 
 		case LOCK_ON:
@@ -12,7 +12,7 @@ void Player::DoSpacialSkill(std::vector<Bullet*>& bullets){
 		case SUMMON_PARTNER:
 		break;
 
-		case INVERESION_RECOVERY:
+		case INVERSION_RECOVERY:
 		break;
 
 		default:
@@ -22,7 +22,7 @@ void Player::DoSpacialSkill(std::vector<Bullet*>& bullets){
 
 void Player::UpdateSpecialSkill(){
 	switch(this->whatSpecialSkill){
-		case JUDGEMENT_TIME:
+		case JUDGMENT_TIME:
 		break;
 
 		case LOCK_ON:
@@ -31,7 +31,7 @@ void Player::UpdateSpecialSkill(){
 		case SUMMON_PARTNER:
 		break;
 
-		case INVERESION_RECOVERY:
+		case INVERSION_RECOVERY:
 		break;
 
 		default:
@@ -41,7 +41,7 @@ void Player::UpdateSpecialSkill(){
 
 void Player::DrawSpecialSkill(){
 	switch(this->whatSpecialSkill){
-		case JUDGEMENT_TIME:
+		case JUDGMENT_TIME:
 		break;
 
 		case LOCK_ON:
@@ -50,7 +50,7 @@ void Player::DrawSpecialSkill(){
 		case SUMMON_PARTNER:
 		break;
 
-		case INVERESION_RECOVERY:
+		case INVERSION_RECOVERY:
 		break;
 
 		default:

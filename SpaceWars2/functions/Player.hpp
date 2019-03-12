@@ -19,10 +19,10 @@ enum SubSkill {
 	BOMB,
 };
 enum SpecialSkill {
-	JUDGEMENT_TIME,
+	JUDGMENT_TIME,
 	LOCK_ON,
 	SUMMON_PARTNER,
-	INVERESION_RECOVERY,
+	INVERSION_RECOVERY,
 };
 
 class Player {
