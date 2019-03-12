@@ -12,7 +12,6 @@
 #include "scenes/Ending.hpp"
 
 
-Font CicaR32;
 enum Mode gamemode;
 
 void Main(){
