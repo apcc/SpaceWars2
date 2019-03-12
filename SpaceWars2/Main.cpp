@@ -12,8 +12,6 @@
 #include "scenes/Ending.hpp"
 
 
-enum Mode gamemode;
-
 void Main(){
 
 	Window::SetTitle(Config::TITLE);
