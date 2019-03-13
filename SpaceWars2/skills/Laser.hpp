@@ -28,8 +28,8 @@ private:
 	}
 
 public:
-	Laser(Vec2 p, bool left) : Bullet(p, left) {
-		isLeft = left;
+	Laser(Vec2 _pos, bool _isLeft) : Bullet(_pos, _isLeft) {
+		isLeft = _isLeft;
 		if (isLeft ? isLShooting : isRShooting) { // if another instance is already created and still alive...
 			(isLeft ? isLInvalid : isRInvalid) = true; // this laser is disabled
 		} else (isLeft ? isLShooting : isRShooting) = true;
@@ -39,10 +39,10 @@ public:
 			(isLeft ? isLShooting : isRShooting) = false;
 	};
 
-	bool update(Vec2 myPos, Vec2 oppPos) override;
+	bool update(Vec2 _myPos, Vec2 _oppPos) override;
 	void draw() override;
 	bool isInvisible() override;
-	int getDamage(Circle circle) override;
+	int getDamage(Circle _circle) override;
 
 	const static int bulletSpeed = 10;
 };

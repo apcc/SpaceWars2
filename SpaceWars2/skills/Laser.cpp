@@ -3,8 +3,8 @@
 bool Laser::isLShooting = false;
 bool Laser::isRShooting = false;
 
-bool Laser::update(Vec2 myPos, Vec2 oppPos) {
-	ppos = myPos;
+bool Laser::update(Vec2 _myPos, Vec2 _oppPos) {
+	ppos = _myPos;
 	if(isCharging){
 		if((isLeft && Input::KeyQ.pressed) || (!isLeft && Input::KeyI.pressed)){
 			++energy;
@@ -18,7 +18,7 @@ bool Laser::update(Vec2 myPos, Vec2 oppPos) {
 
 	if(energy >= 180) isCharging = false;
 
-	return Bullet::update(myPos, oppPos);
+	return Bullet::update(_myPos, _oppPos);
 }
 
 void Laser::draw(){
@@ -28,9 +28,9 @@ void Laser::draw(){
 		getShapeCharging().draw(HSV(60 - (energy / 3), 1, 1));
 }
 
-int Laser::getDamage(Circle circle){
+int Laser::getDamage(Circle _circle){
 	if(isCharging)	return 0;
-	if(circle.intersects(getShapeShooten()) || circle.intersects(getShapeCharging()))
+	if(_circle.intersects(getShapeShooten()) || _circle.intersects(getShapeCharging()))
 		return 1;
 	else
 		return 0;

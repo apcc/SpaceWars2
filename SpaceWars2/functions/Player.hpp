@@ -44,9 +44,9 @@ public:
 	void doSubSkill(std::vector<Bullet*>& bullets);
 	void doSpacialSkill(std::vector<Bullet*>& bullets);
 	
-	void init(Vec2 pos, bool isLeft);
+	void init(Vec2 _pos, bool _isLeft);
 	Circle circle();
-	void receiveDamage(int damage);
+	void receiveDamage(int _damage);
 	bool isHPRunOut();
 	void update(std::vector<Bullet*> &bullets);
 	void skillSelect();

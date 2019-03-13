@@ -5,8 +5,8 @@
 #define HP_LIMIT 100.0
 #define GAUGE_WIDTH (Config::WIDTH / 2.0 / HP_LIMIT)
 
-void Player::init(Vec2 p, bool _isLeft){
-	pos = p;
+void Player::init(Vec2 _pos, bool _isLeft){
+	pos = _pos;
 	isLeft = _isLeft;
 	HP = 100;
 	whatMainSkill = static_cast<MainSkill>(0);
@@ -18,8 +18,8 @@ Circle Player::circle(){
 	return Circle(pos, 30);
 }
 
-void Player::receiveDamage(int damage){
-	HP -= damage;
+void Player::receiveDamage(int _damage){
+	HP -= _damage;
 	if (HP < 0) HP = 0;
 }
 
