@@ -6,5 +6,9 @@ bool Bullet::update(Vec2 _myPos, Vec2 _oppPos){
 	if(shouldBeDestroyed)
 		return true;
 
+	// avoidance C4100
+	(void)_myPos;
+	(void)_oppPos;
+
 	return isInvisible();
 }
