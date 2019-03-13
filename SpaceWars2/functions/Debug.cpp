@@ -1,7 +1,7 @@
 #include <Siv3D.hpp>
 #include "./Debug.hpp"
 
-String Debug::inputFnKey(){
+String Debug::InputFnKey(){
 	String sceneName;
 	if(Input::KeyF1.clicked) sceneName = L"Opening";
 	if(Input::KeyF2.clicked) sceneName = L"ControlGuidance";
