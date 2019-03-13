@@ -24,11 +24,7 @@ void Player::receiveDamage(int damage){
 }
 
 bool Player::isHPRunOut(){
-	if(HP == 0){
-		return true;
-	}else{
-		return false;
-	}
+	return !HP;
 }
 
 void Player::update(std::vector<Bullet*> &bullets){
@@ -38,24 +34,24 @@ void Player::update(std::vector<Bullet*> &bullets){
 		zone = Rect(0, 0, Config::WIDTH / 2 + 1, Config::HEIGHT + 1);
 		if(Input::KeyD.pressed)			pos.x += PLAYER_SPEED;
 		if(Input::KeyA.pressed)			pos.x -= PLAYER_SPEED;
-		if (zone.contains(Player::circle()) == false)
+		if (!zone.contains(Player::circle()))
 			pos = tmp;
 		tmp = pos;
 		if(Input::KeyW.pressed)			pos.y -= PLAYER_SPEED;
 		if(Input::KeyS.pressed)			pos.y += PLAYER_SPEED;
-		if (zone.contains(Player::circle()) == false)
+		if (!zone.contains(Player::circle()))
 			pos = tmp;
 		tmp = pos;
 	}else{
 		zone = Rect(Config::WIDTH/2, 0, Config::WIDTH / 2 + 1, Config::HEIGHT + 1);
 		if(Input::KeySemicolon.pressed)	pos.x += PLAYER_SPEED;
 		if(Input::KeyK.pressed)			pos.x -= PLAYER_SPEED;
-		if (zone.contains(Player::circle()) == false)
+		if (!zone.contains(Player::circle()))
 			pos = tmp;
 		tmp = pos;
 		if(Input::KeyO.pressed)			pos.y -= PLAYER_SPEED;
 		if(Input::KeyL.pressed)			pos.y += PLAYER_SPEED;
-		if (zone.contains(Player::circle()) == false)
+		if (!zone.contains(Player::circle()))
 			pos = tmp;
 		tmp = pos;
 	}
