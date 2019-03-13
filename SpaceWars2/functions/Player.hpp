@@ -43,15 +43,7 @@ public:
 	void doMainSkill(std::vector<Bullet*>& bullets);
 	void doSubSkill(std::vector<Bullet*>& bullets);
 	void doSpacialSkill(std::vector<Bullet*>& bullets);
-
-	//int  UpdateMainSkill(Circle rivalCircle);
-	void updateSubSkill();
-	void updateSpecialSkill();
-
-	// void DrawMainSkill();
-	void drawSubSkill();
-	void drawSpecialSkill();
-
+	
 	void init(Vec2 pos, bool isLeft);
 	Circle circle();
 	void receiveDamage(int damage);
