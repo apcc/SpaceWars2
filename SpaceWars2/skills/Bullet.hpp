@@ -4,15 +4,16 @@
 
 class Bullet {
 protected:
-	Vec2 pos,vel;
-	bool shouldBeDestroyed=false;
+	Vec2 pos, vel = {};
+	bool shouldBeDestroyed = false;
 public:
-	Bullet():pos(Vec2(0,0)),isLeft(false){};
-	Bullet(Vec2 pos, bool isLeft):
+	Bullet():
+		pos(Vec2(0, 0)),
+		isLeft(true) {};
+	Bullet(Vec2 pos, bool isLeft) :
 		pos(pos),
-		isLeft(isLeft){}
-	// Bullet(int32 x, int32 y, bool isLeft){};
-	virtual ~Bullet() {};
+		isLeft(isLeft) {};
+	virtual ~Bullet() = default;
 
 	virtual bool update(Vec2, Vec2) = 0;
 	virtual void draw() = 0;
