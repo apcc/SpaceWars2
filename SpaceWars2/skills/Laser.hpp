@@ -6,8 +6,7 @@ class Laser final : public Bullet {
 private:
 	bool isCharging = true;
 	int energy = 1;
-	int DamageDeal = 0;
-	Vec2 ppos;
+	Vec2 myPos;
 	bool isLeft;
 	bool isLInvalid = false;
 	bool isRInvalid = false;
@@ -18,13 +17,13 @@ private:
 	const static int WAITING_TIME = 100; // 実行までにかかるwaiting時間
 	const static int COOLDOWN_TIME = 1000; // 実行後のクールダウン時間（要検討）
 
-	RectF getShapeShooten(){
-		if(isLeft)	return RectF(ppos - Vec2(0, energy),  Config::WIDTH, energy * 2);
-		else		return RectF(ppos - Vec2(Config::WIDTH, energy), Config::WIDTH, energy * 2);
+	RectF getShapeShotten(){
+		if(isLeft)	return RectF(myPos - Vec2(0, energy),  Config::WIDTH, energy * 2);
+		else		return RectF(myPos - Vec2(Config::WIDTH, energy), Config::WIDTH, energy * 2);
 	}
 	Circle getShapeCharging(){
-		if(isLeft)	return Circle(ppos + Vec2( 25 + energy, 0), energy);
-		else		return Circle(ppos + Vec2(-25 - energy, 0), energy);
+		if(isLeft)	return Circle(myPos + Vec2( 25 + energy, 0), energy);
+		else		return Circle(myPos + Vec2(-25 - energy, 0), energy);
 	}
 
 public:
