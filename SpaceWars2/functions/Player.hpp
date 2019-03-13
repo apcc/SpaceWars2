@@ -1,10 +1,6 @@
 #pragma once
 #include <Siv3D.hpp>
-#include <vector>
-#include "../Config.hpp"
-
 #include "../skills/Bullet.hpp"
-#include "../skills/Shot.hpp"
 
 enum MainSkill {
 	SHOT,

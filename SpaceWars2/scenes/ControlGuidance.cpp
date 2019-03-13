@@ -1,6 +1,4 @@
-#include "./ControlGuidance.hpp"
-#include "../Config.hpp"
-#include "../functions/Debug.hpp"
+#include "ControlGuidance.hpp"
 
 void ControlGuidance::init() {
 

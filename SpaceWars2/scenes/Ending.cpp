@@ -1,6 +1,4 @@
-#include "./Ending.hpp"
-#include "../Config.hpp"
-#include "../functions/Debug.hpp"
+#include "Ending.hpp"
 
 void Ending::init() {
 

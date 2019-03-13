@@ -1,6 +1,4 @@
-#include "./ScreenGuidance.hpp"
-#include "../Config.hpp"
-#include "../functions/Debug.hpp"
+#include "ScreenGuidance.hpp"
 
 void ScreenGuidance::init() {
 

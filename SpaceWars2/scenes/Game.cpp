@@ -1,8 +1,4 @@
-#include "./Game.hpp"
-#include "../Config.hpp"
-#include "../functions/Debug.hpp"
-
-#include "../functions/Player.hpp"
+#include "Game.hpp"
 
 void Game::init() {
 

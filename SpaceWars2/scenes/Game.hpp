@@ -1,10 +1,5 @@
 #pragma once
-#include <Siv3D.hpp>
-#include <HamFramework.hpp>
-#include <vector>
-#include "../Config.hpp"
-#include "../CommonData.hpp"
-
+#include "Include.hpp"
 #include "../skills/Bullet.hpp"
 
 class Game final : public SceneManager<String,CommonData>::Scene {

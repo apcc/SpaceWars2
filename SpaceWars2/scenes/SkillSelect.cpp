@@ -1,8 +1,4 @@
-#include "./SkillSelect.hpp"
-#include "../Config.hpp"
-#include "../functions/Debug.hpp"
-
-#include "../functions/Player.hpp"
+#include "SkillSelect.hpp"
 
 void SkillSelect::init() {
 

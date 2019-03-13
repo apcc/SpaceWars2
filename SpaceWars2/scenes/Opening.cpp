@@ -1,6 +1,4 @@
-#include "./Opening.hpp"
-#include "../Config.hpp"
-#include "../functions/Debug.hpp"
+#include "Opening.hpp"
 
 void Opening::init(){
 	m_data->LPlayer.init(Vec2(  80, Config::HEIGHT/2), true);  //円の半径

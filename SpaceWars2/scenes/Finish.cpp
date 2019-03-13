@@ -1,6 +1,4 @@
-#include "./Finish.hpp"
-#include "../Config.hpp"
-#include "../functions/Debug.hpp"
+#include "Finish.hpp"
 
 void Finish::init() {
 	if (m_data->LPlayer.isHPRunOut() && m_data->RPlayer.isHPRunOut())
