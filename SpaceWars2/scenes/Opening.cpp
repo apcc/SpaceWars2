@@ -3,8 +3,8 @@
 #include "../functions/Debug.hpp"
 
 void Opening::init(){
-	m_data->LPlayer.Init(Vec2(  80, Config::HEIGHT/2), true);  //円の半径
-	m_data->RPlayer.Init(Vec2(1200, Config::HEIGHT/2), false); //Width-円の半径
+	m_data->LPlayer.init(Vec2(  80, Config::HEIGHT/2), true);  //円の半径
+	m_data->RPlayer.init(Vec2(1200, Config::HEIGHT/2), false); //Width-円の半径
 }
 
 void Opening::update(){

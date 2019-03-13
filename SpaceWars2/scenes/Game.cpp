@@ -13,8 +13,8 @@ void Game::update() {
 	if (Input::KeyEnter.clicked)
 		changeScene(L"Finish", 500);
 
-	m_data->LPlayer.Update(bullets);
-	m_data->RPlayer.Update(bullets);
+	m_data->LPlayer.update(bullets);
+	m_data->RPlayer.update(bullets);
 
 
 	/*m_data->RPlayer.receiveDamage(m_data->LPlayer.UpdateMainSkill(m_data->RPlayer.circle()));
@@ -54,8 +54,8 @@ void Game::draw() const {
 		bul->draw();
 	}
 
-	m_data->LPlayer.DrawShip();
-	m_data->RPlayer.DrawShip();
-	m_data->LPlayer.DrawGauge();
-	m_data->RPlayer.DrawGauge();
+	m_data->LPlayer.drawShip();
+	m_data->RPlayer.drawShip();
+	m_data->LPlayer.drawGauge();
+	m_data->RPlayer.drawGauge();
 }

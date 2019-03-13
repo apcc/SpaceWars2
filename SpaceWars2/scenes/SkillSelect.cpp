@@ -13,8 +13,8 @@ void SkillSelect::update() {
 	if (Input::KeyEnter.clicked)
 		changeScene(L"Game", 500);
 
-	m_data->LPlayer.SkillSelect();
-	m_data->RPlayer.SkillSelect();
+	m_data->LPlayer.skillSelect();
+	m_data->RPlayer.skillSelect();
 
 }
 

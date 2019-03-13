@@ -1,7 +1,7 @@
 #include "./Player.hpp"
 
 
-void Player::DoSpacialSkill(std::vector<Bullet*>& bullets){
+void Player::doSpacialSkill(std::vector<Bullet*>& bullets){
 	switch(this->whatSpecialSkill){
 		case JUDGMENT_TIME:
 		break;
@@ -16,11 +16,11 @@ void Player::DoSpacialSkill(std::vector<Bullet*>& bullets){
 		break;
 
 		default:
-		LOG(L"[ERROR] DoSpecialSkillで意図しない値が参照されました。");
+		LOG(L"[ERROR] doSpecialSkillで意図しない値が参照されました。");
 	}
 }
 
-void Player::UpdateSpecialSkill(){
+void Player::updateSpecialSkill(){
 	switch(this->whatSpecialSkill){
 		case JUDGMENT_TIME:
 		break;
@@ -35,11 +35,11 @@ void Player::UpdateSpecialSkill(){
 		break;
 
 		default:
-		LOG(L"[ERROR] UpdateSpecialSkillで意図しない値が参照されました。");
+		LOG(L"[ERROR] updateSpecialSkillで意図しない値が参照されました。");
 	}
 }
 
-void Player::DrawSpecialSkill(){
+void Player::drawSpecialSkill(){
 	switch(this->whatSpecialSkill){
 		case JUDGMENT_TIME:
 		break;
@@ -54,6 +54,6 @@ void Player::DrawSpecialSkill(){
 		break;
 
 		default:
-		LOG(L"[ERROR] DrawSpecialSkillで意図しない値が参照されました。");
+		LOG(L"[ERROR] drawSpecialSkillで意図しない値が参照されました。");
 	}
 }

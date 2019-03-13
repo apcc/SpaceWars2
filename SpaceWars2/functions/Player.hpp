@@ -43,24 +43,24 @@ public:
 	SubSkill whatSubSkill;
 	SpecialSkill whatSpecialSkill;
 
-	void DoMainSkill(std::vector<Bullet*>& bullets);
-	void DoSubSkill(std::vector<Bullet*>& bullets);
-	void DoSpacialSkill(std::vector<Bullet*>& bullets);
+	void doMainSkill(std::vector<Bullet*>& bullets);
+	void doSubSkill(std::vector<Bullet*>& bullets);
+	void doSpacialSkill(std::vector<Bullet*>& bullets);
 
 	//int  UpdateMainSkill(Circle rivalCircle);
-	void UpdateSubSkill();
-	void UpdateSpecialSkill();
+	void updateSubSkill();
+	void updateSpecialSkill();
 
 	// void DrawMainSkill();
-	void DrawSubSkill();
-	void DrawSpecialSkill();
+	void drawSubSkill();
+	void drawSpecialSkill();
 
-	void Init(Vec2 pos, bool isLeft);
+	void init(Vec2 pos, bool isLeft);
 	Circle circle();
 	void receiveDamage(int damage);
 	bool isHPRunOut();
-	void Update(std::vector<Bullet*> &bullets);
-	void SkillSelect();
-	void DrawShip();
-	void DrawGauge();
+	void update(std::vector<Bullet*> &bullets);
+	void skillSelect();
+	void drawShip();
+	void drawGauge();
 };

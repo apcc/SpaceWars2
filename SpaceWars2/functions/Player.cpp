@@ -5,7 +5,7 @@
 #define HP_LIMIT 100.0
 #define GAUGE_WIDTH (Config::WIDTH / 2.0 / HP_LIMIT)
 
-void Player::Init(Vec2 p, bool _isLeft){
+void Player::init(Vec2 p, bool _isLeft){
 	pos = p;
 	isLeft = _isLeft;
 	HP = 100;
@@ -34,7 +34,7 @@ bool Player::isHPRunOut(){
 	}
 }
 
-void Player::Update(std::vector<Bullet*> &bullets){
+void Player::update(std::vector<Bullet*> &bullets){
 	Rect zone;
 	Vec2 tmp = pos;
 	if(isLeft){
@@ -66,13 +66,13 @@ void Player::Update(std::vector<Bullet*> &bullets){
 
 
 	if(isLeft){
-		if(Input::KeyQ.pressed)			DoMainSkill(bullets);
-		if(Input::KeyE.pressed)			DoSubSkill(bullets);
-		if(Input::KeyLShift.pressed)	DoSpacialSkill(bullets);
+		if(Input::KeyQ.pressed)			doMainSkill(bullets);
+		if(Input::KeyE.pressed)			doSubSkill(bullets);
+		if(Input::KeyLShift.pressed)	doSpacialSkill(bullets);
 	}else{
-		if(Input::KeyI.pressed)			DoMainSkill(bullets);
-		if(Input::KeyP.pressed)			DoSubSkill(bullets);
-		if(Input::KeyRShift.pressed)	DoSpacialSkill(bullets);
+		if(Input::KeyI.pressed)			doMainSkill(bullets);
+		if(Input::KeyP.pressed)			doSubSkill(bullets);
+		if(Input::KeyRShift.pressed)	doSpacialSkill(bullets);
 	}
 
 	for (auto i : bullets) {
@@ -85,7 +85,7 @@ void Player::Update(std::vector<Bullet*> &bullets){
 	}
 }
 
-void Player::SkillSelect(){
+void Player::skillSelect(){
 
 	switch(selectedType){
 		case 0:	//MainSkill
@@ -135,7 +135,7 @@ void Player::SkillSelect(){
 	}
 }
 
-void Player::DrawShip(){
+void Player::drawShip(){
 	if(isLeft){
 		circle().draw(Color(L"#ff0000"));
 	}else{
@@ -143,7 +143,7 @@ void Player::DrawShip(){
 	}
 }
 
-void Player::DrawGauge(){
+void Player::drawGauge(){
 	if(isLeft){
 		RectF(0, 0,  HP * GAUGE_WIDTH, 20).draw(Color(L"#ff0000"));
 		RectF(0, 20, temperature * GAUGE_WIDTH, 40).draw(Color(L"#00ff00"));

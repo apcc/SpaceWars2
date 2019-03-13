@@ -1,7 +1,7 @@
 #include "./Player.hpp"
 
 
-void Player::DoSubSkill(std::vector<Bullet*>& bullets){
+void Player::doSubSkill(std::vector<Bullet*>& bullets){
 	switch(this->whatSubSkill){
 		case JUMP:
 		break;
@@ -16,11 +16,11 @@ void Player::DoSubSkill(std::vector<Bullet*>& bullets){
 		break;
 
 		default:
-		LOG(L"[ERROR] DoSubSkillで意図しない値が参照されました。");
+		LOG(L"[ERROR] doSubSkillで意図しない値が参照されました。");
 	}
 }
 
-void Player::UpdateSubSkill(){
+void Player::updateSubSkill(){
 	switch(this->whatSubSkill){
 		case JUMP:
 		break;
@@ -35,11 +35,11 @@ void Player::UpdateSubSkill(){
 		break;
 
 		default:
-		LOG(L"[ERROR] UpdateSubSkillで意図しない値が参照されました。");
+		LOG(L"[ERROR] updateSubSkillで意図しない値が参照されました。");
 	}
 }
 
-void Player::DrawSubSkill(){
+void Player::drawSubSkill(){
 	switch(this->whatSubSkill){
 		case JUMP:
 		break;
@@ -54,6 +54,6 @@ void Player::DrawSubSkill(){
 		break;
 
 		default:
-		LOG(L"[ERROR] DrawSubSkillで意図しない値が参照されました。");
+		LOG(L"[ERROR] drawSubSkillで意図しない値が参照されました。");
 	}
 }
