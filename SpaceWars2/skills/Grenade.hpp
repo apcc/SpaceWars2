@@ -2,7 +2,7 @@
 #include <Siv3D.hpp>
 #include "Bullet.hpp"
 
-class Grenade : public Bullet {
+class Grenade final : public Bullet {
 private:
 	Circle getShape() { return Circle(pos, (fuse>EXPLODE_TIMING)?8:EXPLODE_RADIUS); }
 	int fuse;

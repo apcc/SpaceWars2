@@ -4,7 +4,7 @@
 #include "../Config.hpp"
 #include "../CommonData.hpp"
 
-class Finish : public SceneManager<String,CommonData>::Scene {
+class Finish final : public SceneManager<String,CommonData>::Scene {
 private:
 	bool isDraw = false;
 	bool isLeftWin = true;

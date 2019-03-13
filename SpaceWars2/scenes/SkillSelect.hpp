@@ -4,7 +4,7 @@
 #include "../Config.hpp"
 #include "../CommonData.hpp"
 
-class SkillSelect : public SceneManager<String, CommonData>::Scene {
+class SkillSelect final : public SceneManager<String, CommonData>::Scene {
 private:
 
 public:

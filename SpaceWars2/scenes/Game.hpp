@@ -7,7 +7,7 @@
 
 #include "../skills/Bullet.hpp"
 
-class Game : public SceneManager<String,CommonData>::Scene {
+class Game final : public SceneManager<String,CommonData>::Scene {
 private:
 	std::vector<Bullet*> bullets;
 public:

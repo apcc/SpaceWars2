@@ -2,7 +2,7 @@
 #include <Siv3D.hpp>
 #include "Bullet.hpp"
 
-class Laser : public Bullet {
+class Laser final : public Bullet {
 private:
 	bool isCharging = true;
 	int energy = 1;

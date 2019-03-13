@@ -4,7 +4,7 @@
 #include "../Config.hpp"
 #include "../CommonData.hpp"
 
-class ScreenGuidance : public SceneManager<String,CommonData>::Scene {
+class ScreenGuidance final : public SceneManager<String,CommonData>::Scene {
 private:
 
 public:

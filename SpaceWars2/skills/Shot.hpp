@@ -2,7 +2,7 @@
 #include <Siv3D.hpp>
 #include "Bullet.hpp"
 
-class Shot : public Bullet {
+class Shot final : public Bullet {
 private:
 	Circle getShape() { return Circle(pos,8); }
 public:

@@ -4,7 +4,7 @@
 #include "../Config.hpp"
 #include "../CommonData.hpp"
 
-class Ending : public SceneManager<String, CommonData>::Scene {
+class Ending final : public SceneManager<String, CommonData>::Scene {
 private:
 
 public:
