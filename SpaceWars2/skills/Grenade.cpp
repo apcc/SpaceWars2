@@ -1,10 +1,10 @@
 #include "./Grenade.hpp"
 
-bool Grenade::update(Vec2 myPos, Vec2 oppPos) {
+bool Grenade::update(Vec2 _myPos, Vec2 _oppPos) {
 	if(fuse == 0) return true;
 	if(fuse <= EXPLODE_TIMING) vel.set(0,0);
 	--fuse;
-	return Bullet::update(myPos, oppPos);
+	return Bullet::update(_myPos, _oppPos);
 }
 
 void Grenade::draw(){
@@ -16,15 +16,15 @@ void Grenade::draw(){
 }
 
 bool Grenade::isInvisible(){
-	return !getShape().intersects(Rect(0, 0, Config::Width + 1, Config::Height + 1));
+	return !getShape().intersects(Rect(0, 0, Config::WIDTH + 1, Config::HEIGHT + 1));
 }
 
-int Grenade::getDamage(Circle circle){
-	if(circle.intersects(this->getShape())){
+int Grenade::getDamage(Circle _circle){
+	if(_circle.intersects(this->getShape())){
 		if(fuse > EXPLODE_TIMING)
 			this->explode();
 		if(fuse == EXPLODE_TIMING)
-			return (int)((EXPLODE_RADIUS - pos.distanceFrom(circle.center)) / EXPLODE_RADIUS * 10);
+			return (int)((EXPLODE_RADIUS - pos.distanceFrom(_circle.center)) / EXPLODE_RADIUS * 10);
 		return 0;
 	}
 	return 0;

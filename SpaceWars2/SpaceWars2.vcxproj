@@ -294,10 +294,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonData.hpp" />
-    <ClInclude Include="config.hpp" />
+    <ClInclude Include="Config.hpp" />
     <ClInclude Include="functions\Debug.hpp" />
     <ClInclude Include="functions\MainSkill.hpp" />
     <ClInclude Include="functions\Player.hpp" />
+    <ClInclude Include="scenes\Include.hpp" />
     <ClInclude Include="Scenes\ControlGuidance.hpp" />
     <ClInclude Include="Scenes\Ending.hpp" />
     <ClInclude Include="Scenes\Finish.hpp" />

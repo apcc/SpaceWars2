@@ -1,6 +1,4 @@
-#include "./Finish.hpp"
-#include "../Config.hpp"
-#include "../functions/Debug.hpp"
+#include "Finish.hpp"
 
 void Finish::init() {
 	if (m_data->LPlayer.isHPRunOut() && m_data->RPlayer.isHPRunOut())
@@ -25,6 +23,6 @@ void Finish::update() {
 }
 
 void Finish::draw() const {
-	TextureAsset(L"background").resize(Config::Width, Config::Height).draw();
+	TextureAsset(L"background").resize(Config::WIDTH, Config::HEIGHT).draw();
 	FontAsset(L"CicaR32")(winner).drawCenter(40, Color(L"#ffffff"));
 }

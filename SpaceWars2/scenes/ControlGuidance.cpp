@@ -1,6 +1,4 @@
-#include "./ControlGuidance.hpp"
-#include "../Config.hpp"
-#include "../functions/Debug.hpp"
+#include "ControlGuidance.hpp"
 
 void ControlGuidance::init() {
 
@@ -13,6 +11,6 @@ void ControlGuidance::update() {
 }
 
 void ControlGuidance::draw() const {
-	TextureAsset(L"background").resize(Config::Width, Config::Height).draw();
+	TextureAsset(L"background").resize(Config::WIDTH, Config::HEIGHT).draw();
 	FontAsset(L"CicaR32")(L"ControlGuidance").drawCenter(40, Color(L"#ffffff"));
 }

@@ -1,8 +1,4 @@
-#include "./Game.hpp"
-#include "../Config.hpp"
-#include "../functions/Debug.hpp"
-
-#include "../functions/Player.hpp"
+#include "Game.hpp"
 
 void Game::init() {
 
@@ -13,8 +9,8 @@ void Game::update() {
 	if (Input::KeyEnter.clicked)
 		changeScene(L"Finish", 500);
 
-	m_data->LPlayer.Update(bullets);
-	m_data->RPlayer.Update(bullets);
+	m_data->LPlayer.update(bullets);
+	m_data->RPlayer.update(bullets);
 
 
 	/*m_data->RPlayer.receiveDamage(m_data->LPlayer.UpdateMainSkill(m_data->RPlayer.circle()));
@@ -41,7 +37,7 @@ void Game::update() {
 }
 
 void Game::draw() const {
-	TextureAsset(L"background").resize(Config::Width, Config::Height).draw();
+	TextureAsset(L"background").resize(Config::WIDTH, Config::HEIGHT).draw();
 	FontAsset(L"CicaR32")(L"I am game scene! Hello!").drawCenter(40, Color(L"#ffffff"));
 
 	/*m_data->LPlayer.DrawMainSkill();
@@ -54,8 +50,8 @@ void Game::draw() const {
 		bul->draw();
 	}
 
-	m_data->LPlayer.DrawShip();
-	m_data->RPlayer.DrawShip();
-	m_data->LPlayer.DrawGauge();
-	m_data->RPlayer.DrawGauge();
+	m_data->LPlayer.drawShip();
+	m_data->RPlayer.drawShip();
+	m_data->LPlayer.drawGauge();
+	m_data->RPlayer.drawGauge();
 }

@@ -1,10 +1,7 @@
 #pragma once
-#include <Siv3D.hpp>
-#include <HamFramework.hpp>
-#include "../Config.hpp"
-#include "../CommonData.hpp"
+#include "Include.hpp"
 
-class Opening : public SceneManager<String, CommonData>::Scene{
+class Opening final : public SceneManager<String, CommonData>::Scene{
 private:
 
 public:

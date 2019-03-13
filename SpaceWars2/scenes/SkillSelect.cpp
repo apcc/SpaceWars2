@@ -1,8 +1,4 @@
-#include "./SkillSelect.hpp"
-#include "../Config.hpp"
-#include "../functions/Debug.hpp"
-
-#include "../functions/Player.hpp"
+#include "SkillSelect.hpp"
 
 void SkillSelect::init() {
 
@@ -13,13 +9,13 @@ void SkillSelect::update() {
 	if (Input::KeyEnter.clicked)
 		changeScene(L"Game", 500);
 
-	m_data->LPlayer.SkillSelect();
-	m_data->RPlayer.SkillSelect();
+	m_data->LPlayer.skillSelect();
+	m_data->RPlayer.skillSelect();
 
 }
 
 void SkillSelect::draw() const {
-	TextureAsset(L"background").resize(Config::Width, Config::Height).draw();
+	TextureAsset(L"background").resize(Config::WIDTH, Config::HEIGHT).draw();
 	FontAsset(L"CicaR32")(L"SkillSelect").drawCenter(40, Color(L"#ffffff"));
 
 	FontAsset(L"CicaR32")(m_data->LPlayer.whatMainSkill).draw(40, 40);
