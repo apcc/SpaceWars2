@@ -5,7 +5,7 @@ void SkillSelect::init() {
 }
 
 void SkillSelect::update() {
-	changeScene(Debug::inputFnKey(), 250);
+	changeScene(Debug::InputFnKey(), 250);
 	if (Input::KeyEnter.clicked)
 		changeScene(L"Game", 500);
 

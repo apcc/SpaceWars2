@@ -5,7 +5,7 @@ void Game::init() {
 }
 
 void Game::update() {
-	changeScene(Debug::inputFnKey(), 250);
+	changeScene(Debug::InputFnKey(), 250);
 	if (Input::KeyEnter.clicked)
 		changeScene(L"Finish", 500);
 
