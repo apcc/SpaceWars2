@@ -35,6 +35,6 @@ void Main(){
 	while (System::Update()){
 		manager.updateAndDraw();
 
-		Circle(Mouse::Pos(), 50).draw({ 255, 0, 0, 127 });
+		// Circle(Mouse::Pos(), 50).draw({ 255, 0, 0, 127 });
 	}
 }
