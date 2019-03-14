@@ -10,5 +10,5 @@ bool Bullet::update(Vec2 _myPos, Vec2 _oppPos){
 	(void)_myPos;
 	(void)_oppPos;
 
-	return isInvisible();
+	return !isVisible();
 }

@@ -15,8 +15,8 @@ void Grenade::draw(){
 	}
 }
 
-bool Grenade::isInvisible(){
-	return !getShape().intersects(Rect(0, 0, Config::WIDTH + 1, Config::HEIGHT + 1));
+bool Grenade::isVisible(){
+	return getShape().intersects(Rect(0, 0, Config::WIDTH + 1, Config::HEIGHT + 1));
 }
 
 int Grenade::getDamage(Circle _circle){
