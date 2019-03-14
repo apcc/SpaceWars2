@@ -35,6 +35,7 @@ private:
 	int temperature;	//Overheat管理
 	int charge;			//SpecialSkill管理
 	int coolDown;		//SubSkill管理
+	int requireCharge[3] = {40, 40, 40};
 
 
 public:

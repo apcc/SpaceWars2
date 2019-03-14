@@ -3,22 +3,25 @@
 
 
 void Player::DoSpacialSkill(std::vector<Bullet*>& bullets){
-	switch(this->whatSpecialSkill){
-		case JUDGEMENT_TIME:
-		break;
+	if(charge >= this->requireCharge[whatSpecialSkill]){
+		switch(this->whatSpecialSkill){
+			case JUDGEMENT_TIME:
+			break;
 
-		case LOCK_ON:
-		bullets.push_back(new LockOn(pos, isLeft));
-		break;
+			case LOCK_ON:
+			bullets.push_back(new LockOn(pos, isLeft));
+			break;
 
-		case SUMMON_PARTNER:
-		break;
+			case SUMMON_PARTNER:
+			break;
 
-		case INVERESION_RECOVERY:
-		break;
+			case INVERESION_RECOVERY:
+			break;
 
-		default:
-		LOG(L"[ERROR] DoSpecialSkillで意図しない値が参照されました。");
+			default:
+			LOG(L"[ERROR] DoSpecialSkillで意図しない値が参照されました。");
+		}
+		charge = 0;
 	}
 }
 

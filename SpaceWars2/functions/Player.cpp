@@ -80,6 +80,10 @@ void Player::Update(std::vector<Bullet*> &bullets){
 		int damage = i->getDamage(this->circle());
 		if(damage){
 			this->receiveDamage(damage);
+			charge+=damage;
+			if(charge>= requireCharge[whatSpecialSkill]){
+				charge = requireCharge[whatSpecialSkill];
+			}
 		}
 
 	}
@@ -146,13 +150,13 @@ void Player::DrawShip(){
 void Player::DrawGauge(){
 	if(isLeft){
 		RectF(0, 0,  HP * GAUGE_WIDTH, 20).draw(Color(L"#ff0000"));
-		RectF(0, 20, temperature * GAUGE_WIDTH, 40).draw(Color(L"#00ff00"));
-		RectF(0, 40, charge * GAUGE_WIDTH, 60).draw(Color(L"#ffff00"));
-		RectF(0, 60, coolDown * GAUGE_WIDTH, 80).draw(Color(L"#0000ff"));
+		RectF(0, 20, temperature * GAUGE_WIDTH, 20).draw(Color(L"#00ff00"));
+		RectF(0, 40, (charge*100) / requireCharge[whatSpecialSkill] * GAUGE_WIDTH, 20).draw(Color(L"#ffff00"));
+		RectF(0, 60, coolDown * GAUGE_WIDTH, 20).draw(Color(L"#0000ff"));
 	}else{
 		RectF(Config::Width - HP * GAUGE_WIDTH, 0,  Config::Width, 20).draw(Color(L"#ff0000"));
-		RectF(Config::Width - temperature * GAUGE_WIDTH, 20, Config::Width, 40).draw(Color(L"#00ff00"));
-		RectF(Config::Width - charge * GAUGE_WIDTH, 40, Config::Width, 60).draw(Color(L"#ffff00"));
-		RectF(Config::Width - coolDown * GAUGE_WIDTH, 60, Config::Width, 80).draw(Color(L"#0000ff"));
+		RectF(Config::Width - temperature * GAUGE_WIDTH, 20, Config::Width, 20).draw(Color(L"#00ff00"));
+		RectF(Config::Width - (charge*100) / requireCharge[whatSpecialSkill] * GAUGE_WIDTH, 40, Config::Width, 20).draw(Color(L"#ffff00"));
+		RectF(Config::Width - coolDown * GAUGE_WIDTH, 20, Config::Width, 80).draw(Color(L"#0000ff"));
 	}
 }
