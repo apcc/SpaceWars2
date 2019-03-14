@@ -1,4 +1,5 @@
 #include "./Player.hpp"
+#include "../skills/LockOn.hpp"
 
 
 void Player::DoSpacialSkill(std::vector<Bullet*>& bullets){
@@ -7,6 +8,7 @@ void Player::DoSpacialSkill(std::vector<Bullet*>& bullets){
 		break;
 
 		case LOCK_ON:
+		bullets.push_back(new LockOn(pos, isLeft));
 		break;
 
 		case SUMMON_PARTNER:
