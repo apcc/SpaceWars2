@@ -9,21 +9,21 @@ void Game::update() {
 	if (Input::KeyEnter.clicked)
 		changeScene(L"Finish", 500);
 
-	m_data->LPlayer.update(bullets);
-	m_data->RPlayer.update(bullets);
+	Data::LPlayer.update(bullets);
+	Data::RPlayer.update(bullets);
 
 
-	/*m_data->RPlayer.receiveDamage(m_data->LPlayer.UpdateMainSkill(m_data->RPlayer.circle()));
-	m_data->LPlayer.UpdateSubSkill();
-	m_data->LPlayer.UpdateSpecialSkill();
+	/*Data::RPlayer.receiveDamage(Data::LPlayer.UpdateMainSkill(Data::RPlayer.circle()));
+	Data::LPlayer.UpdateSubSkill();
+	Data::LPlayer.UpdateSpecialSkill();
 
-	m_data->LPlayer.receiveDamage(m_data->RPlayer.UpdateMainSkill(m_data->LPlayer.circle()));
-	m_data->RPlayer.UpdateSubSkill();
-	m_data->RPlayer.UpdateSpecialSkill();*/
+	Data::LPlayer.receiveDamage(Data::RPlayer.UpdateMainSkill(Data::LPlayer.circle()));
+	Data::RPlayer.UpdateSubSkill();
+	Data::RPlayer.UpdateSpecialSkill();*/
 
 	for(auto itr = bullets.begin(); itr != bullets.end();){
-		Vec2 myPos = ((**itr).isLeft ? m_data->LPlayer : m_data->RPlayer).circle().center;
-		Vec2 oppPos = ((**itr).isLeft ? m_data->RPlayer : m_data->LPlayer).circle().center;
+		Vec2 myPos = ((**itr).isLeft ? Data::LPlayer : Data::RPlayer).circle().center;
+		Vec2 oppPos = ((**itr).isLeft ? Data::RPlayer : Data::LPlayer).circle().center;
 		if((**itr).update(myPos, oppPos)){
 			delete *itr;
 			itr = bullets.erase(itr);
@@ -32,7 +32,7 @@ void Game::update() {
 		}
 	}
 
-	if(m_data->LPlayer.isHPRunOut() || m_data->RPlayer.isHPRunOut())
+	if(Data::LPlayer.isHPRunOut() || Data::RPlayer.isHPRunOut())
 		changeScene(L"Finish");
 }
 
@@ -40,18 +40,18 @@ void Game::draw() const {
 	TextureAsset(L"background").resize(Config::WIDTH, Config::HEIGHT).draw();
 	FontAsset(L"CicaR32")(L"I am game scene! Hello!").drawCenter(40, Color(L"#ffffff"));
 
-	/*m_data->LPlayer.DrawMainSkill();
-	m_data->LPlayer.DrawSubSkill();
-	m_data->LPlayer.DrawSpecialSkill();
-	m_data->RPlayer.DrawMainSkill();
-	m_data->RPlayer.DrawSubSkill();
-	m_data->RPlayer.DrawSpecialSkill();*/
+	/*Data::LPlayer.DrawMainSkill();
+	Data::LPlayer.DrawSubSkill();
+	Data::LPlayer.DrawSpecialSkill();
+	Data::RPlayer.DrawMainSkill();
+	Data::RPlayer.DrawSubSkill();
+	Data::RPlayer.DrawSpecialSkill();*/
 	for(auto bul : bullets){
 		bul->draw();
 	}
 
-	m_data->LPlayer.drawShip();
-	m_data->RPlayer.drawShip();
-	m_data->LPlayer.drawGauge();
-	m_data->RPlayer.drawGauge();
+	Data::LPlayer.drawShip();
+	Data::RPlayer.drawShip();
+	Data::LPlayer.drawGauge();
+	Data::RPlayer.drawGauge();
 }

@@ -164,6 +164,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CommonData.cpp" />
     <ClCompile Include="functions\Debug.cpp" />
     <ClCompile Include="functions\MainSkill.cpp" />
     <ClCompile Include="functions\Player.cpp" />
