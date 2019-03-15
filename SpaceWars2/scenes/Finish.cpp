@@ -1,11 +1,11 @@
 #include "Finish.hpp"
 
 void Finish::init() {
-	if (m_data->LPlayer.isHPRunOut() && m_data->RPlayer.isHPRunOut())
+	if (Data::LPlayer.isHPRunOut() && Data::RPlayer.isHPRunOut())
 		isDraw = true;
-	if (m_data->LPlayer.isHPRunOut())
+	if (Data::LPlayer.isHPRunOut())
 		isLeftWin = false;
-	if (m_data->RPlayer.isHPRunOut())
+	if (Data::RPlayer.isHPRunOut())
 		isLeftWin = true;
 	
 	if (isDraw)
