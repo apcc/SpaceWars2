@@ -4,12 +4,12 @@
 namespace Config {
 
 	// タイトル
-	const String TITLE		= L"SPACE WARS 2";
+	const String Title		= L"SPACE WARS 2";
 
 	// サイズ
-	const int32  WIDTH		= 1280;
-	const int32  HEIGHT		= 720;
+	const int32  Width		= 1280;
+	const int32  Height		= 720;
 
 	// 背景色
-	const String BACKGROUND	= L"#ffffff";
+	const String Background	= L"#ffffff";
 }

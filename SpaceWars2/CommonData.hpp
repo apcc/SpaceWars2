@@ -6,11 +6,6 @@
 
 
 struct CommonData {
-	// Player LPlayer;
-	// Player RPlayer;
-};
-
-namespace Data {
-	extern Player LPlayer;
-	extern Player RPlayer;
+	Player LPlayer;
+	Player RPlayer;
 };

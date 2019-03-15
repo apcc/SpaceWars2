@@ -1,7 +1,10 @@
 #pragma once
-#include "Include.hpp"
+#include <Siv3D.hpp>
+#include <HamFramework.hpp>
+#include "../Config.hpp"
+#include "../CommonData.hpp"
 
-class Finish final : public SceneManager<String,CommonData>::Scene {
+class Finish : public SceneManager<String,CommonData>::Scene {
 private:
 	bool isDraw = false;
 	bool isLeftWin = true;

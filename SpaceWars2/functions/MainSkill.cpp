@@ -5,7 +5,7 @@
 #include "../skills/Laser.hpp"
 
 
-void Player::doMainSkill(std::vector<Bullet*>& bullets){
+void Player::DoMainSkill(std::vector<Bullet*>& bullets){
 	switch(this->whatMainSkill){
 		case SHOT:
 			if(System::FrameCount() % 5 == 0)
@@ -25,6 +25,6 @@ void Player::doMainSkill(std::vector<Bullet*>& bullets){
 		break;
 
 		default:
-		LOG(L"[ERROR] doMainSkillで意図しない値が参照されました。");
+		LOG(L"[ERROR] DoMainSkillで意図しない値が参照されました。");
 	}
 }

@@ -1,7 +1,10 @@
 #pragma once
-#include "Include.hpp"
+#include <Siv3D.hpp>
+#include <HamFramework.hpp>
+#include "../Config.hpp"
+#include "../CommonData.hpp"
 
-class SkillSelect final : public SceneManager<String, CommonData>::Scene {
+class SkillSelect : public SceneManager<String, CommonData>::Scene {
 private:
 
 public:

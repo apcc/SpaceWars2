@@ -3,12 +3,15 @@
 #define PLAYER_SPEED 15
 #define NUMBER_OF_SKILL 3
 #define HP_LIMIT 100.0
-#define GAUGE_WIDTH (Config::WIDTH / 2.0 / HP_LIMIT)
+#define GAUGE_WIDTH (Config::Width / 2.0 / HP_LIMIT)
 
-void Player::init(Vec2 _pos, bool _isLeft){
-	pos = _pos;
+void Player::Init(Vec2 p, bool _isLeft){
+	pos = p;
 	isLeft = _isLeft;
 	HP = 100;
+	temperature = 0;
+	charge = 0;
+	coolDown = 0;
 	whatMainSkill = static_cast<MainSkill>(0);
 	whatSubSkill = static_cast<SubSkill>(0);
 	whatSpecialSkill = static_cast<SpecialSkill>(0);
@@ -18,40 +21,44 @@ Circle Player::circle(){
 	return Circle(pos, 30);
 }
 
-void Player::receiveDamage(int _damage){
-	HP -= _damage;
+void Player::receiveDamage(int damage){
+	HP -= damage;
 	if (HP < 0) HP = 0;
 }
 
 bool Player::isHPRunOut(){
-	return !HP;
+	if(HP == 0){
+		return true;
+	}else{
+		return false;
+	}
 }
 
-void Player::update(std::vector<Bullet*> &bullets){
+void Player::Update(std::vector<Bullet*> &bullets){
 	Rect zone;
 	Vec2 tmp = pos;
 	if(isLeft){
-		zone = Rect(0, 0, Config::WIDTH / 2 + 1, Config::HEIGHT + 1);
+		zone = Rect(0, 0, Config::Width / 2 + 1, Config::Height + 1);
 		if(Input::KeyD.pressed)			pos.x += PLAYER_SPEED;
 		if(Input::KeyA.pressed)			pos.x -= PLAYER_SPEED;
-		if (!zone.contains(Player::circle()))
+		if (zone.contains(Player::circle()) == false)
 			pos = tmp;
 		tmp = pos;
 		if(Input::KeyW.pressed)			pos.y -= PLAYER_SPEED;
 		if(Input::KeyS.pressed)			pos.y += PLAYER_SPEED;
-		if (!zone.contains(Player::circle()))
+		if (zone.contains(Player::circle()) == false)
 			pos = tmp;
 		tmp = pos;
 	}else{
-		zone = Rect(Config::WIDTH/2, 0, Config::WIDTH / 2 + 1, Config::HEIGHT + 1);
+		zone = Rect(Config::Width/2, 0, Config::Width / 2 + 1, Config::Height + 1);
 		if(Input::KeySemicolon.pressed)	pos.x += PLAYER_SPEED;
 		if(Input::KeyK.pressed)			pos.x -= PLAYER_SPEED;
-		if (!zone.contains(Player::circle()))
+		if (zone.contains(Player::circle()) == false)
 			pos = tmp;
 		tmp = pos;
 		if(Input::KeyO.pressed)			pos.y -= PLAYER_SPEED;
 		if(Input::KeyL.pressed)			pos.y += PLAYER_SPEED;
-		if (!zone.contains(Player::circle()))
+		if (zone.contains(Player::circle()) == false)
 			pos = tmp;
 		tmp = pos;
 	}
@@ -59,13 +66,13 @@ void Player::update(std::vector<Bullet*> &bullets){
 
 
 	if(isLeft){
-		if(Input::KeyQ.pressed)			doMainSkill(bullets);
-		if(Input::KeyE.pressed)			doSubSkill(bullets);
-		if(Input::KeyLShift.pressed)	doSpacialSkill(bullets);
+		if(Input::KeyQ.pressed)			DoMainSkill(bullets);
+		if(Input::KeyE.pressed)			DoSubSkill(bullets);
+		if(Input::KeyLShift.pressed)	DoSpacialSkill(bullets);
 	}else{
-		if(Input::KeyI.pressed)			doMainSkill(bullets);
-		if(Input::KeyP.pressed)			doSubSkill(bullets);
-		if(Input::KeyRShift.pressed)	doSpacialSkill(bullets);
+		if(Input::KeyI.pressed)			DoMainSkill(bullets);
+		if(Input::KeyP.pressed)			DoSubSkill(bullets);
+		if(Input::KeyRShift.pressed)	DoSpacialSkill(bullets);
 	}
 
 	for (auto i : bullets) {
@@ -82,7 +89,7 @@ void Player::update(std::vector<Bullet*> &bullets){
 	}
 }
 
-void Player::skillSelect(){
+void Player::SkillSelect(){
 
 	switch(selectedType){
 		case 0:	//MainSkill
@@ -132,7 +139,7 @@ void Player::skillSelect(){
 	}
 }
 
-void Player::drawShip(){
+void Player::DrawShip(){
 	if(isLeft){
 		circle().draw(Color(L"#ff0000"));
 	}else{
@@ -140,7 +147,7 @@ void Player::drawShip(){
 	}
 }
 
-void Player::drawGauge(){
+void Player::DrawGauge(){
 	if(isLeft){
 		RectF(0, 0,  HP * GAUGE_WIDTH, 20).draw(Color(L"#ff0000"));
 		RectF(0, 20, temperature * GAUGE_WIDTH, 20).draw(Color(L"#00ff00"));

@@ -1,8 +1,13 @@
 #pragma once
-#include "Include.hpp"
+#include <Siv3D.hpp>
+#include <HamFramework.hpp>
+#include <vector>
+#include "../Config.hpp"
+#include "../CommonData.hpp"
+
 #include "../skills/Bullet.hpp"
 
-class Game final : public SceneManager<String,CommonData>::Scene {
+class Game : public SceneManager<String,CommonData>::Scene {
 private:
 	std::vector<Bullet*> bullets;
 public:

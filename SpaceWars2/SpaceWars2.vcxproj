@@ -164,7 +164,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CommonData.cpp" />
     <ClCompile Include="functions\Debug.cpp" />
     <ClCompile Include="functions\MainSkill.cpp" />
     <ClCompile Include="functions\Player.cpp" />
@@ -295,11 +294,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonData.hpp" />
-    <ClInclude Include="Config.hpp" />
+    <ClInclude Include="config.hpp" />
     <ClInclude Include="functions\Debug.hpp" />
     <ClInclude Include="functions\MainSkill.hpp" />
     <ClInclude Include="functions\Player.hpp" />
-    <ClInclude Include="scenes\Include.hpp" />
     <ClInclude Include="Scenes\ControlGuidance.hpp" />
     <ClInclude Include="Scenes\Ending.hpp" />
     <ClInclude Include="Scenes\Finish.hpp" />
