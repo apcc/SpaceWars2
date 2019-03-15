@@ -27,8 +27,8 @@ void LockOn::draw() {
 	return;
 }
 
-bool LockOn::isInvisible() {
-	return false;
+bool LockOn::isVisible() {
+	return true;
 }
 
 int LockOn::getDamage(Circle circle) {

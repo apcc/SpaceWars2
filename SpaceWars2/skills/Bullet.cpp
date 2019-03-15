@@ -1,13 +1,14 @@
 #include "./Bullet.hpp"
 
 // true if destroyed
-bool Bullet::update(Vec2 myPos, Vec2 oppPos){
+bool Bullet::update(Vec2 _myPos, Vec2 _oppPos){
 	pos += vel;
 	if(shouldBeDestroyed)
 		return true;
-	if(isInvisible()){
-		// ウィンドウからのはみ出し
-		return true;
-	}
-	return false;
+
+	// avoidance C4100
+	(void)_myPos;
+	(void)_oppPos;
+
+	return !isVisible();
 }

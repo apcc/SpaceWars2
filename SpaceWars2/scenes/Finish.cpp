@@ -1,13 +1,11 @@
-#include "./Finish.hpp"
-#include "../Config.hpp"
-#include "../functions/Debug.hpp"
+#include "Finish.hpp"
 
 void Finish::init() {
-	if (m_data->LPlayer.isHPRunOut() && m_data->RPlayer.isHPRunOut())
+	if (Data::LPlayer.isHPRunOut() && Data::RPlayer.isHPRunOut())
 		isDraw = true;
-	if (m_data->LPlayer.isHPRunOut())
+	if (Data::LPlayer.isHPRunOut())
 		isLeftWin = false;
-	if (m_data->RPlayer.isHPRunOut())
+	if (Data::RPlayer.isHPRunOut())
 		isLeftWin = true;
 	
 	if (isDraw)
@@ -19,12 +17,12 @@ void Finish::init() {
 }
 
 void Finish::update() {
-	changeScene(Debug::inputFnKey(), 250);
+	changeScene(Debug::InputFnKey(), 250);
 	if (Input::KeyEnter.clicked)
 		changeScene(L"Ending", 500);
 }
 
 void Finish::draw() const {
-	TextureAsset(L"background").resize(Config::Width, Config::Height).draw();
+	TextureAsset(L"background").resize(Config::WIDTH, Config::HEIGHT).draw();
 	FontAsset(L"CicaR32")(winner).drawCenter(40, Color(L"#ffffff"));
 }

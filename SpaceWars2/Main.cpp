@@ -12,14 +12,11 @@
 #include "scenes/Ending.hpp"
 
 
-Font CicaR32;
-enum Mode gamemode;
-
 void Main(){
 
-	Window::SetTitle(Config::Title);
-	Window::Resize(Config::Width, Config::Height);
-	Graphics::SetBackground(Color(Config::Background));
+	Window::SetTitle(Config::TITLE);
+	Window::Resize(Config::WIDTH, Config::HEIGHT);
+	Graphics::SetBackground(Color(Config::BACKGROUND));
 
 	TextureAsset::Register(L"background", L"/7801");
 	FontManager::Register(L"/7701");
@@ -37,7 +34,5 @@ void Main(){
 
 	while (System::Update()){
 		manager.updateAndDraw();
-
-		Circle(Mouse::Pos(), 50).draw({ 255, 0, 0, 127 });
 	}
 }
