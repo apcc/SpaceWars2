@@ -7,9 +7,10 @@ void Player::DoSpacialSkill(std::vector<Bullet*>& bullets){
 		switch(this->whatSpecialSkill){
 			case JUDGEMENT_TIME:
 			break;
-
 			case LOCK_ON:
-			bullets.push_back(new LockOn(pos, isLeft));
+			for(int i=0; i<3; i++){
+				bullets.push_back(new LockOn(pos, isLeft, 30*i));
+			}
 			break;
 
 			case SUMMON_PARTNER:
