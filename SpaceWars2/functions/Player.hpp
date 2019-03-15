@@ -26,9 +26,11 @@ private:
 	Vec2 pos = {};			// pos
 	bool isLeft = true;		// 左右
 	int selectedType = 0;	// skillSelectの選択中項目
-
+	int speed = 0;
+	
 	int HP = 0;				// 体力
 
+	const int PLAYER_SIZE = 30;
 
 public:
 
@@ -43,6 +45,7 @@ public:
 	void init(Vec2 _pos, bool _isLeft);
 	Circle circle();
 	void receiveDamage(int _damage);
+	void changeSpeed(int _speed);
 	bool isHPRunOut();
 	void update(std::vector<Bullet*> &bullets);
 	void skillSelect();
