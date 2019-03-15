@@ -17,7 +17,7 @@ void Finish::init() {
 }
 
 void Finish::update() {
-	changeScene(Debug::inputFnKey(), 250);
+	changeScene(Debug::InputFnKey(), 250);
 	if (Input::KeyEnter.clicked)
 		changeScene(L"Ending", 500);
 }

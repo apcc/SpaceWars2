@@ -17,7 +17,7 @@ public:
 
 	virtual bool update(Vec2 _myPos, Vec2 _oppPos) = 0;
 	virtual void draw() = 0;
-	virtual bool isInvisible() = 0;
+	virtual bool isVisible() = 0;
 	virtual int getDamage(Circle _circle) = 0;
 
 	bool isLeft;

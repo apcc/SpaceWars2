@@ -5,7 +5,7 @@ void ScreenGuidance::init() {
 }
 
 void ScreenGuidance::update() {
-	changeScene(Debug::inputFnKey(), 250);
+	changeScene(Debug::InputFnKey(), 250);
 	if (Input::KeyEnter.clicked)
 		changeScene(L"SkillSelect", 500);
 }

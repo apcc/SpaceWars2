@@ -8,8 +8,8 @@ void Shot::draw(){
 	getShape().draw(Color(L"#ffff00"));
 }
 
-bool Shot::isInvisible(){
-	return !getShape().intersects(Rect(0, 0, Config::WIDTH + 1, Config::HEIGHT + 1));
+bool Shot::isVisible(){
+	return getShape().intersects(Rect(0, 0, Config::WIDTH + 1, Config::HEIGHT + 1));
 }
 
 int Shot::getDamage(Circle _circle) {

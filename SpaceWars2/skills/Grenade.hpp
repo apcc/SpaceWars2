@@ -16,7 +16,7 @@ public:
 
 	bool update(Vec2 _myPos, Vec2 _oppPos) override;
 	void draw() override;
-	bool isInvisible() override;
+	bool isVisible() override;
 	int getDamage(Circle _circle) override;
 	void explode();
 
