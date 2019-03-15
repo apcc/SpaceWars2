@@ -37,7 +37,7 @@ int Laser::getDamage(Circle _circle){
 }
 
 bool Laser::isVisible(){
-	if (isLeft ? isLInvalid : isRInvalid) return true;
-	if (energy <= 0) return true;
-	return false;
+	if (isLeft ? isLInvalid : isRInvalid) return false;
+	if (energy <= 0) return false;
+	return true;
 }
