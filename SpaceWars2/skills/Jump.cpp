@@ -12,10 +12,7 @@ void Jump::draw() {
 }
 
 bool Jump::isVisible() {
-	if (!(isLeft ? isLDoing : isRDoing) || (System::FrameCount() % 1000 != frameCount))
-		return false;
-	else
-		return true;
+	return ((isLeft ? isLDoing : isRDoing) && (System::FrameCount() % 1000 == frameCount));
 }
 
 int Jump::getDamage(Circle _circle) {
