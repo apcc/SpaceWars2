@@ -7,6 +7,8 @@
 class Jump final : public Bullet {
 private:
 	int frameCount = 0;
+	bool isLInvalid = false;
+	bool isRInvalid = false;
 	static bool isLDoing;
 	static bool isRDoing;
 	Circle getShape() { return Circle(pos, 0); }
@@ -15,14 +17,17 @@ public:
 		(isLeft ? Data::LPlayer : Data::RPlayer).changeSpeed(200);
 
 		if (!(isLeft ? isLDoing : isRDoing)){
-			(isLeft ? isLDoing : isRDoing) = true;
+			(isLeft ? isLInvalid : isRInvalid) = true;
 			frameCount = System::FrameCount() % 1000;
+		} else {
+			(isLeft ? isLDoing : isRDoing) = true;
 		}
 	}
 	~Jump() {
 		(isLeft ? Data::LPlayer : Data::RPlayer).changeSpeed(15);
 
-		(isLeft ? isLDoing : isRDoing) = false;
+		if (isLeft ? isLInvalid : isRInvalid)
+			(isLeft ? isLDoing : isRDoing) = false;
 	}
 
 	bool update(Vec2 _myPos, Vec2 _oppPos) override;
