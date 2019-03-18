@@ -31,6 +31,8 @@ private:
 	int HP = 0;				// 体力
 
 	const int PLAYER_SIZE = 30;
+	int hitSize = 30;		// 当たり判定半径
+	int shieldDamage = 0;	// Shieldが受けたダメージ量
 
 public:
 
@@ -43,9 +45,11 @@ public:
 	void doSpacialSkill(std::vector<Bullet*>& bullets);
 	
 	void init(Vec2 _pos, bool _isLeft);
-	Circle circle();
+	Circle circle();	// 本体Circle
+	Circle hitCircle();	// 当たり判定
 	void receiveDamage(int _damage);
 	void changeSpeed(int _speed);
+	int changeHitSize(int _hitSize);
 	bool isHPRunOut();
 	void update(std::vector<Bullet*> &bullets);
 	void skillSelect();

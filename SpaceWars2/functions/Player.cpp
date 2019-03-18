@@ -19,13 +19,31 @@ Circle Player::circle(){
 	return Circle(pos, PLAYER_SIZE);
 }
 
+Circle Player::hitCircle(){
+	return Circle(pos, hitSize);
+}
+
+
 void Player::receiveDamage(int _damage){
-	HP -= _damage;
+	if (hitSize == 30)	// hitSize is default
+		HP -= _damage;
+	else
+		shieldDamage += _damage;
+	
 	if (HP < 0) HP = 0;
 }
 
 void Player::changeSpeed(int _speed) {
 	speed = _speed;
+}
+
+int Player::changeHitSize(int _hitSize){
+	hitSize = _hitSize;
+
+	if (hitSize == 30)
+		shieldDamage = 0;
+
+	return shieldDamage;
 }
 
 
@@ -77,7 +95,7 @@ void Player::update(std::vector<Bullet*> &bullets){
 
 	for (auto i : bullets) {
 		if(isLeft == i->isLeft) continue;
-		int damage = i->getDamage(this->circle());
+		int damage = i->getDamage(this->hitCircle());
 		if(damage){
 			this->receiveDamage(damage);
 		}
