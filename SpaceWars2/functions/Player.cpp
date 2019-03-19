@@ -1,7 +1,7 @@
 #include "./Player.hpp"
 
 #define PLAYER_SPEED 15
-#define NUMBER_OF_SKILL 3
+#define NUMBER_OF_SKILL 6
 #define HP_LIMIT 100.0
 #define GAUGE_WIDTH (Config::Width / 2.0 / HP_LIMIT)
 

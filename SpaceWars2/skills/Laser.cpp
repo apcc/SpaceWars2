@@ -3,7 +3,7 @@
 bool Laser::isLShooting = false;
 bool Laser::isRShooting = false;
 
-bool Laser::update(Vec2 myPos, Vec2 oppPos) {
+bool Laser::update (Vec2 myPos, Vec2 oppPos) {
 	ppos = myPos;
 	if(isCharging){
 		if((isLeft && Input::KeyQ.pressed) || (!isLeft && Input::KeyI.pressed)){

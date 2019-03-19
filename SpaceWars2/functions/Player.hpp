@@ -11,6 +11,9 @@ enum MainSkill {
 	GRENADE,
 	LASER,
 	CRUSHER,
+	HOMING,
+	REFLECTION,
+	FLAME,
 };
 enum SubSkill {
 	JUMP,

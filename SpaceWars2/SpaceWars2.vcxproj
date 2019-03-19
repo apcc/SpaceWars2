@@ -297,6 +297,7 @@
     <ClInclude Include="functions\Debug.hpp" />
     <ClInclude Include="functions\MainSkill.hpp" />
     <ClInclude Include="functions\Player.hpp" />
+    <ClInclude Include="functions\Vec2Utils.hpp" />
     <ClInclude Include="Scenes\ControlGuidance.hpp" />
     <ClInclude Include="Scenes\Ending.hpp" />
     <ClInclude Include="Scenes\Finish.hpp" />
@@ -305,12 +306,18 @@
     <ClInclude Include="Scenes\ScreenGuidance.hpp" />
     <ClInclude Include="scenes\SkillSelect.hpp" />
     <ClCompile Include="skills\Bullet.cpp" />
+    <ClCompile Include="skills\Flame.cpp" />
     <ClCompile Include="skills\Grenade.cpp" />
+    <ClCompile Include="skills\Homing.cpp" />
     <ClCompile Include="skills\Laser.cpp" />
+    <ClCompile Include="skills\Reflection.cpp" />
     <ClCompile Include="skills\Shot.cpp" />
     <ClInclude Include="skills\Bullet.hpp" />
+    <ClInclude Include="skills\Flame.hpp" />
     <ClInclude Include="skills\Grenade.hpp" />
+    <ClInclude Include="skills\Homing.hpp" />
     <ClInclude Include="skills\Laser.hpp" />
+    <ClInclude Include="skills\Reflection.hpp" />
     <ClInclude Include="skills\Shot.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
