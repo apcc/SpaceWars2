@@ -24,6 +24,7 @@ void Game::update() {
 	for(auto itr = bullets.begin(); itr != bullets.end();){
 		Vec2 myPos = ((**itr).isLeft ? Data::LPlayer : Data::RPlayer).circle().center;
 		Vec2 oppPos = ((**itr).isLeft ? Data::RPlayer : Data::LPlayer).circle().center;
+    
 		if((**itr).update(myPos, oppPos)){
 			delete *itr;
 			itr = bullets.erase(itr);
