@@ -2,5 +2,5 @@
 #include <Siv3D.hpp>
 
 namespace Debug {
-	String inputFnKey();
+	String InputFnKey();
 };

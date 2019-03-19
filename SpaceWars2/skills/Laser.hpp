@@ -2,12 +2,11 @@
 #include <Siv3D.hpp>
 #include "Bullet.hpp"
 
-class Laser : public Bullet {
+class Laser final : public Bullet {
 private:
 	bool isCharging = true;
 	int energy = 1;
-	int DamageDeal = 0;
-	Vec2 ppos;
+	Vec2 myPos;
 	bool isLeft;
 	bool isLInvalid = false;
 	bool isRInvalid = false;
@@ -18,18 +17,18 @@ private:
 	const static int WAITING_TIME = 100; // 実行までにかかるwaiting時間
 	const static int COOLDOWN_TIME = 1000; // 実行後のクールダウン時間（要検討）
 
-	RectF getShapeShooten(){
-		if(isLeft)	return RectF(ppos - Vec2(0, energy),  Config::Width, energy * 2);
-		else		return RectF(ppos - Vec2(Config::Width, energy), Config::Width, energy * 2);
+	RectF getShapeShotten(){
+		if(isLeft)	return RectF(myPos - Vec2(0, energy),  Config::WIDTH, energy * 2);
+		else		return RectF(myPos - Vec2(Config::WIDTH, energy), Config::WIDTH, energy * 2);
 	}
 	Circle getShapeCharging(){
-		if(isLeft)	return Circle(ppos + Vec2( 25 + energy, 0), energy);
-		else		return Circle(ppos + Vec2(-25 - energy, 0), energy);
+		if(isLeft)	return Circle(myPos + Vec2( 25 + energy, 0), energy);
+		else		return Circle(myPos + Vec2(-25 - energy, 0), energy);
 	}
 
 public:
-	Laser(Vec2 p, bool left) : Bullet(p, left) {
-		isLeft = left;
+	Laser(Vec2 _pos, bool _isLeft) : Bullet(_pos, _isLeft) {
+		isLeft = _isLeft;
 		if (isLeft ? isLShooting : isRShooting) { // if another instance is already created and still alive...
 			(isLeft ? isLInvalid : isRInvalid) = true; // this laser is disabled
 		} else (isLeft ? isLShooting : isRShooting) = true;
@@ -39,10 +38,10 @@ public:
 			(isLeft ? isLShooting : isRShooting) = false;
 	};
 
-	bool update(Vec2 myPos, Vec2 oppPos) override;
+	bool update(Vec2 _myPos, Vec2 _oppPos) override;
 	void draw() override;
-	bool isInvisible() override;
-	int getDamage(Circle circle) override;
+	bool isVisible() override;
+	int getDamage(Circle _circle) override;
 
 	const static int bulletSpeed = 10;
 };
