@@ -11,7 +11,7 @@ bool Shield::update(Vec2 _myPos, Vec2 _oppPos) {
 }
 
 void Shield::draw() {
-	getShape().draw(Color(L"#88888844"));
+	getShape().draw(ColorF(L"#888888").setAlpha(0.5));
 }
 
 bool Shield::isVisible() {
