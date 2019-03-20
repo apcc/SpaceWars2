@@ -299,6 +299,7 @@
     <ClInclude Include="functions\Debug.hpp" />
     <ClInclude Include="functions\MainSkill.hpp" />
     <ClInclude Include="functions\Player.hpp" />
+    <ClInclude Include="functions\Vec2Utils.hpp" />
     <ClInclude Include="scenes\Include.hpp" />
     <ClInclude Include="Scenes\ControlGuidance.hpp" />
     <ClInclude Include="Scenes\Ending.hpp" />
