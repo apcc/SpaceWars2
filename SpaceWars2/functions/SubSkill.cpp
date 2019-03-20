@@ -1,6 +1,7 @@
 #include "./Player.hpp"
 #include "../skills/Jump.hpp"
 #include "../skills/Shield.hpp"
+#include "../skills/Missile.hpp"
 
 
 void Player::doSubSkill(std::vector<Bullet*>& bullets){
@@ -16,6 +17,8 @@ void Player::doSubSkill(std::vector<Bullet*>& bullets){
 		break;
 
 		case MISSILE:
+		if (System::FrameCount() % 30 == 0)
+			bullets.push_back(new Missile(pos, isLeft));
 		break;
 
 		case BOMB:
