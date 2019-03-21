@@ -10,7 +10,7 @@ void Finish::init() {
 	
 	if (isDraw)
 		winner = L"引き分け！";
-	if (isLeftWin)
+	else if (isLeftWin)
 		winner = L"REDの勝ち！";
 	else
 		winner = L"BLUEの勝ち！";
