@@ -311,6 +311,10 @@
     <ClCompile Include="skills\Bullet.cpp" />
     <ClCompile Include="skills\Flame.cpp" />
     <ClCompile Include="skills\Grenade.cpp" />
+    <ClCompile Include="skills\Jump.cpp" />
+    <ClCompile Include="skills\Laser.cpp" />
+    <ClCompile Include="skills\Missile.cpp" />
+    <ClCompile Include="skills\Shield.cpp" />
     <ClCompile Include="skills\Homing.cpp" />
     <ClCompile Include="skills\Laser.cpp" />
     <ClCompile Include="skills\Reflection.cpp" />
@@ -318,6 +322,10 @@
     <ClInclude Include="skills\Bullet.hpp" />
     <ClInclude Include="skills\Flame.hpp" />
     <ClInclude Include="skills\Grenade.hpp" />
+    <ClInclude Include="skills\Jump.hpp" />
+    <ClInclude Include="skills\Laser.hpp" />
+    <ClInclude Include="skills\Missile.hpp" />
+    <ClInclude Include="skills\Shield.hpp" />
     <ClInclude Include="skills\Homing.hpp" />
     <ClInclude Include="skills\Laser.hpp" />
     <ClInclude Include="skills\Reflection.hpp" />

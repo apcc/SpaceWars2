@@ -9,19 +9,43 @@ void Player::init(Vec2 _pos, bool _isLeft){
 	pos = _pos;
 	isLeft = _isLeft;
 	HP = 100;
+	speed = PLAYER_SPEED;
 	whatMainSkill = static_cast<MainSkill>(0);
 	whatSubSkill = static_cast<SubSkill>(0);
 	whatSpecialSkill = static_cast<SpecialSkill>(0);
 }
 
 Circle Player::circle(){
-	return Circle(pos, 30);
+	return Circle(pos, PLAYER_SIZE);
 }
 
+Circle Player::hitCircle(){
+	return Circle(pos, hitSize);
+}
+
+
 void Player::receiveDamage(int _damage){
-	HP -= _damage;
+	if (hitSize == 30)	// hitSize is default
+		HP -= _damage;
+	else
+		shieldDamage += _damage;
+	
 	if (HP < 0) HP = 0;
 }
+
+void Player::changeSpeed(int _speed) {
+	speed = _speed;
+}
+
+int Player::changeHitSize(int _hitSize){
+	hitSize = _hitSize;
+
+	if (hitSize == 30)
+		shieldDamage = 0;
+
+	return shieldDamage;
+}
+
 
 bool Player::isHPRunOut(){
 	return !HP;
@@ -32,30 +56,31 @@ void Player::update(std::vector<Bullet*> &bullets){
 	Vec2 tmp = pos;
 	if(isLeft){
 		zone = Rect(0, 0, Config::WIDTH / 2 + 1, Config::HEIGHT + 1);
-		if(Input::KeyD.pressed)			pos.x += PLAYER_SPEED;
-		if(Input::KeyA.pressed)			pos.x -= PLAYER_SPEED;
-		if (!zone.contains(Player::circle()))
-			pos = tmp;
-		tmp = pos;
-		if(Input::KeyW.pressed)			pos.y -= PLAYER_SPEED;
-		if(Input::KeyS.pressed)			pos.y += PLAYER_SPEED;
-		if (!zone.contains(Player::circle()))
-			pos = tmp;
-		tmp = pos;
+		if (Input::KeyD.pressed)				pos.x += speed;
+		if (!zone.contains(Player::circle()))	pos.x  = Config::WIDTH / 2 - PLAYER_SIZE;
+
+		if (Input::KeyA.pressed)				pos.x -= speed;
+		if (!zone.contains(Player::circle()))	pos.x  = 0 + PLAYER_SIZE;
+
+		if (Input::KeyW.pressed)				pos.y -= speed;
+		if (!zone.contains(Player::circle()))	pos.y  = 0 + PLAYER_SIZE;
+
+		if (Input::KeyS.pressed)				pos.y += speed;
+		if (!zone.contains(Player::circle()))	pos.y  = Config::HEIGHT - PLAYER_SIZE;
 	}else{
 		zone = Rect(Config::WIDTH/2, 0, Config::WIDTH / 2 + 1, Config::HEIGHT + 1);
-		if(Input::KeySemicolon.pressed)	pos.x += PLAYER_SPEED;
-		if(Input::KeyK.pressed)			pos.x -= PLAYER_SPEED;
-		if (!zone.contains(Player::circle()))
-			pos = tmp;
-		tmp = pos;
-		if(Input::KeyO.pressed)			pos.y -= PLAYER_SPEED;
-		if(Input::KeyL.pressed)			pos.y += PLAYER_SPEED;
-		if (!zone.contains(Player::circle()))
-			pos = tmp;
-		tmp = pos;
+		if (Input::KeySemicolon.pressed)		pos.x += speed;
+		if (!zone.contains(Player::circle()))	pos.x  = Config::WIDTH - PLAYER_SIZE;
+		
+		if (Input::KeyK.pressed)				pos.x -= speed;
+		if (!zone.contains(Player::circle()))	pos.x  = Config::WIDTH / 2 + PLAYER_SIZE;
+
+		if (Input::KeyO.pressed)				pos.y -= speed;
+		if (!zone.contains(Player::circle()))	pos.y = 0 + PLAYER_SIZE;
+			
+		if (Input::KeyL.pressed)				pos.y += speed;
+		if (!zone.contains(Player::circle()))	pos.y = Config::HEIGHT - PLAYER_SIZE;
 	}
-	//pos.x=max(tmpZoon.x)
 
 
 	if(isLeft){
@@ -70,7 +95,7 @@ void Player::update(std::vector<Bullet*> &bullets){
 
 	for (auto i : bullets) {
 		if(isLeft == i->isLeft) continue;
-		int damage = i->getDamage(this->circle());
+		int damage = i->getDamage(this->hitCircle());
 		if(damage){
 			this->receiveDamage(damage);
 		}
