@@ -1,4 +1,5 @@
 #include "./Player.hpp"
+#include "./XInput.hpp"
 
 #define PLAYER_SPEED 15
 #define NUMBER_OF_SKILL 6
@@ -13,6 +14,8 @@ void Player::init(Vec2 _pos, bool _isLeft){
 	whatMainSkill = static_cast<MainSkill>(0);
 	whatSubSkill = static_cast<SubSkill>(0);
 	whatSpecialSkill = static_cast<SpecialSkill>(0);
+
+	Controller::SetAxis();
 }
 
 Circle Player::circle(){
@@ -52,35 +55,32 @@ bool Player::isHPRunOut(){
 }
 
 void Player::update(std::vector<Bullet*> &bullets){
-	Rect zone;
-	Vec2 tmp = pos;
+	pos += Controller::Ctrl(isLeft, speed);
+
+	/*
+	// Rect zone;
+	// Vec2 tmp = pos;
 	if(isLeft){
-		zone = Rect(0, 0, Config::WIDTH / 2 + 1, Config::HEIGHT + 1);
-		if (Input::KeyD.pressed)				pos.x += speed;
-		if (!zone.contains(Player::circle()))	pos.x  = Config::WIDTH / 2 - PLAYER_SIZE;
+		// zone = Rect(0, 0, Config::WIDTH / 2 + 1, Config::HEIGHT + 1);
 
-		if (Input::KeyA.pressed)				pos.x -= speed;
-		if (!zone.contains(Player::circle()))	pos.x  = 0 + PLAYER_SIZE;
-
-		if (Input::KeyW.pressed)				pos.y -= speed;
-		if (!zone.contains(Player::circle()))	pos.y  = 0 + PLAYER_SIZE;
-
-		if (Input::KeyS.pressed)				pos.y += speed;
-		if (!zone.contains(Player::circle()))	pos.y  = Config::HEIGHT - PLAYER_SIZE;
-	}else{
-		zone = Rect(Config::WIDTH/2, 0, Config::WIDTH / 2 + 1, Config::HEIGHT + 1);
-		if (Input::KeySemicolon.pressed)		pos.x += speed;
-		if (!zone.contains(Player::circle()))	pos.x  = Config::WIDTH - PLAYER_SIZE;
 		
-		if (Input::KeyK.pressed)				pos.x -= speed;
-		if (!zone.contains(Player::circle()))	pos.x  = Config::WIDTH / 2 + PLAYER_SIZE;
 
-		if (Input::KeyO.pressed)				pos.y -= speed;
-		if (!zone.contains(Player::circle()))	pos.y = 0 + PLAYER_SIZE;
-			
-		if (Input::KeyL.pressed)				pos.y += speed;
-		if (!zone.contains(Player::circle()))	pos.y = Config::HEIGHT - PLAYER_SIZE;
+		// if (!zone.contains(Player::circle()))	pos.x  = Config::WIDTH / 2 - PLAYER_SIZE;
+		// if (!zone.contains(Player::circle()))	pos.x  = 0 + PLAYER_SIZE;
+
+		// if (!zone.contains(Player::circle()))	pos.y  = 0 + PLAYER_SIZE;
+		// if (!zone.contains(Player::circle()))	pos.y  = Config::HEIGHT - PLAYER_SIZE;
+	}else{
+		// zone = Rect(Config::WIDTH/2, 0, Config::WIDTH / 2 + 1, Config::HEIGHT + 1);
+
+
+		// if (!zone.contains(Player::circle()))	pos.x  = Config::WIDTH - PLAYER_SIZE;
+		// if (!zone.contains(Player::circle()))	pos.x  = Config::WIDTH / 2 + PLAYER_SIZE;
+
+		// if (!zone.contains(Player::circle()))	pos.y = 0 + PLAYER_SIZE;
+		// if (!zone.contains(Player::circle()))	pos.y = Config::HEIGHT - PLAYER_SIZE;
 	}
+	*/
 
 
 	if(isLeft){
