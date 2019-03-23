@@ -164,6 +164,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="asc\Input\AscInput.cpp" />
+    <ClCompile Include="asc\Input\AscInputAxis.cpp" />
     <ClCompile Include="CommonData.cpp" />
     <ClCompile Include="functions\Debug.cpp" />
     <ClCompile Include="functions\MainSkill.cpp" />
@@ -294,6 +296,9 @@
     <Font Include="Example\YomogiFont.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="asc\Input.hpp" />
+    <ClInclude Include="asc\Input\Axis.hpp" />
+    <ClInclude Include="asc\Input\CAxis.hpp" />
     <ClInclude Include="CommonData.hpp" />
     <ClInclude Include="Config.hpp" />
     <ClInclude Include="functions\Debug.hpp" />
