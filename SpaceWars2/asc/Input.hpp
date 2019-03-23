@@ -1,4 +1,4 @@
-# pragma once
+﻿# pragma once
 # include <Siv3D.hpp>
 # include "./Input/Axis.hpp"
 
@@ -18,180 +18,180 @@ namespace asc
 	public:
 
 		/// <summary>
-		/// �f�t�H���g�R���X�g���N�^
+		/// デフォルトコンストラクタ
 		/// </summary>
 		Input();
 
 		/// <summary>
-		/// ���͂��L�����ǂ����������܂��B
+		/// 入力が有効かどうかを示します。
 		/// </summary>
 		__declspec(property(get = _get_enabled, put = _put_enabled)) bool enabled;
 
 		/// <summary>
-		/// �w�肵���{�^���̏�Ԃ�Ԃ��܂��B
+		/// 指定したボタンの状態を返します。
 		/// </summary>
 		/// <param name="name">
-		/// �o�^�����{�^���̖��O
+		/// 登録したボタンの名前
 		/// </param>
 		/// <returns>
-		/// �{�^���̏��
+		/// ボタンの状態
 		/// </returns>
 		KeyCombination button(const String& name) const;
 
 		/// <summary>
-		/// �w�肵�����̏�Ԃ�Ԃ��܂��B
+		/// 指定した軸の状態を返します。
 		/// </summary>
 		/// <param name="name">
-		/// �o�^�����{�^���̖��O
+		/// 登録したボタンの名前
 		/// </param>
 		/// <returns>
-		/// ���̒l [-1.0, 1.0]
+		/// 軸の値 [-1.0, 1.0]
 		/// </returns>
 		double axis(const String& name) const;
 
 		/// <summary>
-		/// 2�̎����� Vec2 ���쐬���܂��B
+		/// 2つの軸から Vec2 を作成します。
 		/// </summary>
 		/// <param name="xName">
-		/// X���ɂ���o�^�����{�^���̖��O
+		/// X軸にする登録したボタンの名前
 		/// </param>
 		/// <param name="yName">
-		/// Y���ɂ���o�^�����{�^���̖��O
+		/// Y軸にする登録したボタンの名前
 		/// </param>
 		/// <returns>
-		/// { xName, yName } �� Vec2
+		/// { xName, yName } の Vec2
 		/// </returns>
 		Vec2 vec2(const String& xName, const String& yName) const;
 
 		/// <summary>
-		/// 2�̎����琳�K�����ꂽ Vec2 ���쐬���܂��B
+		/// 2つの軸から正規化された Vec2 を作成します。
 		/// </summary>
 		/// <param name="xName">
-		/// X���ɂ���o�^�����{�^���̖��O
+		/// X軸にする登録したボタンの名前
 		/// </param>
 		/// <param name="yName">
-		/// Y���ɂ���o�^�����{�^���̖��O
+		/// Y軸にする登録したボタンの名前
 		/// </param>
 		/// <returns>
-		/// { xName, yName } �̐��K�����ꂽ Vec2
+		/// { xName, yName } の正規化された Vec2
 		/// </returns>
 		/// <remarks>
-		/// ��x�N�g���̏ꍇ�͗�x�N�g����Ԃ��܂��B
+		/// 零ベクトルの場合は零ベクトルを返します。
 		/// </remarks>
 		Vec2 vec2Normalized(const String& xName, const String& yName) const;
 
 		/// <summary>
-		/// 2�̎���������� [0, 3] �ŕԂ��܂��B
+		/// 2つの軸から方向を [0, 3] で返します。
 		/// </summary>
 		/// <param name="xName">
-		/// X���ɂ���o�^�����{�^���̖��O
+		/// X軸にする登録したボタンの名前
 		/// </param>
 		/// <param name="yName">
-		/// Y���ɂ���o�^�����{�^���̖��O
+		/// Y軸にする登録したボタンの名前
 		/// </param>
 		/// <param name="threshold">
-		/// �L���ɂ���l�̍Œ�l
+		/// 有効にする値の最低値
 		/// </param>
 		/// <returns>
-		/// [0, 3] �ŕ\�����ꂽ�����Bthreshold�ȉ��̏ꍇ�� none
+		/// [0, 3] で表現された方向。threshold以下の場合は none
 		/// </returns>
 		Optional<uint32> as4Direction(const String& xName, const String& yName, double threshold = 0.2);
 
 		/// <summary>
-		/// 2�̎���������� [0, 7] �ŕԂ��܂��B
+		/// 2つの軸から方向を [0, 7] で返します。
 		/// </summary>
 		/// <param name="xName">
-		/// X���ɂ���o�^�����{�^���̖��O
+		/// X軸にする登録したボタンの名前
 		/// </param>
 		/// <param name="yName">
-		/// Y���ɂ���o�^�����{�^���̖��O
+		/// Y軸にする登録したボタンの名前
 		/// </param>
 		/// <param name="threshold">
-		/// �L���ɂ���l�̍Œ�l
+		/// 有効にする値の最低値
 		/// </param>
 		/// <returns>
-		/// [0, 7] �ŕ\�����ꂽ�����Bthreshold�ȉ��̏ꍇ�� none
+		/// [0, 7] で表現された方向。threshold以下の場合は none
 		/// </returns>
 		Optional<uint32> as8Direction(const String& xName, const String& yName, double threshold = 0.2);
 
 		/// <summary>
-		/// �{�^�����o�^�ς݂����m�F���܂��B
+		/// ボタンが登録済みかを確認します。
 		/// </summary>
 		/// <param name="name">
-		/// �o�^�����{�^���̖��O
+		/// 登録したボタンの名前
 		/// </param>
 		/// <returns>
-		/// �{�^�����o�^����Ă���� true
+		/// ボタンが登録されていれば true
 		/// </returns>
 		bool hasButton(const String& name) const;
 
 		/// <summary>
-		/// �����o�^�ς݂����m�F���܂��B
+		/// 軸が登録済みかを確認します。
 		/// </summary>
 		/// <param name="name">
-		/// �o�^�������̖��O
+		/// 登録した軸の名前
 		/// </param>
 		/// <returns>
-		/// �����o�^����Ă���� true
+		/// 軸が登録されていれば true
 		/// </returns>
 		bool hasAxis(const String& name) const;
 
 		/// <summary>
-		/// �{�^����o�^���܂��B
+		/// ボタンを登録します。
 		/// </summary>
 		/// <param name="name">
-		/// �o�^����{�^���̖��O
+		/// 登録するボタンの名前
 		/// </param>
 		/// <param name="button">
-		/// �o�^����{�^��
+		/// 登録するボタン
 		/// </param>
 		/// <returns>
-		/// �Ȃ�
+		/// なし
 		/// </returns>
 		void addButton(const String& name, const KeyCombination& button);
 
 		/// <summary>
-		/// ����o�^���܂��B
+		/// 軸を登録します。
 		/// </summary>
 		/// <param name="name">
-		/// �o�^���鎲�̖��O
+		/// 登録する軸の名前
 		/// </param>
 		/// <param name="axis">
-		/// �o�^���鎲
+		/// 登録する軸
 		/// </param>
 		/// <returns>
-		/// �Ȃ�
+		/// なし
 		/// </returns>
 		void addAxis(const String& name, const AxisCombination& axis);
 
 		/// <summary>
-		/// �{�^�����폜���܂��B
+		/// ボタンを削除します。
 		/// </summary>
 		/// <param name="name">
-		/// �폜����{�^���̖��O
+		/// 削除するボタンの名前
 		/// <returns>
-		/// �Ȃ�
+		/// なし
 		/// </returns>
 		void eraseButton(const String& name);
 
 		/// <summary>
-		/// �����폜���܂��B
+		/// 軸を削除します。
 		/// </summary>
 		/// <param name="name">
-		/// �폜���鎲�̖��O
+		/// 削除する軸の名前
 		/// </param>
 		/// <returns>
-		/// �Ȃ�
+		/// なし
 		/// </returns>
 		void eraseAxis(const String& name);
 
 		/// <summary>
-		/// enabled�v���p�e�B
+		/// enabledプロパティ
 		/// </summary>
 		bool _get_enabled() const;
 
 		/// <summary>
-		/// enabled�v���p�e�B
+		/// enabledプロパティ
 		/// </summary>
 		void _put_enabled(bool value);
 	};

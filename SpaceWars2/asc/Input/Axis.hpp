@@ -1,4 +1,4 @@
-# pragma once
+﻿# pragma once
 # include <Siv3D.hpp>
 
 namespace asc
@@ -6,7 +6,7 @@ namespace asc
 	using namespace s3d;
 
 	/// <summary>
-	/// Gamepad�̎��̎��
+	/// Gamepadの軸の種類
 	/// </summary>
 	enum class GamepadAxis
 	{
@@ -14,7 +14,7 @@ namespace asc
 	};
 
 	/// <summary>
-	/// XInput�̎��̎��
+	/// XInputの軸の種類
 	/// </summary>
 	enum class XInputAxis
 	{
@@ -22,10 +22,10 @@ namespace asc
 	};
 
 	/// <summary>
-	/// ���̓f�o�C�X�̎��̒l
+	/// 入力デバイスの軸の値
 	/// </summary>
 	/// <remarks>
-	/// ���̓f�o�C�X�̎��̒l�� [0.0-1.0] �������܂��B
+	/// 入力デバイスの軸の値を [0.0-1.0] を示します。
 	/// </remarks>
 	class Axis
 	{
@@ -42,76 +42,76 @@ namespace asc
 	public:
 
 		/// <summary>
-		/// �f�t�H���g�R���X�g���N�^
+		/// デフォルトコンストラクタ
 		/// </summary>
 		Axis();
 
 		/// <summary>
-		/// �L�[2�����Ƃ��Ĉ����܂��B
+		/// キー2つを軸として扱います。
 		/// </summary>
 		/// <param name="positive">
-		/// ���̐��̕����̃L�[
+		/// 軸の正の方向のキー
 		/// </param>
 		/// <param name="negative">
-		/// ���̕��̕����̃L�[
+		/// 軸の負の方向のキー
 		/// </param>
 		Axis(Key positive, Key negative);
 
 		/// <summary>
-		/// �Q�[���p�b�h�̎�
+		/// ゲームパッドの軸
 		/// </summary>
 		/// <param name="userIndex">
-		/// �擾����Q�[���p�b�h�̃C���f�b�N�X
+		/// 取得するゲームパッドのインデックス
 		/// </param>
 		/// <param name="axis">
-		/// �擾���鎲�̎��
+		/// 取得する軸の種類
 		/// </param>
 		Axis(uint32 userIndex, GamepadAxis axis);
 
 		/// <summary>
-		/// �Q�[���p�b�h�̎�
+		/// ゲームパッドの軸
 		/// </summary>
 		/// <param name="gamepad">
-		/// �擾����Q�[���p�b�h
+		/// 取得するゲームパッド
 		/// </param>
 		/// <param name="axis">
-		/// �擾���鎲�̎��
+		/// 取得する軸の種類
 		/// </param>
 		Axis(const Gamepad& gamepad, GamepadAxis axis);
 
 		/// <summary>
-		/// XInput �Ή��R���g���[���̎�
+		/// XInput 対応コントローラの軸
 		/// </summary>
 		/// <param name="userIndex">
-		/// �擾����XInput �Ή��R���g���[���̃C���f�b�N�X
+		/// 取得するXInput 対応コントローラのインデックス
 		/// </param>
 		/// <param name="axis">
-		/// �擾����XInput �Ή��R���g���[���̎��̎��
+		/// 取得するXInput 対応コントローラの軸の種類
 		/// </param>
 		Axis(uint32 userIndex, XInputAxis axis);
 
 		/// <summary>
-		/// XInput �Ή��R���g���[���̎�
+		/// XInput 対応コントローラの軸
 		/// </summary>
 		/// <param name="xinput">
-		/// �擾����XInput �Ή��R���g���[��
+		/// 取得するXInput 対応コントローラ
 		/// </param>
 		/// <param name="axis">
-		/// �擾����XInput �Ή��R���g���[���̎��̎��
+		/// 取得するXInput 対応コントローラの軸の種類
 		/// </param>
 		Axis(const XInput& xinput, XInputAxis axis);
 
 		/// <summary>
-		/// ���̒l [-1.0, 1.0] �������܂��B
+		/// 軸の値 [-1.0, 1.0] を示します。
 		/// </summary>
 		operator double () const;
 	};
 
 	/// <summary>
-	/// �����̓��̓f�o�C�X�̎��̒l
+	/// 複数の入力デバイスの軸の値
 	/// </summary>
 	/// <remarks>
-	/// �����̓��͂�����ꍇ�A��ɓo�^���������D��B
+	/// 複数の入力がある場合、先に登録した方が優先。
 	/// </remarks>
 	class AxisCombination
 	{
@@ -148,7 +148,7 @@ namespace asc
 		}
 
 		/// <summary>
-		/// ���̒l [-1.0, 1.0] �������܂��B
+		/// 軸の値 [-1.0, 1.0] を示します。
 		/// </summary>
 		operator double() const;
 	};
