@@ -56,7 +56,7 @@ bool Player::isHPRunOut(){
 }
 
 void Player::update(std::vector<Bullet*> &bullets){
-	pos += Controller::Ctrl(isLeft, speed);
+	pos += Controller::Move(isLeft, speed);
 
 	/*
 	// Rect zone;

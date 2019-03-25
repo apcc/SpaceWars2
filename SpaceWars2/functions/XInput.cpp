@@ -36,7 +36,7 @@ void Controller::SetButton() {
 }
 
 
-Vec2 Controller::Ctrl(bool _isLeft, int _speed) {
+Vec2 Controller::Move(bool _isLeft, int _speed) {
 	String lr = (_isLeft ? L"L" : L"R");
 	Vec2 raw = {};
 
