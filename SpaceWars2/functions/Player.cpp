@@ -16,6 +16,7 @@ void Player::init(Vec2 _pos, bool _isLeft){
 	whatSpecialSkill = static_cast<SpecialSkill>(0);
 
 	Controller::SetAxis();
+	Controller::SetButton();
 }
 
 Circle Player::circle(){
@@ -83,15 +84,9 @@ void Player::update(std::vector<Bullet*> &bullets){
 	*/
 
 
-	if(isLeft){
-		if(Input::KeyQ.pressed)			doMainSkill(bullets);
-		if(Input::KeyE.pressed)			doSubSkill(bullets);
-		if(Input::KeyLShift.pressed)	doSpacialSkill(bullets);
-	}else{
-		if(Input::KeyI.pressed)			doMainSkill(bullets);
-		if(Input::KeyP.pressed)			doSubSkill(bullets);
-		if(Input::KeyRShift.pressed)	doSpacialSkill(bullets);
-	}
+	if (Controller::Skill(isLeft, L"MainSkill"))		doMainSkill(bullets);
+	if (Controller::Skill(isLeft, L"SubSkill"))		doSubSkill(bullets);
+	if (Controller::Skill(isLeft, L"SpecialSkill"))	doSpacialSkill(bullets);
 
 	for (auto i : bullets) {
 		if(isLeft == i->isLeft) continue;

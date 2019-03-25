@@ -21,6 +21,21 @@ void Controller::SetAxis() {
 	input.addAxis(L"R_CtrlY", asc::Axis(Input::KeyO, Input::KeyL) | asc::Axis(asc::Axis(RController, asc::XInputAxis::LeftThumbY)));
 }
 
+void Controller::SetButton() {
+	// MainSkill
+	input.addButton(L"L_MainSkill", s3d::Input::KeyQ | XInput(0).buttonA);
+	input.addButton(L"R_MainSkill", s3d::Input::KeyI | XInput(1).buttonA);
+
+	// SubSkill
+	input.addButton(L"L_SubSkill", s3d::Input::KeyE | XInput(0).buttonLB);
+	input.addButton(L"R_SubSkill", s3d::Input::KeyP | XInput(1).buttonLB);
+
+	// SpecialSkill
+	input.addButton(L"L_SpecialSkill", s3d::Input::KeyLShift | XInput(0).buttonRB);
+	input.addButton(L"R_SpecialSkill", s3d::Input::KeyRShift | XInput(1).buttonRB);
+}
+
+
 Vec2 Controller::Ctrl(bool _isLeft, int _speed) {
 	String lr = (_isLeft ? L"L" : L"R");
 	Vec2 raw = {};
@@ -34,3 +49,23 @@ Vec2 Controller::Ctrl(bool _isLeft, int _speed) {
 	return raw;
 }
 
+/// <summary>
+/// 指定されたボタンが押されているか調べます。
+/// </summary>
+/// <param name="_isLeft">
+/// LPlayer or RPlayer
+/// </param>
+/// <param name="_name">
+/// MainSkill, SubSkill, SpecialSkill のいずれか
+/// </param>
+/// <returns>
+/// _name に対応するボタンが押されている場合は true, それ以外の場合は false
+/// </returns>
+bool Controller::Skill(bool _isLeft, String _name) {
+	String lr = (_isLeft ? L"L" : L"R");
+
+	// if (_name.includes(L"MainSkill" || L"SubSkill" || L"SpecialSkill"))
+		return input.button(lr + L"_" + _name).pressed;
+
+	return false;
+}

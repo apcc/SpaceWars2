@@ -9,6 +9,8 @@ namespace Controller {
 	extern XInput RController;
 
 	extern void SetAxis();
+	extern void SetButton();
 
 	extern Vec2 Ctrl(bool _isLeft, int _speed);
+	extern bool Skill(bool _isLeft, String _name);
 }
