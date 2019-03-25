@@ -12,5 +12,5 @@ namespace Controller {
 	extern void SetButton();
 
 	extern Vec2 Move(bool _isLeft, int _speed);
-	extern bool Skill(bool _isLeft, String _name);
+	extern bool Skill(bool _isLeft, const String& _name);
 }

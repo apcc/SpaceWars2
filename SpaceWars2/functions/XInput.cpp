@@ -61,7 +61,7 @@ Vec2 Controller::Move(bool _isLeft, int _speed) {
 /// <returns>
 /// _name ‚É‘Î‰‚·‚éƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚Ä‚¢‚éê‡‚Í true, ‚»‚êˆÈŠO‚Ìê‡‚Í false
 /// </returns>
-bool Controller::Skill(bool _isLeft, String _name) {
+bool Controller::Skill(bool _isLeft, const String& _name) {
 	String lr = (_isLeft ? L"L" : L"R");
 
 	// if (_name.includes(L"MainSkill" || L"SubSkill" || L"SpecialSkill"))
