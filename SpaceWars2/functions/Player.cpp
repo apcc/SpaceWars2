@@ -58,30 +58,23 @@ bool Player::isHPRunOut(){
 void Player::update(std::vector<Bullet*> &bullets){
 	pos += Controller::Move(isLeft, speed);
 
-	/*
-	// Rect zone;
-	// Vec2 tmp = pos;
-	if(isLeft){
-		// zone = Rect(0, 0, Config::WIDTH / 2 + 1, Config::HEIGHT + 1);
 
-		
-
-		// if (!zone.contains(Player::circle()))	pos.x  = Config::WIDTH / 2 - PLAYER_SIZE;
-		// if (!zone.contains(Player::circle()))	pos.x  = 0 + PLAYER_SIZE;
-
-		// if (!zone.contains(Player::circle()))	pos.y  = 0 + PLAYER_SIZE;
-		// if (!zone.contains(Player::circle()))	pos.y  = Config::HEIGHT - PLAYER_SIZE;
-	}else{
-		// zone = Rect(Config::WIDTH/2, 0, Config::WIDTH / 2 + 1, Config::HEIGHT + 1);
-
-
-		// if (!zone.contains(Player::circle()))	pos.x  = Config::WIDTH - PLAYER_SIZE;
-		// if (!zone.contains(Player::circle()))	pos.x  = Config::WIDTH / 2 + PLAYER_SIZE;
-
-		// if (!zone.contains(Player::circle()))	pos.y = 0 + PLAYER_SIZE;
-		// if (!zone.contains(Player::circle()))	pos.y = Config::HEIGHT - PLAYER_SIZE;
+	if(isLeft) {
+		if (pos.x < 0 + PLAYER_SIZE)
+			pos.x = 0 + PLAYER_SIZE;
+		if (pos.x > Config::WIDTH / 2 - PLAYER_SIZE)
+			pos.x = Config::WIDTH / 2 - PLAYER_SIZE;
+	} else {
+		if (pos.x < Config::WIDTH / 2 + PLAYER_SIZE)
+			pos.x = Config::WIDTH / 2 + PLAYER_SIZE;
+		if (pos.x > Config::WIDTH - PLAYER_SIZE)
+			pos.x = Config::WIDTH - PLAYER_SIZE;
 	}
-	*/
+
+	if (pos.y < 0 + PLAYER_SIZE)
+		pos.y = 0 + PLAYER_SIZE;
+	if (pos.y > Config::HEIGHT - PLAYER_SIZE)
+		pos.y = Config::HEIGHT - PLAYER_SIZE;
 
 
 	if (Controller::Skill(isLeft, L"MainSkill"))		doMainSkill(bullets);
