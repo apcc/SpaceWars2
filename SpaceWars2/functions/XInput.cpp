@@ -50,16 +50,16 @@ Vec2 Controller::Move(bool _isLeft, int _speed) {
 }
 
 /// <summary>
-/// �w�肳�ꂽ�{�^����������Ă��邩���ׂ܂��B
+/// 指定されたボタンが押されているか調べます。
 /// </summary>
 /// <param name="_isLeft">
 /// LPlayer or RPlayer
 /// </param>
 /// <param name="_name">
-/// MainSkill, SubSkill, SpecialSkill �̂����ꂩ
+/// MainSkill, SubSkill, SpecialSkill のいずれか
 /// </param>
 /// <returns>
-/// _name �ɑΉ�����{�^����������Ă���ꍇ�� true, ����ȊO�̏ꍇ�� false
+/// _name に対応するボタンが押されている場合は true, それ以外の場合は false
 /// </returns>
 bool Controller::Skill(bool _isLeft, const String& _name) {
 	String lr = (_isLeft ? L"L" : L"R");
