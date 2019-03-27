@@ -41,9 +41,9 @@ void Controller::SetButton() {
 	input.addButton(L"L_KeyRight", s3d::Input::KeyD | XInput(0).buttonRight);
 
 	// OKL;
-	input.addButton(L"R_KeyUp",    s3d::Input::KeyI | XInput(1).buttonUp);
-	input.addButton(L"R_KeyLeft",  s3d::Input::KeyJ | XInput(1).buttonLeft);
-	input.addButton(L"R_KeyDown",  s3d::Input::KeyK | XInput(1).buttonDown);
+	input.addButton(L"R_KeyUp",    s3d::Input::KeyO | XInput(1).buttonUp);
+	input.addButton(L"R_KeyLeft",  s3d::Input::KeyK | XInput(1).buttonLeft);
+	input.addButton(L"R_KeyDown",  s3d::Input::KeyL | XInput(1).buttonDown);
 	input.addButton(L"R_KeyRight", s3d::Input::KeySemicolon | XInput(1).buttonRight);
 }
 
