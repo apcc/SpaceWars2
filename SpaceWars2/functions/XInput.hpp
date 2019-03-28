@@ -2,11 +2,11 @@
 #include "../asc/Input.hpp"
 
 
-namespace Controller {
+namespace GamePad {
 	extern asc::Input input;
 
-	extern XInput LController;
-	extern XInput RController;
+	extern XInput LGamePad;
+	extern XInput RGamePad;
 
 	extern void SetAxis();
 	extern void SetButton();

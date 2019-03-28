@@ -14,8 +14,8 @@ void Player::init(Vec2 _pos, bool _isLeft){
 	whatSubSkill = static_cast<SubSkill>(0);
 	whatSpecialSkill = static_cast<SpecialSkill>(0);
 
-	Controller::SetAxis();
-	Controller::SetButton();
+	GamePad::SetAxis();
+	GamePad::SetButton();
 
 	KeyUp = KeyRepeat(isLeft, L"KeyUp");
 	KeyLeft = KeyRepeat(isLeft, L"KeyLeft");
@@ -60,7 +60,7 @@ bool Player::isHPRunOut(){
 }
 
 void Player::update(std::vector<Bullet*> &bullets){
-	pos += Controller::Move(isLeft, speed);
+	pos += GamePad::Move(isLeft, speed);
 
 
 	if(isLeft) {
@@ -80,10 +80,9 @@ void Player::update(std::vector<Bullet*> &bullets){
 	if (pos.y > Config::HEIGHT - PLAYER_SIZE)
 		pos.y = Config::HEIGHT - PLAYER_SIZE;
 
-
-	if (Controller::Skill(isLeft, L"MainSkill"))		doMainSkill(bullets);
-	if (Controller::Skill(isLeft, L"SubSkill"))		doSubSkill(bullets);
-	if (Controller::Skill(isLeft, L"SpecialSkill"))	doSpacialSkill(bullets);
+	if (GamePad::Skill(isLeft, L"MainSkill"))		doMainSkill(bullets);
+	if (GamePad::Skill(isLeft, L"SubSkill"))		doSubSkill(bullets);
+	if (GamePad::Skill(isLeft, L"SpecialSkill"))	doSpacialSkill(bullets);
 
 	for (auto i : bullets) {
 		if(isLeft == i->isLeft) continue;

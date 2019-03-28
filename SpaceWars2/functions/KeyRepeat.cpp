@@ -1,6 +1,5 @@
 #include "KeyRepeat.hpp"
-
-
+#include "../Scenes/Game.hpp"
 // default constructor
 KeyRepeat::KeyRepeat() {
 	name = L"";
@@ -29,11 +28,11 @@ KeyRepeat::KeyRepeat(bool _isLeft, const String& _name, int _border) {
 }
 
 bool KeyRepeat::repeat(int _time) {
-	if (!isClicked && Controller::input.button(name).pressed) {
+	if (!isClicked && GamePad::input.button(name).pressed) {
 		// clicked
 		isClicked = true;
 		return true;
-	} else if (Controller::input.button(name).pressed) {
+	} else if (GamePad::input.button(name).pressed) {
 		// pressed
 		if (pressTime >= _time) {
 			pressTime = 0;

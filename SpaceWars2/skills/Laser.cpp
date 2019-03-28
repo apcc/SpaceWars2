@@ -7,7 +7,7 @@ bool Laser::isRShooting = false;
 bool Laser::update(Vec2 _myPos, Vec2 _oppPos) {
 	myPos = _myPos;
 	if(isCharging){
-		if (Controller::Skill(isLeft, L"MainSkill")) {
+		if (GamePad::Skill(isLeft, L"MainSkill")) {
 			++energy;
 		}
 		else {

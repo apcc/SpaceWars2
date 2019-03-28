@@ -5,23 +5,23 @@
 using asc::XInput;
 
 
-asc::Input Controller::input = asc::Input();
+asc::Input GamePad::input = asc::Input();
 
-XInput Controller::LController = XInput(0);
-XInput Controller::RController = XInput(1);
+XInput GamePad::LGamePad = XInput(0);
+XInput GamePad::RGamePad = XInput(1);
 
 
-void Controller::SetAxis() {
+void GamePad::SetAxis() {
 	// Left
-	input.addAxis(L"L_CtrlX", asc::Axis(Input::KeyD, Input::KeyA) | asc::Axis(asc::Axis(LController, asc::XInputAxis::LeftThumbX)));
-	input.addAxis(L"L_CtrlY", asc::Axis(Input::KeyW, Input::KeyS) | asc::Axis(asc::Axis(LController, asc::XInputAxis::LeftThumbY)));
+	input.addAxis(L"L_CtrlX", asc::Axis(Input::KeyD, Input::KeyA) | asc::Axis(asc::Axis(LGamePad, asc::XInputAxis::LeftThumbX)));
+	input.addAxis(L"L_CtrlY", asc::Axis(Input::KeyW, Input::KeyS) | asc::Axis(asc::Axis(LGamePad, asc::XInputAxis::LeftThumbY)));
 
 	// Right
-	input.addAxis(L"R_CtrlX", asc::Axis(Input::KeySemicolon, Input::KeyK) | asc::Axis(asc::Axis(RController, asc::XInputAxis::LeftThumbX)));
-	input.addAxis(L"R_CtrlY", asc::Axis(Input::KeyO, Input::KeyL) | asc::Axis(asc::Axis(RController, asc::XInputAxis::LeftThumbY)));
+	input.addAxis(L"R_CtrlX", asc::Axis(Input::KeySemicolon, Input::KeyK) | asc::Axis(asc::Axis(RGamePad, asc::XInputAxis::LeftThumbX)));
+	input.addAxis(L"R_CtrlY", asc::Axis(Input::KeyO, Input::KeyL) | asc::Axis(asc::Axis(RGamePad, asc::XInputAxis::LeftThumbY)));
 }
 
-void Controller::SetButton() {
+void GamePad::SetButton() {
 	// MainSkill
 	input.addButton(L"L_MainSkill", s3d::Input::KeyQ | XInput(0).buttonA);
 	input.addButton(L"R_MainSkill", s3d::Input::KeyI | XInput(1).buttonA);
@@ -48,7 +48,7 @@ void Controller::SetButton() {
 }
 
 
-Vec2 Controller::Move(bool _isLeft, int _speed) {
+Vec2 GamePad::Move(bool _isLeft, int _speed) {
 	String lr = (_isLeft ? L"L" : L"R");
 	Vec2 raw = {};
 
@@ -73,7 +73,7 @@ Vec2 Controller::Move(bool _isLeft, int _speed) {
 /// <returns>
 /// _name に対応するボタンが押されている場合は true, それ以外の場合は false
 /// </returns>
-bool Controller::Skill(bool _isLeft, const String& _name) {
+bool GamePad::Skill(bool _isLeft, const String& _name) {
 	String lr = (_isLeft ? L"L" : L"R");
 
 	// if (_name.includes(L"MainSkill" || L"SubSkill" || L"SpecialSkill"))
@@ -82,22 +82,22 @@ bool Controller::Skill(bool _isLeft, const String& _name) {
 	return false;
 }
 
-bool Controller::KeyUp(bool _isLeft) {
+bool GamePad::KeyUp(bool _isLeft) {
 	String lr = (_isLeft ? L"L" : L"R");
 	return input.button(lr + L"_KeyUp").pressed || input.axis(lr + L"_CtrlY") > 0.8;
 }
 
-bool Controller::KeyLeft(bool _isLeft) {
+bool GamePad::KeyLeft(bool _isLeft) {
 	String lr = (_isLeft ? L"L" : L"R");
 	return input.button(lr + L"_KeyLeft").pressed || input.axis(lr + L"_CtrlX") < -0.8;
 }
 
-bool Controller::KeyDown(bool _isLeft) {
+bool GamePad::KeyDown(bool _isLeft) {
 	String lr = (_isLeft ? L"L" : L"R");
 	return input.button(lr + L"_KeyDown").pressed || input.axis(lr + L"_CtrlY") < -0.8;
 }
 
-bool Controller::KeyRight(bool _isLeft) {
+bool GamePad::KeyRight(bool _isLeft) {
 	String lr = (_isLeft ? L"L" : L"R");
 	return input.button(lr + L"_KeyRight").pressed || input.axis(lr + L"_CtrlX") > 0.8;
 }
