@@ -84,20 +84,20 @@ bool Controller::Skill(bool _isLeft, const String& _name) {
 
 bool Controller::KeyUp(bool _isLeft) {
 	String lr = (_isLeft ? L"L" : L"R");
-	return input.button(lr + L"_KeyUp").clicked || input.axis(lr + L"_CtrlY") > 0.8;
+	return input.button(lr + L"_KeyUp").pressed || input.axis(lr + L"_CtrlY") > 0.8;
 }
 
 bool Controller::KeyLeft(bool _isLeft) {
 	String lr = (_isLeft ? L"L" : L"R");
-	return input.button(lr + L"_KeyLeft").clicked || input.axis(lr + L"_CtrlX") < -0.8;
+	return input.button(lr + L"_KeyLeft").pressed || input.axis(lr + L"_CtrlX") < -0.8;
 }
 
 bool Controller::KeyDown(bool _isLeft) {
 	String lr = (_isLeft ? L"L" : L"R");
-	return input.button(lr + L"_KeyDown").clicked || input.axis(lr + L"_CtrlY") < -0.8;
+	return input.button(lr + L"_KeyDown").pressed || input.axis(lr + L"_CtrlY") < -0.8;
 }
 
 bool Controller::KeyRight(bool _isLeft) {
 	String lr = (_isLeft ? L"L" : L"R");
-	return input.button(lr + L"_KeyRight").clicked || input.axis(lr + L"_CtrlX") > 0.8;
+	return input.button(lr + L"_KeyRight").pressed || input.axis(lr + L"_CtrlX") > 0.8;
 }

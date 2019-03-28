@@ -1,6 +1,5 @@
 #include "./Player.hpp"
-#include "./XInput.hpp"
-
+#include "../CommonData.hpp"
 #define PLAYER_SPEED 15
 #define NUMBER_OF_SKILL 6
 #define HP_LIMIT 100.0
@@ -17,6 +16,11 @@ void Player::init(Vec2 _pos, bool _isLeft){
 
 	Controller::SetAxis();
 	Controller::SetButton();
+
+	KeyUp = KeyRepeat(isLeft, L"KeyUp");
+	KeyLeft = KeyRepeat(isLeft, L"KeyLeft");
+	KeyDown = KeyRepeat(isLeft, L"KeyDown");
+	KeyRight = KeyRepeat(isLeft, L"KeyRight");
 }
 
 Circle Player::circle(){
@@ -94,26 +98,26 @@ void Player::update(std::vector<Bullet*> &bullets){
 void Player::skillSelect(){
 
 	switch(selectedType){
-		case 0:	//MainSkill
-			if(Controller::KeyDown(isLeft))	++selectedType;
-			if(Controller::KeyLeft(isLeft)  && whatMainSkill < NUMBER_OF_SKILL)	whatMainSkill = static_cast<MainSkill>(whatMainSkill + 1);
-			if(Controller::KeyRight(isLeft) && whatMainSkill > 0)				whatMainSkill = static_cast<MainSkill>(whatMainSkill - 1);
+	case 0:	//MainSkill
+		if (KeyDown.repeat(20))	++selectedType;
+		if (KeyLeft.repeat(20) && whatMainSkill < NUMBER_OF_SKILL)	whatMainSkill = static_cast<MainSkill>(whatMainSkill + 1);
+		if (KeyRight.repeat(20) && whatMainSkill > 0)				whatMainSkill = static_cast<MainSkill>(whatMainSkill - 1);
 		break;
 
-		case 1:	//SubSkill
-			if(Controller::KeyUp(isLeft))	--selectedType;
-			if(Controller::KeyDown(isLeft))	++selectedType;
-			if(Controller::KeyLeft(isLeft)  && whatSubSkill < NUMBER_OF_SKILL)	whatSubSkill = static_cast<SubSkill>(whatSubSkill + 1);
-			if(Controller::KeyRight(isLeft) && whatSubSkill > 0)				whatSubSkill = static_cast<SubSkill>(whatSubSkill - 1);
+	case 1:	//SubSkill
+		if (KeyUp.repeat(20))	--selectedType;
+		if (KeyDown.repeat(20))	++selectedType;
+		if (KeyLeft.repeat(20) && whatSubSkill < NUMBER_OF_SKILL)	whatSubSkill = static_cast<SubSkill>(whatSubSkill + 1);
+		if (KeyRight.repeat(20) && whatSubSkill > 0)				whatSubSkill = static_cast<SubSkill>(whatSubSkill - 1);
 		break;
 
-		case 2:	//SpecialSkill
-			if(Controller::KeyUp(isLeft))	--selectedType;
-			if(Controller::KeyLeft(isLeft)  && whatSpecialSkill < NUMBER_OF_SKILL)	whatSpecialSkill = static_cast<SpecialSkill>(whatSpecialSkill + 1);
-			if(Controller::KeyRight(isLeft) && whatSpecialSkill > 0)				whatSpecialSkill = static_cast<SpecialSkill>(whatSpecialSkill - 1);
+	case 2:	//SpecialSkill
+		if (KeyUp.repeat(20))	--selectedType;
+		if (KeyLeft.repeat(20) && whatSpecialSkill < NUMBER_OF_SKILL)	whatSpecialSkill = static_cast<SpecialSkill>(whatSpecialSkill + 1);
+		if (KeyRight.repeat(20) && whatSpecialSkill > 0)				whatSpecialSkill = static_cast<SpecialSkill>(whatSpecialSkill - 1);
 		break;
 
-		default:
+	default:
 			LOG(L"[ERROR] SkillSelecterで意図しない値が参照されました。");
 	}
 }
