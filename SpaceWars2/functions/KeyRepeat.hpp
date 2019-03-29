@@ -1,7 +1,5 @@
 #pragma once
 #include <Siv3D.hpp>
-#include "./XInput.hpp"
-
 
 class KeyRepeat {
 private:
@@ -12,8 +10,8 @@ private:
 	int border;
 
 public:
-	KeyRepeat(); // default constructor
-	KeyRepeat(bool _isLeft, const String& _name);				// Button Constructor
+	KeyRepeat();
+	KeyRepeat(bool _isLeft, const String& _name);
 
 	bool repeat(int _time);
 };

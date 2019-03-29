@@ -1,5 +1,6 @@
 #include "KeyRepeat.hpp"
-#include "../Scenes/Game.hpp"
+#include "./XInput.hpp"
+
 // default constructor
 KeyRepeat::KeyRepeat() {
 	name = L"";

@@ -76,10 +76,7 @@ Vec2 GamePad::Move(bool _isLeft, int _speed) {
 bool GamePad::Skill(bool _isLeft, const String& _name) {
 	String lr = (_isLeft ? L"L" : L"R");
 
-	// if (_name.includes(L"MainSkill" || L"SubSkill" || L"SpecialSkill"))
-		return input.button(lr + L"_" + _name).pressed;
-
-	return false;
+	return input.button(lr + L"_" + _name).pressed;
 }
 
 bool GamePad::Key(bool _isLeft, const String& _name) {

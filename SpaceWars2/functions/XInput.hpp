@@ -1,7 +1,6 @@
 #pragma once
 #include "../asc/Input.hpp"
 
-
 namespace GamePad {
 	extern asc::Input input;
 
