@@ -4,7 +4,6 @@
 KeyRepeat::KeyRepeat() {
 	name = L"";
 	isLeft = true;
-	isAxis = false;
 	isClicked = false;
 	pressTime = 0;
 	border = 0;
@@ -14,20 +13,9 @@ KeyRepeat::KeyRepeat() {
 KeyRepeat::KeyRepeat(bool _isLeft, const String& _name) {
 	name = _name;
 	isLeft = _isLeft;
-	isAxis = false;
 	isClicked = false;
 	pressTime = 0;
 	border = 0;
-}
-
-// Axis Constructor
-KeyRepeat::KeyRepeat(bool _isLeft, const String& _name, int _border) {
-	name = _name;
-	isLeft = _isLeft;
-	isAxis = true;
-	isClicked = false;
-	pressTime = 0;
-	border = _border;
 }
 
 bool KeyRepeat::repeat(int _time) {
