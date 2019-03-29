@@ -3,6 +3,7 @@
 // default constructor
 KeyRepeat::KeyRepeat() {
 	name = L"";
+	isLeft = true;
 	isAxis = false;
 	isClicked = false;
 	pressTime = 0;
@@ -11,7 +12,8 @@ KeyRepeat::KeyRepeat() {
 
 // Button Constructor
 KeyRepeat::KeyRepeat(bool _isLeft, const String& _name) {
-	name = (_isLeft ? L"L_" : L"R_") + _name;
+	name = _name;
+	isLeft = _isLeft;
 	isAxis = false;
 	isClicked = false;
 	pressTime = 0;
@@ -20,7 +22,8 @@ KeyRepeat::KeyRepeat(bool _isLeft, const String& _name) {
 
 // Axis Constructor
 KeyRepeat::KeyRepeat(bool _isLeft, const String& _name, int _border) {
-	name = (_isLeft ? L"L_" : L"R_") + _name;
+	name = _name;
+	isLeft = _isLeft;
 	isAxis = true;
 	isClicked = false;
 	pressTime = 0;
@@ -28,11 +31,11 @@ KeyRepeat::KeyRepeat(bool _isLeft, const String& _name, int _border) {
 }
 
 bool KeyRepeat::repeat(int _time) {
-	if (!isClicked && GamePad::input.button(name).pressed) {
+	if (!isClicked && GamePad::Key(isLeft, name)) {
 		// clicked
 		isClicked = true;
 		return true;
-	} else if (GamePad::input.button(name).pressed) {
+	} else if (GamePad::Key(isLeft, name)) {
 		// pressed
 		if (pressTime >= _time) {
 			pressTime = 0;

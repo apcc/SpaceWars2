@@ -82,22 +82,20 @@ bool GamePad::Skill(bool _isLeft, const String& _name) {
 	return false;
 }
 
-bool GamePad::KeyUp(bool _isLeft) {
+bool GamePad::Key(bool _isLeft, const String& _name) {
 	String lr = (_isLeft ? L"L" : L"R");
-	return input.button(lr + L"_KeyUp").pressed || input.axis(lr + L"_CtrlY") > 0.8;
-}
 
-bool GamePad::KeyLeft(bool _isLeft) {
-	String lr = (_isLeft ? L"L" : L"R");
-	return input.button(lr + L"_KeyLeft").pressed || input.axis(lr + L"_CtrlX") < -0.8;
-}
+	if (_name == L"KeyUp")
+		return input.button(lr + L"_KeyUp").pressed || input.axis(lr + L"_CtrlY") > 0.8;
 
-bool GamePad::KeyDown(bool _isLeft) {
-	String lr = (_isLeft ? L"L" : L"R");
-	return input.button(lr + L"_KeyDown").pressed || input.axis(lr + L"_CtrlY") < -0.8;
-}
+	if (_name == L"KeyLeft")
+		return input.button(lr + L"_KeyLeft").pressed || input.axis(lr + L"_CtrlX") < -0.8;
 
-bool GamePad::KeyRight(bool _isLeft) {
-	String lr = (_isLeft ? L"L" : L"R");
-	return input.button(lr + L"_KeyRight").pressed || input.axis(lr + L"_CtrlX") > 0.8;
+	if (_name == L"KeyDown")
+		return input.button(lr + L"_KeyDown").pressed || input.axis(lr + L"_CtrlY") < -0.8;
+
+	if(_name == L"KeyRight")
+		return input.button(lr + L"_KeyRight").pressed || input.axis(lr + L"_CtrlX") > 0.8;
+
+	return false;
 }

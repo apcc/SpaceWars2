@@ -6,6 +6,7 @@
 class KeyRepeat {
 private:
 	String name;
+	bool isLeft;
 	bool isAxis;
 	bool isClicked;
 	int pressTime;
