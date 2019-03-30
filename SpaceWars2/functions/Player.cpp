@@ -21,6 +21,10 @@ void Player::init(Vec2 _pos, bool _isLeft){
 	KeyLeft = KeyRepeat(isLeft, L"KeyLeft");
 	KeyDown = KeyRepeat(isLeft, L"KeyDown");
 	KeyRight = KeyRepeat(isLeft, L"KeyRight");
+
+	KeyMainSkill = KeyRepeat(isLeft, L"MainSkill");
+	KeySubSkill = KeyRepeat(isLeft, L"SubSkill");
+	KeySpecialSkill = KeyRepeat(isLeft, L"SpecialSkill");
 }
 
 Circle Player::circle(){
@@ -80,9 +84,9 @@ void Player::update(std::vector<Bullet*> &bullets){
 	if (pos.y > Config::HEIGHT - PLAYER_SIZE)
 		pos.y = Config::HEIGHT - PLAYER_SIZE;
 
-	if (GamePad::Skill(isLeft, L"MainSkill"))		doMainSkill(bullets);
-	if (GamePad::Skill(isLeft, L"SubSkill"))		doSubSkill(bullets);
-	if (GamePad::Skill(isLeft, L"SpecialSkill"))	doSpacialSkill(bullets);
+	doMainSkill(bullets);
+	doSubSkill(bullets);
+	doSpacialSkill(bullets);
 
 	for (auto i : bullets) {
 		if(isLeft == i->isLeft) continue;

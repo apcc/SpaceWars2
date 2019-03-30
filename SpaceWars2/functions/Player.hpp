@@ -44,6 +44,10 @@ private:
 	KeyRepeat KeyDown = KeyRepeat();
 	KeyRepeat KeyRight = KeyRepeat();
 
+	KeyRepeat KeyMainSkill = KeyRepeat();
+	KeyRepeat KeySubSkill = KeyRepeat();
+	KeyRepeat KeySpecialSkill = KeyRepeat();
+
 public:
 
 	MainSkill whatMainSkill = SHOT;

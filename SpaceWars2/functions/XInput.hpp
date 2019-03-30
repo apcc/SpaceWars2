@@ -11,7 +11,6 @@ namespace GamePad {
 	extern void SetButton();
 
 	extern Vec2 Move(bool _isLeft, int _speed);
-	extern bool Skill(bool _isLeft, const String& _name);
 
 	extern bool Key(bool _isLeft, const String& _name);
 	extern bool Key(const String& _name);

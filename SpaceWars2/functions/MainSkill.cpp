@@ -10,36 +10,40 @@
 
 void Player::doMainSkill(std::vector<Bullet*>& bullets){
 	switch(this->whatMainSkill){
-		case SHOT:
-			if(System::FrameCount() % 5 == 0)
-				bullets.push_back(new Shot(pos, isLeft));
+	case SHOT:
+		if(KeyMainSkill.repeat(5))
+			bullets.push_back(new Shot(pos, isLeft));
 		break;
 
-		case GRENADE:
-			if(System::FrameCount() % 20 == 0)
-				bullets.push_back(new Grenade(pos, isLeft));
+	case GRENADE:
+		if(KeyMainSkill.repeat(20))
+			bullets.push_back(new Grenade(pos, isLeft));
 		break;
 
-		case LASER:
+	case LASER:
+		if(KeyMainSkill.repeat(0))
 			bullets.push_back(new Laser(pos, isLeft));
 		break;
 
-		case CRUSHER:
+	case CRUSHER:
 		break;
 
-		case HOMING:
-			if (System::FrameCount() % 10 == 0)
-				bullets.push_back(new Homing(pos, isLeft));
+	case HOMING:
+		if (KeyMainSkill.repeat(10))
+			bullets.push_back(new Homing(pos, isLeft));
 		break;
-		case REFLECTION:
-			if (System::FrameCount() % 30 == 0)
-				bullets.push_back(new Reflection(pos, isLeft));
+
+	case REFLECTION:
+		if (KeyMainSkill.repeat(30))
+			bullets.push_back(new Reflection(pos, isLeft));
 		break;
-		case FLAME:
-			if (System::FrameCount() % 40 == 0)
-				bullets.push_back(new Flame(pos, isLeft));
+
+	case FLAME:
+		if (KeyMainSkill.repeat(20))
+			bullets.push_back(new Flame(pos, isLeft));
 		break;
-		default:
+
+	default:
 		LOG(L"[ERROR] doMainSkillで意図しない値が参照されました。");
 	}
 }

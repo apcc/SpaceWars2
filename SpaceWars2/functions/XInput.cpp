@@ -64,24 +64,6 @@ Vec2 GamePad::Move(bool _isLeft, int _speed) {
 	return raw;
 }
 
-/// <summary>
-/// 指定されたボタンが押されているか調べます。
-/// </summary>
-/// <param name="_isLeft">
-/// LPlayer or RPlayer
-/// </param>
-/// <param name="_name">
-/// MainSkill, SubSkill, SpecialSkill のいずれか
-/// </param>
-/// <returns>
-/// _name に対応するボタンが押されている場合は true, それ以外の場合は false
-/// </returns>
-bool GamePad::Skill(bool _isLeft, const String& _name) {
-	String lr = (_isLeft ? L"L" : L"R");
-
-	return input.button(lr + L"_" + _name).pressed;
-}
-
 bool GamePad::Key(bool _isLeft, const String& _name) {
 	String lr = (_isLeft ? L"L" : L"R");
 
@@ -97,7 +79,7 @@ bool GamePad::Key(bool _isLeft, const String& _name) {
 	if(_name == L"KeyRight")
 		return input.button(lr + L"_KeyRight").pressed || input.axis(lr + L"_CtrlX") > 0.8;
 
-	return false;
+	return input.button(lr + L"_" + _name).pressed;
 }
 
 bool GamePad::Key(const String& _name) {
