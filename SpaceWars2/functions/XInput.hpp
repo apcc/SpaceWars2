@@ -14,4 +14,5 @@ namespace GamePad {
 	extern bool Skill(bool _isLeft, const String& _name);
 
 	extern bool Key(bool _isLeft, const String& _name);
+	extern bool Key(const String& _name);
 }

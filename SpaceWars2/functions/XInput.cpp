@@ -45,6 +45,9 @@ void GamePad::SetButton() {
 	input.addButton(L"R_KeyLeft",  s3d::Input::KeyK | XInput(1).buttonLeft);
 	input.addButton(L"R_KeyDown",  s3d::Input::KeyL | XInput(1).buttonDown);
 	input.addButton(L"R_KeyRight", s3d::Input::KeySemicolon | XInput(1).buttonRight);
+
+	// 操作
+	input.addButton(L"KeyEnter", s3d::Input::KeyEnter | XInput(0).buttonStart | XInput(1).buttonStart);
 }
 
 
@@ -95,4 +98,8 @@ bool GamePad::Key(bool _isLeft, const String& _name) {
 		return input.button(lr + L"_KeyRight").pressed || input.axis(lr + L"_CtrlX") > 0.8;
 
 	return false;
+}
+
+bool GamePad::Key(const String& _name) {
+	return input.button(_name).pressed;
 }
