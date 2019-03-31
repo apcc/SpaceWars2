@@ -7,7 +7,7 @@ void SkillSelect::init() {
 void SkillSelect::update() {
 	changeScene(Debug::InputFnKey(), 250);
 	if (Data::KeyEnter.repeat(20))
-		changeScene(L"Game", 500);
+		changeScene(L"Three", 500);
 
 	Data::LPlayer.skillSelect();
 	Data::RPlayer.skillSelect();
