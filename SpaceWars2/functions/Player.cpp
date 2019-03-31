@@ -121,7 +121,7 @@ void Player::skillSelect(){
 		break;
 
 	default:
-			LOG(L"[ERROR] SkillSelecterで意図しない値が参照されました。");
+			LOG_ERROR(L"SkillSelecterで意図しない値が参照されました。");
 	}
 }
 

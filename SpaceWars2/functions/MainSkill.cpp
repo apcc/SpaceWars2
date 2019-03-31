@@ -44,6 +44,6 @@ void Player::doMainSkill(std::vector<Bullet*>& bullets){
 		break;
 
 	default:
-		LOG(L"[ERROR] doMainSkillで意図しない値が参照されました。");
+		LOG_ERROR(L"doMainSkillで意図しない値が参照されました。");
 	}
 }

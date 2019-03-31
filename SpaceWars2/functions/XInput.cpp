@@ -7,6 +7,9 @@ using asc::XInput;
 
 asc::Input GamePad::input = asc::Input();
 
+bool GamePad::isErrorCalled = false;
+MessageBoxCommand GamePad::com = MessageBoxCommand::No;
+
 XInput GamePad::LGamePad = XInput(0);
 XInput GamePad::RGamePad = XInput(1);
 
@@ -66,6 +69,17 @@ Vec2 GamePad::Move(bool _isLeft, int _speed) {
 
 bool GamePad::Key(bool _isLeft, const String& _name) {
 	String lr = (_isLeft ? L"L" : L"R");
+
+	if (!input.hasButton(lr + L"_" + _name)) {
+		LOG_ERROR(L"GamePad::Key() で指定された ", _name, L" は存在しません。");
+		if (!isErrorCalled) {
+			com = MessageBox::Show(L"Fatal Error", L"GamePad::Key() で存在しない名前が指定されました。\n終了します。詳細はlog.htmlを参照してください。", MessageBoxStyle::Ok, 0);
+			isErrorCalled = true;
+		}
+		if (com == MessageBoxCommand::Ok)
+			System::Exit();
+		return false;
+	}
 
 	if (_name == L"KeyUp")
 		return input.button(lr + L"_KeyUp").pressed || input.axis(lr + L"_CtrlY") > 0.8;

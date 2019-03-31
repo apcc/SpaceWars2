@@ -27,6 +27,6 @@ void Player::doSubSkill(std::vector<Bullet*>& bullets){
 		break;
 
 	default:
-		LOG(L"[ERROR] doSubSkillで意図しない値が参照されました。");
+		LOG_ERROR(L"doSubSkillで意図しない値が参照されました。");
 	}
 }

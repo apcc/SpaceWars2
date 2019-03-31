@@ -24,6 +24,6 @@ void Player::doSpacialSkill(std::vector<Bullet*>& bullets){
 		break;
 
 	default:
-		LOG(L"[ERROR] doSpecialSkillで意図しない値が参照されました。");
+		LOG_ERROR(L"doSpecialSkillで意図しない値が参照されました。");
 	}
 }

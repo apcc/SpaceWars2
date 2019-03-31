@@ -4,6 +4,9 @@
 namespace GamePad {
 	extern asc::Input input;
 
+	extern bool isErrorCalled;
+	extern MessageBoxCommand com;
+
 	extern XInput LGamePad;
 	extern XInput RGamePad;
 
