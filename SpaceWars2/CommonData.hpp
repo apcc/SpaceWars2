@@ -3,6 +3,7 @@
 #include "Config.hpp"
 
 #include "./functions/Player.hpp"
+#include "./functions/KeyRepeat.hpp"
 
 
 struct CommonData {
@@ -13,4 +14,6 @@ struct CommonData {
 namespace Data {
 	extern Player LPlayer;
 	extern Player RPlayer;
+
+	extern KeyRepeat KeyEnter;
 };

@@ -1,4 +1,5 @@
 #include "./Laser.hpp"
+#include "../functions/XInput.hpp"
 
 bool Laser::isLShooting = false;
 bool Laser::isRShooting = false;
@@ -6,9 +7,10 @@ bool Laser::isRShooting = false;
 bool Laser::update(Vec2 _myPos, Vec2 _oppPos) {
 	myPos = _myPos;
 	if(isCharging){
-		if((isLeft && Input::KeyQ.pressed) || (!isLeft && Input::KeyI.pressed)){
+		if (GamePad::Key(isLeft, L"MainSkill")) {
 			++energy;
-		}else{
+		}
+		else {
 			isCharging = false;
 		}
 	}else{
