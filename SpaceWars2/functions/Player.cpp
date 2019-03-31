@@ -1,5 +1,5 @@
 #include "./Player.hpp"
-
+#include "../CommonData.hpp"
 #define PLAYER_SPEED 15
 #define NUMBER_OF_SKILL 6
 #define HP_LIMIT 100.0
@@ -13,6 +13,18 @@ void Player::init(Vec2 _pos, bool _isLeft){
 	whatMainSkill = static_cast<MainSkill>(0);
 	whatSubSkill = static_cast<SubSkill>(0);
 	whatSpecialSkill = static_cast<SpecialSkill>(0);
+
+	GamePad::SetAxis();
+	GamePad::SetButton();
+
+	KeyUp = KeyRepeat(isLeft, L"KeyUp");
+	KeyLeft = KeyRepeat(isLeft, L"KeyLeft");
+	KeyDown = KeyRepeat(isLeft, L"KeyDown");
+	KeyRight = KeyRepeat(isLeft, L"KeyRight");
+
+	KeyMainSkill = KeyRepeat(isLeft, L"MainSkill");
+	KeySubSkill = KeyRepeat(isLeft, L"SubSkill");
+	KeySpecialSkill = KeyRepeat(isLeft, L"SpecialSkill");
 }
 
 Circle Player::circle(){
@@ -52,46 +64,29 @@ bool Player::isHPRunOut(){
 }
 
 void Player::update(std::vector<Bullet*> &bullets){
-	Rect zone;
-	Vec2 tmp = pos;
-	if(isLeft){
-		zone = Rect(0, 0, Config::WIDTH / 2 + 1, Config::HEIGHT + 1);
-		if (Input::KeyD.pressed)				pos.x += speed;
-		if (!zone.contains(Player::circle()))	pos.x  = Config::WIDTH / 2 - PLAYER_SIZE;
+	pos += GamePad::Move(isLeft, speed);
 
-		if (Input::KeyA.pressed)				pos.x -= speed;
-		if (!zone.contains(Player::circle()))	pos.x  = 0 + PLAYER_SIZE;
 
-		if (Input::KeyW.pressed)				pos.y -= speed;
-		if (!zone.contains(Player::circle()))	pos.y  = 0 + PLAYER_SIZE;
-
-		if (Input::KeyS.pressed)				pos.y += speed;
-		if (!zone.contains(Player::circle()))	pos.y  = Config::HEIGHT - PLAYER_SIZE;
-	}else{
-		zone = Rect(Config::WIDTH/2, 0, Config::WIDTH / 2 + 1, Config::HEIGHT + 1);
-		if (Input::KeySemicolon.pressed)		pos.x += speed;
-		if (!zone.contains(Player::circle()))	pos.x  = Config::WIDTH - PLAYER_SIZE;
-		
-		if (Input::KeyK.pressed)				pos.x -= speed;
-		if (!zone.contains(Player::circle()))	pos.x  = Config::WIDTH / 2 + PLAYER_SIZE;
-
-		if (Input::KeyO.pressed)				pos.y -= speed;
-		if (!zone.contains(Player::circle()))	pos.y = 0 + PLAYER_SIZE;
-			
-		if (Input::KeyL.pressed)				pos.y += speed;
-		if (!zone.contains(Player::circle()))	pos.y = Config::HEIGHT - PLAYER_SIZE;
+	if(isLeft) {
+		if (pos.x < 0 + PLAYER_SIZE)
+			pos.x = 0 + PLAYER_SIZE;
+		if (pos.x > Config::WIDTH / 2 - PLAYER_SIZE)
+			pos.x = Config::WIDTH / 2 - PLAYER_SIZE;
+	} else {
+		if (pos.x < Config::WIDTH / 2 + PLAYER_SIZE)
+			pos.x = Config::WIDTH / 2 + PLAYER_SIZE;
+		if (pos.x > Config::WIDTH - PLAYER_SIZE)
+			pos.x = Config::WIDTH - PLAYER_SIZE;
 	}
 
+	if (pos.y < 0 + PLAYER_SIZE)
+		pos.y = 0 + PLAYER_SIZE;
+	if (pos.y > Config::HEIGHT - PLAYER_SIZE)
+		pos.y = Config::HEIGHT - PLAYER_SIZE;
 
-	if(isLeft){
-		if(Input::KeyQ.pressed)			doMainSkill(bullets);
-		if(Input::KeyE.pressed)			doSubSkill(bullets);
-		if(Input::KeyLShift.pressed)	doSpacialSkill(bullets);
-	}else{
-		if(Input::KeyI.pressed)			doMainSkill(bullets);
-		if(Input::KeyP.pressed)			doSubSkill(bullets);
-		if(Input::KeyRShift.pressed)	doSpacialSkill(bullets);
-	}
+	doMainSkill(bullets);
+	doSubSkill(bullets);
+	doSpacialSkill(bullets);
 
 	for (auto i : bullets) {
 		if(isLeft == i->isLeft) continue;
@@ -106,50 +101,27 @@ void Player::update(std::vector<Bullet*> &bullets){
 void Player::skillSelect(){
 
 	switch(selectedType){
-		case 0:	//MainSkill
-			if(isLeft){
-				//if(Input::KeyW.clicked)
-				if(Input::KeyS.clicked)	++selectedType;
-				if(Input::KeyA.clicked && whatMainSkill < NUMBER_OF_SKILL)	whatMainSkill = static_cast<MainSkill>(whatMainSkill + 1);
-				if(Input::KeyD.clicked && whatMainSkill > 0)				whatMainSkill = static_cast<MainSkill>(whatMainSkill - 1);
-			}else{
-				//if(Input::KeyO.clicked)
-				if(Input::KeyL.clicked)	++selectedType;
-				if(Input::KeyK.clicked && whatMainSkill < NUMBER_OF_SKILL)	whatMainSkill = static_cast<MainSkill>(whatMainSkill + 1);
-				if(Input::KeySemicolon.clicked && whatMainSkill > 0)		whatMainSkill = static_cast<MainSkill>(whatMainSkill - 1);
-			}
+	case 0:	//MainSkill
+		if (KeyDown.repeat(20))	++selectedType;
+		if (KeyLeft.repeat(20) && whatMainSkill < NUMBER_OF_SKILL)	whatMainSkill = static_cast<MainSkill>(whatMainSkill + 1);
+		if (KeyRight.repeat(20) && whatMainSkill > 0)				whatMainSkill = static_cast<MainSkill>(whatMainSkill - 1);
 		break;
 
-		case 1:	//SubSkill
-			if(isLeft){
-				if(Input::KeyW.clicked)	--selectedType;
-				if(Input::KeyS.clicked)	++selectedType;
-				if(Input::KeyA.clicked && whatSubSkill < NUMBER_OF_SKILL)	whatSubSkill = static_cast<SubSkill>(whatSubSkill + 1);
-				if(Input::KeyD.clicked && whatSubSkill > 0)					whatSubSkill = static_cast<SubSkill>(whatSubSkill - 1);
-			}else{
-				if(Input::KeyO.clicked)	--selectedType;
-				if(Input::KeyL.clicked)	++selectedType;
-				if(Input::KeyK.clicked && whatSubSkill < NUMBER_OF_SKILL)	whatSubSkill = static_cast<SubSkill>(whatSubSkill + 1);
-				if(Input::KeySemicolon.clicked && whatSubSkill > 0)			whatSubSkill = static_cast<SubSkill>(whatSubSkill - 1);
-			}
+	case 1:	//SubSkill
+		if (KeyUp.repeat(20))	--selectedType;
+		if (KeyDown.repeat(20))	++selectedType;
+		if (KeyLeft.repeat(20) && whatSubSkill < NUMBER_OF_SKILL)	whatSubSkill = static_cast<SubSkill>(whatSubSkill + 1);
+		if (KeyRight.repeat(20) && whatSubSkill > 0)				whatSubSkill = static_cast<SubSkill>(whatSubSkill - 1);
 		break;
 
-		case 2:	//SpecialSkill
-			if(isLeft){
-				if(Input::KeyW.clicked)	--selectedType;
-				//if(Input::KeyS.clicked)
-				if(Input::KeyA.clicked && whatSpecialSkill < NUMBER_OF_SKILL)	whatSpecialSkill = static_cast<SpecialSkill>(whatSpecialSkill + 1);
-				if(Input::KeyD.clicked && whatSpecialSkill > 0)					whatSpecialSkill = static_cast<SpecialSkill>(whatSpecialSkill - 1);
-			}else{
-				if(Input::KeyO.clicked)	--selectedType;
-				//if(Input::KeyL.clicked)
-				if(Input::KeyK.clicked && whatSpecialSkill < NUMBER_OF_SKILL)	whatSpecialSkill = static_cast<SpecialSkill>(whatSpecialSkill + 1);
-				if(Input::KeySemicolon.clicked && whatSpecialSkill > 0)			whatSpecialSkill = static_cast<SpecialSkill>(whatSpecialSkill - 1);
-			}
+	case 2:	//SpecialSkill
+		if (KeyUp.repeat(20))	--selectedType;
+		if (KeyLeft.repeat(20) && whatSpecialSkill < NUMBER_OF_SKILL)	whatSpecialSkill = static_cast<SpecialSkill>(whatSpecialSkill + 1);
+		if (KeyRight.repeat(20) && whatSpecialSkill > 0)				whatSpecialSkill = static_cast<SpecialSkill>(whatSpecialSkill - 1);
 		break;
 
-		default:
-			LOG(L"[ERROR] SkillSelecterで意図しない値が参照されました。");
+	default:
+			LOG_ERROR(L"SkillSelecterで意図しない値が参照されました。");
 	}
 }
 

@@ -155,6 +155,7 @@
       <SDLCheck>true</SDLCheck>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalOptions>/source-charset:utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -164,13 +165,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="asc\Input\AscInput.cpp" />
+    <ClCompile Include="asc\Input\AscInputAxis.cpp" />
     <ClCompile Include="CommonData.cpp" />
     <ClCompile Include="functions\Debug.cpp" />
+    <ClCompile Include="functions\KeyRepeat.cpp" />
     <ClCompile Include="functions\MainSkill.cpp" />
     <ClCompile Include="functions\Player.cpp" />
     <ClCompile Include="functions\SpecialSkill.cpp" />
     <ClCompile Include="functions\SubSkill.cpp" />
     <ClCompile Include="functions\Vec2Utils.cpp" />
+    <ClCompile Include="functions\XInput.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Scenes\ControlGuidance.cpp" />
     <ClCompile Include="Scenes\Ending.cpp" />
@@ -295,12 +300,17 @@
     <Font Include="Example\YomogiFont.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="asc\Input.hpp" />
+    <ClInclude Include="asc\Input\Axis.hpp" />
+    <ClInclude Include="asc\Input\CAxis.hpp" />
     <ClInclude Include="CommonData.hpp" />
     <ClInclude Include="Config.hpp" />
     <ClInclude Include="functions\Debug.hpp" />
+    <ClInclude Include="functions\KeyRepeat.hpp" />
     <ClInclude Include="functions\MainSkill.hpp" />
     <ClInclude Include="functions\Player.hpp" />
     <ClInclude Include="functions\Vec2Utils.hpp" />
+    <ClInclude Include="functions\XInput.hpp" />
     <ClInclude Include="scenes\Include.hpp" />
     <ClInclude Include="Scenes\ControlGuidance.hpp" />
     <ClInclude Include="Scenes\Ending.hpp" />

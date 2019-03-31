@@ -1,6 +1,8 @@
 #pragma once
 #include <Siv3D.hpp>
 #include "../skills/Bullet.hpp"
+#include "./XInput.hpp"
+#include "./KeyRepeat.hpp"
 
 enum MainSkill {
 	SHOT,
@@ -36,6 +38,15 @@ private:
 	const int PLAYER_SIZE = 30;
 	int hitSize = 30;		// 当たり判定半径
 	int shieldDamage = 0;	// Shieldが受けたダメージ量
+
+	KeyRepeat KeyUp = KeyRepeat();
+	KeyRepeat KeyLeft = KeyRepeat();
+	KeyRepeat KeyDown = KeyRepeat();
+	KeyRepeat KeyRight = KeyRepeat();
+
+	KeyRepeat KeyMainSkill = KeyRepeat();
+	KeyRepeat KeySubSkill = KeyRepeat();
+	KeyRepeat KeySpecialSkill = KeyRepeat();
 
 public:
 
