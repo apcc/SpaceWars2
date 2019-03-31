@@ -4,7 +4,7 @@
 class KeyRepeat {
 private:
 	String name;
-	int isLeft; // 0:Right 1:Left 2:Undefined
+	int isLeft; // 0:Right 1:Left -1:Undefined
 	bool isClicked;
 	int pressTime;
 	int border;

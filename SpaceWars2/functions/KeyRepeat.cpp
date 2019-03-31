@@ -13,7 +13,7 @@ KeyRepeat::KeyRepeat() {
 // Abnormal Button Constructor (ex. Enter etc...)
 KeyRepeat::KeyRepeat(const String& _name) {
 	name = _name;
-	isLeft = 3;
+	isLeft = -1;
 	isClicked = false;
 	pressTime = 0;
 	border = 0;
@@ -29,7 +29,7 @@ KeyRepeat::KeyRepeat(bool _isLeft, const String& _name) {
 }
 
 bool KeyRepeat::repeat(int _time) {
-	if(isLeft == 3) {
+	if(isLeft == -1) {
 		if (!isClicked && GamePad::Key(name)) {
 			// clicked
 			isClicked = true;
