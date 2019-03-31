@@ -1,4 +1,4 @@
-﻿#include "./Flame.hpp"
+#include "./Flame.hpp"
 
 bool Flame::update(Vec2 myPos, Vec2 oppPos) {
 
