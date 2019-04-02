@@ -32,8 +32,12 @@ private:
 	bool isLeft = true;		// 左右
 	int selectedType = 0;	// skillSelectの選択中項目
 	int speed = 0;
-	
-	int HP = 0;				// 体力
+
+	int HP;				// 体力
+	int temperature;	// MainSkill抑制
+	int coolDown;		// SubSkill抑制
+	int charge;			// SpecialSkill抑制
+	int requireCharge[3] = { 40, 40, 40 };
 
 	const int PLAYER_SIZE = 30;
 	int hitSize = 30;		// 当たり判定半径
