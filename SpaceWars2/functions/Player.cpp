@@ -10,8 +10,8 @@ void Player::init(Vec2 _pos, bool _isLeft){
 	isLeft = _isLeft;
 	HP = 100;
 	temperature = 20;
+	coolDownTime = 0;
 	charge = 0;
-	coolDown = 0;
 	speed = PLAYER_SPEED;
 	whatMainSkill = static_cast<MainSkill>(0);
 	whatSubSkill = static_cast<SubSkill>(0);
@@ -87,9 +87,12 @@ void Player::update(std::vector<Bullet*> &bullets){
 	if (pos.y > Config::HEIGHT - PLAYER_SIZE)
 		pos.y = Config::HEIGHT - PLAYER_SIZE;
 
-	doMainSkill(bullets);
-	doSubSkill(bullets);
-	doSpacialSkill(bullets);
+	if (temperature > 20)
+		--temperature;
+
+	if (temperature  <  50) doMainSkill(bullets);
+	if (coolDownTime <   0) doSubSkill(bullets);
+	if (charge       > 100) doSpacialSkill(bullets);
 
 	for (auto i : bullets) {
 		if(isLeft == i->isLeft) continue;
@@ -141,12 +144,12 @@ void Player::drawGauge(){
 		RectF(0, 0, HP * GAUGE_WIDTH, 20).draw(Color(L"#ff0000"));
 		RectF(0, 25, temperature * GAUGE_WIDTH, 20).draw(Color(L"#00ff00"));
 		RectF(0, 50, (charge * 100) / requireCharge[whatSpecialSkill] * GAUGE_WIDTH, 20).draw(Color(L"#ffff00"));
-		RectF(0, 75, coolDown * GAUGE_WIDTH, 20).draw(Color(L"#0000ff"));
+		RectF(0, 75, coolDownTime * GAUGE_WIDTH, 20).draw(Color(L"#0000ff"));
 	}
 	else {
 		RectF(Config::WIDTH - HP * GAUGE_WIDTH, 0, Config::WIDTH, 20).draw(Color(L"#ff0000"));
 		RectF(Config::WIDTH - temperature * GAUGE_WIDTH, 25, Config::WIDTH, 20).draw(Color(L"#00ff00"));
 		RectF(Config::WIDTH - (charge * 100) / requireCharge[whatSpecialSkill] * GAUGE_WIDTH, 50, Config::WIDTH, 20).draw(Color(L"#ffff00"));
-		RectF(Config::WIDTH - coolDown * GAUGE_WIDTH, 75, Config::WIDTH, 80).draw(Color(L"#0000ff"));
+		RectF(Config::WIDTH - coolDownTime * GAUGE_WIDTH, 75, Config::WIDTH, 80).draw(Color(L"#0000ff"));
 	}
 }

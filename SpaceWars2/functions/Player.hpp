@@ -35,7 +35,7 @@ private:
 
 	int HP;				// 体力
 	int temperature;	// MainSkill抑制
-	int coolDown;		// SubSkill抑制
+	int coolDownTime;		// SubSkill抑制
 	int charge;			// SpecialSkill抑制
 	int requireCharge[3] = { 40, 40, 40 };
 
