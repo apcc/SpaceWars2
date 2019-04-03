@@ -143,13 +143,13 @@ void Player::drawGauge(){
 	if (isLeft) {
 		RectF(0, 0, HP * GAUGE_WIDTH, 20).draw(Color(L"#ff0000"));
 		RectF(0, 25, temperature * GAUGE_WIDTH, 20).draw(Color(L"#00ff00"));
-		RectF(0, 50, (charge * 100) / requireCharge[whatSpecialSkill] * GAUGE_WIDTH, 20).draw(Color(L"#ffff00"));
-		RectF(0, 75, coolDownTime * GAUGE_WIDTH, 20).draw(Color(L"#0000ff"));
+		RectF(0, 50, coolDownTime * GAUGE_WIDTH, 20).draw(Color(L"#0000ff"));
+		RectF(0, 75, (charge * 100) / requireCharge[whatSpecialSkill] * GAUGE_WIDTH, 20).draw(Color(L"#ffff00"));
 	}
 	else {
 		RectF(Config::WIDTH - HP * GAUGE_WIDTH, 0, Config::WIDTH, 20).draw(Color(L"#ff0000"));
 		RectF(Config::WIDTH - temperature * GAUGE_WIDTH, 25, Config::WIDTH, 20).draw(Color(L"#00ff00"));
-		RectF(Config::WIDTH - (charge * 100) / requireCharge[whatSpecialSkill] * GAUGE_WIDTH, 50, Config::WIDTH, 20).draw(Color(L"#ffff00"));
-		RectF(Config::WIDTH - coolDownTime * GAUGE_WIDTH, 75, Config::WIDTH, 80).draw(Color(L"#0000ff"));
+		RectF(Config::WIDTH - coolDownTime * GAUGE_WIDTH, 05, Config::WIDTH, 80).draw(Color(L"#0000ff"));
+		RectF(Config::WIDTH - (charge * 100) / requireCharge[whatSpecialSkill] * GAUGE_WIDTH, 75, Config::WIDTH, 20).draw(Color(L"#ffff00"));
 	}
 }
