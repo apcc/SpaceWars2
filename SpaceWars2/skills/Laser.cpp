@@ -1,4 +1,5 @@
 #include "./Laser.hpp"
+#include "../CommonData.hpp"
 #include "../functions/XInput.hpp"
 
 bool Laser::isLShooting = false;
@@ -7,8 +8,9 @@ bool Laser::isRShooting = false;
 bool Laser::update(Vec2 _myPos, Vec2 _oppPos) {
 	myPos = _myPos;
 	if(isCharging){
-		if (GamePad::Key(isLeft, L"MainSkill")) {
+		if (GamePad::Key(isLeft, L"MainSkill") && (isLeft ? Data::LPlayer : Data::RPlayer).temperature < 800 && !(isLeft ? isLInvalid : isRInvalid)) {
 			++energy;
+			(isLeft ? Data::LPlayer : Data::RPlayer).temperature += 6;
 		}
 		else {
 			isCharging = false;
@@ -16,6 +18,8 @@ bool Laser::update(Vec2 _myPos, Vec2 _oppPos) {
 	}else{
 		--energy;
 		if (energy < 0) energy = 0;
+		if (!(isLeft ? isLInvalid : isRInvalid))
+			(isLeft ? Data::LPlayer : Data::RPlayer).temperature += 1;
 	}
 
 	if(energy >= 180) isCharging = false;

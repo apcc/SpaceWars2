@@ -26,7 +26,7 @@ void Player::doMainSkill(std::vector<Bullet*>& bullets){
 	case LASER:
 		if (KeyMainSkill.repeat(0)) {
 			bullets.push_back(new Laser(pos, isLeft));
-			temperature += 10;
+			// temperature rise is in the Laser Class
 		}
 		break;
 
