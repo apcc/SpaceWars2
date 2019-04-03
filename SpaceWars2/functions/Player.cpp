@@ -2,14 +2,14 @@
 #include "../CommonData.hpp"
 #define PLAYER_SPEED 15
 #define NUMBER_OF_SKILL 6
-#define HP_LIMIT 100.0
-#define GAUGE_WIDTH (Config::WIDTH / 2.0 / HP_LIMIT)
+#define GAUGE_LIMIT 1000.0
+#define GAUGE_WIDTH (Config::WIDTH / 2.0 / GAUGE_LIMIT)
 
 void Player::init(Vec2 _pos, bool _isLeft){
 	pos = _pos;
 	isLeft = _isLeft;
-	HP = 100;
-	temperature = 20;
+	HP = 1000;
+	temperature = 200;
 	coolDownTime = 0;
 	charge = 0;
 	speed = PLAYER_SPEED;
@@ -87,12 +87,12 @@ void Player::update(std::vector<Bullet*> &bullets){
 	if (pos.y > Config::HEIGHT - PLAYER_SIZE)
 		pos.y = Config::HEIGHT - PLAYER_SIZE;
 
-	if (temperature > 20)
+	if (temperature > 100)
 		--temperature;
 
-	if (temperature  <  50) doMainSkill(bullets);
-	if (coolDownTime <   0) doSubSkill(bullets);
-	if (charge       > 100) doSpacialSkill(bullets);
+	if (temperature  <  800) doMainSkill(bullets);
+	if (coolDownTime <    0) doSubSkill(bullets);
+	if (charge       > 1000) doSpacialSkill(bullets);
 
 	for (auto i : bullets) {
 		if(isLeft == i->isLeft) continue;

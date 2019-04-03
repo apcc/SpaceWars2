@@ -33,7 +33,7 @@ void Laser::draw(){
 int Laser::getDamage(Circle _circle){
 	if(isCharging)	return 0;
 	if(_circle.intersects(getShapeShotten()) || _circle.intersects(getShapeCharging()))
-		return 1;
+		return 2;
 	else
 		return 0;
 }
