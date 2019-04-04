@@ -6,7 +6,7 @@ void Game::init() {
 
 void Game::update() {
 	changeScene(Debug::InputFnKey(), 250);
-	if (Input::KeyEnter.clicked)
+	if (Data::KeyEnter.repeat(20))
 		changeScene(L"Finish", 500);
 
 	Data::LPlayer.update(bullets);
@@ -24,6 +24,7 @@ void Game::update() {
 	for(auto itr = bullets.begin(); itr != bullets.end();){
 		Vec2 myPos = ((**itr).isLeft ? Data::LPlayer : Data::RPlayer).circle().center;
 		Vec2 oppPos = ((**itr).isLeft ? Data::RPlayer : Data::LPlayer).circle().center;
+    
 		if((**itr).update(myPos, oppPos)){
 			delete *itr;
 			itr = bullets.erase(itr);

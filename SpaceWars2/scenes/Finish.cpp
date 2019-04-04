@@ -10,7 +10,7 @@ void Finish::init() {
 	
 	if (isDraw)
 		winner = L"引き分け！";
-	if (isLeftWin)
+	else if (isLeftWin)
 		winner = L"REDの勝ち！";
 	else
 		winner = L"BLUEの勝ち！";
@@ -18,7 +18,7 @@ void Finish::init() {
 
 void Finish::update() {
 	changeScene(Debug::InputFnKey(), 250);
-	if (Input::KeyEnter.clicked)
+	if (Data::KeyEnter.repeat(20))
 		changeScene(L"Ending", 500);
 }
 
