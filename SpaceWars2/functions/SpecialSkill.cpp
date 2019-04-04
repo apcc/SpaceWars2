@@ -1,5 +1,6 @@
 #include "./Player.hpp"
 #include "../skills/LockOn.hpp"
+#include "../skills/SummonPartner.hpp"
 
 
 void Player::doSpacialSkill(std::vector<Bullet*>& bullets){
@@ -15,6 +16,7 @@ void Player::doSpacialSkill(std::vector<Bullet*>& bullets){
 			break;
 
 			case SUMMON_PARTNER:
+				bullets.push_back(new SummonPartner(pos, isLeft));
 			break;
 
 			case INVERSION_RECOVERY:
