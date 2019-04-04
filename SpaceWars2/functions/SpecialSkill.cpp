@@ -1,12 +1,14 @@
 #include "./Player.hpp"
 #include "../skills/LockOn.hpp"
 #include "../skills/SummonPartner.hpp"
+#include "../skills/JudgmentTime.hpp"
 
 
 void Player::doSpacialSkill(std::vector<Bullet*>& bullets){
 	if(charge >= this->requireCharge[whatSpecialSkill] && KeySpecialSkill.repeat(0)){
 		switch(this->whatSpecialSkill){
 		case JUDGMENT_TIME:
+			bullets.push_back(new JudgmentTime(pos, isLeft));
 			break;
 
 		case LOCK_ON:
