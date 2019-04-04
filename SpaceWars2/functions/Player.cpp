@@ -9,6 +9,9 @@ void Player::init(Vec2 _pos, bool _isLeft){
 	pos = _pos;
 	isLeft = _isLeft;
 	HP = 100;
+	temperature = 0;
+	charge = 0;
+	coolDown = 0;
 	speed = PLAYER_SPEED;
 	whatMainSkill = static_cast<MainSkill>(0);
 	whatSubSkill = static_cast<SubSkill>(0);
