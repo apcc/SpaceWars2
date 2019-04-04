@@ -342,3 +342,4 @@ ASALocalRun/
 *.bat
 .vscode/
 # Engine/
+LogMessages.txt

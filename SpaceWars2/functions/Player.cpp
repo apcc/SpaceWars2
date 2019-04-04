@@ -92,13 +92,17 @@ void Player::update(std::vector<Bullet*> &bullets){
 
 	if (temperature  <  800) doMainSkill(bullets);
 	if (coolDownTime <    0) doSubSkill(bullets);
-	if (charge       > 1000) doSpacialSkill(bullets);
+	doSpacialSkill(bullets);
 
 	for (auto i : bullets) {
 		if(isLeft == i->isLeft) continue;
 		int damage = i->getDamage(this->hitCircle());
 		if(damage){
 			this->receiveDamage(damage);
+			charge += damage;
+			if(charge >= requireCharge[whatSpecialSkill]){
+				charge = requireCharge[whatSpecialSkill];
+			}
 		}
 
 	}
