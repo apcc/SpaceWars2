@@ -13,6 +13,7 @@ void Player::init(Vec2 _pos, bool _isLeft){
 	charge = 0;
 	coolDown = 0;
 	speed = PLAYER_SPEED;
+	inRecovery = false;
 	whatMainSkill = static_cast<MainSkill>(0);
 	whatSubSkill = static_cast<SubSkill>(0);
 	whatSpecialSkill = static_cast<SpecialSkill>(0);
