@@ -33,7 +33,7 @@ private:
 	int selectedType = 0;	// skillSelectの選択中項目
 	int speed = 0;
 
-	int requireCharge[3] = { 400, 400, 400 };
+	int requireCharge[4] = { 400, 400, 400, 400 };
 
 	const int PLAYER_SIZE = 30;
 	int hitSize = 30;		// 当たり判定半径
@@ -53,6 +53,8 @@ public:
 	int temperature;	// MainSkill抑制
 	int coolDownTime;	// SubSkill抑制
 	int charge;			// SpecialSkill抑制
+
+	bool inRecovery;
 
 	MainSkill whatMainSkill = SHOT;
 	SubSkill whatSubSkill = JUMP;

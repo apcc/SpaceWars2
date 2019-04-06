@@ -185,6 +185,7 @@
     <ClCompile Include="Scenes\Opening.cpp" />
     <ClCompile Include="Scenes\ScreenGuidance.cpp" />
     <ClCompile Include="scenes\SkillSelect.cpp" />
+    <ClCompile Include="skills\InversionRecovery.cpp" />
     <ClCompile Include="skills\JudgmentTime.cpp" />
     <ClCompile Include="skills\SummonPartner.cpp" />
   </ItemGroup>
@@ -337,6 +338,7 @@
     <ClInclude Include="skills\Bullet.hpp" />
     <ClInclude Include="skills\Flame.hpp" />
     <ClInclude Include="skills\Grenade.hpp" />
+    <ClInclude Include="skills\InversionRecovery.hpp" />
     <ClInclude Include="skills\JudgmentTime.hpp" />
     <ClInclude Include="skills\Jump.hpp" />
     <ClInclude Include="skills\Laser.hpp" />

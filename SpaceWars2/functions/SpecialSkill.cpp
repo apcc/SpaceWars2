@@ -2,7 +2,7 @@
 #include "../skills/LockOn.hpp"
 #include "../skills/SummonPartner.hpp"
 #include "../skills/JudgmentTime.hpp"
-
+#include "../skills/InversionRecovery.hpp"
 
 void Player::doSpacialSkill(std::vector<Bullet*>& bullets){
 	if(charge >= this->requireCharge[whatSpecialSkill] && KeySpecialSkill.repeat(0)){
@@ -22,6 +22,7 @@ void Player::doSpacialSkill(std::vector<Bullet*>& bullets){
 			break;
 
 		case INVERSION_RECOVERY:
+			bullets.push_back(new InversionRecovery(pos, isLeft));
 			break;
 
 		default:
