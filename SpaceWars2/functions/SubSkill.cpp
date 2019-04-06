@@ -2,7 +2,7 @@
 #include "../skills/Jump.hpp"
 #include "../skills/Shield.hpp"
 #include "../skills/Missile.hpp"
-
+#include "../skills/Bomb.hpp"
 
 void Player::doSubSkill(std::vector<Bullet*>& bullets){
 	switch(this->whatSubSkill){
@@ -22,8 +22,12 @@ void Player::doSubSkill(std::vector<Bullet*>& bullets){
 		break;
 
 	case BOMB:
-		if (KeySubSkill.repeat(0))
-
+		if (KeySubSkill.repeat(30)) {
+			bullets.push_back(new Bomb(pos, isLeft));
+			bullets.push_back(new Bomb(pos, isLeft));
+			bullets.push_back(new Bomb(pos, isLeft));
+			bullets.push_back(new Bomb(pos, isLeft));
+		}
 		break;
 
 	default:

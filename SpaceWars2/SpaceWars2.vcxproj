@@ -319,6 +319,7 @@
     <ClInclude Include="Scenes\Opening.hpp" />
     <ClInclude Include="Scenes\ScreenGuidance.hpp" />
     <ClInclude Include="scenes\SkillSelect.hpp" />
+    <ClCompile Include="skills\Bomb.cpp" />
     <ClCompile Include="skills\Bullet.cpp" />
     <ClCompile Include="skills\Flame.cpp" />
     <ClCompile Include="skills\Grenade.cpp" />
@@ -329,6 +330,7 @@
     <ClCompile Include="skills\Homing.cpp" />
     <ClCompile Include="skills\Reflection.cpp" />
     <ClCompile Include="skills\Shot.cpp" />
+    <ClInclude Include="skills\Bomb.hpp" />
     <ClInclude Include="skills\Bullet.hpp" />
     <ClInclude Include="skills\Flame.hpp" />
     <ClInclude Include="skills\Grenade.hpp" />
