@@ -17,7 +17,7 @@ bool Homing::isVisible() {
 int Homing::getDamage(Circle circle) {
 	if (circle.intersects(this->getShape())) {
 		shouldBeDestroyed = true;
-		return 1;
+		return 20;
 	}
 	return 0;
 }
@@ -25,9 +25,9 @@ int Homing::getDamage(Circle circle) {
 /*int*/void Homing::bend(Vec2 oppPos, double thre) {
 	if ((pos - oppPos).length() < thre) {
 		//(vel.normalized()*100).draw(ColorF(L"ff0000"));
-		
+
 		double angle = AngleNormalize(Vec2Angle(vel) - Vec2Angle(oppPos - pos));// Atan2(vel.y, vel.x);
-		
+
 		if (angle > EPS) {
 			//return -20;
 			vel.rotate(-ROTATEPOWER);
@@ -37,8 +37,8 @@ int Homing::getDamage(Circle circle) {
 			vel.rotate(ROTATEPOWER);
 		}
 	}
-	else { 
+	else {
 
-		//return 0; 
+		//return 0;
 	}
 }
