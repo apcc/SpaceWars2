@@ -91,7 +91,8 @@ void Player::update(std::vector<Bullet*> &bullets){
 		--temperature;
 
 	if (temperature  <  800) doMainSkill(bullets);
-	if (coolDownTime ==   0) doSubSkill(bullets);
+	if (coolDownTime == 0) doSubSkill(bullets);
+	else	coolDownTime--;
 	doSpacialSkill(bullets);
 
 	for (auto i : bullets) {
@@ -147,7 +148,7 @@ void Player::drawGauge(){
 	if (isLeft) {
 		RectF(0, 0, HP * GAUGE_WIDTH, 20).draw(Color(L"#ff0000"));
 		RectF(0, 25, temperature * GAUGE_WIDTH, 20).draw(Color(L"#00ff00"));
-		RectF(0, 50, coolDownTime * GAUGE_WIDTH, 20).draw(Color(L"#0000ff"));
+		RectF(0, 50, (coolDownTime>1000 ? 1000 : coolDownTime) * GAUGE_WIDTH, 20).draw(Color(L"#0000ff"));
 		RectF(0, 75, (charge * GAUGE_LIMIT) / requireCharge[whatSpecialSkill] * GAUGE_WIDTH, 20).draw(Color(L"#ffff00"));
 		if(isLeft)	Println(charge);
 	}
