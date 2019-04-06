@@ -33,7 +33,7 @@ private:
 	int selectedType = 0;	// skillSelectの選択中項目
 	int speed = 0;
 
-	int requireCharge[3] = { 40, 40, 40 };
+	int requireCharge[3] = { 400, 400, 400 };
 
 	const int PLAYER_SIZE = 30;
 	int hitSize = 30;		// 当たり判定半径
@@ -61,7 +61,7 @@ public:
 	void doMainSkill(std::vector<Bullet*>& bullets);
 	void doSubSkill(std::vector<Bullet*>& bullets);
 	void doSpacialSkill(std::vector<Bullet*>& bullets);
-	
+
 	void init(Vec2 _pos, bool _isLeft);
 	Circle circle();	// 本体Circle
 	Circle hitCircle();	// 当たり判定
