@@ -17,7 +17,7 @@ bool Missile::isVisible() {
 int Missile::getDamage(Circle circle) {
 	if (circle.intersects(this->getShape())) {
 		shouldBeDestroyed = true;
-		return 8;
+		return 20;
 	}
 	return 0;
 }
@@ -39,6 +39,6 @@ int Missile::getDamage(Circle circle) {
 	}
 	else {
 
-		//return 0; 
+		//return 0;
 	}
 }
