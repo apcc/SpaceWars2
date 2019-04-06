@@ -6,7 +6,7 @@ private:
 	String name;
 	int isLeft; // 0:Right 1:Left -1:Undefined
 	bool isClicked;
-	int pressTime;
+	int time;
 	int border;
 
 public:
