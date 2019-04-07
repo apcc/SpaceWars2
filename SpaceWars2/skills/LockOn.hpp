@@ -5,7 +5,7 @@
 class LockOn : public Bullet {
 private:
 	int waitTime;
-	const double EXPLODE_TIMING = 30;
+	const int EXPLODE_TIMING = 30;
 	int explodeTime = EXPLODE_TIMING;
 	Circle getShape() { return Circle(pos, 150); }
 public:
