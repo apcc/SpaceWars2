@@ -29,6 +29,8 @@ KeyRepeat::KeyRepeat(bool _isLeft, const String& _name) {
 }
 
 bool KeyRepeat::repeat(int _time, bool _clickBarrage /* = true */) {
+	++time;
+
 	if(isLeft == -1) {
 		if (!isClicked && GamePad::Key(name)) {
 			// clicked
@@ -81,8 +83,6 @@ bool KeyRepeat::repeat(int _time, bool _clickBarrage /* = true */) {
 			isClicked = false;
 		}
 	}
-
-	++time;
-
+	
 	return false;
 }
