@@ -14,5 +14,5 @@ public:
 	KeyRepeat(const String& _name);
 	KeyRepeat(bool _isLeft, const String& _name);
 
-	bool repeat(int _time);
+	bool repeat(int _time, bool _clickBarrage = true);
 };
