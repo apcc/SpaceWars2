@@ -28,13 +28,13 @@ KeyRepeat::KeyRepeat(bool _isLeft, const String& _name) {
 	border = 0;
 }
 
-bool KeyRepeat::repeat(int _time, bool _clickBarrage /* = true */) {
+bool KeyRepeat::repeat(int _time, bool _clickBarrage /* = false */) {
 	++time;
 
 	if(isLeft == -1) {
 		if (!isClicked && GamePad::Key(name)) {
 			// clicked
-			if (_clickBarrage ? time >= _time : true) {
+			if (_clickBarrage ? true : time >= _time) {
 				// valid
 				isClicked = true;
 				time = 0;
@@ -59,7 +59,7 @@ bool KeyRepeat::repeat(int _time, bool _clickBarrage /* = true */) {
 		if (!isClicked && GamePad::Key(!!isLeft, name)) {
 			Println(L"clicked");
 			// clicked
-			if (_clickBarrage ? time >= _time : true) {
+			if (_clickBarrage ? true : time >= _time) {
 				Println(L"clicked->valid");
 				// valid
 				isClicked = true;

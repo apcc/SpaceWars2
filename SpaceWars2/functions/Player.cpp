@@ -114,22 +114,22 @@ void Player::skillSelect(){
 
 	switch(selectedType){
 	case 0:	//MainSkill
-		if (KeyDown	.repeat(20, false)) ++selectedType;
-		if (KeyLeft	.repeat(20, false) && whatMainSkill < NUMBER_OF_SKILL)	whatMainSkill = static_cast<MainSkill>(whatMainSkill + 1);
-		if (KeyRight.repeat(20, false) && whatMainSkill > 0)				whatMainSkill = static_cast<MainSkill>(whatMainSkill - 1);
+		if (KeyDown	.repeat(20, true)) ++selectedType;
+		if (KeyLeft	.repeat(20, true) && whatMainSkill < NUMBER_OF_SKILL)	whatMainSkill = static_cast<MainSkill>(whatMainSkill + 1);
+		if (KeyRight.repeat(20, true) && whatMainSkill > 0)				whatMainSkill = static_cast<MainSkill>(whatMainSkill - 1);
 		break;
 
 	case 1:	//SubSkill
-		if (KeyUp	.repeat(20, false)) --selectedType;
-		if (KeyDown	.repeat(20, false)) ++selectedType;
-		if (KeyLeft	.repeat(20, false) && whatSubSkill < NUMBER_OF_SKILL)	whatSubSkill = static_cast<SubSkill>(whatSubSkill + 1);
-		if (KeyRight.repeat(20, false) && whatSubSkill > 0)					whatSubSkill = static_cast<SubSkill>(whatSubSkill - 1);
+		if (KeyUp	.repeat(20, true)) --selectedType;
+		if (KeyDown	.repeat(20, true)) ++selectedType;
+		if (KeyLeft	.repeat(20, true) && whatSubSkill < NUMBER_OF_SKILL)	whatSubSkill = static_cast<SubSkill>(whatSubSkill + 1);
+		if (KeyRight.repeat(20, true) && whatSubSkill > 0)					whatSubSkill = static_cast<SubSkill>(whatSubSkill - 1);
 		break;
 
 	case 2:	//SpecialSkill
-		if (KeyUp	.repeat(20, false)) --selectedType;
-		if (KeyLeft	.repeat(20, false) && whatSpecialSkill < NUMBER_OF_SKILL)	whatSpecialSkill = static_cast<SpecialSkill>(whatSpecialSkill + 1);
-		if (KeyRight.repeat(20, false) && whatSpecialSkill > 0)					whatSpecialSkill = static_cast<SpecialSkill>(whatSpecialSkill - 1);
+		if (KeyUp	.repeat(20, true)) --selectedType;
+		if (KeyLeft	.repeat(20, true) && whatSpecialSkill < NUMBER_OF_SKILL)	whatSpecialSkill = static_cast<SpecialSkill>(whatSpecialSkill + 1);
+		if (KeyRight.repeat(20, true) && whatSpecialSkill > 0)					whatSpecialSkill = static_cast<SpecialSkill>(whatSpecialSkill - 1);
 		break;
 
 	default:
