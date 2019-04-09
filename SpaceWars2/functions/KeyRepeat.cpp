@@ -46,7 +46,6 @@ bool KeyRepeat::repeat(int _time, bool _clickBarrage /* = false */) {
 			if (time >= _time) {
 				// valid
 				time = 0;
-				// isClicked = false;
 				return true;
 			}
 		}
@@ -57,10 +56,8 @@ bool KeyRepeat::repeat(int _time, bool _clickBarrage /* = false */) {
 	}
 	else {
 		if (!isClicked && GamePad::Key(!!isLeft, name)) {
-			Println(L"clicked");
 			// clicked
 			if (_clickBarrage ? true : time >= _time) {
-				Println(L"clicked->valid");
 				// valid
 				isClicked = true;
 				time = 0;
@@ -68,13 +65,10 @@ bool KeyRepeat::repeat(int _time, bool _clickBarrage /* = false */) {
 			}
 		}
 		else if (GamePad::Key(!!isLeft, name)) {
-			Println(L"pressed");
 			// pressed
 			if (time >= _time) {
-				Println(L"pressed->valid");
 				// valid
 				time = 0;
-				// isClicked = false;
 				return true;
 			}
 		}
