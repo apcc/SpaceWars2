@@ -28,37 +28,25 @@ KeyRepeat::KeyRepeat(bool _isLeft, const String& _name) {
 	border = 0;
 }
 
-bool KeyRepeat::repeat(int _time) {
+bool KeyRepeat::repeat(int _time, bool _clickBarrage /* = false */) {
+	++time;
+
 	if(isLeft == -1) {
-		if (!isClicked && GamePad::Key(name) && time >= _time) {
+		if (!isClicked && GamePad::Key(name)) {
 			// clicked
-			isClicked = true;
-			time = 0;
-			return true;
+			if (_clickBarrage ? true : time >= _time) {
+				// valid
+				isClicked = true;
+				time = 0;
+				return true;
+			}
 		}
 		else if (GamePad::Key(name)) {
 			// pressed
 			if (time >= _time) {
+				// valid
 				time = 0;
-				isClicked = false;
-			}
-		}
-		else {
-			// released
-			isClicked = false;
-		}
-	}else{	
-		if (!isClicked && GamePad::Key(!!isLeft, name) && time >= _time) {
-			// clicked
-			isClicked = true;
-			time = 0;
-			return true;
-		}
-		else if (GamePad::Key(!!isLeft, name) && time >= _time) {
-			// pressed
-			if (time >= _time) {
-				time = 0;
-				isClicked = false;
+				return true;
 			}
 		}
 		else {
@@ -66,8 +54,29 @@ bool KeyRepeat::repeat(int _time) {
 			isClicked = false;
 		}
 	}
-
-	++time;
-
+	else {
+		if (!isClicked && GamePad::Key(!!isLeft, name)) {
+			// clicked
+			if (_clickBarrage ? true : time >= _time) {
+				// valid
+				isClicked = true;
+				time = 0;
+				return true;
+			}
+		}
+		else if (GamePad::Key(!!isLeft, name)) {
+			// pressed
+			if (time >= _time) {
+				// valid
+				time = 0;
+				return true;
+			}
+		}
+		else {
+			// released
+			isClicked = false;
+		}
+	}
+	
 	return false;
 }
