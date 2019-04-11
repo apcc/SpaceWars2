@@ -8,7 +8,7 @@ bool JudgmentTime::update(Vec2 _myPos, Vec2 _oppPos){
 }
 
 void JudgmentTime::draw(){
-	getShape().draw(ColorF(L"#3333ff").setAlpha(0.5));
+
 }
 
 bool JudgmentTime::isVisible() {

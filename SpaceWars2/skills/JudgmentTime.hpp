@@ -3,10 +3,11 @@
 #include "Bullet.hpp"
 #include "../CommonData.hpp"
 
+#define PLAYER (isLeft ? Data::LPlayer : Data::RPlayer)
+
 class JudgmentTime : public Bullet {
 private:
-	int lifeTime = 180;
-	Circle getShape() { return Circle(pos, 30+lifeTime); }
+	int lifeTime = 1;
 public:
 	JudgmentTime(Vec2 _pos, bool _isLeft) : Bullet(_pos, _isLeft) {
 		(!isLeft ? Data::LPlayer : Data::RPlayer).changeSpeed(0);
