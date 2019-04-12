@@ -109,7 +109,6 @@ void Player::update(std::vector<Bullet*> &bullets){
 			inJudgmentTime = false;
 		}
 		--judgmentLife;
-		Println(judgmentLife);
 	}
 
 	if (!inJudgmentTime) {
