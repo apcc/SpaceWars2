@@ -6,7 +6,6 @@ bool SummonPartner::update(Vec2 myPos, Vec2 oppPos) {
 	pos.x = myPos.x;
 	pos.y += (oppPos.y > pos.y ? 3 : -3);
 	LifeTime--;
-	Println(LifeTime);
 	if(!(LifeTime%20)) bullets.push_back(new Shot(pos, isLeft));
 	for(auto itr = bullets.begin(); itr != bullets.end();){
 		if((**itr).update(myPos, oppPos)){
