@@ -8,7 +8,6 @@ bool JudgmentTime::update(Vec2 _myPos, Vec2 _oppPos){
 }
 
 void JudgmentTime::draw(){
-
 }
 
 bool JudgmentTime::isVisible() {

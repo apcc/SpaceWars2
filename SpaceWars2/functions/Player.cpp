@@ -53,7 +53,10 @@ void Player::receiveDamage(int _damage){
 
 void Player::changeSpeed(int _speed) {
 	speed = _speed;
-	inJudgmentTime = (speed == 0);
+	if(speed == 0) {
+		inJudgmentTime = true;
+		judgmentLife = JT_TIME;
+	}
 }
 
 int Player::changeHitSize(int _hitSize){
@@ -101,11 +104,13 @@ void Player::update(std::vector<Bullet*> &bullets){
 		doSpacialSkill(bullets);
 	}
 
-	if (inJudgmentTime)
+	if (inJudgmentTime) {
+		if(judgmentLife == 0) {
+			inJudgmentTime = false;
+		}
 		--judgmentLife;
-
-	if (judgmentLife == 0)
-		inJudgmentTime = false;
+		Println(judgmentLife);
+	}
 
 	if (!inJudgmentTime) {
 		for (auto i : bullets) {

@@ -56,7 +56,8 @@ public:
 
 	bool inRecovery;
 	static bool inJudgmentTime;
-	int judgmentLife = 180;	// JudgmentTimeの残り時間
+	const static int JT_TIME = 180;
+	int judgmentLife = -1;	// JudgmentTimeの残り時間
 
 	MainSkill whatMainSkill = SHOT;
 	SubSkill whatSubSkill = JUMP;
