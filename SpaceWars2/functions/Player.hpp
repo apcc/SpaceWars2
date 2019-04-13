@@ -8,8 +8,6 @@ enum MainSkill {
 	SHOT,
 	GRENADE,
 	LASER,
-	CRUSHER,
-	HOMING,
 	REFLECTION,
 	FLAME,
 };
