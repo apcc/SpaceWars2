@@ -1,6 +1,6 @@
 #include "XInput.hpp"
 
-#define BORDER 0.5
+#define BORDER 0.1
 
 using asc::XInput;
 
@@ -58,12 +58,13 @@ Vec2 GamePad::Move(bool _isLeft, int _speed) {
 	String lr = (_isLeft ? L"L" : L"R");
 	Vec2 raw = {};
 
-	if (fabs(input.axis(lr + L"_CtrlX")) > BORDER)
-		raw.x = input.axis(lr + L"_CtrlX") * _speed;
+	if (fabs(input.axis(lr + L"_CtrlX")) > BORDER) {
+		raw.x = input.axis(lr + L"_CtrlX") * (double)_speed;
+	}
 
-	if (fabs(input.axis(lr + L"_CtrlY")) > BORDER)
-		raw.y = input.axis(lr + L"_CtrlY") * _speed * -1;
-
+	if (fabs(input.axis(lr + L"_CtrlY")) > BORDER) {
+		raw.y = input.axis(lr + L"_CtrlY") * (double)_speed * -1.0;
+	}
 	return raw;
 }
 
