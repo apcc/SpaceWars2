@@ -10,18 +10,24 @@ enum MainSkill {
 	LASER,
 	REFLECTION,
 	FLAME,
+
+	MAIN_NUM,
 };
 enum SubSkill {
 	JUMP,
 	SHIELD,
 	MISSILE,
 	BOMB,
+
+	SUB_NUM,
 };
 enum SpecialSkill {
 	JUDGMENT_TIME,
 	LOCK_ON,
 	SUMMON_PARTNER,
 	INVERSION_RECOVERY,
+
+	SPECIAL_NUM,
 };
 
 class Player {
