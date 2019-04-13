@@ -7,8 +7,10 @@
 void Player::doSubSkill(std::vector<Bullet*>& bullets){
 	if(KeySubSkill.repeat(0)){switch(this->whatSubSkill){
 	case JUMP:
-			bullets.push_back(new Jump(pos, isLeft));
-			coolDownTime = 120;
+			if (GamePad::Move(isLeft, 1) != Vec2(0, 0)) {
+				bullets.push_back(new Jump(pos, isLeft));
+				coolDownTime = 120;
+			}
 		break;
 
 	case SHIELD:

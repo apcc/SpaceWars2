@@ -5,6 +5,8 @@
 #define GAUGE_LIMIT 1000.0
 #define GAUGE_WIDTH (Config::WIDTH / 2.0 / GAUGE_LIMIT)
 
+bool Player::inJudgmentTime = false;
+
 void Player::init(Vec2 _pos, bool _isLeft){
 	pos = _pos;
 	isLeft = _isLeft;
@@ -41,16 +43,26 @@ Circle Player::hitCircle(){
 
 
 void Player::receiveDamage(int _damage){
-	if (hitSize == 30)	// hitSize is default
+	if (hitSize == 30) {	// hitSize is default
 		HP -= _damage;
-	else
+		if(!inRecovery)
+			charge += _damage;
+		if (charge >= requireCharge[whatSpecialSkill]) {
+			charge = requireCharge[whatSpecialSkill];
+		}
+	}
+	else {
 		shieldDamage += _damage;
-
+	}
 	if (HP < 0) HP = 0;
 }
 
 void Player::changeSpeed(int _speed) {
 	speed = _speed;
+	if(speed == 0) {
+		inJudgmentTime = true;
+		judgmentLife = JT_TIME;
+	}
 }
 
 int Player::changeHitSize(int _hitSize){
@@ -91,22 +103,28 @@ void Player::update(std::vector<Bullet*> &bullets){
 	if (temperature > 100)
 		--temperature;
 
-	if (temperature  <  800) doMainSkill(bullets);
-	if (coolDownTime == 0) doSubSkill(bullets);
-	else	coolDownTime--;
-	doSpacialSkill(bullets);
+	if (speed != 0) {
+		if (temperature < 800) doMainSkill(bullets);
+		if (coolDownTime == 0) doSubSkill(bullets);
+		else	coolDownTime--;
+		doSpacialSkill(bullets);
+	}
 
-	for (auto i : bullets) {
-		if(isLeft == i->isLeft) continue;
-		int damage = i->getDamage(this->hitCircle());
-		if(damage){
-			this->receiveDamage(damage);
-			charge += damage;
-			if(charge >= requireCharge[whatSpecialSkill]){
-				charge = requireCharge[whatSpecialSkill];
+	if (inJudgmentTime) {
+		if(judgmentLife == 0) {
+			inJudgmentTime = false;
+		}
+		--judgmentLife;
+	}
+
+	if (!inJudgmentTime) {
+		for (auto i : bullets) {
+			if (isLeft == i->isLeft) continue;
+			int damage = i->getDamage(this->hitCircle());
+			if (damage) {
+				this->receiveDamage(damage);
 			}
 		}
-
 	}
 }
 

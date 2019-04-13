@@ -2,16 +2,17 @@
 
 bool JudgmentTime::update(Vec2 _myPos, Vec2 _oppPos){
 	pos = _oppPos;
+	--lifeTime;
+
 	return Bullet::update(_myPos, _oppPos);
 }
 
 void JudgmentTime::draw(){
-	getShape().draw(ColorF(L"#3333ff").setAlpha(0.5));
+	Rect(Config::WIDTH, Config::HEIGHT).draw(ColorF(L"#cccccc").setAlpha(PLAYER.judgmentLife / 100.0));
 }
 
 bool JudgmentTime::isVisible() {
-	if(--lifeTime)return true;
-	return false;
+	return lifeTime != 0;
 }
 
 int JudgmentTime::getDamage(Circle _circle){

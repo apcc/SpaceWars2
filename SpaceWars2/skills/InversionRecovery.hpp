@@ -17,6 +17,7 @@ public:
 	InversionRecovery(Vec2 _pos, bool _isLeft) : Bullet(_pos, _isLeft) {
 		initHP = PLAYER.HP;
 		inRecovery = false;
+		PLAYER.inRecovery = true;
 	}
 	~InversionRecovery() {
 		PLAYER.inRecovery = false;
