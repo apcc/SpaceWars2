@@ -45,7 +45,8 @@ Circle Player::hitCircle(){
 void Player::receiveDamage(int _damage){
 	if (hitSize == 30) {	// hitSize is default
 		HP -= _damage;
-		charge += _damage;
+		if(!inRecovery)
+			charge += _damage;
 		if (charge >= requireCharge[whatSpecialSkill]) {
 			charge = requireCharge[whatSpecialSkill];
 		}
