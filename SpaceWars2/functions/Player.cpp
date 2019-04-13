@@ -43,11 +43,16 @@ Circle Player::hitCircle(){
 
 
 void Player::receiveDamage(int _damage){
-	if (hitSize == 30)	// hitSize is default
+	if (hitSize == 30) {	// hitSize is default
 		HP -= _damage;
-	else
+		charge += _damage;
+		if (charge >= requireCharge[whatSpecialSkill]) {
+			charge = requireCharge[whatSpecialSkill];
+		}
+	}
+	else {
 		shieldDamage += _damage;
-
+	}
 	if (HP < 0) HP = 0;
 }
 
@@ -117,10 +122,6 @@ void Player::update(std::vector<Bullet*> &bullets){
 			int damage = i->getDamage(this->hitCircle());
 			if (damage) {
 				this->receiveDamage(damage);
-				charge += damage;
-				if (charge >= requireCharge[whatSpecialSkill]) {
-					charge = requireCharge[whatSpecialSkill];
-				}
 			}
 		}
 	}
