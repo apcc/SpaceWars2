@@ -13,5 +13,5 @@ void Opening::update(){
 
 void Opening::draw() const{
 	TextureAsset(L"background").resize(Config::WIDTH, Config::HEIGHT).draw();
-	FontAsset(L"CicaR32")(L"SpaceWars2").drawCenter(40, Color(L"#ffffff"));
+	TextureAsset(L"title-logo").drawAt(Config::WIDTH / 2, 150);
 }
