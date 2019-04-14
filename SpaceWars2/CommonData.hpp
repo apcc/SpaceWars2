@@ -16,4 +16,8 @@ namespace Data {
 	extern Player RPlayer;
 
 	extern KeyRepeat KeyEnter;
+	extern KeyRepeat KeyUp;
+	extern KeyRepeat KeyLeft;
+	extern KeyRepeat KeyDown;
+	extern KeyRepeat KeyRight;
 };
