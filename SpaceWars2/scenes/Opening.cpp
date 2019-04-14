@@ -43,4 +43,6 @@ void Opening::draw() const{
 	FontAsset(L"CicaR32")(L"LICENSE").draw(900, 525);
 	FontAsset(L"CicaR32")(L"EXIT").draw(900, 600);
 	Triangle({ 850, 465 + selecting * 75 }, { 878, 481 + selecting * 75 }, { 850, 497 + selecting * 75 }).draw();
+
+	FontAsset(L"CicaR12")(L"Copyright (c) 2018-2019 APCC").draw(10, 690);
 }

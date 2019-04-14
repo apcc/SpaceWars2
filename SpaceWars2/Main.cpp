@@ -23,6 +23,7 @@ void Main(){
 	TextureAsset::Register(L"title-logo", L"/7900");
 	FontManager::Register(L"/7701");
 	FontAsset::Register(L"CicaR32", 32, L"Cica");
+	FontAsset::Register(L"CicaR12", 12, L"Cica");
 
 	SceneManager<String,CommonData> manager;
 	manager.add<Opening>(L"Opening");
