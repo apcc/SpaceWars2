@@ -1,6 +1,5 @@
 #pragma once
 #include "Include.hpp"
-#include "../functions/KeyRepeat.hpp"
 
 class Opening final : public SceneManager<String, CommonData>::Scene{
 private:

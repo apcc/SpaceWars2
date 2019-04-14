@@ -8,9 +8,9 @@ void Opening::init(){
 void Opening::update(){
 	changeScene(Debug::InputFnKey(), 250);
 
-	if ((GamePad::Key(true, L"KeyUp") || GamePad::Key(false, L"KeyUp")) && selecting > 0)
+	if (Data::KeyUp.repeat(20, true) && selecting > 0)
 		--selecting;
-	if ((GamePad::Key(true, L"KeyDown") || GamePad::Key(false, L"KeyDown")) && selecting < 2)
+	if (Data::KeyDown.repeat(20, true) && selecting < 2)
 		++selecting;
 
 	if (Data::KeyEnter.repeat(20)) {
