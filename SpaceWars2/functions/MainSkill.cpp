@@ -3,7 +3,6 @@
 #include "../skills/Grenade.hpp"
 #include "../skills/Bullet.hpp"
 #include "../skills/Laser.hpp"
-#include "../skills/Homing.hpp"
 #include "../skills/Reflection.hpp"
 #include "../skills/Flame.hpp"
 
@@ -27,16 +26,6 @@ void Player::doMainSkill(std::vector<Bullet*>& bullets){
 		if (KeyMainSkill.repeat(0)) {
 			bullets.push_back(new Laser(pos, isLeft));
 			// temperature rise is in the Laser Class
-		}
-		break;
-
-	case CRUSHER:
-		break;
-
-	case HOMING:
-		if (KeyMainSkill.repeat(10)) {
-			bullets.push_back(new Homing(pos, isLeft));
-			temperature += 100;
 		}
 		break;
 
