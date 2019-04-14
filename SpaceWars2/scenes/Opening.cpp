@@ -20,7 +20,7 @@ void Opening::update(){
 			break;
 
 		case 1:
-			changeScene(L"License");
+			changeScene(L"License", 500);
 			break;
 
 		case 2:
