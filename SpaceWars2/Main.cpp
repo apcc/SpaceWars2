@@ -25,8 +25,6 @@ void Main(){
 	TextureAsset::Register(L"license", L"/7910");
 	FontManager::Register(L"/7701");
 	FontAsset::Register(L"CicaR32", 32, L"Cica");
-	FontAsset::Register(L"CicaR24", 24, L"Cica");
-	FontAsset::Register(L"CicaR18", 18, L"Cica");
 	FontAsset::Register(L"CicaR12", 12, L"Cica");
 
 	SceneManager<String,CommonData> manager;
