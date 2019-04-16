@@ -1,9 +1,10 @@
 #pragma once
 #include "Include.hpp"
 
-class Opening final : public SceneManager<String, CommonData>::Scene{
+class License final : public SceneManager<String, CommonData>::Scene {
 private:
-	static int selecting;
+	double alpha = 0;
+	bool increase = true;
 
 public:
 	void init() override;

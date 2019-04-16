@@ -182,6 +182,7 @@
     <ClCompile Include="Scenes\Ending.cpp" />
     <ClCompile Include="Scenes\Finish.cpp" />
     <ClCompile Include="Scenes\Game.cpp" />
+    <ClCompile Include="scenes\License.cpp" />
     <ClCompile Include="Scenes\Opening.cpp" />
     <ClCompile Include="Scenes\ScreenGuidance.cpp" />
     <ClCompile Include="scenes\SkillSelect.cpp" />
@@ -321,6 +322,7 @@
     <ClInclude Include="Scenes\Ending.hpp" />
     <ClInclude Include="Scenes\Finish.hpp" />
     <ClInclude Include="Scenes\Game.hpp" />
+    <ClInclude Include="scenes\License.hpp" />
     <ClInclude Include="Scenes\Opening.hpp" />
     <ClInclude Include="Scenes\ScreenGuidance.hpp" />
     <ClInclude Include="scenes\SkillSelect.hpp" />

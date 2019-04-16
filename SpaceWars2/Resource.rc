@@ -4,6 +4,7 @@
 // images
 7801 	FILE	"images/background.png"
 7900	FILE	"images/title-logo.png"
+7910	FILE	"images/license.png"
 
 // Siv3D Engine Rsource
 64000	FILE	"Engine/LogMessages.txt"

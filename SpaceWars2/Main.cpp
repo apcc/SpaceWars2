@@ -4,6 +4,7 @@
 
 // Scenes
 #include "scenes/Opening.hpp"
+#include "scenes/License.hpp"
 #include "scenes/ControlGuidance.hpp"
 #include "scenes/ScreenGuidance.hpp"
 #include "scenes/SkillSelect.hpp"
@@ -11,7 +12,6 @@
 #include "scenes/Game.hpp"
 #include "scenes/Finish.hpp"
 #include "scenes/Ending.hpp"
-
 
 void Main(){
 
@@ -21,12 +21,14 @@ void Main(){
 
 	TextureAsset::Register(L"background", L"/7801");
 	TextureAsset::Register(L"title-logo", L"/7900");
+	TextureAsset::Register(L"license", L"/7910");
 	FontManager::Register(L"/7701");
 	FontAsset::Register(L"CicaR32", 32, L"Cica");
 	FontAsset::Register(L"CicaR12", 12, L"Cica");
 
 	SceneManager<String,CommonData> manager;
 	manager.add<Opening>(L"Opening");
+	manager.add<License>(L"License");
 	manager.add<ControlGuidance>(L"ControlGuidance");
 	manager.add<ScreenGuidance>(L"ScreenGuidance");
 	manager.add<SkillSelect>(L"SkillSelect");
