@@ -12,7 +12,6 @@
 #include "scenes/Game.hpp"
 #include "scenes/Finish.hpp"
 #include "scenes/Ending.hpp"
-#include "scenes/License.hpp"
 
 void Main(){
 
