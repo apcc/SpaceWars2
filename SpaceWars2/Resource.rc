@@ -46,16 +46,6 @@
 64825	FILE	"Engine/Shaders/D3D11/FXAA_Q25.ps"
 64826	FILE	"Engine/Shaders/D3D11/FXAA_Q39.ps"
 
-// Optional
-64040	FILE	"Engine/Objdetect/facePhoto.zip"
-64041	FILE	"Engine/Objdetect/faceAnime.zip"
-64601	FILE	"Engine/Fonts/mplus-1p-thin.zip"
-64602	FILE	"Engine/Fonts/mplus-1p-light.zip"
-64603	FILE	"Engine/Fonts/mplus-1p-regular.zip"
-64605	FILE	"Engine/Fonts/mplus-1p-bold.zip"
-64606	FILE	"Engine/Fonts/mplus-1p-heavy.zip"
-64607	FILE	"Engine/Fonts/mplus-1p-black.zip"
-
 // App Resource
 100		ICON	"Icon.ico"
 101		FILE	"Engine/Splash.png"
