@@ -70,9 +70,11 @@ void SkillSelect::draw() const {
 
 	for (int isLeft = 0; isLeft < 2; isLeft++) { // LPlayer, RPlayer
 		Player* PLAYER = &(isLeft ? Data::LPlayer : Data::RPlayer);
+		double alpha[3] = { (isLeft ? LAlpha : RAlpha)[0], (isLeft ? LAlpha : RAlpha)[1], (isLeft ? LAlpha : RAlpha)[2] };
 		String skillType[3] = { L"main", L"sub", L"special" };
 		int whatSkill[3] = { (*PLAYER).whatMainSkill, (*PLAYER).whatSubSkill, (*PLAYER).whatSpecialSkill };
 		int skillNum[3] = { MAIN_NUM - 1, SUB_NUM - 1, SPECIAL_NUM - 1 };
+		String skillColor[3] = { L"#7cfc00", L"#4169e1", L"#ffd000" };
 		for (int type = 0; type < 3; type++) { // mainSkill, subSkill, specialSkill
 
 			// skillIconの描画
@@ -82,6 +84,9 @@ void SkillSelect::draw() const {
 				else   TextureAsset(skillType[type] + Format((int)whatSkill[type]))
 					.drawAt(770 + (190 * type) - (640 * isLeft), 550);
 			}
+			
+			// 選択中のskillの枠
+			Rect(720 + (190 * type) - (640 * isLeft), 500, 100).drawFrame(0, 4, ColorF(skillColor[type]).setAlpha(alpha[type]));
 
 			// 三角マークの描画
 			if (whatSkill[type] != 0)
@@ -90,12 +95,4 @@ void SkillSelect::draw() const {
 				TextureAsset(skillType[type] + L"Triangle").flip().draw(755 + (190 * type) - (640 * isLeft), 600, Alpha((int)(255 * LAlpha[type])));
 		}
 	}
-
-	// 選択中のskillの枠
-	Rect(  80, 500, 100).drawFrame(0, 4, ColorF(L"#7cfc00").setAlpha(LAlpha[0]));
-	Rect( 270, 500, 100).drawFrame(0, 4, ColorF(L"#4169e1").setAlpha(LAlpha[1]));
-	Rect( 460, 500, 100).drawFrame(0, 4, ColorF(L"#ffd000").setAlpha(LAlpha[2]));
-	Rect( 720, 500, 100).drawFrame(0, 4, ColorF(L"#7cfc00").setAlpha(RAlpha[0]));
-	Rect( 910, 500, 100).drawFrame(0, 4, ColorF(L"#4169e1").setAlpha(RAlpha[1]));
-	Rect(1100, 500, 100).drawFrame(0, 4, ColorF(L"#ffd000").setAlpha(RAlpha[2]));
 }
