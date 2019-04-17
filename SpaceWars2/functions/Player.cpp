@@ -131,31 +131,31 @@ void Player::skillSelect(){
 
 	switch(selectedType){
 	case 0:	//MainSkill
-		if (KeyDown	.repeat(20, true))
+		if (KeyRight.repeat(20, true))
 			++selectedType;
-		if (KeyLeft	.repeat(20, true) && whatMainSkill < MAIN_NUM - 1)
+		if (KeyDown	.repeat(20, true) && whatMainSkill < MAIN_NUM - 1)
 			whatMainSkill = static_cast<MainSkill>(whatMainSkill + 1);
-		if (KeyRight.repeat(20, true) && whatMainSkill > 0)
+		if (KeyUp	.repeat(20, true) && whatMainSkill > 0)
 			whatMainSkill = static_cast<MainSkill>(whatMainSkill - 1);
 		break;
 
 	case 1:	//SubSkill
-		if (KeyUp	.repeat(20, true))
+		if (KeyLeft	.repeat(20, true))
 			--selectedType;
-		if (KeyDown	.repeat(20, true))
+		if (KeyRight.repeat(20, true))
 			++selectedType;
-		if (KeyLeft	.repeat(20, true) && whatSubSkill < SUB_NUM - 1)
+		if (KeyDown	.repeat(20, true) && whatSubSkill < SUB_NUM - 1)
 			whatSubSkill = static_cast<SubSkill>(whatSubSkill + 1);
-		if (KeyRight.repeat(20, true) && whatSubSkill > 0)
+		if (KeyUp	.repeat(20, true) && whatSubSkill > 0)
 			whatSubSkill = static_cast<SubSkill>(whatSubSkill - 1);
 		break;
 
 	case 2:	//SpecialSkill
-		if (KeyUp	.repeat(20, true))
+		if (KeyLeft	.repeat(20, true))
 			--selectedType;
-		if (KeyLeft	.repeat(20, true) && whatSpecialSkill < SPECIAL_NUM - 1)
+		if (KeyDown	.repeat(20, true) && whatSpecialSkill < SPECIAL_NUM - 1)
 			whatSpecialSkill = static_cast<SpecialSkill>(whatSpecialSkill + 1);
-		if (KeyRight.repeat(20, true) && whatSpecialSkill > 0)
+		if (KeyUp	.repeat(20, true) && whatSpecialSkill > 0)
 			whatSpecialSkill = static_cast<SpecialSkill>(whatSpecialSkill - 1);
 		break;
 
