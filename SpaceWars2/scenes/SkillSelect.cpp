@@ -1,10 +1,12 @@
 #include "SkillSelect.hpp"
 
 void SkillSelect::init() {
-	for (int i = 0; i < 5; i++) {
-		TextureAsset::Register(L"main" + Format(i),		L"/800" + Format(i));
-		TextureAsset::Register(L"sub" + Format(i),		L"/801" + Format(i));
-		TextureAsset::Register(L"special" + Format(i),	L"/802" + Format(i));
+	int i = 0;
+	for (int j = -1; j < 6; j++) {
+		TextureAsset::Register(L"main" + Format(j),		L"/800" + Format(i));
+		TextureAsset::Register(L"sub" + Format(j),		L"/801" + Format(i));
+		TextureAsset::Register(L"special" + Format(j),	L"/802" + Format(i));
+		++i;
 	}
 }
 
@@ -29,4 +31,6 @@ void SkillSelect::draw() const {
 	FontAsset(L"CicaR32")(Data::RPlayer.whatMainSkill).draw(1240, 40);
 	FontAsset(L"CicaR32")(Data::RPlayer.whatSubSkill).draw(1240, 80);
 	FontAsset(L"CicaR32")(Data::RPlayer.whatSpecialSkill).draw(1240, 120);
+
+	
 }
