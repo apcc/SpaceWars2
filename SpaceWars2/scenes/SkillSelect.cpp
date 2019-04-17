@@ -20,22 +20,53 @@ void SkillSelect::update() {
 	if (Data::KeyEnter.repeat(20))
 		changeScene(L"Three", 500);
 
-	Data::LPlayer.skillSelect();
-	Data::RPlayer.skillSelect();
+	switch (Data::LPlayer.skillSelect()) {
+	case 0:
+		LMainAlpha = 1.0;
+		LSubAlpha = 0.5;
+		break;
+
+	case 1:
+		LMainAlpha = 0.5;
+		LSubAlpha = 1.0;
+		LSpecialAlpha = 0.5;
+		break;
+
+	case 2:
+		LSubAlpha = 0.5;
+		LSpecialAlpha = 1.0;
+		break;
+
+	default:
+		LOG_ERROR(L"SkillSelect::update()のLPlayer用switchでdefaultが参照されました。");
+	}
+
+	switch(Data::RPlayer.skillSelect()) {
+	case 0:
+		RMainAlpha = 1.0;
+		RSubAlpha = 0.5;
+		break;
+
+	case 1:
+		RMainAlpha = 0.5;
+		RSubAlpha = 1.0;
+		RSpecialAlpha = 0.5;
+		break;
+
+	case 2:
+		RSubAlpha = 0.5;
+		RSpecialAlpha = 1.0;
+		break;
+
+	default:
+		LOG_ERROR(L"SkillSelect::update()のRPlayer用switchでdefaultが参照されました。");
+	}
 
 }
 
 void SkillSelect::draw() const {
 	TextureAsset(L"background").resize(Config::WIDTH, Config::HEIGHT).draw();
 	FontAsset(L"CicaR32")(L"SkillSelect").drawCenter(40, Color(L"#ffffff"));
-
-	FontAsset(L"CicaR32")(Data::LPlayer.whatMainSkill).draw(40, 40);
-	FontAsset(L"CicaR32")(Data::LPlayer.whatSubSkill).draw(40, 80);
-	FontAsset(L"CicaR32")(Data::LPlayer.whatSpecialSkill).draw(40, 120);
-
-	FontAsset(L"CicaR32")(Data::RPlayer.whatMainSkill).draw(1240, 40);
-	FontAsset(L"CicaR32")(Data::RPlayer.whatSubSkill).draw(1240, 80);
-	FontAsset(L"CicaR32")(Data::RPlayer.whatSpecialSkill).draw(1240, 120);
 	
 	TextureAsset(L"main" + Format(Data::LPlayer.whatMainSkill - 1)).resize(V80).drawAt(130, 440);
 	TextureAsset(L"sub" + Format(Data::LPlayer.whatSubSkill - 1)).resize(V80).drawAt(320, 440);
@@ -58,37 +89,37 @@ void SkillSelect::draw() const {
 	TextureAsset(L"sub" + Format(Data::RPlayer.whatSubSkill + 1)).resize(V80).drawAt(960, 660);
 	TextureAsset(L"special" + Format(Data::RPlayer.whatSpecialSkill + 1)).resize(V80).drawAt(1150, 660);
 
-	Rect(  80, 500, 100).drawFrame(0, 4, Color(L"#7cfc00"));
-	Rect( 270, 500, 100).drawFrame(0, 4, Color(L"#4169e1"));
-	Rect( 460, 500, 100).drawFrame(0, 4, Color(L"#ffd000"));
-	Rect( 720, 500, 100).drawFrame(0, 4, Color(L"#7cfc00"));
-	Rect( 910, 500, 100).drawFrame(0, 4, Color(L"#4169e1"));
-	Rect(1100, 500, 100).drawFrame(0, 4, Color(L"#ffd000"));
+	Rect(  80, 500, 100).drawFrame(0, 4, ColorF(L"#7cfc00").setAlpha(LMainAlpha));
+	Rect( 270, 500, 100).drawFrame(0, 4, ColorF(L"#4169e1").setAlpha(LSubAlpha));
+	Rect( 460, 500, 100).drawFrame(0, 4, ColorF(L"#ffd000").setAlpha(LSpecialAlpha));
+	Rect( 720, 500, 100).drawFrame(0, 4, ColorF(L"#7cfc00").setAlpha(RMainAlpha));
+	Rect( 910, 500, 100).drawFrame(0, 4, ColorF(L"#4169e1").setAlpha(RSubAlpha));
+	Rect(1100, 500, 100).drawFrame(0, 4, ColorF(L"#ffd000").setAlpha(RSpecialAlpha));
 
 	if (Data::LPlayer.whatMainSkill != 0)
-		TextureAsset(L"mainTriangle").draw(115, 485);
+		TextureAsset(L"mainTriangle").draw(115, 485, Alpha((int)(255 * LMainAlpha)));
 	if (Data::LPlayer.whatMainSkill != MAIN_NUM - 1)
-		TextureAsset(L"mainTriangle").flip().draw(115, 600);
+		TextureAsset(L"mainTriangle").flip().draw(115, 600, Alpha((int)(255 * LMainAlpha)));
 	if (Data::LPlayer.whatSubSkill != 0)
-		TextureAsset(L"subTriangle").draw(305, 485);
+		TextureAsset(L"subTriangle").draw(305, 485, Alpha((int)(255 * LSubAlpha)));
 	if (Data::LPlayer.whatSubSkill != SUB_NUM - 1)
-		TextureAsset(L"subTriangle").flip().draw(305, 600);
+		TextureAsset(L"subTriangle").flip().draw(305, 600, Alpha((int)(255 * LSubAlpha)));
 	if (Data::LPlayer.whatSpecialSkill != 0)
-		TextureAsset(L"specialTriangle").draw(495, 485);
+		TextureAsset(L"specialTriangle").draw(495, 485, Alpha((int)(255 * LSpecialAlpha)));
 	if (Data::LPlayer.whatSpecialSkill != SPECIAL_NUM - 1)
-		TextureAsset(L"specialTriangle").flip().draw(495, 600);
+		TextureAsset(L"specialTriangle").flip().draw(495, 600, Alpha((int)(255 * LSpecialAlpha)));
 
 	if (Data::RPlayer.whatMainSkill != 0)
-		TextureAsset(L"mainTriangle").draw(755, 485);
+		TextureAsset(L"mainTriangle").draw(755, 485, Alpha((int)(255 * RMainAlpha)));
 	if (Data::RPlayer.whatMainSkill != MAIN_NUM - 1)
-		TextureAsset(L"mainTriangle").flip().draw(755, 600);
+		TextureAsset(L"mainTriangle").flip().draw(755, 600, Alpha((int)(255 * RMainAlpha)));
 	if (Data::RPlayer.whatSubSkill != 0)
-		TextureAsset(L"subTriangle").draw(945, 485);
+		TextureAsset(L"subTriangle").draw(945, 485, Alpha((int)(255 * RSubAlpha)));
 	if (Data::RPlayer.whatSubSkill != SUB_NUM - 1)
-		TextureAsset(L"subTriangle").flip().draw(945, 600);
+		TextureAsset(L"subTriangle").flip().draw(945, 600, Alpha((int)(255 * RSubAlpha)));
 	if (Data::RPlayer.whatSpecialSkill != 0)
-		TextureAsset(L"specialTriangle").draw(1135, 485);
+		TextureAsset(L"specialTriangle").draw(1135, 485, Alpha((int)(255 * RSpecialAlpha)));
 	if (Data::RPlayer.whatSpecialSkill != SPECIAL_NUM - 1)
-		TextureAsset(L"specialTriangle").flip().draw(1135, 600);
+		TextureAsset(L"specialTriangle").flip().draw(1135, 600, Alpha((int)(255 * RSpecialAlpha)));
 	
 }

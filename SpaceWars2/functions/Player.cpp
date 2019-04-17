@@ -127,7 +127,7 @@ void Player::update(std::vector<Bullet*> &bullets){
 	}
 }
 
-void Player::skillSelect(){
+int Player::skillSelect(){
 
 	switch(selectedType){
 	case 0:	//MainSkill
@@ -162,6 +162,8 @@ void Player::skillSelect(){
 	default:
 			LOG_ERROR(L"SkillSelecterで意図しない値が参照されました。");
 	}
+
+	return selectedType;
 }
 
 void Player::drawShip(){
