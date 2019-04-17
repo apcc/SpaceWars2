@@ -54,4 +54,11 @@ void SkillSelect::draw() const {
 	TextureAsset(L"main" + Format(Data::RPlayer.whatMainSkill + 1)).resize(V80).drawAt(770, 660);
 	TextureAsset(L"sub" + Format(Data::RPlayer.whatSubSkill + 1)).resize(V80).drawAt(960, 660);
 	TextureAsset(L"special" + Format(Data::RPlayer.whatSpecialSkill + 1)).resize(V80).drawAt(1150, 660);
+
+	Rect(  80, 500, 100).drawFrame(0, 4, Color(L"#7cfc00"));
+	Rect( 270, 500, 100).drawFrame(0, 4, Color(L"#4169e1"));
+	Rect( 460, 500, 100).drawFrame(0, 4, Color(L"#ffd000"));
+	Rect( 720, 500, 100).drawFrame(0, 4, Color(L"#7cfc00"));
+	Rect( 910, 500, 100).drawFrame(0, 4, Color(L"#4169e1"));
+	Rect(1100, 500, 100).drawFrame(0, 4, Color(L"#ffd000"));
 }
