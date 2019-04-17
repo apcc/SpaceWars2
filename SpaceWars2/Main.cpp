@@ -26,8 +26,8 @@ void Main(){
 	FontManager::Register(L"/7701");
 	FontAsset::Register(L"Smart32", 32, L"03SmartFont-Proportional");
 	FontAsset::Register(L"Smart12", 12, L"03SmartFont-Proportional");
-	FontAsset::Register(L"CicaR32", 32, L"Cica");
-	FontAsset::Register(L"CicaR12", 12, L"Cica");
+	FontAsset::Register(L"Smart32", 32, L"Cica");
+	FontAsset::Register(L"Smart12", 12, L"Cica");
 
 	SceneManager<String,CommonData> manager;
 	manager.add<Opening>(L"Opening");
