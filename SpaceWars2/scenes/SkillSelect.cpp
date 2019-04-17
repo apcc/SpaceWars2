@@ -32,5 +32,11 @@ void SkillSelect::draw() const {
 	FontAsset(L"CicaR32")(Data::RPlayer.whatSubSkill).draw(1240, 80);
 	FontAsset(L"CicaR32")(Data::RPlayer.whatSpecialSkill).draw(1240, 120);
 
-	
+	TextureAsset(L"main" + Format(Data::LPlayer.whatMainSkill)).drawAt(130, 550);
+	TextureAsset(L"sub" + Format(Data::LPlayer.whatSubSkill)).drawAt(320, 550);
+	TextureAsset(L"special" + Format(Data::LPlayer.whatSpecialSkill)).drawAt(510, 550);
+
+	TextureAsset(L"main" + Format(Data::RPlayer.whatMainSkill)).drawAt(770, 550);
+	TextureAsset(L"sub" + Format(Data::RPlayer.whatSubSkill)).drawAt(960, 550);
+	TextureAsset(L"special" + Format(Data::RPlayer.whatSpecialSkill)).drawAt(1150, 550);
 }
