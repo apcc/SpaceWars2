@@ -20,14 +20,14 @@
 8013	FILE	"images/skills/sub2.png"
 8014	FILE	"images/skills/sub3.png"
 8015	FILE	"images/skills/sub4.png"
-8016	FILE	"images/skills/sub5.png"
+8016	FILE	"images/skills/sub9.png" // 範囲外
 8020	FILE	"images/skills/special-1.png"
 8021	FILE	"images/skills/special0.png"
 8022	FILE	"images/skills/special1.png"
 8023	FILE	"images/skills/special2.png"
 8024	FILE	"images/skills/special3.png"
 8025	FILE	"images/skills/special4.png"
-8026	FILE	"images/skills/special5.png"
+8026	FILE	"images/skills/special9.png" // 範囲外
 
 // Siv3D Engine Rsource
 64000	FILE	"Engine/LogMessages.txt"
