@@ -22,19 +22,19 @@ void SkillSelect::update() {
 
 	switch (Data::LPlayer.skillSelect()) {
 	case 0:
-		LMainAlpha = 1.0;
-		LSubAlpha = 0.5;
+		LAlpha[0] = 1.0;
+		LAlpha[1] = 0.5;
 		break;
 
 	case 1:
-		LMainAlpha = 0.5;
-		LSubAlpha = 1.0;
-		LSpecialAlpha = 0.5;
+		LAlpha[0] = 0.5;
+		LAlpha[1] = 1.0;
+		LAlpha[2] = 0.5;
 		break;
 
 	case 2:
-		LSubAlpha = 0.5;
-		LSpecialAlpha = 1.0;
+		LAlpha[1] = 0.5;
+		LAlpha[2] = 1.0;
 		break;
 
 	default:
@@ -43,19 +43,19 @@ void SkillSelect::update() {
 
 	switch(Data::RPlayer.skillSelect()) {
 	case 0:
-		RMainAlpha = 1.0;
-		RSubAlpha = 0.5;
+		RAlpha[0] = 1.0;
+		RAlpha[1] = 0.5;
 		break;
 
 	case 1:
-		RMainAlpha = 0.5;
-		RSubAlpha = 1.0;
-		RSpecialAlpha = 0.5;
+		RAlpha[0] = 0.5;
+		RAlpha[1] = 1.0;
+		RAlpha[2] = 0.5;
 		break;
 
 	case 2:
-		RSubAlpha = 0.5;
-		RSpecialAlpha = 1.0;
+		RAlpha[1] = 0.5;
+		RAlpha[2] = 1.0;
 		break;
 
 	default:
@@ -72,50 +72,30 @@ void SkillSelect::draw() const {
 		Player* PLAYER = &(isLeft ? Data::LPlayer : Data::RPlayer);
 		String skillType[3] = { L"main", L"sub", L"special" };
 		int whatSkill[3] = { (*PLAYER).whatMainSkill, (*PLAYER).whatSubSkill, (*PLAYER).whatSpecialSkill };
-		for (int i = -1; i < 2; i++) { // -1:前 0:選択中 1:後
-			for (int type = 0; type < 3; type++) { // mainSkill, subSkill, specialSkill
-				if (i) TextureAsset(skillType[type] + Format((int)whatSkill[type] + 1)).resize(V80)
-							.drawAt(770 + (190 * type) - (640 * isLeft), 550 + 110 * i);
+		int skillNum[3] = { MAIN_NUM - 1, SUB_NUM - 1, SPECIAL_NUM - 1 };
+		for (int type = 0; type < 3; type++) { // mainSkill, subSkill, specialSkill
+
+			// skillIconの描画
+			for (int i = -1; i < 2; i++) { // -1:前 0:選択中 1:後
+				if (i) TextureAsset(skillType[type] + Format((int)whatSkill[type] + i)).resize(V80)
+					.drawAt(770 + (190 * type) - (640 * isLeft), 550 + 110 * i);
 				else   TextureAsset(skillType[type] + Format((int)whatSkill[type]))
-							.drawAt(770 + (190 * type) - (640 * isLeft), 550);
+					.drawAt(770 + (190 * type) - (640 * isLeft), 550);
 			}
+
+			// 三角マークの描画
+			if (whatSkill[type] != 0)
+				TextureAsset(skillType[type] + L"Triangle").draw(755 + (190 * type) - (640 * isLeft), 485, Alpha((int)(255 * LAlpha[type])));
+			if (whatSkill[type] != skillNum[type])
+				TextureAsset(skillType[type] + L"Triangle").flip().draw(755 + (190 * type) - (640 * isLeft), 600, Alpha((int)(255 * LAlpha[type])));
 		}
 	}
 
 	// 選択中のskillの枠
-	Rect(  80, 500, 100).drawFrame(0, 4, ColorF(L"#7cfc00").setAlpha(LMainAlpha));
-	Rect( 270, 500, 100).drawFrame(0, 4, ColorF(L"#4169e1").setAlpha(LSubAlpha));
-	Rect( 460, 500, 100).drawFrame(0, 4, ColorF(L"#ffd000").setAlpha(LSpecialAlpha));
-	Rect( 720, 500, 100).drawFrame(0, 4, ColorF(L"#7cfc00").setAlpha(RMainAlpha));
-	Rect( 910, 500, 100).drawFrame(0, 4, ColorF(L"#4169e1").setAlpha(RSubAlpha));
-	Rect(1100, 500, 100).drawFrame(0, 4, ColorF(L"#ffd000").setAlpha(RSpecialAlpha));
-
-	// 枠の上下の三角 for LPlayer
-	if (Data::LPlayer.whatMainSkill != 0)
-		TextureAsset(L"mainTriangle").draw(115, 485, Alpha((int)(255 * LMainAlpha)));
-	if (Data::LPlayer.whatMainSkill != MAIN_NUM - 1)
-		TextureAsset(L"mainTriangle").flip().draw(115, 600, Alpha((int)(255 * LMainAlpha)));
-	if (Data::LPlayer.whatSubSkill != 0)
-		TextureAsset(L"subTriangle").draw(305, 485, Alpha((int)(255 * LSubAlpha)));
-	if (Data::LPlayer.whatSubSkill != SUB_NUM - 1)
-		TextureAsset(L"subTriangle").flip().draw(305, 600, Alpha((int)(255 * LSubAlpha)));
-	if (Data::LPlayer.whatSpecialSkill != 0)
-		TextureAsset(L"specialTriangle").draw(495, 485, Alpha((int)(255 * LSpecialAlpha)));
-	if (Data::LPlayer.whatSpecialSkill != SPECIAL_NUM - 1)
-		TextureAsset(L"specialTriangle").flip().draw(495, 600, Alpha((int)(255 * LSpecialAlpha)));
-
-	// 枠の上下の三角 for RPlayer
-	if (Data::RPlayer.whatMainSkill != 0)
-		TextureAsset(L"mainTriangle").draw(755, 485, Alpha((int)(255 * RMainAlpha)));
-	if (Data::RPlayer.whatMainSkill != MAIN_NUM - 1)
-		TextureAsset(L"mainTriangle").flip().draw(755, 600, Alpha((int)(255 * RMainAlpha)));
-	if (Data::RPlayer.whatSubSkill != 0)
-		TextureAsset(L"subTriangle").draw(945, 485, Alpha((int)(255 * RSubAlpha)));
-	if (Data::RPlayer.whatSubSkill != SUB_NUM - 1)
-		TextureAsset(L"subTriangle").flip().draw(945, 600, Alpha((int)(255 * RSubAlpha)));
-	if (Data::RPlayer.whatSpecialSkill != 0)
-		TextureAsset(L"specialTriangle").draw(1135, 485, Alpha((int)(255 * RSpecialAlpha)));
-	if (Data::RPlayer.whatSpecialSkill != SPECIAL_NUM - 1)
-		TextureAsset(L"specialTriangle").flip().draw(1135, 600, Alpha((int)(255 * RSpecialAlpha)));
-	
+	Rect(  80, 500, 100).drawFrame(0, 4, ColorF(L"#7cfc00").setAlpha(LAlpha[0]));
+	Rect( 270, 500, 100).drawFrame(0, 4, ColorF(L"#4169e1").setAlpha(LAlpha[1]));
+	Rect( 460, 500, 100).drawFrame(0, 4, ColorF(L"#ffd000").setAlpha(LAlpha[2]));
+	Rect( 720, 500, 100).drawFrame(0, 4, ColorF(L"#7cfc00").setAlpha(RAlpha[0]));
+	Rect( 910, 500, 100).drawFrame(0, 4, ColorF(L"#4169e1").setAlpha(RAlpha[1]));
+	Rect(1100, 500, 100).drawFrame(0, 4, ColorF(L"#ffd000").setAlpha(RAlpha[2]));
 }
