@@ -70,12 +70,12 @@ void SkillSelect::draw() const {
 
 	for (int isLeft = 0; isLeft < 2; isLeft++) {
 		Player* PLAYER = &(isLeft ? Data::LPlayer : Data::RPlayer);
-		String skilltype[3] = { L"main", L"sub", L"special" };
-		int whatskill[3] = { (*PLAYER).whatMainSkill, (*PLAYER).whatSubSkill, (*PLAYER).whatSpecialSkill };
+		String skillType[3] = { L"main", L"sub", L"special" };
+		int whatSkill[3] = { (*PLAYER).whatMainSkill, (*PLAYER).whatSubSkill, (*PLAYER).whatSpecialSkill };
 		for (int i = -1; i < 2; i++) {
 			for (int type = 0; type < 3; type++) {
-				if (i) TextureAsset(skilltype[type] + Format(whatskill[type] + i)).resize(V80).drawAt(770 + 190 * type - 640 * isLeft, 550 + 110 * i);
-				else  TextureAsset(skilltype[type] + Format(whatskill[type])).drawAt(770 + 190 * type - 640 * isLeft, 550);
+				if (i) TextureAsset(skillType[type] + Format(whatSkill[type] + i)).resize(V80).drawAt(770 + 190 * type - 640 * isLeft, 550 + 110 * i);
+				else  TextureAsset(skillType[type] + Format(whatSkill[type])).drawAt(770 + 190 * type - 640 * isLeft, 550);
 			}
 		}
 	}
