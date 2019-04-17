@@ -79,7 +79,7 @@ public:
 	int changeHitSize(int _hitSize);
 	bool isHPRunOut();
 	void update(std::vector<Bullet*> &bullets);
-	void skillSelect();
+	int skillSelect();
 	void drawShip();
 	void drawGauge();
 };
