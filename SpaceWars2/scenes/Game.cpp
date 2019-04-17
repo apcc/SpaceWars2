@@ -42,7 +42,7 @@ void Game::update() {
 
 void Game::draw() const {
 	TextureAsset(L"background").resize(Config::WIDTH, Config::HEIGHT).draw();
-	FontAsset(L"CicaR32")(L"I am game scene! Hello!").drawCenter(40, Color(L"#ffffff"));
+	FontAsset(L"Smart32")(L"I am game scene! Hello!").drawCenter(40, Color(L"#ffffff"));
 
 	/*Data::LPlayer.DrawMainSkill();
 	Data::LPlayer.DrawSubSkill();

@@ -12,5 +12,5 @@ void Ending::update() {
 
 void Ending::draw() const {
 	TextureAsset(L"background").resize(Config::WIDTH, Config::HEIGHT).draw();
-	FontAsset(L"CicaR32")(L"Thank you for playing!").drawCenter(40, Color(L"#ffffff"));
+	FontAsset(L"Smart32")(L"Thank you for playing!").drawCenter(40, Color(L"#ffffff"));
 }
