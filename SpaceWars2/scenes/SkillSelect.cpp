@@ -90,9 +90,9 @@ void SkillSelect::draw() const {
 
 			// 三角マークの描画
 			if (whatSkill[type] != 0)
-				TextureAsset(skillType[type] + L"Triangle").draw(755 + (190 * type) - (640 * isLeft), 485, Alpha((int)(255 * LAlpha[type])));
+				TextureAsset(skillType[type] + L"Triangle").draw(755 + (190 * type) - (640 * isLeft), 485, Alpha((int)(255 * alpha[type])));
 			if (whatSkill[type] != skillNum[type])
-				TextureAsset(skillType[type] + L"Triangle").flip().draw(755 + (190 * type) - (640 * isLeft), 600, Alpha((int)(255 * LAlpha[type])));
+				TextureAsset(skillType[type] + L"Triangle").flip().draw(755 + (190 * type) - (640 * isLeft), 600, Alpha((int)(255 * alpha[type])));
 		}
 	}
 }
