@@ -68,14 +68,16 @@ void SkillSelect::draw() const {
 	TextureAsset(L"background").resize(Config::WIDTH, Config::HEIGHT).draw();
 	FontAsset(L"CicaR32")(L"SkillSelect").drawCenter(40, Color(L"#ffffff"));
 
-	for (int isLeft = 0; isLeft < 2; isLeft++) {
+	for (int isLeft = 0; isLeft < 2; isLeft++) { // LPlayer, RPlayer
 		Player* PLAYER = &(isLeft ? Data::LPlayer : Data::RPlayer);
 		String skillType[3] = { L"main", L"sub", L"special" };
 		int whatSkill[3] = { (*PLAYER).whatMainSkill, (*PLAYER).whatSubSkill, (*PLAYER).whatSpecialSkill };
-		for (int i = -1; i < 2; i++) {
-			for (int type = 0; type < 3; type++) {
-				if (i) TextureAsset(skillType[type] + Format(whatSkill[type] + i)).resize(V80).drawAt(770 + 190 * type - 640 * isLeft, 550 + 110 * i);
-				else  TextureAsset(skillType[type] + Format(whatSkill[type])).drawAt(770 + 190 * type - 640 * isLeft, 550);
+		for (int i = -1; i < 2; i++) { // -1:前 0:選択中 1:後
+			for (int type = 0; type < 3; type++) { // mainSkill, subSkill, specialSkill
+				if (i) TextureAsset(skillType[type] + Format((int)whatSkill[type] + 1)).resize(V80)
+							.drawAt(770 + (190 * type) - (640 * isLeft), 550 + 110 * i);
+				else   TextureAsset(skillType[type] + Format((int)whatSkill[type]))
+							.drawAt(770 + (190 * type) - (640 * isLeft), 550);
 			}
 		}
 	}
