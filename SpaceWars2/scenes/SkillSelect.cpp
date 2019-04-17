@@ -10,6 +10,9 @@ void SkillSelect::init() {
 		TextureAsset::Register(L"special" + Format(j),	L"/802" + Format(i));
 		++i;
 	}
+	TextureAsset::Register(L"mainTriangle", L"/8100");
+	TextureAsset::Register(L"subTriangle", L"/8101");
+	TextureAsset::Register(L"specialTriangle", L"/8102");
 }
 
 void SkillSelect::update() {
@@ -61,4 +64,31 @@ void SkillSelect::draw() const {
 	Rect( 720, 500, 100).drawFrame(0, 4, Color(L"#7cfc00"));
 	Rect( 910, 500, 100).drawFrame(0, 4, Color(L"#4169e1"));
 	Rect(1100, 500, 100).drawFrame(0, 4, Color(L"#ffd000"));
+
+	if (Data::LPlayer.whatMainSkill != 0)
+		TextureAsset(L"mainTriangle").draw(115, 485);
+	if (Data::LPlayer.whatMainSkill != MAIN_NUM - 1)
+		TextureAsset(L"mainTriangle").flip().draw(115, 600);
+	if (Data::LPlayer.whatSubSkill != 0)
+		TextureAsset(L"subTriangle").draw(305, 485);
+	if (Data::LPlayer.whatSubSkill != SUB_NUM - 1)
+		TextureAsset(L"subTriangle").flip().draw(305, 600);
+	if (Data::LPlayer.whatSpecialSkill != 0)
+		TextureAsset(L"specialTriangle").draw(495, 485);
+	if (Data::LPlayer.whatSpecialSkill != SPECIAL_NUM - 1)
+		TextureAsset(L"specialTriangle").flip().draw(495, 600);
+
+	if (Data::RPlayer.whatMainSkill != 0)
+		TextureAsset(L"mainTriangle").draw(755, 485);
+	if (Data::RPlayer.whatMainSkill != MAIN_NUM - 1)
+		TextureAsset(L"mainTriangle").flip().draw(755, 600);
+	if (Data::RPlayer.whatSubSkill != 0)
+		TextureAsset(L"subTriangle").draw(945, 485);
+	if (Data::RPlayer.whatSubSkill != SUB_NUM - 1)
+		TextureAsset(L"subTriangle").flip().draw(945, 600);
+	if (Data::RPlayer.whatSpecialSkill != 0)
+		TextureAsset(L"specialTriangle").draw(1135, 485);
+	if (Data::RPlayer.whatSpecialSkill != SPECIAL_NUM - 1)
+		TextureAsset(L"specialTriangle").flip().draw(1135, 600);
+	
 }

@@ -29,6 +29,10 @@
 8025	FILE	"images/skills/special4.png"
 8026	FILE	"images/skills/special9.png" // 範囲外
 
+8100	FILE	"images/mainSkillTriangle.png"
+8101	FILE	"images/subSkillTriangle.png"
+8102	FILE	"images/specialSkillTriangle.png"
+
 // Siv3D Engine Rsource
 64000	FILE	"Engine/LogMessages.txt"
 64080	FILE	"Engine/Assets/engine_textures.s3a"
