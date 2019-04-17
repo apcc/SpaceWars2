@@ -3,6 +3,8 @@
 
 class SkillSelect final : public SceneManager<String, CommonData>::Scene {
 private:
+	bool LContinue = false;
+	bool RContinue = false;
 
 public:
 	void init() override;

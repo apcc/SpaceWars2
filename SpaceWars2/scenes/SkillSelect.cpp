@@ -1,7 +1,11 @@
 #include "SkillSelect.hpp"
 
 void SkillSelect::init() {
-
+	for (int i = 0; i < 5; i++) {
+		TextureAsset::Register(L"main" + Format(i),		L"/800" + Format(i));
+		TextureAsset::Register(L"sub" + Format(i),		L"/801" + Format(i));
+		TextureAsset::Register(L"special" + Format(i),	L"/802" + Format(i));
+	}
 }
 
 void SkillSelect::update() {
