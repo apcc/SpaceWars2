@@ -67,7 +67,8 @@ void SkillSelect::update() {
 void SkillSelect::draw() const {
 	TextureAsset(L"background").resize(Config::WIDTH, Config::HEIGHT).draw();
 	FontAsset(L"CicaR32")(L"SkillSelect").drawCenter(40, Color(L"#ffffff"));
-	
+
+	// 1つ前のskill
 	TextureAsset(L"main" + Format(Data::LPlayer.whatMainSkill - 1)).resize(V80).drawAt(130, 440);
 	TextureAsset(L"sub" + Format(Data::LPlayer.whatSubSkill - 1)).resize(V80).drawAt(320, 440);
 	TextureAsset(L"special" + Format(Data::LPlayer.whatSpecialSkill - 1)).resize(V80).drawAt(510, 440);
@@ -75,6 +76,7 @@ void SkillSelect::draw() const {
 	TextureAsset(L"sub" + Format(Data::RPlayer.whatSubSkill - 1)).resize(V80).drawAt(960, 440);
 	TextureAsset(L"special" + Format(Data::RPlayer.whatSpecialSkill - 1)).resize(V80).drawAt(1150, 440);
 
+	// 選択中のskill
 	TextureAsset(L"main" + Format(Data::LPlayer.whatMainSkill)).drawAt(130, 550);
 	TextureAsset(L"sub" + Format(Data::LPlayer.whatSubSkill)).drawAt(320, 550);
 	TextureAsset(L"special" + Format(Data::LPlayer.whatSpecialSkill)).drawAt(510, 550);
@@ -82,6 +84,7 @@ void SkillSelect::draw() const {
 	TextureAsset(L"sub" + Format(Data::RPlayer.whatSubSkill)).drawAt(960, 550);
 	TextureAsset(L"special" + Format(Data::RPlayer.whatSpecialSkill)).drawAt(1150, 550);
 
+	// 1つ後のskill
 	TextureAsset(L"main" + Format(Data::LPlayer.whatMainSkill + 1)).resize(V80).drawAt(130, 660);
 	TextureAsset(L"sub" + Format(Data::LPlayer.whatSubSkill + 1)).resize(V80).drawAt(320, 660);
 	TextureAsset(L"special" + Format(Data::LPlayer.whatSpecialSkill + 1)).resize(V80).drawAt(510, 660);
@@ -89,6 +92,7 @@ void SkillSelect::draw() const {
 	TextureAsset(L"sub" + Format(Data::RPlayer.whatSubSkill + 1)).resize(V80).drawAt(960, 660);
 	TextureAsset(L"special" + Format(Data::RPlayer.whatSpecialSkill + 1)).resize(V80).drawAt(1150, 660);
 
+	// 選択中のskillの枠
 	Rect(  80, 500, 100).drawFrame(0, 4, ColorF(L"#7cfc00").setAlpha(LMainAlpha));
 	Rect( 270, 500, 100).drawFrame(0, 4, ColorF(L"#4169e1").setAlpha(LSubAlpha));
 	Rect( 460, 500, 100).drawFrame(0, 4, ColorF(L"#ffd000").setAlpha(LSpecialAlpha));
@@ -96,6 +100,7 @@ void SkillSelect::draw() const {
 	Rect( 910, 500, 100).drawFrame(0, 4, ColorF(L"#4169e1").setAlpha(RSubAlpha));
 	Rect(1100, 500, 100).drawFrame(0, 4, ColorF(L"#ffd000").setAlpha(RSpecialAlpha));
 
+	// 枠の上下の三角 for LPlayer
 	if (Data::LPlayer.whatMainSkill != 0)
 		TextureAsset(L"mainTriangle").draw(115, 485, Alpha((int)(255 * LMainAlpha)));
 	if (Data::LPlayer.whatMainSkill != MAIN_NUM - 1)
@@ -109,6 +114,7 @@ void SkillSelect::draw() const {
 	if (Data::LPlayer.whatSpecialSkill != SPECIAL_NUM - 1)
 		TextureAsset(L"specialTriangle").flip().draw(495, 600, Alpha((int)(255 * LSpecialAlpha)));
 
+	// 枠の上下の三角 for RPlayer
 	if (Data::RPlayer.whatMainSkill != 0)
 		TextureAsset(L"mainTriangle").draw(755, 485, Alpha((int)(255 * RMainAlpha)));
 	if (Data::RPlayer.whatMainSkill != MAIN_NUM - 1)
