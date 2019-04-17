@@ -68,29 +68,17 @@ void SkillSelect::draw() const {
 	TextureAsset(L"background").resize(Config::WIDTH, Config::HEIGHT).draw();
 	FontAsset(L"CicaR32")(L"SkillSelect").drawCenter(40, Color(L"#ffffff"));
 
-	// 1つ前のskill
-	TextureAsset(L"main" + Format(Data::LPlayer.whatMainSkill - 1)).resize(V80).drawAt(130, 440);
-	TextureAsset(L"sub" + Format(Data::LPlayer.whatSubSkill - 1)).resize(V80).drawAt(320, 440);
-	TextureAsset(L"special" + Format(Data::LPlayer.whatSpecialSkill - 1)).resize(V80).drawAt(510, 440);
-	TextureAsset(L"main" + Format(Data::RPlayer.whatMainSkill - 1)).resize(V80).drawAt(770, 440);
-	TextureAsset(L"sub" + Format(Data::RPlayer.whatSubSkill - 1)).resize(V80).drawAt(960, 440);
-	TextureAsset(L"special" + Format(Data::RPlayer.whatSpecialSkill - 1)).resize(V80).drawAt(1150, 440);
-
-	// 選択中のskill
-	TextureAsset(L"main" + Format(Data::LPlayer.whatMainSkill)).drawAt(130, 550);
-	TextureAsset(L"sub" + Format(Data::LPlayer.whatSubSkill)).drawAt(320, 550);
-	TextureAsset(L"special" + Format(Data::LPlayer.whatSpecialSkill)).drawAt(510, 550);
-	TextureAsset(L"main" + Format(Data::RPlayer.whatMainSkill)).drawAt(770, 550);
-	TextureAsset(L"sub" + Format(Data::RPlayer.whatSubSkill)).drawAt(960, 550);
-	TextureAsset(L"special" + Format(Data::RPlayer.whatSpecialSkill)).drawAt(1150, 550);
-
-	// 1つ後のskill
-	TextureAsset(L"main" + Format(Data::LPlayer.whatMainSkill + 1)).resize(V80).drawAt(130, 660);
-	TextureAsset(L"sub" + Format(Data::LPlayer.whatSubSkill + 1)).resize(V80).drawAt(320, 660);
-	TextureAsset(L"special" + Format(Data::LPlayer.whatSpecialSkill + 1)).resize(V80).drawAt(510, 660);
-	TextureAsset(L"main" + Format(Data::RPlayer.whatMainSkill + 1)).resize(V80).drawAt(770, 660);
-	TextureAsset(L"sub" + Format(Data::RPlayer.whatSubSkill + 1)).resize(V80).drawAt(960, 660);
-	TextureAsset(L"special" + Format(Data::RPlayer.whatSpecialSkill + 1)).resize(V80).drawAt(1150, 660);
+	for (int isLeft = 0; isLeft < 2; isLeft++) {
+		Player* PLAYER = &(isLeft ? Data::LPlayer : Data::RPlayer);
+		String skilltype[3] = { L"main", L"sub", L"special" };
+		int whatskill[3] = { (*PLAYER).whatMainSkill, (*PLAYER).whatSubSkill, (*PLAYER).whatSpecialSkill };
+		for (int i = -1; i < 2; i++) {
+			for (int type = 0; type < 3; type++) {
+				if (i) TextureAsset(skilltype[type] + Format(whatskill[type] + i)).resize(V80).drawAt(770 + 190 * type - 640 * isLeft, 550 + 110 * i);
+				else  TextureAsset(skilltype[type] + Format(whatskill[type])).drawAt(770 + 190 * type - 640 * isLeft, 550);
+			}
+		}
+	}
 
 	// 選択中のskillの枠
 	Rect(  80, 500, 100).drawFrame(0, 4, ColorF(L"#7cfc00").setAlpha(LMainAlpha));
