@@ -81,22 +81,22 @@ void SkillSelect::draw() const {
 			for (int i = -1; i <= 1; i++) { // -1:前 0:選択中 1:後
 				if (i)
 					TextureAsset(skillType[type] + Format((int)whatSkill[type] + i)).resize(V80)
-						.drawAt(770 + (190 * type) - (640 * isLeft), 550 + 110 * i);
+						.drawAt(770 + (190 * type) - (640 * isLeft), 520 + 110 * i);
 				else
 					TextureAsset(skillType[type] + Format((int)whatSkill[type]))
-						.drawAt(770 + (190 * type) - (640 * isLeft), 550);
+						.drawAt(770 + (190 * type) - (640 * isLeft), 520);
 			}
 			
 			// 選択中のskillの枠
-			Rect(720 + (190 * type) - (640 * isLeft), 500, 100).drawFrame(0, 4, ColorF(skillColor[type]).setAlpha(alpha[type]));
+			Rect(720 + (190 * type) - (640 * isLeft), 470, 100).drawFrame(0, 4, ColorF(skillColor[type]).setAlpha(alpha[type]));
 
 			// 三角マークの描画
 			if (whatSkill[type] != 0)
 				TextureAsset(skillType[type] + L"Triangle")
-					.draw(755 + (190 * type) - (640 * isLeft), 485, Alpha((int)(255 * alpha[type])));
+					.draw(755 + (190 * type) - (640 * isLeft), 455, Alpha((int)(255 * alpha[type])));
 			if (whatSkill[type] != skillNum[type])
 				TextureAsset(skillType[type] + L"Triangle").flip()
-					.draw(755 + (190 * type) - (640 * isLeft), 600, Alpha((int)(255 * alpha[type])));
+					.draw(755 + (190 * type) - (640 * isLeft), 570, Alpha((int)(255 * alpha[type])));
 		}
 	}
 }
