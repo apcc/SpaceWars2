@@ -41,10 +41,10 @@ void Opening::draw() const{
 	TextureAsset(L"title-logo").drawAt(Config::WIDTH / 2, 150);
 
 	Circle(1180, 1080, 760).drawFrame(5, 5, Color(L"#00bfff"));
-	FontAsset(L"CicaR32")(L"START").draw(900, 450);
-	FontAsset(L"CicaR32")(L"LICENSE").draw(900, 525);
-	FontAsset(L"CicaR32")(L"EXIT").draw(900, 600);
-	Triangle({ 850, 465 + selecting * 75 }, { 878, 481 + selecting * 75 }, { 850, 497 + selecting * 75 }).draw();
+	FontAsset(L"Smart32")(L"START").draw(950, 450);
+	FontAsset(L"Smart32")(L"LICENSE").draw(950, 525);
+	FontAsset(L"Smart32")(L"EXIT").draw(950, 600);
+	Triangle({ 900, 465 + selecting * 75 }, { 928, 481 + selecting * 75 }, { 900, 497 + selecting * 75 }).draw();
 
-	FontAsset(L"CicaR12")(L"Copyright (c) 2018-2019 APCC").draw(10, 690);
+	FontAsset(L"Smart12")(L"Copyright (c) 2018-2019 APCC").draw(10, 690);
 }

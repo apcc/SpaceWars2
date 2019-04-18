@@ -66,7 +66,7 @@ void SkillSelect::update() {
 
 void SkillSelect::draw() const {
 	TextureAsset(L"background").resize(Config::WIDTH, Config::HEIGHT).draw();
-	FontAsset(L"CicaR32")(L"SkillSelect").drawCenter(40, Color(L"#ffffff"));
+	FontAsset(L"Smart32")(L"SkillSelect").drawCenter(40, Color(L"#ffffff"));
 
 	for (int isLeft = 0; isLeft < 2; isLeft++) { // LPlayer, RPlayer
 		Player* PLAYER = &(isLeft ? Data::LPlayer : Data::RPlayer);

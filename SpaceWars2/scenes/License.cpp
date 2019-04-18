@@ -24,5 +24,5 @@ void License::draw() const {
 	TextureAsset(L"background").resize(Config::WIDTH, Config::HEIGHT).draw();
 	Rect(Config::WIDTH, Config::HEIGHT).draw(ColorF(L"#000").setAlpha(0.4));
 	TextureAsset(L"license").draw();
-	FontAsset(L"CicaR12")(L"Click Enter to back.").draw(1020, 690, ColorF(L"#fff").setAlpha(alpha));
+	FontAsset(L"Smart12")(L"Click Enter to back.").draw(1020, 690, ColorF(L"#fff").setAlpha(alpha));
 }
