@@ -7,6 +7,33 @@
 7900	FILE	"images/title-logo.png"
 7910	FILE	"images/license.png"
 
+// skills
+8000	FILE	"images/skills/main-1.png"
+8001	FILE	"images/skills/main0.png"
+8002	FILE	"images/skills/main1.png"
+8003	FILE	"images/skills/main2.png"
+8004	FILE	"images/skills/main3.png"
+8005	FILE	"images/skills/main4.png"
+8006	FILE	"images/skills/main5.png"
+8010	FILE	"images/skills/sub-1.png"
+8011	FILE	"images/skills/sub0.png"
+8012	FILE	"images/skills/sub1.png"
+8013	FILE	"images/skills/sub2.png"
+8014	FILE	"images/skills/sub3.png"
+8015	FILE	"images/skills/sub4.png"
+8016	FILE	"images/skills/sub9.png" // 範囲外
+8020	FILE	"images/skills/special-1.png"
+8021	FILE	"images/skills/special0.png"
+8022	FILE	"images/skills/special1.png"
+8023	FILE	"images/skills/special2.png"
+8024	FILE	"images/skills/special3.png"
+8025	FILE	"images/skills/special4.png"
+8026	FILE	"images/skills/special9.png" // 範囲外
+
+8100	FILE	"images/mainSkillTriangle.png"
+8101	FILE	"images/subSkillTriangle.png"
+8102	FILE	"images/specialSkillTriangle.png"
+
 // Siv3D Engine Rsource
 64000	FILE	"Engine/LogMessages.txt"
 64080	FILE	"Engine/Assets/engine_textures.s3a"
