@@ -68,17 +68,17 @@ void SkillSelect::draw() const {
 	TextureAsset(L"background").resize(Config::WIDTH, Config::HEIGHT).draw();
 	FontAsset(L"CicaR32")(L"SkillSelect").drawCenter(40, Color(L"#ffffff"));
 
-	for (int isLeft = 0; isLeft < 2; isLeft++) { // LPlayer, RPlayer
+	for (int isLeft = 0; isLeft <= 1; isLeft++) { // LPlayer, RPlayer
 		Player* PLAYER = &(isLeft ? Data::LPlayer : Data::RPlayer);
-		double alpha[3] = { (isLeft ? LAlpha : RAlpha)[0], (isLeft ? LAlpha : RAlpha)[1], (isLeft ? LAlpha : RAlpha)[2] };
-		String skillType[3] = { L"main", L"sub", L"special" };
-		int whatSkill[3] = { (*PLAYER).whatMainSkill, (*PLAYER).whatSubSkill, (*PLAYER).whatSpecialSkill };
-		int skillNum[3] = { MAIN_NUM - 1, SUB_NUM - 1, SPECIAL_NUM - 1 };
+		double alpha[3]      = { (isLeft ? LAlpha : RAlpha)[0], (isLeft ? LAlpha : RAlpha)[1], (isLeft ? LAlpha : RAlpha)[2] };
+		String skillType[3]  = { L"main", L"sub", L"special" };
+		int    whatSkill[3]  = { PLAYER->whatMainSkill, PLAYER->whatSubSkill, PLAYER->whatSpecialSkill };
+		int    skillNum[3]   = { MAIN_NUM - 1, SUB_NUM - 1, SPECIAL_NUM - 1 };
 		String skillColor[3] = { L"#7cfc00", L"#4169e1", L"#ffd000" };
 		for (int type = 0; type < 3; type++) { // mainSkill, subSkill, specialSkill
 
 			// skillIconの描画
-			for (int i = -1; i < 2; i++) { // -1:前 0:選択中 1:後
+			for (int i = -1; i <= 1; i++) { // -1:前 0:選択中 1:後
 				if (i)
 					TextureAsset(skillType[type] + Format((int)whatSkill[type] + i)).resize(V80)
 						.drawAt(770 + (190 * type) - (640 * isLeft), 550 + 110 * i);
