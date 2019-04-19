@@ -13,12 +13,24 @@ void SkillSelect::init() {
 	TextureAsset::Register(L"mainTriangle", L"/8100");
 	TextureAsset::Register(L"subTriangle", L"/8101");
 	TextureAsset::Register(L"specialTriangle", L"/8102");
+
+	LContinue = false;
+	RContinue = false;
 }
 
 void SkillSelect::update() {
 	changeScene(Debug::InputFnKey(), 250);
-	if (Data::KeyEnter.repeat(20))
-		changeScene(L"Three", 500);
+	 if (nextStageTime > 100)
+	 	changeScene(L"Three", 500);
+
+	if (LContinue && RContinue) ++nextStageTime;
+	else nextStageTime = 0;
+
+	if (Data::LKeyBack.repeat(20, true)) LContinue = false;
+	if (Data::RKeyBack.repeat(20, true)) RContinue = false;
+
+	if (Data::LKeySelect.repeat(20, true)) LContinue = true;
+	if (Data::RKeySelect.repeat(20, true)) RContinue = true;
 
 	switch (Data::LPlayer.skillSelect()) {
 	case 0:
@@ -98,5 +110,8 @@ void SkillSelect::draw() const {
 				TextureAsset(skillType[type] + L"Triangle").flip()
 					.draw(755 + (190 * type) - (640 * isLeft), 570, Alpha((int)(255 * alpha[type])));
 		}
+
+		if (LContinue) Rect(0, 0, Config::WIDTH / 2, Config::HEIGHT).draw(ColorF(L"#f00").setAlpha(0.25));
+		if (RContinue) Rect(Config::WIDTH / 2, 0, Config::WIDTH / 2, Config::HEIGHT).draw(ColorF(L"#f00").setAlpha(0.25));
 	}
 }

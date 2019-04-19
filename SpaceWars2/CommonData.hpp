@@ -18,6 +18,8 @@ namespace Data {
 	extern KeyRepeat KeyEnter;
 	extern KeyRepeat LKeyBack;
 	extern KeyRepeat RKeyBack;
+	extern KeyRepeat LKeySelect;
+	extern KeyRepeat RKeySelect;
 	extern KeyRepeat KeyUp;
 	extern KeyRepeat KeyLeft;
 	extern KeyRepeat KeyDown;

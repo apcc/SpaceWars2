@@ -4,11 +4,13 @@ namespace Data {
 	Player LPlayer;
 	Player RPlayer;
 
-	KeyRepeat KeyEnter = KeyRepeat(L"KeyEnter");
-	KeyRepeat LKeyBack = KeyRepeat(true,  L"KeyBack");
-	KeyRepeat RKeyBack = KeyRepeat(false, L"KeyBack");
-	KeyRepeat KeyUp    = KeyRepeat(L"KeyUp");
-	KeyRepeat KeyLeft  = KeyRepeat(L"KeyLeft");
-	KeyRepeat KeyDown  = KeyRepeat(L"KeyDown");
-	KeyRepeat KeyRight = KeyRepeat(L"KeyRight");
+	KeyRepeat KeyEnter	 = KeyRepeat(L"KeyEnter");
+	KeyRepeat LKeyBack	 = KeyRepeat(true,  L"KeyBack");
+	KeyRepeat RKeyBack	 = KeyRepeat(false, L"KeyBack");
+	KeyRepeat LKeySelect = KeyRepeat(true,  L"KeySelect");
+	KeyRepeat RKeySelect = KeyRepeat(false, L"KeySelect");
+	KeyRepeat KeyUp		 = KeyRepeat(L"KeyUp");
+	KeyRepeat KeyLeft	 = KeyRepeat(L"KeyLeft");
+	KeyRepeat KeyDown	 = KeyRepeat(L"KeyDown");
+	KeyRepeat KeyRight	 = KeyRepeat(L"KeyRight");
 };
