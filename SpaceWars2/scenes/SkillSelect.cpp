@@ -32,48 +32,51 @@ void SkillSelect::update() {
 	if (Data::LKeySelect.repeat(20, true)) LContinue = true;
 	if (Data::RKeySelect.repeat(20, true)) RContinue = true;
 
-	switch (Data::LPlayer.skillSelect()) {
-	case 0:
-		LAlpha[0] = 1.0;
-		LAlpha[1] = 0.5;
-		break;
+	if (!LContinue) {
+		switch (Data::LPlayer.skillSelect()) {
+		case 0:
+			LAlpha[0] = 1.0;
+			LAlpha[1] = 0.5;
+			break;
 
-	case 1:
-		LAlpha[0] = 0.5;
-		LAlpha[1] = 1.0;
-		LAlpha[2] = 0.5;
-		break;
+		case 1:
+			LAlpha[0] = 0.5;
+			LAlpha[1] = 1.0;
+			LAlpha[2] = 0.5;
+			break;
 
-	case 2:
-		LAlpha[1] = 0.5;
-		LAlpha[2] = 1.0;
-		break;
+		case 2:
+			LAlpha[1] = 0.5;
+			LAlpha[2] = 1.0;
+			break;
 
-	default:
-		LOG_ERROR(L"SkillSelect::update()のLPlayer用switchでdefaultが参照されました。");
+		default:
+			LOG_ERROR(L"SkillSelect::update()のLPlayer用switchでdefaultが参照されました。");
+		}
 	}
 
-	switch(Data::RPlayer.skillSelect()) {
-	case 0:
-		RAlpha[0] = 1.0;
-		RAlpha[1] = 0.5;
-		break;
+	if (!RContinue) {
+		switch (Data::RPlayer.skillSelect()) {
+		case 0:
+			RAlpha[0] = 1.0;
+			RAlpha[1] = 0.5;
+			break;
 
-	case 1:
-		RAlpha[0] = 0.5;
-		RAlpha[1] = 1.0;
-		RAlpha[2] = 0.5;
-		break;
+		case 1:
+			RAlpha[0] = 0.5;
+			RAlpha[1] = 1.0;
+			RAlpha[2] = 0.5;
+			break;
 
-	case 2:
-		RAlpha[1] = 0.5;
-		RAlpha[2] = 1.0;
-		break;
+		case 2:
+			RAlpha[1] = 0.5;
+			RAlpha[2] = 1.0;
+			break;
 
-	default:
-		LOG_ERROR(L"SkillSelect::update()のRPlayer用switchでdefaultが参照されました。");
+		default:
+			LOG_ERROR(L"SkillSelect::update()のRPlayer用switchでdefaultが参照されました。");
+		}
 	}
-
 }
 
 void SkillSelect::draw() const {
