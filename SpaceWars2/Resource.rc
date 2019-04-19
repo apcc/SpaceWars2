@@ -34,6 +34,18 @@
 8101	FILE	"images/subSkillTriangle.png"
 8102	FILE	"images/specialSkillTriangle.png"
 
+// controllerButtons
+8500	FILE	"images/buttons/A.png"
+8501	FILE	"images/buttons/B.png"
+8502	FILE	"images/buttons/X.png"
+8503	FILE	"images/buttons/Y.png"
+8510	FILE	"images/buttons/LB.png"
+8511	FILE	"images/buttons/RB.png"
+8512	FILE	"images/buttons/LT.png"
+8513	FILE	"images/buttons/RT.png"
+8520	FILE	"images/buttons/stick.png"
+8521	FILE	"images/buttons/cross.png"
+
 // Siv3D Engine Rsource
 64000	FILE	"Engine/LogMessages.txt"
 64080	FILE	"Engine/Assets/engine_textures.s3a"
