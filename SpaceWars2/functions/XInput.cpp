@@ -108,6 +108,21 @@ bool GamePad::Key(const String& _name) {
 	if (input.hasButton(_name))
 		return input.button(_name).pressed;
 
+	if (_name == L"KeyUp")
+		return input.button(L"L_KeyUp").pressed || input.button(L"R_KeyUp").pressed || input.axis(L"L_CtrlY") > 0.8 || input.axis(L"R_CtrlY") > 0.8;
+
+	if (_name == L"KeyLeft")
+		return input.button(L"L_KeyLeft").pressed || input.button(L"R_KeyLeft").pressed || input.axis(L"L_CtrlX") < -0.8 || input.axis(L"R_CtrlX") < -0.8;
+
+	if (_name == L"KeyDown")
+		return input.button(L"L_KeyDown").pressed || input.button(L"R_KeyDown").pressed || input.axis(L"L_CtrlY") < -0.8 || input.axis(L"R_CtrlY") < -0.8;
+
+	if (_name == L"KeyRight")
+		return input.button(L"L_KeyBack").pressed || input.button(L"R_KeyBack").pressed || input.axis(L"L_CtrlX") > 0.8 || input.axis(L"R_CtrlX") > 0.8;
+
+	if (_name == L"KeyBack")
+		return input.button(L"L_KeyBack").pressed || input.button(L"R_KeyBack").pressed || XInput(0).leftTrigger > 0.5 || XInput(0).rightTrigger > 0.5 || XInput(0).leftTrigger > 0.5 || XInput(0).rightTrigger > 0.5;
+
 	if (input.hasButton(L"L_" + _name) && input.hasButton(L"R_" + _name))
 		return input.button(L"L_" + _name).pressed || input.button(L"R_" + _name).pressed;
 	
