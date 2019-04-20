@@ -118,13 +118,13 @@ void SkillSelect::draw() const {
 		if (RContinue) Rect(Config::WIDTH / 2, 0, Config::WIDTH / 2, Config::HEIGHT).draw(ColorF(L"#f00").setAlpha(0.25));
 	}
 
-	TextureAsset(L"cross").resize(BUTTON_ICON).draw(1000, 694);
-	TextureAsset(L"stick").resize(BUTTON_ICON).draw(1030, 694);
+	TextureAsset(L"cross_24").draw(1000, 694);
+	TextureAsset(L"stick_24").draw(1030, 694);
 	FontAsset(L"Smart14")(L"Skill選択").draw(1060, 692);
 
-	TextureAsset(L"buttonA").resize(BUTTON_ICON).draw(1170, 694);
+	TextureAsset(L"buttonA_24").draw(1170, 694);
 	FontAsset(L"Smart14")(L"決定").draw(1200, 692);
 
-	TextureAsset(L"buttonA").resize(BUTTON_ICON).draw(1140, 6940);
+	TextureAsset(L"buttonA_24").draw(1140, 6940);
 	FontAsset(L"Smart14")(L"決定").draw(1170, 6920);
 }
