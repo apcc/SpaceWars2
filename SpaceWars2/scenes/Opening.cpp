@@ -18,7 +18,7 @@ void Opening::update(){
 	if (Data::KeyEnter.repeat(20)) {
 		switch(selecting) {
 		case 0:
-			changeScene(L"ControlGuidance", 500);
+			changeScene(L"SkillSelect", 500);
 			break;
 
 		case 1:
