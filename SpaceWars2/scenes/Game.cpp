@@ -61,4 +61,7 @@ void Game::draw() const {
 
 	ClearPrint();
 	Println(L"経過時間: ", stopwatch.s(), L"s");
+
+	Println(L"LPlayerのHP: ", Data::LPlayer.HP);
+	Println(L"RPlayerのHP: ", Data::RPlayer.HP);
 }
