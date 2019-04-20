@@ -50,7 +50,7 @@ void GamePad::SetButton() {
 	input.addButton(L"R_KeyRight", s3d::Input::KeySemicolon | XInput(1).buttonRight);
 
 	// 操作
-	input.addButton(L"KeyEnter", s3d::Input::KeyEnter | XInput(0).buttonStart | XInput(1).buttonStart);
+	input.addButton(L"KeyEnter", s3d::Input::KeyEnter | XInput(0).buttonA | XInput(1).buttonA | XInput(0).buttonB | XInput(1).buttonB);
 	input.addButton(L"L_KeyBack", s3d::Input::KeyLShift | s3d::Input::KeyEnd);
 	input.addButton(L"R_KeyBack", s3d::Input::KeyRShift | s3d::Input::KeyEnd);
 	input.addButton(L"L_KeySelect", s3d::Input::KeyLShift | XInput(0).buttonA | XInput(0).buttonB);
