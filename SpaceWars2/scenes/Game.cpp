@@ -6,8 +6,6 @@ void Game::init() {
 
 void Game::update() {
 	changeScene(Debug::InputFnKey(), 250);
-	if (Data::KeyEnter.repeat(20))
-		changeScene(L"Finish", 500);
 
 	Data::LPlayer.update(bullets);
 	Data::RPlayer.update(bullets);
