@@ -5,32 +5,34 @@
 #include "../skills/Bomb.hpp"
 
 void Player::doSubSkill(std::vector<Bullet*>& bullets){
-	switch(this->whatSubSkill){
+	if(KeySubSkill.repeat(0)){switch(this->whatSubSkill){
 	case JUMP:
-		if (KeySubSkill.repeat(50))
-			bullets.push_back(new Jump(pos, isLeft));
+			if (GamePad::Move(isLeft, 1) != Vec2(0, 0)) {
+				bullets.push_back(new Jump(pos, isLeft));
+				coolDownTime = 120;
+			}
 		break;
 
 	case SHIELD:
-		if (KeySubSkill.repeat(10))
 			bullets.push_back(new Shield(pos, isLeft));
+			coolDownTime = 600;
 		break;
 
 	case MISSILE:
-		if (KeySubSkill.repeat(30))
 			bullets.push_back(new Missile(pos, isLeft));
+			coolDownTime = 30;
 		break;
 
 	case BOMB:
-		if (KeySubSkill.repeat(30)) {
 			bullets.push_back(new Bomb(pos, isLeft));
 			bullets.push_back(new Bomb(pos, isLeft));
 			bullets.push_back(new Bomb(pos, isLeft));
 			bullets.push_back(new Bomb(pos, isLeft));
-		}
+			coolDownTime = 200;
 		break;
 
 	default:
 		LOG_ERROR(L"doSubSkillで意図しない値が参照されました。");
-	}
+	}}
+
 }

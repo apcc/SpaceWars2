@@ -1,5 +1,7 @@
 #include "Opening.hpp"
 
+int Opening::selecting = 0;
+
 void Opening::init(){
 	Data::LPlayer.init(Vec2(  80, Config::HEIGHT/2), true);  //円の半径
 	Data::RPlayer.init(Vec2(1200, Config::HEIGHT/2), false); //WIDTH-円の半径
@@ -7,11 +9,42 @@ void Opening::init(){
 
 void Opening::update(){
 	changeScene(Debug::InputFnKey(), 250);
-	if (Data::KeyEnter.repeat(20))
-		changeScene(L"ControlGuidance", 500);
+
+	if (Data::KeyUp.repeat(20, true) && selecting > 0)
+		--selecting;
+	if (Data::KeyDown.repeat(20, true) && selecting < 2)
+		++selecting;
+
+	if (Data::KeyEnter.repeat(20)) {
+		switch(selecting) {
+		case 0:
+			changeScene(L"ControlGuidance", 500);
+			break;
+
+		case 1:
+			changeScene(L"License", 500);
+			break;
+
+		case 2:
+			System::Exit();
+			break;
+
+		default:
+			LOG_ERROR(L"Title画面で意図しない値 \"", selecting, L"\" が参照されました。");
+		}
+	}
+
 }
 
 void Opening::draw() const{
 	TextureAsset(L"background").resize(Config::WIDTH, Config::HEIGHT).draw();
-	FontAsset(L"CicaR32")(L"SpaceWars2").drawCenter(40, Color(L"#ffffff"));
+	TextureAsset(L"title-logo").drawAt(Config::WIDTH / 2, 150);
+
+	Circle(1180, 1080, 760).drawFrame(5, 5, Color(L"#00bfff"));
+	FontAsset(L"Smart32")(L"START").draw(950, 450);
+	FontAsset(L"Smart32")(L"LICENSE").draw(950, 525);
+	FontAsset(L"Smart32")(L"EXIT").draw(950, 600);
+	Triangle({ 900, 465 + selecting * 75 }, { 928, 481 + selecting * 75 }, { 900, 497 + selecting * 75 }).draw();
+
+	FontAsset(L"Smart12")(L"Copyright (c) 2018-2019 APCC").draw(10, 690);
 }

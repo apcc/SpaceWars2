@@ -6,7 +6,7 @@ private:
 	String name;
 	int isLeft; // 0:Right 1:Left -1:Undefined
 	bool isClicked;
-	int pressTime;
+	int time;
 	int border;
 
 public:
@@ -14,5 +14,5 @@ public:
 	KeyRepeat(const String& _name);
 	KeyRepeat(bool _isLeft, const String& _name);
 
-	bool repeat(int _time);
+	bool repeat(int _time, bool _clickBarrage = false);
 };

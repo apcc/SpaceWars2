@@ -35,7 +35,7 @@ bool Reflection::isVisible() {
 int Reflection::getDamage(Circle circle) {
 	if (circle.intersects(this->getShape())) {
 		shouldBeDestroyed = true;
-		return 2;
+		return 20;
 	}
 	return 0;
 }

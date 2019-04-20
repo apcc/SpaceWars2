@@ -1,6 +1,6 @@
 #include "XInput.hpp"
 
-#define BORDER 0.5
+#define BORDER 0.1
 
 using asc::XInput;
 
@@ -51,6 +51,10 @@ void GamePad::SetButton() {
 
 	// 操作
 	input.addButton(L"KeyEnter", s3d::Input::KeyEnter | XInput(0).buttonStart | XInput(1).buttonStart);
+	input.addButton(L"L_KeyBack", s3d::Input::KeyLShift | s3d::Input::KeyEnd);
+	input.addButton(L"R_KeyBack", s3d::Input::KeyRShift | s3d::Input::KeyEnd);
+	input.addButton(L"L_KeySelect", s3d::Input::KeyLShift | XInput(0).buttonA | XInput(0).buttonB);
+	input.addButton(L"R_KeySelect", s3d::Input::KeyRShift | XInput(1).buttonA | XInput(1).buttonB);
 }
 
 
@@ -58,12 +62,13 @@ Vec2 GamePad::Move(bool _isLeft, int _speed) {
 	String lr = (_isLeft ? L"L" : L"R");
 	Vec2 raw = {};
 
-	if (fabs(input.axis(lr + L"_CtrlX")) > BORDER)
-		raw.x = input.axis(lr + L"_CtrlX") * _speed;
+	if (fabs(input.axis(lr + L"_CtrlX")) > BORDER) {
+		raw.x = input.axis(lr + L"_CtrlX") * (double)_speed;
+	}
 
-	if (fabs(input.axis(lr + L"_CtrlY")) > BORDER)
-		raw.y = input.axis(lr + L"_CtrlY") * _speed * -1;
-
+	if (fabs(input.axis(lr + L"_CtrlY")) > BORDER) {
+		raw.y = input.axis(lr + L"_CtrlY") * (double)_speed * -1.0;
+	}
 	return raw;
 }
 
@@ -93,9 +98,25 @@ bool GamePad::Key(bool _isLeft, const String& _name) {
 	if(_name == L"KeyRight")
 		return input.button(lr + L"_KeyRight").pressed || input.axis(lr + L"_CtrlX") > 0.8;
 
+	if (_name == L"KeyBack")
+		return input.button(lr + L"_KeyBack").pressed || XInput((int)!_isLeft).leftTrigger > 0.5 || XInput((int)!_isLeft).rightTrigger > 0.5;
+
 	return input.button(lr + L"_" + _name).pressed;
 }
 
 bool GamePad::Key(const String& _name) {
-	return input.button(_name).pressed;
+	if (input.hasButton(_name))
+		return input.button(_name).pressed;
+
+	if (input.hasButton(L"L_" + _name) && input.hasButton(L"R_" + _name))
+		return input.button(L"L_" + _name).pressed || input.button(L"R_" + _name).pressed;
+	
+	LOG_ERROR(L"GamePad::Key() で指定された ", _name, L" は存在しません。");
+	if (!isErrorCalled) {
+		com = MessageBox::Show(L"Fatal Error", L"GamePad::Key() で存在しない名前が指定されました。\n終了します。詳細はlog.htmlを参照してください。", MessageBoxStyle::Ok, 0);
+		isErrorCalled = true;
+	}
+	if (com == MessageBoxCommand::Ok)
+		System::Exit();
+	return false;
 }

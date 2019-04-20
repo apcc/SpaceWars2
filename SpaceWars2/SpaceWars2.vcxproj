@@ -178,12 +178,17 @@
     <ClCompile Include="functions\XInput.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Scenes\ControlGuidance.cpp" />
+    <ClCompile Include="scenes\Countdown.cpp" />
     <ClCompile Include="Scenes\Ending.cpp" />
     <ClCompile Include="Scenes\Finish.cpp" />
     <ClCompile Include="Scenes\Game.cpp" />
+    <ClCompile Include="scenes\License.cpp" />
     <ClCompile Include="Scenes\Opening.cpp" />
     <ClCompile Include="Scenes\ScreenGuidance.cpp" />
     <ClCompile Include="scenes\SkillSelect.cpp" />
+    <ClCompile Include="skills\InversionRecovery.cpp" />
+    <ClCompile Include="skills\JudgmentTime.cpp" />
+    <ClCompile Include="skills\SummonPartner.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc" />
@@ -310,12 +315,14 @@
     <ClInclude Include="functions\MainSkill.hpp" />
     <ClInclude Include="functions\Player.hpp" />
     <ClInclude Include="functions\Vec2Utils.hpp" />
+    <ClInclude Include="scenes\Countdown.hpp" />
     <ClInclude Include="functions\XInput.hpp" />
     <ClInclude Include="scenes\Include.hpp" />
     <ClInclude Include="Scenes\ControlGuidance.hpp" />
     <ClInclude Include="Scenes\Ending.hpp" />
     <ClInclude Include="Scenes\Finish.hpp" />
     <ClInclude Include="Scenes\Game.hpp" />
+    <ClInclude Include="scenes\License.hpp" />
     <ClInclude Include="Scenes\Opening.hpp" />
     <ClInclude Include="Scenes\ScreenGuidance.hpp" />
     <ClInclude Include="scenes\SkillSelect.hpp" />
@@ -327,20 +334,23 @@
     <ClCompile Include="skills\Laser.cpp" />
     <ClCompile Include="skills\Missile.cpp" />
     <ClCompile Include="skills\Shield.cpp" />
-    <ClCompile Include="skills\Homing.cpp" />
     <ClCompile Include="skills\Reflection.cpp" />
+    <ClCompile Include="skills\LockOn.cpp" />
     <ClCompile Include="skills\Shot.cpp" />
     <ClInclude Include="skills\Bomb.hpp" />
     <ClInclude Include="skills\Bullet.hpp" />
     <ClInclude Include="skills\Flame.hpp" />
     <ClInclude Include="skills\Grenade.hpp" />
+    <ClInclude Include="skills\InversionRecovery.hpp" />
+    <ClInclude Include="skills\JudgmentTime.hpp" />
     <ClInclude Include="skills\Jump.hpp" />
     <ClInclude Include="skills\Laser.hpp" />
     <ClInclude Include="skills\Missile.hpp" />
     <ClInclude Include="skills\Shield.hpp" />
-    <ClInclude Include="skills\Homing.hpp" />
     <ClInclude Include="skills\Reflection.hpp" />
+    <ClInclude Include="skills\LockOn.hpp" />
     <ClInclude Include="skills\Shot.hpp" />
+    <ClInclude Include="skills\SummonPartner.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

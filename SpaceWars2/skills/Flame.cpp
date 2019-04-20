@@ -1,4 +1,4 @@
-﻿#include "./Flame.hpp"
+#include "./Flame.hpp"
 
 bool Flame::update(Vec2 myPos, Vec2 oppPos) {
 
@@ -33,10 +33,10 @@ RectF normalizeRect(RectF rect) {// namae kimete chanto basho kaeyoune
 int Flame::getDamage(Circle circle) {
 	if (circle.intersects(this->getShape())) {
 		shouldBeDestroyed = true;
-		return 10;
+		return 30;
 	}
 	if (circle.intersects(normalizeRect(getShapeFlameBelt()))) {
-		return 1;
+		return 5;
 	}
 	return 0;
 }

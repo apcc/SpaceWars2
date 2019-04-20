@@ -3,6 +3,7 @@
 
 class Opening final : public SceneManager<String, CommonData>::Scene{
 private:
+	static int selecting;
 
 public:
 	void init() override;
