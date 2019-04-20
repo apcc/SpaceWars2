@@ -24,10 +24,8 @@ void Player::doSubSkill(std::vector<Bullet*>& bullets){
 		break;
 
 	case BOMB:
-			bullets.push_back(new Bomb(pos, isLeft));
-			bullets.push_back(new Bomb(pos, isLeft));
-			bullets.push_back(new Bomb(pos, isLeft));
-			bullets.push_back(new Bomb(pos, isLeft));
+			for (int i = 0; i < 4; i++)
+				bullets.push_back(new Bomb(pos, isLeft));
 			coolDownTime = 200;
 		break;
 
