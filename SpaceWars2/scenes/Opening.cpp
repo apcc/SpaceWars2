@@ -47,4 +47,11 @@ void Opening::draw() const{
 	Triangle({ 900, 465 + selecting * 75 }, { 928, 481 + selecting * 75 }, { 900, 497 + selecting * 75 }).draw();
 
 	FontAsset(L"Smart12")(L"Copyright (c) 2018-2019 APCC").draw(10, 690);
+
+	Vec2 buttonPos(1165, 692);
+
+	buttonPos.x += (int)TextureAsset(L"cross_24").draw(buttonPos, Alpha(200)).w + 5;
+	buttonPos.x += (int)TextureAsset(L"stick_24").draw(buttonPos, Alpha(200)).w + 10;
+	buttonPos.x += (int)FontAsset(L"CicaR12")(L"/").draw(buttonPos, Alpha(200)).w + 10;
+	buttonPos.x += (int)TextureAsset(L"buttonA_24").draw(buttonPos, Alpha(200)).w + 6;
 }
