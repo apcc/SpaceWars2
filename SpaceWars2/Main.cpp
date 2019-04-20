@@ -22,6 +22,16 @@ void Main(){
 	TextureAsset::Register(L"background", L"/7801");
 	TextureAsset::Register(L"title-logo", L"/7900");
 	TextureAsset::Register(L"license", L"/7910");
+	TextureAsset::Register(L"buttonA", L"/8500");
+	TextureAsset::Register(L"buttonB", L"/8501");
+	TextureAsset::Register(L"buttonX", L"/8502");
+	TextureAsset::Register(L"buttonY", L"/8503");
+	TextureAsset::Register(L"buttonLB", L"/8510");
+	TextureAsset::Register(L"buttonRB", L"/8511");
+	TextureAsset::Register(L"buttonLT", L"/8512");
+	TextureAsset::Register(L"buttonRT", L"/8513");
+	TextureAsset::Register(L"stick", L"/8520");
+	TextureAsset::Register(L"cross", L"/8521");
 	FontManager::Register(L"/7700");
 	FontManager::Register(L"/7701");
 	FontAsset::Register(L"Smart32", 32, L"03SmartFont-Proportional");
