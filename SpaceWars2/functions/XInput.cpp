@@ -51,6 +51,10 @@ void GamePad::SetButton() {
 
 	// 操作
 	input.addButton(L"KeyEnter", s3d::Input::KeyEnter | XInput(0).buttonStart | XInput(1).buttonStart);
+	input.addButton(L"L_KeyBack", s3d::Input::KeyLShift | s3d::Input::KeyEnd);
+	input.addButton(L"R_KeyBack", s3d::Input::KeyRShift | s3d::Input::KeyEnd);
+	input.addButton(L"L_KeySelect", s3d::Input::KeyLShift | XInput(0).buttonA | XInput(0).buttonB);
+	input.addButton(L"R_KeySelect", s3d::Input::KeyRShift | XInput(1).buttonA | XInput(1).buttonB);
 }
 
 
@@ -93,6 +97,9 @@ bool GamePad::Key(bool _isLeft, const String& _name) {
 
 	if(_name == L"KeyRight")
 		return input.button(lr + L"_KeyRight").pressed || input.axis(lr + L"_CtrlX") > 0.8;
+
+	if (_name == L"KeyBack")
+		return input.button(lr + L"_KeyBack").pressed || XInput((int)!_isLeft).leftTrigger > 0.5 || XInput((int)!_isLeft).rightTrigger > 0.5;
 
 	return input.button(lr + L"_" + _name).pressed;
 }
