@@ -3,6 +3,7 @@
 
 class SkillSelect final : public SceneManager<String, CommonData>::Scene {
 private:
+	int nextStageTime = 0;
 	bool LContinue = false;
 	bool RContinue = false;
 	double LAlpha[3] = { 0.5, 0.5, 0.5 };

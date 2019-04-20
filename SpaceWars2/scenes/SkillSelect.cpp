@@ -13,90 +13,108 @@ void SkillSelect::init() {
 	TextureAsset::Register(L"mainTriangle", L"/8100");
 	TextureAsset::Register(L"subTriangle", L"/8101");
 	TextureAsset::Register(L"specialTriangle", L"/8102");
+
+	LContinue = false;
+	RContinue = false;
 }
 
 void SkillSelect::update() {
 	changeScene(Debug::InputFnKey(), 250);
-	if (Data::KeyEnter.repeat(20))
-		changeScene(L"Three", 500);
+	 if (nextStageTime > 100)
+	 	changeScene(L"Three", 500);
 
-	switch (Data::LPlayer.skillSelect()) {
-	case 0:
-		LAlpha[0] = 1.0;
-		LAlpha[1] = 0.5;
-		break;
+	if (LContinue && RContinue) ++nextStageTime;
+	else nextStageTime = 0;
 
-	case 1:
-		LAlpha[0] = 0.5;
-		LAlpha[1] = 1.0;
-		LAlpha[2] = 0.5;
-		break;
+	if (Data::LKeyBack.repeat(20, true)) LContinue = false;
+	if (Data::RKeyBack.repeat(20, true)) RContinue = false;
 
-	case 2:
-		LAlpha[1] = 0.5;
-		LAlpha[2] = 1.0;
-		break;
+	if (Data::LKeySelect.repeat(20, true)) LContinue = true;
+	if (Data::RKeySelect.repeat(20, true)) RContinue = true;
 
-	default:
-		LOG_ERROR(L"SkillSelect::update()のLPlayer用switchでdefaultが参照されました。");
+	if (!LContinue) {
+		switch (Data::LPlayer.skillSelect()) {
+		case 0:
+			LAlpha[0] = 1.0;
+			LAlpha[1] = 0.5;
+			break;
+
+		case 1:
+			LAlpha[0] = 0.5;
+			LAlpha[1] = 1.0;
+			LAlpha[2] = 0.5;
+			break;
+
+		case 2:
+			LAlpha[1] = 0.5;
+			LAlpha[2] = 1.0;
+			break;
+
+		default:
+			LOG_ERROR(L"SkillSelect::update()のLPlayer用switchでdefaultが参照されました。");
+		}
 	}
 
-	switch(Data::RPlayer.skillSelect()) {
-	case 0:
-		RAlpha[0] = 1.0;
-		RAlpha[1] = 0.5;
-		break;
+	if (!RContinue) {
+		switch (Data::RPlayer.skillSelect()) {
+		case 0:
+			RAlpha[0] = 1.0;
+			RAlpha[1] = 0.5;
+			break;
 
-	case 1:
-		RAlpha[0] = 0.5;
-		RAlpha[1] = 1.0;
-		RAlpha[2] = 0.5;
-		break;
+		case 1:
+			RAlpha[0] = 0.5;
+			RAlpha[1] = 1.0;
+			RAlpha[2] = 0.5;
+			break;
 
-	case 2:
-		RAlpha[1] = 0.5;
-		RAlpha[2] = 1.0;
-		break;
+		case 2:
+			RAlpha[1] = 0.5;
+			RAlpha[2] = 1.0;
+			break;
 
-	default:
-		LOG_ERROR(L"SkillSelect::update()のRPlayer用switchでdefaultが参照されました。");
+		default:
+			LOG_ERROR(L"SkillSelect::update()のRPlayer用switchでdefaultが参照されました。");
+		}
 	}
-
 }
 
 void SkillSelect::draw() const {
 	TextureAsset(L"background").resize(Config::WIDTH, Config::HEIGHT).draw();
 	FontAsset(L"Smart32")(L"SkillSelect").drawCenter(40, Color(L"#ffffff"));
 
-	for (int isLeft = 0; isLeft < 2; isLeft++) { // LPlayer, RPlayer
+	for (int isLeft = 0; isLeft <= 1; isLeft++) { // LPlayer, RPlayer
 		Player* PLAYER = &(isLeft ? Data::LPlayer : Data::RPlayer);
-		double alpha[3] = { (isLeft ? LAlpha : RAlpha)[0], (isLeft ? LAlpha : RAlpha)[1], (isLeft ? LAlpha : RAlpha)[2] };
-		String skillType[3] = { L"main", L"sub", L"special" };
-		int whatSkill[3] = { (*PLAYER).whatMainSkill, (*PLAYER).whatSubSkill, (*PLAYER).whatSpecialSkill };
-		int skillNum[3] = { MAIN_NUM - 1, SUB_NUM - 1, SPECIAL_NUM - 1 };
+		double alpha[3]      = { (isLeft ? LAlpha : RAlpha)[0], (isLeft ? LAlpha : RAlpha)[1], (isLeft ? LAlpha : RAlpha)[2] };
+		String skillType[3]  = { L"main", L"sub", L"special" };
+		int    whatSkill[3]  = { PLAYER->whatMainSkill, PLAYER->whatSubSkill, PLAYER->whatSpecialSkill };
+		int    skillNum[3]   = { MAIN_NUM - 1, SUB_NUM - 1, SPECIAL_NUM - 1 };
 		String skillColor[3] = { L"#7cfc00", L"#4169e1", L"#ffd000" };
 		for (int type = 0; type < 3; type++) { // mainSkill, subSkill, specialSkill
 
 			// skillIconの描画
-			for (int i = -1; i < 2; i++) { // -1:前 0:選択中 1:後
+			for (int i = -1; i <= 1; i++) { // -1:前 0:選択中 1:後
 				if (i)
 					TextureAsset(skillType[type] + Format((int)whatSkill[type] + i)).resize(V80)
-						.drawAt(770 + (190 * type) - (640 * isLeft), 550 + 110 * i);
+						.drawAt(770 + (190 * type) - (640 * isLeft), 520 + 110 * i);
 				else
 					TextureAsset(skillType[type] + Format((int)whatSkill[type]))
-						.drawAt(770 + (190 * type) - (640 * isLeft), 550);
+						.drawAt(770 + (190 * type) - (640 * isLeft), 520);
 			}
 			
 			// 選択中のskillの枠
-			Rect(720 + (190 * type) - (640 * isLeft), 500, 100).drawFrame(0, 4, ColorF(skillColor[type]).setAlpha(alpha[type]));
+			Rect(720 + (190 * type) - (640 * isLeft), 470, 100).drawFrame(0, 4, ColorF(skillColor[type]).setAlpha(alpha[type]));
 
 			// 三角マークの描画
 			if (whatSkill[type] != 0)
 				TextureAsset(skillType[type] + L"Triangle")
-					.draw(755 + (190 * type) - (640 * isLeft), 485, Alpha((int)(255 * alpha[type])));
+					.draw(755 + (190 * type) - (640 * isLeft), 455, Alpha((int)(255 * alpha[type])));
 			if (whatSkill[type] != skillNum[type])
 				TextureAsset(skillType[type] + L"Triangle").flip()
-					.draw(755 + (190 * type) - (640 * isLeft), 600, Alpha((int)(255 * alpha[type])));
+					.draw(755 + (190 * type) - (640 * isLeft), 570, Alpha((int)(255 * alpha[type])));
 		}
+
+		if (LContinue) Rect(0, 0, Config::WIDTH / 2, Config::HEIGHT).draw(ColorF(L"#f00").setAlpha(0.25));
+		if (RContinue) Rect(Config::WIDTH / 2, 0, Config::WIDTH / 2, Config::HEIGHT).draw(ColorF(L"#f00").setAlpha(0.25));
 	}
 }
