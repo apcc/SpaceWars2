@@ -6,8 +6,6 @@ void Game::init() {
 
 void Game::update() {
 	changeScene(Debug::InputFnKey(), 250);
-	if (Data::KeyEnter.repeat(20))
-		changeScene(L"Finish", 500);
 
 	Data::LPlayer.update(bullets);
 	Data::RPlayer.update(bullets);
@@ -58,4 +56,18 @@ void Game::draw() const {
 	Data::RPlayer.drawShip();
 	Data::LPlayer.drawGauge();
 	Data::RPlayer.drawGauge();
+
+	Vec2 buttonPos(890, 692);
+
+	buttonPos.x += (int)TextureAsset(L"stick_24").draw(buttonPos).w + 6;
+	buttonPos.x += (int)FontAsset(L"CicaR12")(L"移動").draw(buttonPos).w + 15;
+
+	buttonPos.x += (int)TextureAsset(L"buttonA_24").draw(buttonPos).w + 6;
+	buttonPos.x += (int)FontAsset(L"CicaR12")(L"Main").draw(buttonPos).w + 15;
+
+	buttonPos.x += (int)TextureAsset(L"buttonLB_24").draw(buttonPos).w + 6;
+	buttonPos.x += (int)FontAsset(L"CicaR12")(L"Sub").draw(buttonPos).w + 15;
+
+	buttonPos.x += (int)TextureAsset(L"buttonRB_24").draw(buttonPos).w + 6;
+	buttonPos.x += (int)FontAsset(L"CicaR12")(L"Special").draw(buttonPos).w + 15;
 }

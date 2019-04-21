@@ -117,4 +117,17 @@ void SkillSelect::draw() const {
 		if (LContinue) Rect(0, 0, Config::WIDTH / 2, Config::HEIGHT).draw(ColorF(L"#f00").setAlpha(0.25));
 		if (RContinue) Rect(Config::WIDTH / 2, 0, Config::WIDTH / 2, Config::HEIGHT).draw(ColorF(L"#f00").setAlpha(0.25));
 	}
+
+	Vec2 buttonPos(820, 692);
+
+	buttonPos.x += (int)TextureAsset(L"cross_24").draw(buttonPos).w + 5;
+	buttonPos.x += (int)TextureAsset(L"stick_24").draw(buttonPos).w + 6;
+	buttonPos.x += (int)FontAsset(L"CicaR12")(L"Skill選択").draw(buttonPos).w + 15;
+
+	buttonPos.x += (int)TextureAsset(L"buttonA_24").draw(buttonPos).w + 6;
+	buttonPos.x += (int)FontAsset(L"CicaR12")(L"Continue").draw(buttonPos).w + 15;
+
+	buttonPos.x += (int)TextureAsset(L"buttonLT_24").draw(buttonPos).w + 3;
+	buttonPos.x += (int)TextureAsset(L"buttonRT_24").draw(buttonPos).w + 4;
+	buttonPos.x += (int)FontAsset(L"CicaR12")(L"Cancel").draw(buttonPos).w + 15;
 }

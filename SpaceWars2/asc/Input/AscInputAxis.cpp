@@ -42,13 +42,14 @@ void AxisCombination::append(const AxisCombination& axes)
 
 AxisCombination::operator double() const
 {
+	double ma = 0.0;
 	for (auto axis : m_axes)
 	{
-		if (Abs(static_cast<double>(axis)) > 0.0)
+		if (Abs(static_cast<double>(axis)) > Abs(ma))
 		{
-			return axis;
+			ma = static_cast<double>(axis);
 		}
 	}
 
-	return 0.0;
+	return ma;
 }
