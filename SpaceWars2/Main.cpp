@@ -10,7 +10,6 @@
 #include "scenes/SkillSelect.hpp"
 #include "scenes/Countdown.hpp"
 #include "scenes/Game.hpp"
-#include "scenes/Finish.hpp"
 #include "scenes/Ending.hpp"
 
 void Main(){
@@ -49,7 +48,6 @@ void Main(){
 	manager.add<Two>(L"Two");
 	manager.add<One>(L"One");
 	manager.add<Game>(L"Game");
-	manager.add<Finish>(L"Finish");
 	manager.add<Ending>(L"Ending");
 
 

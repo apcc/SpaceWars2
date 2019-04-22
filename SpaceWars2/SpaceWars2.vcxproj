@@ -180,7 +180,6 @@
     <ClCompile Include="Scenes\ControlGuidance.cpp" />
     <ClCompile Include="scenes\Countdown.cpp" />
     <ClCompile Include="Scenes\Ending.cpp" />
-    <ClCompile Include="Scenes\Finish.cpp" />
     <ClCompile Include="Scenes\Game.cpp" />
     <ClCompile Include="scenes\License.cpp" />
     <ClCompile Include="Scenes\Opening.cpp" />
@@ -320,7 +319,6 @@
     <ClInclude Include="scenes\Include.hpp" />
     <ClInclude Include="Scenes\ControlGuidance.hpp" />
     <ClInclude Include="Scenes\Ending.hpp" />
-    <ClInclude Include="Scenes\Finish.hpp" />
     <ClInclude Include="Scenes\Game.hpp" />
     <ClInclude Include="scenes\License.hpp" />
     <ClInclude Include="Scenes\Opening.hpp" />
