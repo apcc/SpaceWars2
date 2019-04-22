@@ -5,6 +5,8 @@
 class Game final : public SceneManager<String,CommonData>::Scene {
 private:
 	std::vector<Bullet*> bullets;
+	bool finish = false;
+
 public:
 	void init() override;
 	void update() override;
