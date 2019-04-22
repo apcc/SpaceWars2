@@ -75,6 +75,14 @@ void Game::draw() const {
 	else {
 		Rect(0, 0, Config::WIDTH, Config::HEIGHT).draw(ColorF(L"#000").setAlpha(0.7));
 
-		FontAsset(L"Smart32")(L"Finish!").drawCenter(300, Color(L"#ffffff"));
+
+		if (Data::LPlayer.isHPRunOut() && Data::RPlayer.isHPRunOut())
+			FontAsset(L"Smart32")(L"引き分け！").drawCenter(300, Color(L"#fff"));
+		else {
+			if (Data::LPlayer.isHPRunOut())
+				FontAsset(L"Smart32")(L"LPlayer win !").drawCenter(300, Color(L"#00f"));
+			if (Data::RPlayer.isHPRunOut())
+				FontAsset(L"Smart32")(L"RPlayer win !").drawCenter(300, Color(L"#f00"));
+		}
 	}
 }

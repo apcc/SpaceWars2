@@ -7,13 +7,6 @@ void Finish::init() {
 		isLeftWin = false;
 	if (Data::RPlayer.isHPRunOut())
 		isLeftWin = true;
-	
-	if (isDraw)
-		winner = L"引き分け！";
-	else if (isLeftWin)
-		winner = L"REDの勝ち！";
-	else
-		winner = L"BLUEの勝ち！";
 }
 
 void Finish::update() {
