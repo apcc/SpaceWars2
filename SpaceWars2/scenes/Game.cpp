@@ -80,9 +80,9 @@ void Game::draw() const {
 			FontAsset(L"Smart32")(L"引き分け！").drawCenter(300, Color(L"#fff"));
 		else {
 			if (Data::LPlayer.isHPRunOut())
-				FontAsset(L"Smart32")(L"LPlayer win !").drawCenter(300, Color(L"#00f"));
+				FontAsset(L"Smart32")(L"LPlayer win !").drawCenter(250, Color(L"#00f"));
 			if (Data::RPlayer.isHPRunOut())
-				FontAsset(L"Smart32")(L"RPlayer win !").drawCenter(300, Color(L"#f00"));
+				FontAsset(L"Smart32")(L"RPlayer win !").drawCenter(250, Color(L"#f00"));
 		}
 	}
 }
