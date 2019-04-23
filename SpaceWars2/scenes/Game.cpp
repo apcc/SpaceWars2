@@ -80,9 +80,26 @@ void Game::draw() const {
 			FontAsset(L"Smart32")(L"引き分け！").drawCenter(300, Color(L"#fff"));
 		else {
 			if (Data::LPlayer.isHPRunOut())
-				FontAsset(L"Smart32")(L"LPlayer win !").drawCenter(250, Color(L"#00f"));
+				FontAsset(L"Smart32")(L"RPlayer win !").drawCenter(250, Color(L"#00f"));
 			if (Data::RPlayer.isHPRunOut())
-				FontAsset(L"Smart32")(L"RPlayer win !").drawCenter(250, Color(L"#f00"));
+				FontAsset(L"Smart32")(L"LPlayer win !").drawCenter(250, Color(L"#f00"));
 		}
+
+		// 箇条書き
+		FontAsset(L"Smart32")(L"HP:").draw(280, 390);
+		FontAsset(L"Smart32")(L"Skills:").draw(280, 470);
+		FontAsset(L"Smart32")(L"Time:").draw(280, 550);
+
+		// HP
+		rightAlign(L"Smart32", Format(Data::LPlayer.HP), 620, 390);
+		rightAlign(L"Smart32", Format(Data::RPlayer.HP), 840, 390);
+
+		// 装飾
+		Line(250, 380, 250, 620).draw(6, ColorF(L"#00BFFF"));
 	}
+}
+
+
+void Game::rightAlign(String _font, String _text, int _x, int _y) {
+	FontAsset(_font)(_text).draw(_x - FontAsset(_font)(_text).region().w, _y);
 }
