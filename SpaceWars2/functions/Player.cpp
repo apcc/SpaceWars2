@@ -81,6 +81,8 @@ bool Player::isHPRunOut(){
 void Player::update(std::vector<Bullet*> &bullets){
 	pos += GamePad::Move(isLeft, speed);
 
+	howFrameAfterShooting++;
+
 
 	if(isLeft) {
 		if (pos.x < 0 + PLAYER_SIZE)
@@ -99,8 +101,11 @@ void Player::update(std::vector<Bullet*> &bullets){
 	if (pos.y > Config::HEIGHT - PLAYER_SIZE)
 		pos.y = Config::HEIGHT - PLAYER_SIZE;
 
-	if (temperature > 100)
-		--temperature;
+	if (temperature > 100) {
+		if (howFrameAfterShooting >= 60) {
+			temperature -= 3;
+		}
+	}
 
 	if (speed != 0) {
 		if (temperature < 800) doMainSkill(bullets);

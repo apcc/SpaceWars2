@@ -37,6 +37,7 @@ private:
 	int selectedType = 0;	// skillSelectの選択中項目
 	int speed = 0;
 
+
 	int requireCharge[4] = { 400, 400, 400, 400 };
 
 	const int PLAYER_SIZE = 30;
@@ -57,6 +58,8 @@ public:
 	int temperature;	// MainSkill抑制
 	int coolDownTime;	// SubSkill抑制
 	int charge;			// SpecialSkill抑制
+
+	int howFrameAfterShooting = 0;
 
 	bool inRecovery;
 	static bool inJudgmentTime;
