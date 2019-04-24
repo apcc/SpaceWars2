@@ -3,6 +3,7 @@
 
 class SkillSelect final : public SceneManager<String, CommonData>::Scene {
 private:
+	static bool isLoaded;
 	int nextStageTime = 0;
 	bool LContinue = false;
 	bool RContinue = false;

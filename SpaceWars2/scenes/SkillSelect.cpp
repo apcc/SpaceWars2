@@ -2,17 +2,23 @@
 
 #define V80 { 80, 80 }
 
+bool SkillSelect::isLoaded = false;
+
 void SkillSelect::init() {
-	int i = 0;
-	for (int j = -1; j < 6; j++) {
-		TextureAsset::Register(L"main" + Format(j),		L"/800" + Format(i));
-		TextureAsset::Register(L"sub" + Format(j),		L"/801" + Format(i));
-		TextureAsset::Register(L"special" + Format(j),	L"/802" + Format(i));
-		++i;
+
+	if (!isLoaded) {
+		int i = 0;
+		for (int j = -1; j < 6; j++) {
+			TextureAsset::Register(L"main" + Format(j), L"/800" + Format(i));
+			TextureAsset::Register(L"sub" + Format(j), L"/801" + Format(i));
+			TextureAsset::Register(L"special" + Format(j), L"/802" + Format(i));
+			++i;
+		}
+		TextureAsset::Register(L"mainTriangle", L"/8100");
+		TextureAsset::Register(L"subTriangle", L"/8101");
+		TextureAsset::Register(L"specialTriangle", L"/8102");
+		isLoaded = true;
 	}
-	TextureAsset::Register(L"mainTriangle", L"/8100");
-	TextureAsset::Register(L"subTriangle", L"/8101");
-	TextureAsset::Register(L"specialTriangle", L"/8102");
 
 	LContinue = false;
 	RContinue = false;
