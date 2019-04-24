@@ -55,6 +55,11 @@ void Game::draw() const {
 	Data::LPlayer.drawGauge();
 	Data::RPlayer.drawGauge();
 
+	ClearPrint();
+	Println(Data::LPlayer.mainSkillCnt);
+	Println(Data::LPlayer.subSkillCnt);
+	Println(Data::LPlayer.specialSkillCnt);
+
 	if (!finish) {
 		FontAsset(L"Smart32")(L"I am game scene! Hello!").drawCenter(40, Color(L"#ffffff"));
 
@@ -99,9 +104,13 @@ void Game::draw() const {
 			Player* PLAYER = &(isLeft ? Data::LPlayer : Data::RPlayer);
 			String skillType[3] = { L"main", L"sub", L"special" };
 			int    whatSkill[3] = { PLAYER->whatMainSkill, PLAYER->whatSubSkill, PLAYER->whatSpecialSkill };
+			int	   skillsCnt[3] = { PLAYER->mainSkillCnt, PLAYER->subSkillCnt, PLAYER->specialSkillCnt };
+			String skillColor[3] = { L"#7cfc00", L"#4169e1", L"#ffd000" };
 			for (int type = 0; type < 3; type++) { // mainSkill, subSkill, specialSkill
 				TextureAsset(skillType[type] + Format((int)whatSkill[type])).resize(50, 50)
 				.draw(670 + (60 * type) - (220 * isLeft), 472);
+
+				rightAlign(L"CicaR12", Format(skillsCnt[type]), 719 + (60 * type) - (220 * isLeft), 501, Color(skillColor[type]));
 			}
 		}
 
@@ -114,6 +123,6 @@ void Game::draw() const {
 }
 
 
-void Game::rightAlign(String _font, String _text, int _x, int _y) {
-	FontAsset(_font)(_text).draw(_x - FontAsset(_font)(_text).region().w, _y);
+void Game::rightAlign(String _font, String _text, int _x, int _y, Color _color) {
+	FontAsset(_font)(_text).draw(_x - FontAsset(_font)(_text).region().w, _y, _color);
 }

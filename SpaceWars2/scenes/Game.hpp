@@ -6,8 +6,9 @@ class Game final : public SceneManager<String,CommonData>::Scene {
 private:
 	std::vector<Bullet*> bullets;
 	bool finish = false;
-	static void rightAlign(String _font, String _text, int _x, int _y);
 	Stopwatch stopwatch;
+
+	static void rightAlign(String _font, String _text, int _x, int _y, Color _color = Color(L"#fff"));
 
 public:
 	void init() override;

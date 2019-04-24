@@ -67,6 +67,10 @@ public:
 	SubSkill whatSubSkill = JUMP;
 	SpecialSkill whatSpecialSkill = JUDGMENT_TIME;
 
+	int mainSkillCnt;
+	int subSkillCnt;
+	int specialSkillCnt;
+
 	void doMainSkill(std::vector<Bullet*>& bullets);
 	void doSubSkill(std::vector<Bullet*>& bullets);
 	void doSpacialSkill(std::vector<Bullet*>& bullets);
