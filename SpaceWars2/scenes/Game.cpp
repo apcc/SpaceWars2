@@ -1,7 +1,7 @@
 #include "Game.hpp"
 
 void Game::init() {
-
+	stopwatch.start();
 }
 
 void Game::update() {
@@ -28,7 +28,7 @@ void Game::update() {
 		}
 	}
 	else { // finish
-
+		stopwatch.pause();
 		if (Data::KeyEnter.repeat(20))
 			changeScene(L"Ending", 500);
 	}
@@ -104,6 +104,9 @@ void Game::draw() const {
 				.draw(670 + (60 * type) - (220 * isLeft), 472);
 			}
 		}
+
+		// Time
+		FontAsset(L"Smart32")(stopwatch.min(), L"分 ", stopwatch.s() % 60, L"秒").drawCenter(550);
 
 		// 装飾
 		Line(250, 380, 250, 620).draw(6, ColorF(L"#00BFFF"));
