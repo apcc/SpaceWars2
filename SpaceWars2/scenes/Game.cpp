@@ -94,6 +94,17 @@ void Game::draw() const {
 		rightAlign(L"Smart32", Format(Data::LPlayer.HP), 620, 390);
 		rightAlign(L"Smart32", Format(Data::RPlayer.HP), 840, 390);
 
+		// Skills
+		for (int isLeft = 0; isLeft <= 1; isLeft++) { // LPlayer, RPlayer
+			Player* PLAYER = &(isLeft ? Data::LPlayer : Data::RPlayer);
+			String skillType[3] = { L"main", L"sub", L"special" };
+			int    whatSkill[3] = { PLAYER->whatMainSkill, PLAYER->whatSubSkill, PLAYER->whatSpecialSkill };
+			for (int type = 0; type < 3; type++) { // mainSkill, subSkill, specialSkill
+				TextureAsset(skillType[type] + Format((int)whatSkill[type])).resize(50, 50)
+				.draw(670 + (60 * type) - (220 * isLeft), 472);
+			}
+		}
+
 		// 装飾
 		Line(250, 380, 250, 620).draw(6, ColorF(L"#00BFFF"));
 	}
