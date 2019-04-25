@@ -105,7 +105,7 @@ void Game::draw() const {
 			String skillType[3] = { L"main", L"sub", L"special" };
 			int    whatSkill[3] = { PLAYER->whatMainSkill, PLAYER->whatSubSkill, PLAYER->whatSpecialSkill };
 			int	   skillsCnt[3] = { PLAYER->mainSkillCnt, PLAYER->subSkillCnt, PLAYER->specialSkillCnt };
-			String skillColor[3] = { L"#7cfc00", L"#4169e1", L"#ffd000" };
+			String skillColor[3] = { L"#0c0", L"#00c", L"#cc0" };
 			for (int type = 0; type < 3; type++) { // mainSkill, subSkill, specialSkill
 				TextureAsset(skillType[type] + Format((int)whatSkill[type])).resize(50, 50)
 				.draw(670 + (60 * type) - (220 * isLeft), 472);
