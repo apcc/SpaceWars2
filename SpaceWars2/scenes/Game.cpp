@@ -86,13 +86,13 @@ void Game::draw() const {
 		}
 
 		// 箇条書き
-		FontAsset(L"Smart32")(L"HP:").draw(280, 390);
-		FontAsset(L"Smart32")(L"Skills:").draw(280, 470);
-		FontAsset(L"Smart32")(L"Time:").draw(280, 550);
+		FontAsset(L"Smart28")(L"HP:").draw(280, 390);
+		FontAsset(L"Smart28")(L"Skills:").draw(280, 470);
+		FontAsset(L"Smart28")(L"Time:").draw(280, 550);
 
 		// HP
-		rightAlign(L"Smart32", Format(Data::LPlayer.HP), 620, 390);
-		rightAlign(L"Smart32", Format(Data::RPlayer.HP), 840, 390);
+		rightAlign(L"Smart28", Format(Data::LPlayer.HP), 620, 390);
+		rightAlign(L"Smart28", Format(Data::RPlayer.HP), 840, 390);
 
 		// Skills
 		for (int isLeft = 0; isLeft <= 1; isLeft++) { // LPlayer, RPlayer
@@ -112,7 +112,7 @@ void Game::draw() const {
 		}
 
 		// Time
-		FontAsset(L"Smart32")(stopwatch.min(), L"分 ", stopwatch.s() % 60, L"秒").drawCenter(550);
+		FontAsset(L"Smart28")(stopwatch.min(), L"分 ", stopwatch.s() % 60, L"秒").drawCenter(550);
 
 		// 装飾
 		Line(250, 380, 250, 620).draw(6, ColorF(L"#00BFFF"));
