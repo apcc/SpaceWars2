@@ -28,7 +28,21 @@ void Game::update() {
 		}
 	}
 	else { // finish
-		stopwatch.pause();
+		if (!finishInit) {
+			stopwatch.pause();
+
+			double x = 900;
+			for (auto HP : Data::LPlayer.HPLog) {
+				LHPGraph.push_back({ x, 500 - HP / 10 });
+				x += 250.0 / Data::LPlayer.HPLog.size();
+			}
+			x = 900;
+			for (auto HP : Data::RPlayer.HPLog) {
+				RHPGraph.push_back({ x, 500 - HP / 10 });
+				x += 250.0 / Data::RPlayer.HPLog.size();
+			}
+			finishInit = true;
+		}
 		if (Data::KeyEnter.repeat(20))
 			changeScene(L"Ending", 500);
 	}
@@ -113,6 +127,12 @@ void Game::draw() const {
 
 		// Time
 		FontAsset(L"Smart28")(stopwatch.min(), L"分 ", stopwatch.s() % 60, L"秒").drawCenter(550);
+
+		// Graph
+		LHPGraph.draw(2, Color(L"#f00"));
+		RHPGraph.draw(2, Color(L"#00f"));
+		Line(900, 380,  900, 500).draw(4);
+		Line(900, 500, 1170, 500).draw(4);
 
 		// 装飾
 		Line(250, 380, 250, 620).draw(6, ColorF(L"#00BFFF"));

@@ -25,6 +25,8 @@ void Player::init(Vec2 _pos, bool _isLeft){
 	GamePad::SetAxis();
 	GamePad::SetButton();
 
+	HPLog.clear();
+
 	KeyUp = KeyRepeat(isLeft, L"KeyUp");
 	KeyLeft = KeyRepeat(isLeft, L"KeyLeft");
 	KeyDown = KeyRepeat(isLeft, L"KeyDown");
@@ -128,6 +130,8 @@ void Player::update(std::vector<Bullet*> &bullets){
 			}
 		}
 	}
+
+	HPLog.emplace_back(HP);
 }
 
 int Player::skillSelect(){
