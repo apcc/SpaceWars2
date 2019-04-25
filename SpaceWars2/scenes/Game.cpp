@@ -112,7 +112,7 @@ void Game::draw() const {
 
 				Rect(670 + (60 * type) - (220 * isLeft), 522, 50, 20).draw(Color(skillColor[type]));
 
-				rightAlign(L"CicaR12", Format(skillsCnt[type]), 718 + (60 * type) - (220 * isLeft), 520);
+				rightAlign(L"CicaR12", (skillsCnt[type] < 1000 ? Format(skillsCnt[type]) : L"999+"), 718 + (60 * type) - (220 * isLeft), 520);
 			}
 		}
 
