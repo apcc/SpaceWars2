@@ -55,11 +55,6 @@ void Game::draw() const {
 	Data::LPlayer.drawGauge();
 	Data::RPlayer.drawGauge();
 
-	ClearPrint();
-	Println(Data::LPlayer.mainSkillCnt);
-	Println(Data::LPlayer.subSkillCnt);
-	Println(Data::LPlayer.specialSkillCnt);
-
 	if (!finish) {
 		FontAsset(L"Smart32")(L"I am game scene! Hello!").drawCenter(40, Color(L"#ffffff"));
 
