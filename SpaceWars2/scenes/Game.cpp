@@ -5,9 +5,9 @@ void Game::init() {
 }
 
 void Game::update() {
+	changeScene(Debug::InputFnKey(), 250);
 
 	if (!finish) {
-		changeScene(Debug::InputFnKey(), 250);
 
 		Data::LPlayer.update(bullets);
 		Data::RPlayer.update(bullets);
