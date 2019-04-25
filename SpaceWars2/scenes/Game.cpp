@@ -110,7 +110,9 @@ void Game::draw() const {
 				TextureAsset(skillType[type] + Format((int)whatSkill[type])).resize(50, 50)
 				.draw(670 + (60 * type) - (220 * isLeft), 472);
 
-				rightAlign(L"CicaR12", Format(skillsCnt[type]), 719 + (60 * type) - (220 * isLeft), 501, Color(skillColor[type]));
+				Rect(670 + (60 * type) - (220 * isLeft), 522, 50, 20).draw(Color(skillColor[type]));
+
+				rightAlign(L"CicaR12", Format(skillsCnt[type]), 718 + (60 * type) - (220 * isLeft), 520);
 			}
 		}
 
