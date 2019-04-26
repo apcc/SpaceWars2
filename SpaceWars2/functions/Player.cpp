@@ -18,9 +18,14 @@ void Player::init(Vec2 _pos, bool _isLeft){
 	whatMainSkill = static_cast<MainSkill>(0);
 	whatSubSkill = static_cast<SubSkill>(0);
 	whatSpecialSkill = static_cast<SpecialSkill>(0);
+	mainSkillCnt = 0;
+	subSkillCnt = 0;
+	specialSkillCnt = 0;
 
 	GamePad::SetAxis();
 	GamePad::SetButton();
+
+	HPLog.clear();
 
 	KeyUp = KeyRepeat(isLeft, L"KeyUp");
 	KeyLeft = KeyRepeat(isLeft, L"KeyLeft");
@@ -125,6 +130,8 @@ void Player::update(std::vector<Bullet*> &bullets){
 			}
 		}
 	}
+
+	HPLog.emplace_back(HP);
 }
 
 int Player::skillSelect(){
