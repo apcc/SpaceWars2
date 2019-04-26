@@ -72,8 +72,6 @@ void Game::draw() const {
 	Line(Config::WIDTH / 2, 0, Config::WIDTH / 2, Config::HEIGHT).draw(3, ColorF(L"#fff").setAlpha(0.8));
 
 	if (!finish) {
-		FontAsset(L"Smart32")(L"I am game scene! Hello!").drawCenter(40, Color(L"#ffffff"));
-
 		Vec2 buttonPos(890, 692);
 
 		buttonPos.x += (int)TextureAsset(L"stick_24").draw(buttonPos).w + 6;
