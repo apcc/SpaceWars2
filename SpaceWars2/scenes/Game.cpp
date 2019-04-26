@@ -132,8 +132,8 @@ void Game::draw() const {
 		Rect(900, 418, 272, 122).draw(ColorF(L"fff").setAlpha(0.5));
 		Line(900, 440, 1170, 440).draw(1, ColorF(L"#fff").setAlpha(0.8));
 		Line(900, 490, 1170, 490).draw(1, ColorF(L"#fff").setAlpha(0.8));
-		LHPGraph.draw(3, ColorF(L"#f00").setAlpha(0.7));
-		RHPGraph.draw(3, ColorF(L"#00f").setAlpha(0.7));
+		LHPGraph.draw(3, ColorF(L"#f00").setAlpha(0.5));
+		RHPGraph.draw(3, ColorF(L"#00f").setAlpha(0.5));
 		Line(900, 420,  900, 540).draw(4);
 		Line(900, 540, 1170, 540).draw(4);
 
