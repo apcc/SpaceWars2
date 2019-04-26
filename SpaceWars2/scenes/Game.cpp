@@ -33,12 +33,12 @@ void Game::update() {
 
 			double x = 900;
 			for (auto HP : Data::LPlayer.HPLog) {
-				LHPGraph.push_back({ x, 500 - HP / 10 });
+				LHPGraph.push_back({ x, 540 - HP / 10 });
 				x += 250.0 / Data::LPlayer.HPLog.size();
 			}
 			x = 900;
 			for (auto HP : Data::RPlayer.HPLog) {
-				RHPGraph.push_back({ x, 500 - HP / 10 });
+				RHPGraph.push_back({ x, 540 - HP / 10 });
 				x += 250.0 / Data::RPlayer.HPLog.size();
 			}
 			finishInit = true;
@@ -129,10 +129,13 @@ void Game::draw() const {
 		FontAsset(L"Smart28")(stopwatch.min(), L"分 ", stopwatch.s() % 60, L"秒").drawCenter(550);
 
 		// Graph
-		LHPGraph.draw(2, Color(L"#f00"));
-		RHPGraph.draw(2, Color(L"#00f"));
-		Line(900, 380,  900, 500).draw(4);
-		Line(900, 500, 1170, 500).draw(4);
+		Rect(900, 418, 272, 122).draw(ColorF(L"fff").setAlpha(0.5));
+		Line(900, 440, 1170, 440).draw(1, ColorF(L"#fff").setAlpha(0.8));
+		Line(900, 490, 1170, 490).draw(1, ColorF(L"#fff").setAlpha(0.8));
+		LHPGraph.draw(3, ColorF(L"#f00").setAlpha(0.7));
+		RHPGraph.draw(3, ColorF(L"#00f").setAlpha(0.7));
+		Line(900, 420,  900, 540).draw(4);
+		Line(900, 540, 1170, 540).draw(4);
 
 		// 装飾
 		Line(250, 380, 250, 620).draw(6, ColorF(L"#00BFFF"));
