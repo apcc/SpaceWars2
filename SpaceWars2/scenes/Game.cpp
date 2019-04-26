@@ -69,6 +69,8 @@ void Game::draw() const {
 	Data::LPlayer.drawGauge();
 	Data::RPlayer.drawGauge();
 
+	Line(Config::WIDTH / 2, 0, Config::WIDTH / 2, Config::HEIGHT).draw(3, ColorF(L"#fff").setAlpha(0.8));
+
 	if (!finish) {
 		FontAsset(L"Smart32")(L"I am game scene! Hello!").drawCenter(40, Color(L"#ffffff"));
 
