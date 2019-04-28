@@ -60,16 +60,21 @@ void Game::draw() const {
 	Data::RPlayer.DrawMainSkill();
 	Data::RPlayer.DrawSubSkill();
 	Data::RPlayer.DrawSpecialSkill();*/
-	for(auto bul : bullets){
+	for (auto bul : bullets) {
 		bul->draw();
 	}
 
 	Data::LPlayer.drawShip();
 	Data::RPlayer.drawShip();
-	Data::LPlayer.drawGauge();
-	Data::RPlayer.drawGauge();
+	// Data::LPlayer.drawGauge();
+	// Data::RPlayer.drawGauge();
 
 	Line(Config::WIDTH / 2, 0, Config::WIDTH / 2, Config::HEIGHT).draw(3, ColorF(L"#fff").setAlpha(0.8));
+
+	gauge(true,  { 195, 40 }, 370).draw(Color(L"#f77")).drawFrame(2, Color(L"#f00"));
+	gauge(false, { 720, 40 }, 370).draw(Color(L"#f77")).drawFrame(2, Color(L"#f00"));
+	gauge(true,  { 360, 65 }, 215).draw(Color(L"#77f")).drawFrame(2, Color(L"#00f"));
+	gauge(false, { 710, 65 }, 215).draw(Color(L"#77f")).drawFrame(2, Color(L"#00f"));
 
 	if (!finish) {
 		Vec2 buttonPos(890, 692);
@@ -119,7 +124,7 @@ void Game::draw() const {
 			String skillColor[3] = { L"#0c0", L"#00c", L"#ffd000" };
 			for (int type = 0; type < 3; type++) { // mainSkill, subSkill, specialSkill
 				TextureAsset(skillType[type] + Format((int)whatSkill[type])).resize(50, 50)
-				.draw(670 + (60 * type) - (220 * isLeft), 472);
+					.draw(670 + (60 * type) - (220 * isLeft), 472);
 
 				Rect(670 + (60 * type) - (220 * isLeft), 522, 50, 20).draw(Color(skillColor[type]));
 
@@ -147,4 +152,13 @@ void Game::draw() const {
 
 void Game::rightAlign(String _font, String _text, int _x, int _y, Color _color) {
 	FontAsset(_font)(_text).draw(_x - FontAsset(_font)(_text).region().w, _y, _color);
+}
+
+Quad Game::gauge(bool _isLeft, Vec2 _topLeft, int _width) {
+	int oblique = (_isLeft ? 5 : -5);
+	return Quad(_topLeft, _topLeft + Vec2(_width, 0), _topLeft + Vec2(_width + oblique, 15), _topLeft + Vec2(oblique, 15));
+}
+
+void Game::drawGauge(bool _isLeft, Vec2 _topLeft, int _width, String _fillColor, String _frameColor) {
+	gauge(_isLeft, _topLeft, _width).draw(Color(_fillColor)).drawFrame(2, Color(_frameColor));
 }
