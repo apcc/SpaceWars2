@@ -1,6 +1,5 @@
 #include "./Bomb.hpp"
 
-int Bomb::numberOfBomb = 0;
 int Bomb::numberOfLUsed = 0;
 int Bomb::numberOfRUsed = 0;
 

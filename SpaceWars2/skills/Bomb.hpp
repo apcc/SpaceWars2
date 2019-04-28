@@ -10,7 +10,9 @@ private:
 	static int numberOfLUsed;
 	static int numberOfRUsed;
 	int BombUsed;
-	static int numberOfBomb;
+	int nowBombNumber;
+	int bulletSpeed = 20;
+	int fuse = 0;
 	const static int EXPLODE_RADIUS = 100;
 	Circle getShape() {
 		if (explosion) {
@@ -31,14 +33,7 @@ public:
 			numberOfRUsed++;
 		}
 		nowBombNumber = (isLeft ? numberOfLUsed : numberOfRUsed);
-		Println(nowBombNumber);
 	}
-	~Bomb() {
-
-	}
-	int nowBombNumber;
-	int fuse = 0;
-	int bulletSpeed = 20;
 	bool update(Vec2 _myPos, Vec2 _oppPos) override;
 	void draw() override;
 	bool isVisible() override;
