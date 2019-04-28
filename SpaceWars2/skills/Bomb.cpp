@@ -51,7 +51,7 @@ int Bomb::getDamage(Circle _circle) {
 		vel.set(0, 0);
 		if (explosion) {
 			if (fuse == 0) {
-				return (int)((EXPLODE_RADIUS - pos.distanceFrom(_circle.center)) / EXPLODE_RADIUS * 100);
+				return 70;
 			}
 		}
 	}
