@@ -71,8 +71,13 @@ void Game::draw() const {
 
 	Line(Config::WIDTH / 2, 0, Config::WIDTH / 2, Config::HEIGHT).draw(3, ColorF(L"#fff").setAlpha(0.8));
 
+	gauge(true,  { 565, 40 }, 370).draw(ColorF(L"#fee").setAlpha(0.5)).drawFrame(2, ColorF(L"#f88").setAlpha(0.5));
+	gauge(false, { 720, 40 }, 370).draw(ColorF(L"#fee").setAlpha(0.5)).drawFrame(2, ColorF(L"#f88").setAlpha(0.5));
 	gauge(true,  { 565, 40 }, Data::LPlayer.HP / 1000.0 * 370).draw(Color(L"#f77")).drawFrame(2, Color(L"#f00"));
 	gauge(false, { 720, 40 }, Data::RPlayer.HP / 1000.0 * 370).draw(Color(L"#f77")).drawFrame(2, Color(L"#f00"));
+
+	gauge(true,  { 575, 65 }, 215).draw(ColorF(L"#efe").setAlpha(0.5)).drawFrame(2, ColorF(L"#8f8").setAlpha(0.5));
+	gauge(false, { 710, 65 }, 215).draw(ColorF(L"#efe").setAlpha(0.5)).drawFrame(2, ColorF(L"#8f8").setAlpha(0.5));
 	gauge(true,  { 575, 65 }, Data::LPlayer.temperature / 1000.0 * 215).draw(Color(L"#7f7")).drawFrame(2, Color(L"#0f0"));
 	gauge(false, { 710, 65 }, Data::RPlayer.temperature / 1000.0 * 215).draw(Color(L"#7f7")).drawFrame(2, Color(L"#0f0"));
 
