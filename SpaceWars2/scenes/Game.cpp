@@ -71,10 +71,10 @@ void Game::draw() const {
 
 	Line(Config::WIDTH / 2, 0, Config::WIDTH / 2, Config::HEIGHT).draw(3, ColorF(L"#fff").setAlpha(0.8));
 
-	gauge(true,  { 195, 40 }, 370).draw(Color(L"#f77")).drawFrame(2, Color(L"#f00"));
-	gauge(false, { 720, 40 }, 370).draw(Color(L"#f77")).drawFrame(2, Color(L"#f00"));
-	gauge(true,  { 360, 65 }, 215).draw(Color(L"#77f")).drawFrame(2, Color(L"#00f"));
-	gauge(false, { 710, 65 }, 215).draw(Color(L"#77f")).drawFrame(2, Color(L"#00f"));
+	gauge(true,  { 565, 40 }, Data::LPlayer.HP / 1000.0 * 370).draw(Color(L"#f77")).drawFrame(2, Color(L"#f00"));
+	gauge(false, { 720, 40 }, Data::RPlayer.HP / 1000.0 * 370).draw(Color(L"#f77")).drawFrame(2, Color(L"#f00"));
+	gauge(true,  { 575, 65 }, Data::LPlayer.temperature / 1000.0 * 215).draw(Color(L"#7f7")).drawFrame(2, Color(L"#0f0"));
+	gauge(false, { 710, 65 }, Data::RPlayer.temperature / 1000.0 * 215).draw(Color(L"#7f7")).drawFrame(2, Color(L"#0f0"));
 
 	if (!finish) {
 		Vec2 buttonPos(890, 692);
@@ -154,11 +154,14 @@ void Game::rightAlign(String _font, String _text, int _x, int _y, Color _color) 
 	FontAsset(_font)(_text).draw(_x - FontAsset(_font)(_text).region().w, _y, _color);
 }
 
-Quad Game::gauge(bool _isLeft, Vec2 _topLeft, int _width) {
+Quad Game::gauge(bool _isLeft, Vec2 _topLeft, double _width) {
 	int oblique = (_isLeft ? 5 : -5);
-	return Quad(_topLeft, _topLeft + Vec2(_width, 0), _topLeft + Vec2(_width + oblique, 15), _topLeft + Vec2(oblique, 15));
+	if (_isLeft)
+		return Quad(_topLeft + Vec2(-_width, 0), _topLeft, _topLeft + Vec2(oblique, 15), _topLeft + Vec2(-_width + oblique, 15));
+	else
+		return Quad(_topLeft, _topLeft + Vec2(_width, 0), _topLeft + Vec2(_width + oblique, 15), _topLeft + Vec2(oblique, 15));
 }
 
-void Game::drawGauge(bool _isLeft, Vec2 _topLeft, int _width, String _fillColor, String _frameColor) {
+void Game::drawGauge(bool _isLeft, Vec2 _topLeft, double _width, String _fillColor, String _frameColor) {
 	gauge(_isLeft, _topLeft, _width).draw(Color(_fillColor)).drawFrame(2, Color(_frameColor));
 }
