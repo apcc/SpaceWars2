@@ -36,6 +36,7 @@ void Main(){
 	FontAsset::Register(L"Smart32", 32, L"03SmartFont-Proportional");
 	FontAsset::Register(L"Smart28", 28, L"03SmartFont-Proportional");
 	FontAsset::Register(L"Smart12", 12, L"03SmartFont-Proportional");
+	FontAsset::Register(L"SmartB12", 12, L"03SmartFont-Proportional", FontStyle::Bold);
 	FontAsset::Register(L"CicaR32", 32, L"Cica");
 	FontAsset::Register(L"CicaR12", 12, L"Cica");
 

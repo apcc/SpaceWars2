@@ -81,6 +81,9 @@ void Game::draw() const {
 	gauge(true,  { 575, 65 }, Data::LPlayer.temperature / 1000.0 * 215).draw(Color(L"#7f7")).drawFrame(2, Color(L"#0f0"));
 	gauge(false, { 710, 65 }, Data::RPlayer.temperature / 1000.0 * 215).draw(Color(L"#7f7")).drawFrame(2, Color(L"#0f0"));
 
+	rightAlign(L"SmartB12", Format(Data::LPlayer.temperature / 10, L"℃"), 350, 62, Color(L"#7f7"));
+	FontAsset(L"SmartB12")(Data::RPlayer.temperature / 10, L"℃").draw(935, 62, Color(L"#7f7"));
+
 	if (!finish) {
 		Vec2 buttonPos(890, 692);
 
