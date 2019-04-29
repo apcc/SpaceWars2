@@ -33,12 +33,12 @@ void Game::update() {
 
 			double x = 900;
 			for (auto HP : Data::LPlayer.HPLog) {
-				LHPGraph.push_back({ x, 540 - HP / 10 });
+				LHPGraph.push_back({ x, 540 - HP / 10.0 });
 				x += 250.0 / Data::LPlayer.HPLog.size();
 			}
 			x = 900;
 			for (auto HP : Data::RPlayer.HPLog) {
-				RHPGraph.push_back({ x, 540 - HP / 10 });
+				RHPGraph.push_back({ x, 540 - HP / 10.0 });
 				x += 250.0 / Data::RPlayer.HPLog.size();
 			}
 			finishInit = true;
