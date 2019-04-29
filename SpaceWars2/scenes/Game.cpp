@@ -136,8 +136,8 @@ void Game::draw() const {
 		Line(900, 490, 1170, 490).draw(1, ColorF(L"#fff").setAlpha(0.8));
 		LHPGraph.draw(3, ColorF(L"#f00").setAlpha(0.5));
 		RHPGraph.draw(3, ColorF(L"#00f").setAlpha(0.5));
-		Line(900, 420,  900, 540).draw(4);
-		Line(900, 540, 1170, 540).draw(4);
+		Line(898, 420,  898, 542).draw(4);
+		Line(898, 542, 1170, 542).draw(4);
 
 		// 装飾
 		Line(250, 380, 250, 620).draw(6, ColorF(L"#00BFFF"));
