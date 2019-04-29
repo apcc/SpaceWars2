@@ -87,6 +87,10 @@ void Game::draw() const {
 	rightAlign(L"SmartB12", Format(Data::LPlayer.temperature / 10, L"℃"), 350, 62, Color(L"#7f7"));
 	FontAsset(L"SmartB12")(Data::RPlayer.temperature / 10, L"℃").draw(935, 62, Color(L"#7f7"));
 
+	// cooldown value
+	rightAlign(L"SmartB12", Format(Data::LPlayer.coolDownTime / 60, L"s"), 235, 62, Color(L"#77f"));
+	FontAsset(L"SmartB12")(Data::RPlayer.coolDownTime / 60, L"s").draw(1050, 62, Color(L"#77f"));
+
 	if (!finish) {
 		Vec2 buttonPos(890, 692);
 
