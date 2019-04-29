@@ -1,5 +1,7 @@
 #include "Game.hpp"
 
+#define ROUND(x, divisor) ((x + x % divisor) / divisor)
+
 void Game::init() {
 	stopwatch.start();
 }
@@ -84,12 +86,12 @@ void Game::draw() const {
 	gauge(false, { 710, 65 }, Data::RPlayer.temperature / 1000.0 * 215).draw(Color(L"#7f7")).drawFrame(2, Color(L"#0f0"));
 
 	// temperature value
-	rightAlign(L"SmartB12", Format(Data::LPlayer.temperature / 10, L"℃"), 350, 62, Color(L"#7f7"));
-	FontAsset(L"SmartB12")(Data::RPlayer.temperature / 10, L"℃").draw(935, 62, Color(L"#7f7"));
+	rightAlign(L"SmartB12", Format(ROUND(Data::LPlayer.temperature, 10), L"℃"), 350, 62, Color(L"#7f7"));
+	FontAsset(L"SmartB12")(ROUND(Data::RPlayer.temperature, 10), L"℃").draw(935, 62, Color(L"#7f7"));
 
 	// cooldown value
-	rightAlign(L"SmartB12", Format(Data::LPlayer.coolDownTime / 60, L"s"), 235, 62, Color(L"#77f"));
-	FontAsset(L"SmartB12")(Data::RPlayer.coolDownTime / 60, L"s").draw(1050, 62, Color(L"#77f"));
+	rightAlign(L"SmartB12", Format(ROUND(Data::LPlayer.coolDownTime, 60), L"s"), 235, 62, Color(L"#77f"));
+	FontAsset(L"SmartB12")(ROUND(Data::RPlayer.coolDownTime, 60), L"s").draw(1050, 62, Color(L"#77f"));
 
 	if (!finish) {
 		Vec2 buttonPos(890, 692);
