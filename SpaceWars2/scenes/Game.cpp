@@ -56,20 +56,12 @@ void Game::update() {
 void Game::draw() const {
 	TextureAsset(L"background").resize(Config::WIDTH, Config::HEIGHT).draw();
 
-	/*Data::LPlayer.DrawMainSkill();
-	Data::LPlayer.DrawSubSkill();
-	Data::LPlayer.DrawSpecialSkill();
-	Data::RPlayer.DrawMainSkill();
-	Data::RPlayer.DrawSubSkill();
-	Data::RPlayer.DrawSpecialSkill();*/
 	for (auto bul : bullets) {
 		bul->draw();
 	}
 
 	Data::LPlayer.drawShip();
 	Data::RPlayer.drawShip();
-	// Data::LPlayer.drawGauge();
-	// Data::RPlayer.drawGauge();
 
 	Line(Config::WIDTH / 2, 0, Config::WIDTH / 2, Config::HEIGHT).draw(3, ColorF(L"#fff").setAlpha(0.8));
 
