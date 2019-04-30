@@ -163,14 +163,20 @@ void Game::rightAlign(String _font, String _text, int _x, int _y, Color _color) 
 void Game::drawHPGauge(bool _isLeft) {
 	Vec2 pos(0, 40);
 	double width;
+	int reflectionX;
 	if (_isLeft) {
 		width = Data::LPlayer.HP / 1000.0 * 360;
 		pos.x = 560 - width;
+		reflectionX = 560 - 360;
 	}
 	else {
 		width = Data::RPlayer.HP / 1000.0 * 360;
 		pos.x = 720;
+		reflectionX = 720;
 	}
+
+	RoundRect({ reflectionX, pos.y }, { 360, 15 }, 7.5)
+		.draw(ColorF(L"#f99").setAlpha(0.25));
 
 	RoundRect(pos.asPoint(), { width + 12, 15 }, 7.5)
 		.drawShadow({}, 8, 3, Color(L"#f22"));
@@ -182,14 +188,20 @@ void Game::drawHPGauge(bool _isLeft) {
 void Game::drawTemperatureGauge(bool _isLeft) {
 	Vec2 pos(0, 65);
 	double width;
+	int reflectionX;
 	if (_isLeft) {
 		width = Data::LPlayer.temperature / 1000.0 * 240;
 		pos.x = 560 - width;
+		reflectionX = 560 - 240;
 	}
 	else {
 		width = Data::RPlayer.temperature / 1000.0 * 240;
 		pos.x = 720;
+		reflectionX = 720;
 	}
+
+	RoundRect({ reflectionX, pos.y }, { 240, 15 }, 7.5)
+		.draw(ColorF(L"#9f9").setAlpha(0.25));
 
 	RoundRect(pos.asPoint(), { width + 12, 15 }, 7.5)
 		.drawShadow({}, 8, 3, Color(L"#2f2"));
