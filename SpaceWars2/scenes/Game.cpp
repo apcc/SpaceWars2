@@ -74,10 +74,8 @@ void Game::draw() const {
 	Line(Config::WIDTH / 2, 0, Config::WIDTH / 2, Config::HEIGHT).draw(3, ColorF(L"#fff").setAlpha(0.8));
 
 	// HP gauge
-	gauge(true,  { 565, 40 }, 370).draw(ColorF(L"#fee").setAlpha(0.5)).drawFrame(2, ColorF(L"#f88").setAlpha(0.5));
-	gauge(false, { 720, 40 }, 370).draw(ColorF(L"#fee").setAlpha(0.5)).drawFrame(2, ColorF(L"#f88").setAlpha(0.5));
-	gauge(true,  { 565, 40 }, Data::LPlayer.HP / 1000.0 * 370).draw(Color(L"#f77")).drawFrame(2, Color(L"#f00"));
-	gauge(false, { 720, 40 }, Data::RPlayer.HP / 1000.0 * 370).draw(Color(L"#f77")).drawFrame(2, Color(L"#f00"));
+	drawHPGauge(true);
+	drawHPGauge(false);
 
 	// temperature gauge
 	gauge(true,  { 575, 65 }, 215).draw(ColorF(L"#efe").setAlpha(0.5)).drawFrame(2, ColorF(L"#8f8").setAlpha(0.5));
@@ -181,4 +179,23 @@ Quad Game::gauge(bool _isLeft, Vec2 _topLeft, double _width) {
 
 void Game::drawGauge(bool _isLeft, Vec2 _topLeft, double _width, String _fillColor, String _frameColor) {
 	gauge(_isLeft, _topLeft, _width).draw(Color(_fillColor)).drawFrame(2, Color(_frameColor));
+}
+
+void Game::drawHPGauge(bool _isLeft) {
+	Vec2 pos(0, 40);
+	double width;
+	if (_isLeft) {
+		width = Data::LPlayer.HP / 1000.0 * 360;
+		pos.x = 560 - width;
+	}
+	else {
+		width = Data::RPlayer.HP / 1000.0 * 360;
+		pos.x = 720;
+	}
+
+	Rect(pos.asPoint(), { width + 12, 15 })
+		.drawShadow({}, 8, 3, Color(L"#f22"));
+
+	Rect(pos.asPoint() + Vec2(6, 6).asPoint(), { width, 3 })
+		.drawShadow({}, 8, 4, Color(L"#fee"));
 }

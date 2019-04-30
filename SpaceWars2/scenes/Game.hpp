@@ -14,6 +14,7 @@ private:
 	static void rightAlign(String _font, String _text, int _x, int _y, Color _color = Color(L"#fff"));
 	static Quad gauge(bool _isLeft, Vec2 _topLeft, double _width);
 	static void drawGauge(bool _isLeft, Vec2 _topLeft, double _width, String _fillColor, String _frameColor);
+	static void drawHPGauge(bool _isLeft);
 
 public:
 	void init() override;
