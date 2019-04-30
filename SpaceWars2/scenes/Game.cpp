@@ -159,17 +159,6 @@ void Game::rightAlign(String _font, String _text, int _x, int _y, Color _color) 
 	FontAsset(_font)(_text).draw(_x - FontAsset(_font)(_text).region().w, _y, _color);
 }
 
-Quad Game::gauge(bool _isLeft, Vec2 _topLeft, double _width) {
-	int oblique = (_isLeft ? 5 : -5);
-	if (_isLeft)
-		return Quad(_topLeft + Vec2(-_width, 0), _topLeft, _topLeft + Vec2(oblique, 15), _topLeft + Vec2(-_width + oblique, 15));
-	else
-		return Quad(_topLeft, _topLeft + Vec2(_width, 0), _topLeft + Vec2(_width + oblique, 15), _topLeft + Vec2(oblique, 15));
-}
-
-void Game::drawGauge(bool _isLeft, Vec2 _topLeft, double _width, String _fillColor, String _frameColor) {
-	gauge(_isLeft, _topLeft, _width).draw(Color(_fillColor)).drawFrame(2, Color(_frameColor));
-}
 
 void Game::drawHPGauge(bool _isLeft) {
 	Vec2 pos(0, 40);
