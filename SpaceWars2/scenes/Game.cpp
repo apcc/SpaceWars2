@@ -1,5 +1,7 @@
 #include "Game.hpp"
 
+#define ROUND(x, divisor) ((x + x % divisor) / divisor)
+
 void Game::init() {
 	stopwatch.start();
 }
@@ -54,24 +56,32 @@ void Game::update() {
 void Game::draw() const {
 	TextureAsset(L"background").resize(Config::WIDTH, Config::HEIGHT).draw();
 
-	/*Data::LPlayer.DrawMainSkill();
-	Data::LPlayer.DrawSubSkill();
-	Data::LPlayer.DrawSpecialSkill();
-	Data::RPlayer.DrawMainSkill();
-	Data::RPlayer.DrawSubSkill();
-	Data::RPlayer.DrawSpecialSkill();*/
-	for(auto bul : bullets){
+	for (auto bul : bullets) {
 		bul->draw();
 	}
 
 	Data::LPlayer.drawShip();
 	Data::RPlayer.drawShip();
-	Data::LPlayer.drawGauge();
-	Data::RPlayer.drawGauge();
+
+	Line(Config::WIDTH / 2, 0, Config::WIDTH / 2, Config::HEIGHT).draw(3, ColorF(L"#fff").setAlpha(0.8));
+
+	// HP gauge
+	drawHPGauge(true);
+	drawHPGauge(false);
+
+	// temperature gauge
+	drawTemperatureGauge(true);
+	drawTemperatureGauge(false);
+
+	// temperature value
+	rightAlign(L"Letters10", ROUND(Data::LPlayer.temperature, 10), 309, 62, Color(L"#7f7"));
+	rightAlign(L"Letters10", ROUND(Data::RPlayer.temperature, 10), 995, 62, Color(L"#7f7"));
+
+	// cooldown value
+	rightAlign(L"Letters10", ROUND(Data::LPlayer.coolDownTime, 60),  235, 62, Color(L"#77f"));
+	rightAlign(L"Letters10", ROUND(Data::RPlayer.coolDownTime, 60), 1080, 62, Color(L"#77f"));
 
 	if (!finish) {
-		FontAsset(L"Smart32")(L"I am game scene! Hello!").drawCenter(40, Color(L"#ffffff"));
-
 		Vec2 buttonPos(890, 692);
 
 		buttonPos.x += (int)TextureAsset(L"stick_24").draw(buttonPos).w + 6;
@@ -111,15 +121,15 @@ void Game::draw() const {
 		rightAlign(L"CicaR12", L"/1000", 840, 415);
 
 		// Skills
-		for (int isLeft = 0; isLeft <= 1; isLeft++) { // LPlayer, RPlayer
+		for (auto isLeft : step(2)) { // LPlayer, RPlayer
 			Player* PLAYER = &(isLeft ? Data::LPlayer : Data::RPlayer);
 			String skillType[3] = { L"main", L"sub", L"special" };
 			int    whatSkill[3] = { PLAYER->whatMainSkill, PLAYER->whatSubSkill, PLAYER->whatSpecialSkill };
 			int	   skillsCnt[3] = { PLAYER->mainSkillCnt, PLAYER->subSkillCnt, PLAYER->specialSkillCnt };
 			String skillColor[3] = { L"#0c0", L"#00c", L"#ffd000" };
-			for (int type = 0; type < 3; type++) { // mainSkill, subSkill, specialSkill
+			for (auto type : step(3)) { // mainSkill, subSkill, specialSkill
 				TextureAsset(skillType[type] + Format((int)whatSkill[type])).resize(50, 50)
-				.draw(670 + (60 * type) - (220 * isLeft), 472);
+					.draw(670 + (60 * type) - (220 * isLeft), 472);
 
 				Rect(670 + (60 * type) - (220 * isLeft), 522, 50, 20).draw(Color(skillColor[type]));
 
@@ -145,6 +155,66 @@ void Game::draw() const {
 }
 
 
-void Game::rightAlign(String _font, String _text, int _x, int _y, Color _color) {
-	FontAsset(_font)(_text).draw(_x - FontAsset(_font)(_text).region().w, _y, _color);
+template<typename T>
+void Game::rightAlign(const String& _font, T _text, int _x, int _y, Color _color) {
+	FontAsset(_font)(Format(_text)).draw(_x - FontAsset(_font)(Format(_text)).region().w, _y, _color);
 }
+
+
+void Game::drawHPGauge(bool _isLeft) {
+	Vec2 pos(0, 40);
+	double width;
+	int reflectionX;
+	if (_isLeft) {
+		width = Data::LPlayer.HP / 1000.0 * 360;
+		pos.x = 560 - width;
+		reflectionX = 560 - 360;
+	}
+	else {
+		width = Data::RPlayer.HP / 1000.0 * 360;
+		pos.x = 720;
+		reflectionX = 720;
+	}
+
+	// 背景
+	RoundRect({ reflectionX, pos.y }, { 360 + 12, 15 }, 7.5)
+		.draw(ColorF(L"#f99").setAlpha(0.25));
+
+	// 外周
+	RoundRect(pos.asPoint(), { width + 12, 15 }, 7.5)
+		.drawShadow({}, 8, 3, Color(L"#f22"));
+
+	// 内周
+	RoundRect(pos.asPoint() + Vec2(6, 6).asPoint(), { width, 3 }, 1.5)
+		.drawShadow({}, 8, 4, Color(L"#fee"));
+}
+
+void Game::drawTemperatureGauge(bool _isLeft) {
+	Vec2 pos(0, 65);
+	double width;
+	int reflectionX;
+	if (_isLeft) {
+		width = Data::LPlayer.temperature / 1000.0 * 240;
+		pos.x = 560 - width;
+		reflectionX = 560 - 240;
+	}
+	else {
+		width = Data::RPlayer.temperature / 1000.0 * 240;
+		pos.x = 720;
+		reflectionX = 720;
+	}
+
+	// 背景
+	RoundRect({ reflectionX, pos.y }, { 240 + 12, 15 }, 7.5)
+		.draw(ColorF(L"#9f9").setAlpha(0.25));
+
+	// 外周
+	RoundRect(pos.asPoint(), { width + 12, 15 }, 7.5)
+		.drawShadow({}, 8, 3, Color(L"#2f2"));
+
+	// 内周
+	RoundRect(pos.asPoint() + Vec2(6, 6).asPoint(), { width, 3 }, 1.5)
+		.drawShadow({}, 8, 4, Color(L"#efe"));
+	
+}
+

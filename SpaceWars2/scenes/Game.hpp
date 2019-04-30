@@ -11,7 +11,10 @@ private:
 	LineString LHPGraph;
 	LineString RHPGraph;
 
-	static void rightAlign(String _font, String _text, int _x, int _y, Color _color = Color(L"#fff"));
+	template<typename T>
+	static void rightAlign(const String& _font, T _text, int _x, int _y, Color _color = Color(L"#fff"));
+	static void drawHPGauge(bool _isLeft);
+	static void drawTemperatureGauge(bool _isLeft);
 
 public:
 	void init() override;
