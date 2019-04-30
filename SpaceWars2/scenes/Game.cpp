@@ -175,12 +175,15 @@ void Game::drawHPGauge(bool _isLeft) {
 		reflectionX = 720;
 	}
 
+	// 背景
 	RoundRect({ reflectionX, pos.y }, { 360, 15 }, 7.5)
 		.draw(ColorF(L"#f99").setAlpha(0.25));
 
+	// 外周
 	RoundRect(pos.asPoint(), { width + 12, 15 }, 7.5)
 		.drawShadow({}, 8, 3, Color(L"#f22"));
 
+	// 内周
 	RoundRect(pos.asPoint() + Vec2(6, 6).asPoint(), { width, 3 }, 1.5)
 		.drawShadow({}, 8, 4, Color(L"#fee"));
 }
@@ -200,12 +203,15 @@ void Game::drawTemperatureGauge(bool _isLeft) {
 		reflectionX = 720;
 	}
 
+	// 背景
 	RoundRect({ reflectionX, pos.y }, { 240, 15 }, 7.5)
 		.draw(ColorF(L"#9f9").setAlpha(0.25));
 
+	// 外周
 	RoundRect(pos.asPoint(), { width + 12, 15 }, 7.5)
 		.drawShadow({}, 8, 3, Color(L"#2f2"));
 
+	// 内周
 	RoundRect(pos.asPoint() + Vec2(6, 6).asPoint(), { width, 3 }, 1.5)
 		.drawShadow({}, 8, 4, Color(L"#efe"));
 	
