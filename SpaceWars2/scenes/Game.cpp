@@ -74,12 +74,12 @@ void Game::draw() const {
 	drawTemperatureGauge(false);
 
 	// temperature value
-	rightAlign(L"Letters10", Format(ROUND(Data::LPlayer.temperature, 10)), 309, 62, Color(L"#7f7"));
-	rightAlign(L"Letters10", Format(ROUND(Data::RPlayer.temperature, 10)), 995, 62, Color(L"#7f7"));
+	rightAlign(L"Letters10", ROUND(Data::LPlayer.temperature, 10), 309, 62, Color(L"#7f7"));
+	rightAlign(L"Letters10", ROUND(Data::RPlayer.temperature, 10), 995, 62, Color(L"#7f7"));
 
 	// cooldown value
-	rightAlign(L"Letters10", Format(ROUND(Data::LPlayer.coolDownTime, 60)),  235, 62, Color(L"#77f"));
-	rightAlign(L"Letters10", Format(ROUND(Data::RPlayer.coolDownTime, 60)), 1080, 62, Color(L"#77f"));
+	rightAlign(L"Letters10", ROUND(Data::LPlayer.coolDownTime, 60),  235, 62, Color(L"#77f"));
+	rightAlign(L"Letters10", ROUND(Data::RPlayer.coolDownTime, 60), 1080, 62, Color(L"#77f"));
 
 	if (!finish) {
 		Vec2 buttonPos(890, 692);
@@ -155,8 +155,9 @@ void Game::draw() const {
 }
 
 
-void Game::rightAlign(const String& _font, const String& _text, int _x, int _y, Color _color) {
-	FontAsset(_font)(_text).draw(_x - FontAsset(_font)(_text).region().w, _y, _color);
+template<typename T>
+void Game::rightAlign(const String& _font, T _text, int _x, int _y, Color _color) {
+	FontAsset(_font)(Format(_text)).draw(_x - FontAsset(_font)(Format(_text)).region().w, _y, _color);
 }
 
 
@@ -176,7 +177,7 @@ void Game::drawHPGauge(bool _isLeft) {
 	}
 
 	// 背景
-	RoundRect({ reflectionX, pos.y }, { 360, 15 }, 7.5)
+	RoundRect({ reflectionX, pos.y }, { 360 + 12, 15 }, 7.5)
 		.draw(ColorF(L"#f99").setAlpha(0.25));
 
 	// 外周
@@ -204,7 +205,7 @@ void Game::drawTemperatureGauge(bool _isLeft) {
 	}
 
 	// 背景
-	RoundRect({ reflectionX, pos.y }, { 240, 15 }, 7.5)
+	RoundRect({ reflectionX, pos.y }, { 240 + 12, 15 }, 7.5)
 		.draw(ColorF(L"#9f9").setAlpha(0.25));
 
 	// 外周
