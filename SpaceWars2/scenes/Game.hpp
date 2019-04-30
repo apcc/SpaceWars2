@@ -15,6 +15,7 @@ private:
 	static Quad gauge(bool _isLeft, Vec2 _topLeft, double _width);
 	static void drawGauge(bool _isLeft, Vec2 _topLeft, double _width, String _fillColor, String _frameColor);
 	static void drawHPGauge(bool _isLeft);
+	static void drawTemperatureGauge(bool _isLeft);
 
 public:
 	void init() override;

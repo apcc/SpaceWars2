@@ -78,10 +78,8 @@ void Game::draw() const {
 	drawHPGauge(false);
 
 	// temperature gauge
-	gauge(true,  { 575, 65 }, 215).draw(ColorF(L"#efe").setAlpha(0.5)).drawFrame(2, ColorF(L"#8f8").setAlpha(0.5));
-	gauge(false, { 710, 65 }, 215).draw(ColorF(L"#efe").setAlpha(0.5)).drawFrame(2, ColorF(L"#8f8").setAlpha(0.5));
-	gauge(true,  { 575, 65 }, Data::LPlayer.temperature / 1000.0 * 215).draw(Color(L"#7f7")).drawFrame(2, Color(L"#0f0"));
-	gauge(false, { 710, 65 }, Data::RPlayer.temperature / 1000.0 * 215).draw(Color(L"#7f7")).drawFrame(2, Color(L"#0f0"));
+	drawTemperatureGauge(true);
+	drawTemperatureGauge(false);
 
 	// temperature value
 	rightAlign(L"SmartB12", Format(ROUND(Data::LPlayer.temperature, 10), L"℃"), 350, 62, Color(L"#7f7"));
@@ -199,3 +197,24 @@ void Game::drawHPGauge(bool _isLeft) {
 	RoundRect(pos.asPoint() + Vec2(6, 6).asPoint(), { width, 3 }, 1.5)
 		.drawShadow({}, 8, 4, Color(L"#fee"));
 }
+
+void Game::drawTemperatureGauge(bool _isLeft) {
+	Vec2 pos(0, 65);
+	double width;
+	if (_isLeft) {
+		width = Data::LPlayer.temperature / 1000.0 * 240;
+		pos.x = 560 - width;
+	}
+	else {
+		width = Data::RPlayer.temperature / 1000.0 * 240;
+		pos.x = 720;
+	}
+
+	RoundRect(pos.asPoint(), { width + 12, 15 }, 7.5)
+		.drawShadow({}, 8, 3, Color(L"#2f2"));
+
+	RoundRect(pos.asPoint() + Vec2(6, 6).asPoint(), { width, 3 }, 1.5)
+		.drawShadow({}, 8, 4, Color(L"#efe"));
+	
+}
+
