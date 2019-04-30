@@ -121,13 +121,13 @@ void Game::draw() const {
 		rightAlign(L"CicaR12", L"/1000", 840, 415);
 
 		// Skills
-		for (int isLeft = 0; isLeft <= 1; isLeft++) { // LPlayer, RPlayer
+		for (auto isLeft : step(2)) { // LPlayer, RPlayer
 			Player* PLAYER = &(isLeft ? Data::LPlayer : Data::RPlayer);
 			String skillType[3] = { L"main", L"sub", L"special" };
 			int    whatSkill[3] = { PLAYER->whatMainSkill, PLAYER->whatSubSkill, PLAYER->whatSpecialSkill };
 			int	   skillsCnt[3] = { PLAYER->mainSkillCnt, PLAYER->subSkillCnt, PLAYER->specialSkillCnt };
 			String skillColor[3] = { L"#0c0", L"#00c", L"#ffd000" };
-			for (int type = 0; type < 3; type++) { // mainSkill, subSkill, specialSkill
+			for (auto type : step(3)) { // mainSkill, subSkill, specialSkill
 				TextureAsset(skillType[type] + Format((int)whatSkill[type])).resize(50, 50)
 					.draw(670 + (60 * type) - (220 * isLeft), 472);
 
