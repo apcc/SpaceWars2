@@ -74,12 +74,12 @@ void Game::draw() const {
 	drawTemperatureGauge(false);
 
 	// temperature value
-	rightAlign(L"SmartB12", Format(ROUND(Data::LPlayer.temperature, 10), L"℃"), 309, 61.5, Color(L"#7f7"));
-	FontAsset(L"SmartB12")(ROUND(Data::RPlayer.temperature, 10), L"℃").draw(967, 61.5, Color(L"#7f7"));
+	rightAlign(L"Letters10", Format(ROUND(Data::LPlayer.temperature, 10)), 309, 62, Color(L"#7f7"));
+	FontAsset(L"Letters10")(ROUND(Data::RPlayer.temperature, 10)).draw(967, 61.5, Color(L"#7f7"));
 
 	// cooldown value
-	rightAlign(L"SmartB12", Format(ROUND(Data::LPlayer.coolDownTime, 60), L"s"), 235, 61.5, Color(L"#77f"));
-	FontAsset(L"SmartB12")(ROUND(Data::RPlayer.coolDownTime, 60), L"s").draw(1050, 61.5, Color(L"#77f"));
+	rightAlign(L"Letters10", Format(ROUND(Data::LPlayer.coolDownTime, 60)), 235, 62, Color(L"#77f"));
+	FontAsset(L"Letters10")(ROUND(Data::RPlayer.coolDownTime, 60)).draw(1050, 61.5, Color(L"#77f"));
 
 	if (!finish) {
 		Vec2 buttonPos(890, 692);
