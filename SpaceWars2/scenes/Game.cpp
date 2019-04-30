@@ -155,7 +155,7 @@ void Game::draw() const {
 }
 
 
-void Game::rightAlign(String _font, String _text, int _x, int _y, Color _color) {
+void Game::rightAlign(const String& _font, const String& _text, int _x, int _y, Color _color) {
 	FontAsset(_font)(_text).draw(_x - FontAsset(_font)(_text).region().w, _y, _color);
 }
 
