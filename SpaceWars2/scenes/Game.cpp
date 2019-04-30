@@ -193,9 +193,9 @@ void Game::drawHPGauge(bool _isLeft) {
 		pos.x = 720;
 	}
 
-	Rect(pos.asPoint(), { width + 12, 15 })
+	RoundRect(pos.asPoint(), { width + 12, 15 }, 7.5)
 		.drawShadow({}, 8, 3, Color(L"#f22"));
 
-	Rect(pos.asPoint() + Vec2(6, 6).asPoint(), { width, 3 })
+	RoundRect(pos.asPoint() + Vec2(6, 6).asPoint(), { width, 3 }, 1.5)
 		.drawShadow({}, 8, 4, Color(L"#fee"));
 }
