@@ -6,8 +6,8 @@ class Grenade final : public Bullet {
 private:
 	Circle getShape() { return Circle(pos, (fuse>EXPLODE_TIMING)?8:EXPLODE_RADIUS); }
 	int fuse;
-	const static int EXPLODE_TIMING=20;
-	const static int EXPLODE_RADIUS=300;
+	const static int EXPLODE_TIMING=14;
+	const static int EXPLODE_RADIUS=250;
 public:
 	Grenade(Vec2 _pos, bool _isLeft) : Bullet(_pos, _isLeft) {
 		vel = Vec2(bulletSpeed * (_isLeft ? 1 : -1), 0).rotate(Radians(Random(-5, 5)));
@@ -20,5 +20,5 @@ public:
 	int getDamage(Circle _circle) override;
 	void explode();
 
-	const static int bulletSpeed = 10;
+	const static int bulletSpeed = 14;
 };

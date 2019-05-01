@@ -24,7 +24,7 @@ int Grenade::getDamage(Circle _circle){
 		if(fuse > EXPLODE_TIMING)
 			this->explode();
 		if(fuse == EXPLODE_TIMING)
-			return (int)(((EXPLODE_RADIUS + 60) - pos.distanceFrom(_circle.center)) / (EXPLODE_RADIUS + 60) * 10);
+			return (int)(((EXPLODE_RADIUS + 60) - pos.distanceFrom(_circle.center)) / (EXPLODE_RADIUS + 60) * 40);
 		return 0;
 	}
 	return 0;

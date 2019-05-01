@@ -1,6 +1,6 @@
 #include "./Player.hpp"
 #include "../CommonData.hpp"
-#define PLAYER_SPEED 15
+#define PLAYER_SPEED 8
 #define GAUGE_LIMIT 1000.0
 #define GAUGE_WIDTH (Config::WIDTH / 2.0 / GAUGE_LIMIT)
 
@@ -103,7 +103,7 @@ void Player::update(std::vector<Bullet*> &bullets){
 
 	if (temperature > 100) {
 		if (howFrameAfterShooting >= 60) {
-			temperature -= 3;
+			temperature -= 5;
 		}
 	}
 

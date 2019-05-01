@@ -15,7 +15,7 @@ bool Shot::isVisible(){
 int Shot::getDamage(Circle _circle) {
 	if(_circle.intersects(this->getShape())){
 		shouldBeDestroyed=true;
-		return 10;
+		return 20;
 	}
 	return 0;
 }

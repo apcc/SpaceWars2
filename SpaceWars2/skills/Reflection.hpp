@@ -16,5 +16,5 @@ public:
 	int getDamage(Circle circle) override;
 	int ReflectCount = 0;
 
-	const static int bulletSpeed = 5;
+	const static int bulletSpeed = 10;
 };

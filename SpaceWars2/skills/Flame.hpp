@@ -9,7 +9,7 @@ private:
 	RectF getShapeFlameBelt() {
 		if (isLeft) {
 			if (bulletSpeed * 120 < pos.x - ppos.x) {
-				return  RectF(pos.x, pos.y - 20, -bulletSpeed * 120, 40);
+				return  RectF(pos.x, pos.y - 20, -bulletSpeed * 80, 40);
 			}
 			else {
 				return RectF(pos.x, pos.y - 20, -(pos.x - ppos.x), 40);
@@ -17,7 +17,7 @@ private:
 		}
 		else {
 			if (bulletSpeed * 120 < ppos.x - pos.x) {
-				return  RectF(pos.x + bulletSpeed, pos.y - 20, bulletSpeed * 120, 40);
+				return  RectF(pos.x + bulletSpeed, pos.y - 20, bulletSpeed * 80, 40);
 			}
 			else {
 				return RectF(pos.x, pos.y - 20, -(pos.x - ppos.x), 40);
@@ -35,5 +35,5 @@ public:
 	bool isVisible() override;
 	int getDamage(Circle circle) override;
 
-	const static int bulletSpeed = 4;
+	const static int bulletSpeed = 6;
 };
