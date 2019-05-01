@@ -1,6 +1,7 @@
 #include "Game.hpp"
 
-#define ROUND(x, divisor) ((x + x % divisor) / divisor)
+#define ROUND_UP(x, divisor)	((x + x % divisor) / divisor)
+#define ROUND_DOWN(x, divisor)	((x - x % divisor) / divisor)
 
 void Game::init() {
 	stopwatch.start();
@@ -74,16 +75,18 @@ void Game::draw() const {
 	drawTemperatureGauge(false);
 
 	// charge gauge
-	drawChargeGauge(true);
-	drawChargeGauge(false);
+	// drawChargeGauge(true);
+	// drawChargeGauge(false);
+	drawChargeCircle(true);
+	drawChargeCircle(false);
 
 	// temperature value
-	rightAlign(L"Letters10", ROUND(Data::LPlayer.temperature, 10), 309, 62, Color(L"#7f7"));
-	rightAlign(L"Letters10", ROUND(Data::RPlayer.temperature, 10), 995, 62, Color(L"#7f7"));
+	rightAlign(L"Letters10", ROUND_UP(Data::LPlayer.temperature, 10), 309, 62, Color(L"#7f7"));
+	rightAlign(L"Letters10", ROUND_UP(Data::RPlayer.temperature, 10), 995, 62, Color(L"#7f7"));
 
 	// cooldown value
-	rightAlign(L"Letters10", ROUND(Data::LPlayer.coolDownTime, 60),  235, 62, Color(L"#77f"));
-	rightAlign(L"Letters10", ROUND(Data::RPlayer.coolDownTime, 60), 1080, 62, Color(L"#77f"));
+	rightAlign(L"Letters10", ROUND_UP(Data::LPlayer.coolDownTime, 60),  235, 62, Color(L"#77f"));
+	rightAlign(L"Letters10", ROUND_UP(Data::RPlayer.coolDownTime, 60), 1080, 62, Color(L"#77f"));
 
 	if (!finish) {
 		Vec2 buttonPos(890, 692);
@@ -171,13 +174,13 @@ void Game::drawHPGauge(bool _isLeft) {
 	int reflectionX;
 	if (_isLeft) {
 		width = Data::LPlayer.HP / 1000.0 * 360;
-		pos.x = 560 - width;
-		reflectionX = 560 - 360;
+		pos.x = 550 - width;
+		reflectionX = 550 - 360;
 	}
 	else {
 		width = Data::RPlayer.HP / 1000.0 * 360;
-		pos.x = 720;
-		reflectionX = 720;
+		pos.x = 730;
+		reflectionX = 730;
 	}
 
 	// 背景
@@ -231,8 +234,8 @@ void Game::drawChargeGauge(bool _isLeft) {
 	Color innerColor(Color(L"#fffcef"));
 	if (_isLeft) {
 		width = Data::LPlayer.charge / (double)requireCharge[Data::LPlayer.whatSpecialSkill] * 180;
-		pos.x = 560 - width;
-		reflectionX = 560 - 180;
+		pos.x = 570 - width;
+		reflectionX = 570 - 180;
 		if (Data::LPlayer.charge >= requireCharge[Data::LPlayer.whatSpecialSkill]) {
 			outerColor = Color(L"#fb0");
 			innerColor = Color(L"#fff8e5");
@@ -240,8 +243,8 @@ void Game::drawChargeGauge(bool _isLeft) {
 	}
 	else {
 		width = Data::RPlayer.charge / (double)requireCharge[Data::RPlayer.whatSpecialSkill] * 180;
-		pos.x = 720;
-		reflectionX = 720;
+		pos.x = 710;
+		reflectionX = 710;
 		if (Data::RPlayer.charge >= requireCharge[Data::RPlayer.whatSpecialSkill]) {
 			outerColor = Color(L"#fb0");
 			innerColor = Color(L"#fff8e5");
@@ -259,4 +262,35 @@ void Game::drawChargeGauge(bool _isLeft) {
 	// 内周
 	RoundRect(pos.asPoint() + Vec2(6, 6).asPoint(), { width, 3 }, 1.5)
 		.drawShadow({}, 8, 4, innerColor);
+}
+
+void Game::drawChargeCircle(bool _isLeft) {
+	Player* PLAYER = &(_isLeft ? Data::LPlayer : Data::RPlayer);
+	double reqCharge = PLAYER->requireCharge[PLAYER->whatSpecialSkill];
+	Vec2 pos(0, 60);
+	HSV color(48, 1, 1);
+	int arcCnt = floor(PLAYER->charge / reqCharge * 30);
+	
+	if (_isLeft) pos.x = 130;
+	else pos.x = 1150;
+	color.s = 0.75 + PLAYER->charge / reqCharge * 0.25;
+	if (PLAYER->charge >= reqCharge) color.h = 42;
+
+	for (auto i : step(18))
+		Circle(pos, 15).drawArc(Radians(20 * i + 2), 16_deg, 1, 1, color);
+
+	for (auto i : step(30))
+		Circle(pos, 20).drawArc(Radians(12 * i + 1), 10_deg, 0, 4, ColorF(L"#ccc").setAlpha(0.5));
+
+	for (auto i : step(arcCnt))
+		Circle(pos, 18).drawArc(Radians(12 * i + 1), 10_deg, 0, 7, color);
+
+	int r = 5;
+
+	Circle(pos, 30)
+		.drawArc(0_deg, Radians(180 - r), 0, 1, ColorF(L"#ccc").setAlpha(0.5))
+		.drawArc(Radians(180 + r), Radians(180 - r), 0, 1, ColorF(L"#ccc").setAlpha(0.5));
+
+	TextureAsset(L"special" + Format(Data::LPlayer.whatSpecialSkill)).resize(r * 2, r * 2).drawAt(pos + Vec2(0, 30));
+
 }

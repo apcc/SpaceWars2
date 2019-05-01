@@ -16,6 +16,7 @@ private:
 	static void drawHPGauge(bool _isLeft);
 	static void drawTemperatureGauge(bool _isLeft);
 	static void drawChargeGauge(bool _isLeft);
+	static void drawChargeCircle(bool _isLeft);
 
 public:
 	void init() override;
