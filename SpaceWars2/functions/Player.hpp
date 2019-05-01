@@ -87,5 +87,4 @@ public:
 	void update(std::vector<Bullet*> &bullets);
 	int skillSelect();
 	void drawShip();
-	void drawGauge();
 };
