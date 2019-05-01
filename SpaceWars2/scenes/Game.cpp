@@ -224,28 +224,33 @@ void Game::drawTemperatureGauge(bool _isLeft) {
 }
 
 void Game::drawChargeGauge(bool _isLeft) {
-	Player* PLAYER = &(_isLeft ? Data::LPlayer : Data::RPlayer);
-	double reqCharge = PLAYER->requireCharge[PLAYER->whatSpecialSkill];
 	Vec2 pos(0, 60);
 	HSV color(48, 1, 1);
-	int arcCnt = floor(PLAYER->charge / reqCharge * 30);
-	
-	if (_isLeft) pos.x = 130;
-	else pos.x = 1150;
-	color.s = 0.75 + PLAYER->charge / reqCharge * 0.25;
-	if (PLAYER->charge >= reqCharge) color.h = 42;
 
+	Player* PLAYER = &(_isLeft ? Data::LPlayer : Data::RPlayer);
+	double reqCharge = PLAYER->requireCharge[PLAYER->whatSpecialSkill];
+	int arcCnt = floor(PLAYER->charge / reqCharge * 30);
+
+	if (_isLeft) pos.x = 130;
+	else		 pos.x = 1150;
+
+	color.s = 0.75 + PLAYER->charge / reqCharge * 0.25;
+	if (PLAYER->charge >= reqCharge)
+		color.h = 42;
+
+	// 内側 破線
 	for (auto i : step(18))
 		Circle(pos, 15).drawArc(Radians(20 * i + 2), 16_deg, 1, 1, color);
 
+	// 外側 背景
 	for (auto i : step(30))
 		Circle(pos, 20).drawArc(Radians(12 * i + 1), 10_deg, 0, 4, ColorF(L"#ccc").setAlpha(0.5));
 
+	// 外側 Gauge本体
 	for (auto i : step(arcCnt))
 		Circle(pos, 18).drawArc(Radians(12 * i + 1), 10_deg, 0, 7, color);
 
 	int r = 5;
-
 	Circle(pos, 30)
 		.drawArc(0_deg, Radians(180 - r), 0, 1, ColorF(L"#ccc").setAlpha(0.5))
 		.drawArc(Radians(180 + r), Radians(180 - r), 0, 1, ColorF(L"#ccc").setAlpha(0.5));
