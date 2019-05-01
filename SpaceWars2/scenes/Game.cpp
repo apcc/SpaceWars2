@@ -2,6 +2,7 @@
 
 #define ROUND_UP(x, divisor)	((x + x % divisor) / divisor)
 #define ROUND_DOWN(x, divisor)	((x - x % divisor) / divisor)
+#define CENTER (int)(Config::WIDTH / 2.0)
 
 void Game::init() {
 	stopwatch.start();
@@ -170,15 +171,16 @@ void Game::drawHPGauge(bool _isLeft) {
 	Vec2 pos(0, 40);
 	double width;
 	int reflectionX;
+	const int dist = 90;
 	if (_isLeft) {
 		width = Data::LPlayer.HP / 1000.0 * 360;
-		pos.x = 550 - width;
-		reflectionX = 550 - 360;
+		pos.x = CENTER - dist - width;
+		reflectionX = CENTER - dist - 360;
 	}
 	else {
 		width = Data::RPlayer.HP / 1000.0 * 360;
-		pos.x = 730 - 12;
-		reflectionX = 730;
+		pos.x = CENTER + dist - 12;
+		reflectionX = CENTER + dist;
 	}
 
 	// 背景
@@ -198,15 +200,16 @@ void Game::drawTemperatureGauge(bool _isLeft) {
 	Vec2 pos(0, 65);
 	double width;
 	int reflectionX;
+	const int dist = 80;
 	if (_isLeft) {
 		width = Data::LPlayer.temperature / 1000.0 * 240;
-		pos.x = 560 - width;
-		reflectionX = 560 - 240;
+		pos.x = CENTER - dist - width;
+		reflectionX = CENTER - dist - 240;
 	}
 	else {
 		width = Data::RPlayer.temperature / 1000.0 * 240;
-		pos.x = 720 - 12;
-		reflectionX = 720;
+		pos.x = CENTER + dist - 12;
+		reflectionX = CENTER + dist;
 	}
 
 	// 背景
@@ -226,13 +229,14 @@ void Game::drawTemperatureGauge(bool _isLeft) {
 void Game::drawChargeGauge(bool _isLeft) {
 	Vec2 pos(0, 60);
 	HSV color(48, 1, 1);
+	const int dist = 510;
 
 	Player* PLAYER = &(_isLeft ? Data::LPlayer : Data::RPlayer);
 	double reqCharge = PLAYER->requireCharge[PLAYER->whatSpecialSkill];
 	int arcCnt = floor(PLAYER->charge / reqCharge * 30);
 
-	if (_isLeft) pos.x = 130;
-	else		 pos.x = 1150;
+	if (_isLeft) pos.x = CENTER - dist;
+	else		 pos.x = CENTER + dist;
 
 	color.s = 0.75 + PLAYER->charge / reqCharge * 0.25;
 	if (PLAYER->charge >= reqCharge)
