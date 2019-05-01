@@ -75,8 +75,8 @@ void Game::draw() const {
 	drawTemperatureGauge(false);
 
 	// charge gauge
-	drawChargeCircle(true);
-	drawChargeCircle(false);
+	drawChargeGauge(true);
+	drawChargeGauge(false);
 
 	// temperature value
 	rightAlign(L"Letters10", ROUND_UP(Data::LPlayer.temperature, 10), 309, 62, Color(L"#7f7"));
@@ -223,7 +223,7 @@ void Game::drawTemperatureGauge(bool _isLeft) {
 	
 }
 
-void Game::drawChargeCircle(bool _isLeft) {
+void Game::drawChargeGauge(bool _isLeft) {
 	Player* PLAYER = &(_isLeft ? Data::LPlayer : Data::RPlayer);
 	double reqCharge = PLAYER->requireCharge[PLAYER->whatSpecialSkill];
 	Vec2 pos(0, 60);
