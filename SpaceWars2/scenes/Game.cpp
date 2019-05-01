@@ -75,8 +75,6 @@ void Game::draw() const {
 	drawTemperatureGauge(false);
 
 	// charge gauge
-	// drawChargeGauge(true);
-	// drawChargeGauge(false);
 	drawChargeCircle(true);
 	drawChargeCircle(false);
 
@@ -223,45 +221,6 @@ void Game::drawTemperatureGauge(bool _isLeft) {
 	RoundRect(pos.asPoint() + Vec2(6, 6).asPoint(), { width, 3 }, 1.5)
 		.drawShadow({}, 8, 4, Color(L"#efe"));
 	
-}
-
-void Game::drawChargeGauge(bool _isLeft) {
-	Vec2 pos(0, 90);
-	double width;
-	int reflectionX;
-	int requireCharge[4] = { 400, 400, 400, 400 };
-	Color outerColor(Color(L"#fd0"));
-	Color innerColor(Color(L"#fffcef"));
-	if (_isLeft) {
-		width = Data::LPlayer.charge / (double)requireCharge[Data::LPlayer.whatSpecialSkill] * 180;
-		pos.x = 570 - width;
-		reflectionX = 570 - 180;
-		if (Data::LPlayer.charge >= requireCharge[Data::LPlayer.whatSpecialSkill]) {
-			outerColor = Color(L"#fb0");
-			innerColor = Color(L"#fff8e5");
-		}
-	}
-	else {
-		width = Data::RPlayer.charge / (double)requireCharge[Data::RPlayer.whatSpecialSkill] * 180;
-		pos.x = 710;
-		reflectionX = 710;
-		if (Data::RPlayer.charge >= requireCharge[Data::RPlayer.whatSpecialSkill]) {
-			outerColor = Color(L"#fb0");
-			innerColor = Color(L"#fff8e5");
-		}
-	}
-
-	// 背景
-	RoundRect({ reflectionX, pos.y }, { 180 + 12, 15 }, 7.5)
-		.draw(ColorF(L"#f80").setAlpha(0.25));
-
-	// 外周
-	RoundRect(pos.asPoint(), { width + 12, 15 }, 7.5)
-		.drawShadow({}, 8, 3, outerColor);
-
-	// 内周
-	RoundRect(pos.asPoint() + Vec2(6, 6).asPoint(), { width, 3 }, 1.5)
-		.drawShadow({}, 8, 4, innerColor);
 }
 
 void Game::drawChargeCircle(bool _isLeft) {
