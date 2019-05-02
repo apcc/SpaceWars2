@@ -81,11 +81,11 @@ void Game::draw() const {
 
 	// temperature value
 	rightAlign(L"Letters10", ROUND_UP(Data::LPlayer.temperature, 10), 309, 62, Color(L"#7f7"));
-	rightAlign(L"Letters10", ROUND_UP(Data::RPlayer.temperature, 10), 995, 62, Color(L"#7f7"));
+	rightAlign(L"Letters10", ROUND_UP(Data::RPlayer.temperature, 10), 1010, 62, Color(L"#7f7"));
 
 	// cooldown value
-	rightAlign(L"Letters10", ROUND_UP(Data::LPlayer.coolDownTime, 60),  235, 62, Color(L"#77f"));
-	rightAlign(L"Letters10", ROUND_UP(Data::RPlayer.coolDownTime, 60), 1080, 62, Color(L"#77f"));
+	rightAlign(L"Letters10", ROUND_UP(Data::LPlayer.coolDownTime, 60),  230, 62, Color(L"#77f"));
+	rightAlign(L"Letters10", ROUND_UP(Data::RPlayer.coolDownTime, 60), 1085, 62, Color(L"#77f"));
 
 	if (!finish) {
 		Vec2 buttonPos(890, 692);
