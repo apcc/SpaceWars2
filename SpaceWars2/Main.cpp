@@ -41,6 +41,7 @@ void Main(){
 	FontAsset::Register(L"CicaR32", 32, L"Cica");
 	FontAsset::Register(L"CicaR12", 12, L"Cica");
 	FontAsset::Register(L"Letters10", 10, L"Letters Laughing");
+	FontAsset::Register(L"Letters7", 7, L"Letters Laughing");
 
 	SceneManager<String,CommonData> manager;
 	manager.add<Opening>(L"Opening");
