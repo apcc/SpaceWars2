@@ -255,7 +255,10 @@ void Game::drawChargeGauge(bool _isLeft) {
 		Circle(pos, 18).drawArc(Radians(12 * i + 1), 10_deg, 0, 7, color);
 
 	// % 表示
-	rightAlign(L"Letters7", floor(PLAYER->charge / reqCharge * 100), pos.x + 10, pos.y - 7, color);
+	if (floor(PLAYER->charge / reqCharge * 100) != 100)
+		rightAlign(L"Letters7", floor(PLAYER->charge / reqCharge * 100), pos.x + 10, pos.y - 7, color);
+	else
+		FontAsset(L"Letters7")(L"Go").drawAt(pos, color);
 
 	int r = 5;
 	Circle(pos, 30)
