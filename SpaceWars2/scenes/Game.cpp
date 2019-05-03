@@ -260,6 +260,7 @@ void Game::drawChargeGauge(bool _isLeft) {
 	else
 		FontAsset(L"Letters7")(L"Go").drawAt(pos, color);
 
+	// ただの飾り
 	int r = 5;
 	Circle(pos, 30)
 		.drawArc(0_deg, Radians(180 - r), 0, 1, ColorF(L"#ccc").setAlpha(0.5))
