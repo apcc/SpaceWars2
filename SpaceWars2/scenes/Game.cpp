@@ -166,6 +166,11 @@ void Game::rightAlign(const String& _font, T _text, int _x, int _y, Color _color
 	FontAsset(_font)(Format(_text)).draw(_x - FontAsset(_font)(Format(_text)).region().w, _y, _color);
 }
 
+template <typename T>
+void Game::rightAlign(Font _font, T _text, int _x, int _y, Color _color) {
+	_font(_text).draw(_x - _font(_text).region().w, _y, _color);
+}
+
 
 void Game::drawHPGauge(bool _isLeft) {
 	Vec2 pos(0, 40);
