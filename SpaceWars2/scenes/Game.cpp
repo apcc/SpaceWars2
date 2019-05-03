@@ -80,8 +80,8 @@ void Game::draw() const {
 	drawChargeGauge(false);
 
 	// temperature value
-	rightAlign(L"Letters10", ROUND_UP(Data::LPlayer.temperature, 10), 309, 62, Color(L"#7f7"));
-	rightAlign(L"Letters10", ROUND_UP(Data::RPlayer.temperature, 10), 1010, 62, Color(L"#7f7"));
+	rightAlign(L"Letters10", ROUND_UP(Data::LPlayer.temperature, 10),  309, 62, Color(L"#7f7"));
+	rightAlign(L"Letters10", ROUND_UP(Data::RPlayer.temperature, 10), 1000, 62, Color(L"#7f7"));
 
 	// cooldown value
 	rightAlign(L"Letters10", ROUND_UP(Data::LPlayer.coolDownTime, 60),  230, 62, Color(L"#77f"));
