@@ -285,5 +285,5 @@ void Game::drawHPGraph(int _x, int _y, LineString _LHPGraph, LineString _RHPGrap
 	_RHPGraph.draw(3, ColorF(L"#00f").setAlpha(0.5));
 
 	// 白い枠
-	LineString{ { _x, _y - h }, { _x, _y }, { _x + 270, _y } }.draw(4);
+	LineString{ { _x - 2, _y - h + 2}, { _x - 2, _y + 2 }, { _x + 270, _y + 2 } }.draw(4);
 }
