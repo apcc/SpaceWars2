@@ -238,7 +238,7 @@ void Game::drawChargeGauge(bool _isLeft) {
 
 	Player* PLAYER = &(_isLeft ? Data::LPlayer : Data::RPlayer);
 	double reqCharge = PLAYER->requireCharge[PLAYER->whatSpecialSkill];
-	int arcCnt = floor(PLAYER->charge / reqCharge * 30);
+	int arcCnt = (int)floor(PLAYER->charge / reqCharge * 30);
 
 	if (_isLeft) pos.x = CENTER - dist;
 	else		 pos.x = CENTER + dist;
@@ -261,7 +261,7 @@ void Game::drawChargeGauge(bool _isLeft) {
 
 	// % 表示
 	if (floor(PLAYER->charge / reqCharge * 100) != 100)
-		rightAlign(L"Letters7", floor(PLAYER->charge / reqCharge * 100), pos.x + 10, pos.y - 7, color);
+		rightAlign(L"Letters7", (int)floor(PLAYER->charge / reqCharge * 100), (int)pos.x + 10, (int)pos.y - 7, color);
 	else
 		FontAsset(L"Letters7")(L"Go").drawAt(pos, color);
 
