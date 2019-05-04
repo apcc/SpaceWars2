@@ -147,13 +147,7 @@ void Game::draw() const {
 		FontAsset(L"Smart28")(stopwatch.min(), L"分 ", stopwatch.s() % 60, L"秒").drawCenter(550);
 
 		// Graph
-		Rect(900, 418, 272, 122).draw(ColorF(L"fff").setAlpha(0.5));
-		Line(900, 440, 1170, 440).draw(1, ColorF(L"#fff").setAlpha(0.8));
-		Line(900, 490, 1170, 490).draw(1, ColorF(L"#fff").setAlpha(0.8));
-		LHPGraph.draw(3, ColorF(L"#f00").setAlpha(0.5));
-		RHPGraph.draw(3, ColorF(L"#00f").setAlpha(0.5));
-		Line(900, 420,  900, 540).draw(4);
-		Line(900, 540, 1170, 540).draw(4);
+		drawHPGraph(900, 540, LHPGraph, RHPGraph);
 
 		// 装飾
 		Line(250, 380, 250, 620).draw(6, ColorF(L"#00BFFF"));
@@ -273,4 +267,23 @@ void Game::drawChargeGauge(bool _isLeft) {
 
 	TextureAsset(L"special" + Format(Data::LPlayer.whatSpecialSkill)).resize(r * 2, r * 2).drawAt(pos + Vec2(0, 30));
 
+}
+
+void Game::drawHPGraph(int _x, int _y, LineString _LHPGraph, LineString _RHPGraph) {
+	constexpr int w = 270;
+	constexpr int h = 120;
+
+	// 背景
+	Rect(_x, _y - 120 - 2, w + 2, h + 2).draw(ColorF(L"fff").setAlpha(0.5));
+
+	// 目盛り
+	Line(_x, _y - 100, _x + w, _y - 100).draw(1, ColorF(L"#fff").setAlpha(0.8));
+	Line(_x, _y -  50, _x + w, _y -  50).draw(1, ColorF(L"#fff").setAlpha(0.8));
+
+	// HP graph
+	_LHPGraph.draw(3, ColorF(L"#f00").setAlpha(0.5));
+	_RHPGraph.draw(3, ColorF(L"#00f").setAlpha(0.5));
+
+	// 白い枠
+	LineString{ { _x, _y - h }, { _x, _y }, { _x + 270, _y } }.draw(4);
 }
