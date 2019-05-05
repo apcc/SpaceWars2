@@ -12,7 +12,6 @@ private:
 	LineString LHPGraph;
 	LineString RHPGraph;
 
-
 	Image outerFrame = Image(1280, 720, Color(255, 0)); // [stopwatch枠] 外側枠
 	Image innerFrame = Image(1280, 720, Color(255, 0)); // [stopwatch枠] 内側枠
 	Texture outerFrameTex; // [stopwatch枠] 外側枠
@@ -30,10 +29,12 @@ private:
 		{Config::CENTER - 50, 72}
 	};
 
+
 	template<typename T>
 	static void rightAlign(const String& _font, T _text, int _x, int _y, Color _color = Color(L"#fff"));
 	template<typename T>
 	static void rightAlign(Font _font, T _text, int _x, int _y, Color _color = Color(L"#fff"));
+	static String paddingZero(int n);
 	static void drawHPGauge(bool _isLeft);
 	static void drawTemperatureGauge(bool _isLeft);
 	static void drawChargeGauge(bool _isLeft);
