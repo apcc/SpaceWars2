@@ -91,6 +91,7 @@ void Game::draw() const {
 	rightAlign(L"Letters10", ROUND_UP(Data::LPlayer.coolDownTime, 60),  230, 62, Color(L"#77f"));
 	rightAlign(L"Letters10", ROUND_UP(Data::RPlayer.coolDownTime, 60), 1085, 62, Color(L"#77f"));
 
+	stopwatchFill.draw(Color(L"#052942"));
 	outerFrameTex.draw(Color(L"#23B5FF"));
 	innerFrameTex.draw(Color(L"#EFF9FF"));
 

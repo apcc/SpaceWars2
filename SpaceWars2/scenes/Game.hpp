@@ -23,6 +23,12 @@ private:
 		{Config::CENTER + 50, 72},
 		{Config::CENTER - 50, 72},
 	};
+	const Quad stopwatchFill{
+		{Config::CENTER - 70, 22},
+		{Config::CENTER + 70, 22},
+		{Config::CENTER + 50, 72},
+		{Config::CENTER - 50, 72}
+	};
 
 	template<typename T>
 	static void rightAlign(const String& _font, T _text, int _x, int _y, Color _color = Color(L"#fff"));
