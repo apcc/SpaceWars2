@@ -1,6 +1,9 @@
 #pragma once
 #include <Siv3D.hpp>
 
+
+#define CENTER (int)(Config::WIDTH / 2.0)
+
 namespace Config {
 
 	// タイトル

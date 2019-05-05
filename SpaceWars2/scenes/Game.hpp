@@ -11,6 +11,18 @@ private:
 	LineString LHPGraph;
 	LineString RHPGraph;
 
+
+	Image outerFrame = Image(1280, 720, Color(255, 0)); // [stopwatch枠] 外側枠
+	Image innerFrame = Image(1280, 720, Color(255, 0)); // [stopwatch枠] 内側枠
+	Texture outerFrameTex; // [stopwatch枠] 外側枠
+	Texture innerFrameTex; // [stopwatch枠] 内側枠
+	const LineString stopwatchFrame {
+		{CENTER - 70, 22},
+		{CENTER + 70, 22},
+		{CENTER + 50, 72},
+		{CENTER - 50, 72},
+	};
+
 	template<typename T>
 	static void rightAlign(const String& _font, T _text, int _x, int _y, Color _color = Color(L"#fff"));
 	template<typename T>

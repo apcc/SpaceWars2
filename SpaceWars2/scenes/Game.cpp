@@ -2,10 +2,14 @@
 
 #define ROUND_UP(x, divisor)	((x + x % divisor) / divisor)
 #define ROUND_DOWN(x, divisor)	((x - x % divisor) / divisor)
-#define CENTER (int)(Config::WIDTH / 2.0)
 
 void Game::init() {
 	stopwatch.start();
+
+	stopwatchFrame.asPolygon(16, true).overwrite(outerFrame, Palette::White);
+	stopwatchFrame.asPolygon( 7, true).overwrite(innerFrame, Palette::White);
+	outerFrameTex = Texture(outerFrame.gaussianBlur(6, 6));
+	innerFrameTex = Texture(innerFrame.gaussianBlur(3, 3));
 }
 
 void Game::update() {
@@ -87,6 +91,9 @@ void Game::draw() const {
 	rightAlign(L"Letters10", ROUND_UP(Data::LPlayer.coolDownTime, 60),  230, 62, Color(L"#77f"));
 	rightAlign(L"Letters10", ROUND_UP(Data::RPlayer.coolDownTime, 60), 1085, 62, Color(L"#77f"));
 
+	outerFrameTex.draw(Color(L"#23B5FF"));
+	innerFrameTex.draw(Color(L"#EFF9FF"));
+
 	if (!finish) {
 		Vec2 buttonPos(890, 692);
 
@@ -164,7 +171,6 @@ template <typename T>
 void Game::rightAlign(Font _font, T _text, int _x, int _y, Color _color) {
 	_font(_text).draw(_x - _font(_text).region().w, _y, _color);
 }
-
 
 void Game::drawHPGauge(bool _isLeft) {
 	Vec2 pos(0, 40);
