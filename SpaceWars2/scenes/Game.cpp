@@ -96,7 +96,7 @@ void Game::draw() const {
 	innerFrameTex.draw(Color(L"#EFF9FF"));
 	rightAlign(L"Letters12", stopwatch.min(), Config::CENTER - 10, 35);
 	rightAlign(L"CicaR12", L":", Config::CENTER, 35);
-	rightAlign(L"Letters12", paddingZero(stopwatch.s() % 60), Config::CENTER + 38, 35);
+	rightAlign(L"Letters12", fillZero(stopwatch.s() % 60), Config::CENTER + 38, 35);
 
 	if (!finish) {
 		Vec2 buttonPos(890, 692);
@@ -176,7 +176,7 @@ void Game::rightAlign(Font _font, T _text, int _x, int _y, Color _color) {
 	_font(_text).draw(_x - _font(_text).region().w, _y, _color);
 }
 
-String Game::paddingZero(int n) {
+String Game::fillZero(int n) {
 	if (n < 10) return Format(L"0", n);
 	return Format(n);
 }
