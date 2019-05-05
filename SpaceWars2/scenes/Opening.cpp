@@ -38,7 +38,7 @@ void Opening::update(){
 
 void Opening::draw() const{
 	TextureAsset(L"background").resize(Config::WIDTH, Config::HEIGHT).draw();
-	TextureAsset(L"title-logo").drawAt(Config::WIDTH / 2, 150);
+	TextureAsset(L"title-logo").drawAt(Config::CENTER, 150);
 
 	Circle(1180, 1080, 760).drawFrame(5, 5, Color(L"#00bfff"));
 	FontAsset(L"Smart32")(L"START").draw(950, 450);

@@ -69,7 +69,7 @@ void Game::draw() const {
 	Data::LPlayer.drawShip();
 	Data::RPlayer.drawShip();
 
-	Line(Config::WIDTH / 2, 0, Config::WIDTH / 2, Config::HEIGHT).draw(3, ColorF(L"#fff").setAlpha(0.8));
+	Line(Config::CENTER, 0, Config::CENTER, Config::HEIGHT).draw(3, ColorF(L"#fff").setAlpha(0.8));
 
 	// HP gauge
 	drawHPGauge(true);
@@ -179,13 +179,13 @@ void Game::drawHPGauge(bool _isLeft) {
 	const int dist = 90;
 	if (_isLeft) {
 		width = Data::LPlayer.HP / 1000.0 * 360;
-		pos.x = CENTER - dist - width;
-		reflectionX = CENTER - dist - 360;
+		pos.x = Config::CENTER - dist - width;
+		reflectionX = Config::CENTER - dist - 360;
 	}
 	else {
 		width = Data::RPlayer.HP / 1000.0 * 360;
-		pos.x = CENTER + dist - 12;
-		reflectionX = CENTER + dist - 12;
+		pos.x = Config::CENTER + dist - 12;
+		reflectionX = Config::CENTER + dist - 12;
 	}
 
 	// 背景
@@ -208,13 +208,13 @@ void Game::drawTemperatureGauge(bool _isLeft) {
 	const int dist = 80;
 	if (_isLeft) {
 		width = Data::LPlayer.temperature / 1000.0 * 240;
-		pos.x = CENTER - dist - width;
-		reflectionX = CENTER - dist - 240;
+		pos.x = Config::CENTER - dist - width;
+		reflectionX = Config::CENTER - dist - 240;
 	}
 	else {
 		width = Data::RPlayer.temperature / 1000.0 * 240;
-		pos.x = CENTER + dist - 12;
-		reflectionX = CENTER + dist - 12;
+		pos.x = Config::CENTER + dist - 12;
+		reflectionX = Config::CENTER + dist - 12;
 	}
 
 	// 背景
@@ -240,8 +240,8 @@ void Game::drawChargeGauge(bool _isLeft) {
 	double reqCharge = PLAYER->requireCharge[PLAYER->whatSpecialSkill];
 	int arcCnt = (int)floor(PLAYER->charge / reqCharge * 30);
 
-	if (_isLeft) pos.x = CENTER - dist;
-	else		 pos.x = CENTER + dist;
+	if (_isLeft) pos.x = Config::CENTER - dist;
+	else		 pos.x = Config::CENTER + dist;
 
 	color.s = 0.75 + PLAYER->charge / reqCharge * 0.25;
 	if (PLAYER->charge >= reqCharge)

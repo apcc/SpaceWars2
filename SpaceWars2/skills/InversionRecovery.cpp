@@ -1,7 +1,7 @@
 #include "InversionRecovery.hpp"
 
 #define GAUGE_LIMIT 1000.0
-#define GAUGE_WIDTH (Config::WIDTH / 2.0 / GAUGE_LIMIT)
+#define GAUGE_WIDTH (Config::CENTER / GAUGE_LIMIT)
 
 bool InversionRecovery::update(Vec2 _myPos, Vec2 _oppPos) {
 	if ((time > TRICKING_TIME || PLAYER.HP < 20) && !inRecovery)

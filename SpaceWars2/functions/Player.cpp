@@ -2,7 +2,7 @@
 #include "../CommonData.hpp"
 #define PLAYER_SPEED 15
 #define GAUGE_LIMIT 1000.0
-#define GAUGE_WIDTH (Config::WIDTH / 2.0 / GAUGE_LIMIT)
+#define GAUGE_WIDTH (Config::CENTER.0 / GAUGE_LIMIT)
 
 bool Player::inJudgmentTime = false;
 
@@ -90,11 +90,11 @@ void Player::update(std::vector<Bullet*> &bullets){
 	if(isLeft) {
 		if (pos.x < 0 + PLAYER_SIZE)
 			pos.x = 0 + PLAYER_SIZE;
-		if (pos.x > Config::WIDTH / 2 - PLAYER_SIZE)
-			pos.x = Config::WIDTH / 2 - PLAYER_SIZE;
+		if (pos.x > Config::CENTER - PLAYER_SIZE)
+			pos.x = Config::CENTER - PLAYER_SIZE;
 	} else {
-		if (pos.x < Config::WIDTH / 2 + PLAYER_SIZE)
-			pos.x = Config::WIDTH / 2 + PLAYER_SIZE;
+		if (pos.x < Config::CENTER + PLAYER_SIZE)
+			pos.x = Config::CENTER + PLAYER_SIZE;
 		if (pos.x > Config::WIDTH - PLAYER_SIZE)
 			pos.x = Config::WIDTH - PLAYER_SIZE;
 	}

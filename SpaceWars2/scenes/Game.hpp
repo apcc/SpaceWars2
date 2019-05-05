@@ -1,6 +1,7 @@
 #pragma once
 #include "Include.hpp"
 #include "../skills/Bullet.hpp"
+#include "../Config.hpp"
 
 class Game final : public SceneManager<String,CommonData>::Scene {
 private:
@@ -17,10 +18,10 @@ private:
 	Texture outerFrameTex; // [stopwatch枠] 外側枠
 	Texture innerFrameTex; // [stopwatch枠] 内側枠
 	const LineString stopwatchFrame {
-		{CENTER - 70, 22},
-		{CENTER + 70, 22},
-		{CENTER + 50, 72},
-		{CENTER - 50, 72},
+		{Config::CENTER - 70, 22},
+		{Config::CENTER + 70, 22},
+		{Config::CENTER + 50, 72},
+		{Config::CENTER - 50, 72},
 	};
 
 	template<typename T>

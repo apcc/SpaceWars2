@@ -2,8 +2,6 @@
 #include <Siv3D.hpp>
 
 
-#define CENTER (int)(Config::WIDTH / 2.0)
-
 namespace Config {
 
 	// タイトル
@@ -12,6 +10,7 @@ namespace Config {
 	// サイズ
 	const int32  WIDTH		= 1280;
 	const int32  HEIGHT		= 720;
+	const int32	 CENTER		= (int)(WIDTH / 2.0);
 
 	// 背景色
 	const String BACKGROUND	= L"#ffffff";
