@@ -132,9 +132,9 @@ void Game::draw() const {
 		FontAsset(L"Smart28")(L"Time:").draw(280, 550);
 
 		// HP
-		rightAlign(L"Smart28", Format(Data::LPlayer.HP), 550, 390);
+		rightAlign(L"Letters18", Format(Data::LPlayer.HP), 550, 400);
 		rightAlign(L"CicaR12", L"/1000", 620, 415);
-		rightAlign(L"Smart28", Format(Data::RPlayer.HP), 770, 390);
+		rightAlign(L"Letters18", Format(Data::RPlayer.HP), 770, 400);
 		rightAlign(L"CicaR12", L"/1000", 840, 415);
 
 		// Skills
