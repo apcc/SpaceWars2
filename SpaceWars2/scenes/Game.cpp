@@ -155,7 +155,9 @@ void Game::draw() const {
 		}
 
 		// Time
-		FontAsset(L"Smart28")(stopwatch.min(), L"分 ", stopwatch.s() % 60, L"秒").drawCenter(550);
+		rightAlign(L"Letters18", stopwatch.min(), Config::CENTER - 15, 560);
+		rightAlign(L"CicaR18", L":", Config::CENTER + 3, 560);
+		rightAlign(L"Letters18", fillZero(stopwatch.s() % 60), Config::CENTER + 63, 560);
 
 		// Graph
 		drawHPGraph(900, 540, LHPGraph, RHPGraph);
