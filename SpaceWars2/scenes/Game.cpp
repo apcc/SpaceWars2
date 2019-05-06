@@ -3,12 +3,7 @@
 #define ROUND_UP(x, divisor)	((x + x % divisor) / divisor)
 #define ROUND_DOWN(x, divisor)	((x - x % divisor) / divisor)
 
-void Game::init() {
-	stopwatchFrame.asPolygon(16, true).overwrite(outerFrame, Palette::White);
-	stopwatchFrame.asPolygon( 7, true).overwrite(innerFrame, Palette::White);
-	outerFrameTex = Texture(outerFrame.gaussianBlur(6, 6));
-	innerFrameTex = Texture(innerFrame.gaussianBlur(3, 3));
-}
+void Game::init() {}
 
 void Game::update() {
 	changeScene(Debug::InputFnKey(), 250);
@@ -23,6 +18,24 @@ void Game::update() {
 		case COUNT_DOWN: {
 			if (countDown.s() == 3)
 				status = GAME_INIT;
+
+			switch(countDown.s()) {
+			case 0:
+				stopwatchFrame.asPolygon(16, true).overwrite(outerFrame, Palette::White);
+				stopwatchFrame.asPolygon(7, true).overwrite(innerFrame, Palette::White);
+				break;
+
+			case 1:
+				outerFrameTex = Texture(outerFrame.gaussianBlur(6, 6));
+				break;
+
+			case 2:
+				innerFrameTex = Texture(innerFrame.gaussianBlur(3, 3));
+				break;
+
+			default:
+				break;
+			}
 
 			break;
 		}
@@ -87,7 +100,7 @@ void Game::update() {
 void Game::draw() const {
 	TextureAsset(L"background").resize(Config::WIDTH, Config::HEIGHT).draw();
 
-	{
+	if (status == GAME || status == FINISH) {
 		for (auto bul : bullets) {
 			bul->draw();
 		}
@@ -129,7 +142,7 @@ void Game::draw() const {
 		case COUNT_DOWN_INIT: break;
 
 		case COUNT_DOWN: {
-			Rect(Window::Size()).draw(ColorF(L"#000").setAlpha(0.7));
+			Rect(Window::Size()).draw(ColorF(L"#000").setAlpha(0.6));
 			FontAsset(L"Smart32")(3 - countDown.s()).drawCenter(340, Color(L"#fff"));
 
 			break;
