@@ -8,7 +8,6 @@
 #include "scenes/ControlGuidance.hpp"
 #include "scenes/ScreenGuidance.hpp"
 #include "scenes/SkillSelect.hpp"
-#include "scenes/Countdown.hpp"
 #include "scenes/Game.hpp"
 #include "scenes/Ending.hpp"
 
@@ -52,9 +51,6 @@ void Main(){
 	manager.add<ControlGuidance>(L"ControlGuidance");
 	manager.add<ScreenGuidance>(L"ScreenGuidance");
 	manager.add<SkillSelect>(L"SkillSelect");
-	manager.add<Three>(L"Three");
-	manager.add<Two>(L"Two");
-	manager.add<One>(L"One");
 	manager.add<Game>(L"Game");
 	manager.add<Ending>(L"Ending");
 
