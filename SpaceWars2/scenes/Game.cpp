@@ -36,7 +36,7 @@ void Game::update() {
 						itr = bullets.erase(itr);
 					}
 					else {
-						itr++;
+						++itr;
 					}
 				}
 			}
