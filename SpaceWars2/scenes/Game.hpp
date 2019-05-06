@@ -38,7 +38,7 @@ private:
 	static void drawHPGauge(bool _isLeft);
 	static void drawTemperatureGauge(bool _isLeft);
 	static void drawChargeGauge(bool _isLeft);
-	static void drawHPGraph(int _x, int _y, LineString _LHPGraph, LineString _RHPGraph);
+	static void drawHPGraph(int _x, int _y, const LineString& _LHPGraph, const LineString& _RHPGraph);
 
 public:
 	void init() override;

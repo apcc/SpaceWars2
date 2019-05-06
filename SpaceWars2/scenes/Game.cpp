@@ -287,7 +287,7 @@ void Game::drawChargeGauge(bool _isLeft) {
 
 }
 
-void Game::drawHPGraph(int _x, int _y, LineString _LHPGraph, LineString _RHPGraph) {
+void Game::drawHPGraph(int _x, int _y, const LineString& _LHPGraph, const LineString& _RHPGraph) {
 	constexpr int w = 270;
 	constexpr int h = 120;
 
