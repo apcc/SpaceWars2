@@ -145,6 +145,7 @@ void Game::draw() const {
 		case COUNT_DOWN: {
 			Rect(Window::Size()).draw(ColorF(L"#000").setAlpha(0.6));
 			drawCountDown(countDown);
+			drawLoading({ 1150, 700 }, countDown);
 
 			break;
 		}
@@ -251,6 +252,33 @@ void Game::drawCountDown(const Stopwatch& _countDown) {
 
 	if (_countDown.s() < 3)
 		FontAsset(L"Letters32")(3 - _countDown.s()).drawAt(pos, color);
+}
+
+void Game::drawLoading(Vec2 _pos, const Stopwatch& _countDown) {
+	double radius = 10; // 半径
+	const int num = 10; // 個数
+	const double speed = 0.05; // speed
+	const double dNum = num;
+	const double dif = TwoPi / dNum;
+
+	for(auto i : step(num)) {
+		const double radian = i * dif;
+		const Vec2 tPos = _pos + Circular(radius, radian);
+		const double phase = System::FrameCount() * (-speed) + radian / 2.0;
+		const double tRadius = atan(Tan(phase)) / Pi + 1.0 / 2.0;
+
+		Circle(tPos, tRadius * radius / 5.0).draw();
+	}
+	
+	const int width = (int)(_countDown.ms() / 3000.0 * 90.0);
+	const HSV color(28 + (3 - _countDown.s() * 8), 1.0, 1.0);
+
+	// 外
+	RoundRect(_pos.asPoint() + Point(20, -5), { width + 12, 15 }, 7.5)
+		.drawShadow({}, 8, 3, color);
+
+	// Loading...
+	FontAsset(L"SmartB12")(L"Loading...").draw(_pos + Vec2(20, -10));
 }
 
 void Game::drawHPGauge(bool _isLeft) {
