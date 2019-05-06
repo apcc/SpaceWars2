@@ -26,16 +26,16 @@ private:
 	Texture outerFrameTex; // [stopwatch枠] 外側枠
 	Texture innerFrameTex; // [stopwatch枠] 内側枠
 	const LineString stopwatchFrame {
-		{Config::CENTER - 70, 22},
-		{Config::CENTER + 70, 22},
-		{Config::CENTER + 50, 72},
-		{Config::CENTER - 50, 72},
+		{Window::Center().x - 70, 22},
+		{Window::Center().x + 70, 22},
+		{Window::Center().x + 50, 72},
+		{Window::Center().x - 50, 72},
 	};
 	const Quad stopwatchFill{
-		{Config::CENTER - 70, 22},
-		{Config::CENTER + 70, 22},
-		{Config::CENTER + 50, 72},
-		{Config::CENTER - 50, 72}
+		{Window::Center().x - 70, 22},
+		{Window::Center().x + 70, 22},
+		{Window::Center().x + 50, 72},
+		{Window::Center().x - 50, 72}
 	};
 
 

@@ -109,7 +109,7 @@ void Game::draw() const {
 		Data::LPlayer.drawShip();
 		Data::RPlayer.drawShip();
 
-		Line(Config::CENTER, 0, Config::CENTER, Config::HEIGHT).draw(3, ColorF(L"#fff").setAlpha(0.8));
+		Line(Window::Center().x, 0, Window::Center().x, Config::HEIGHT).draw(3, ColorF(L"#fff").setAlpha(0.8));
 
 		// HP gauge
 		drawHPGauge(true);
@@ -134,9 +134,9 @@ void Game::draw() const {
 		stopwatchFill.draw(Color(L"#052942"));
 		outerFrameTex.draw(Color(L"#23B5FF"));
 		innerFrameTex.draw(Color(L"#EFF9FF"));
-		rightAlign(L"Letters12", stopwatch.min(), Config::CENTER - 10, 35);
-		rightAlign(L"CicaR12", L":", Config::CENTER, 35);
-		rightAlign(L"Letters12", fillZero(stopwatch.s() % 60), Config::CENTER + 38, 35);
+		rightAlign(L"Letters12", stopwatch.min(), Window::Center().x - 10, 35);
+		rightAlign(L"CicaR12", L":", Window::Center().x, 35);
+		rightAlign(L"Letters12", fillZero(stopwatch.s() % 60), Window::Center().x + 38, 35);
 	}
 
 	switch(status) {
@@ -214,9 +214,9 @@ void Game::draw() const {
 			}
 
 			// Time
-			rightAlign(L"Letters18", stopwatch.min(), Config::CENTER - 15, 560);
-			rightAlign(L"CicaR18", L":", Config::CENTER + 3, 560);
-			rightAlign(L"Letters18", fillZero(stopwatch.s() % 60), Config::CENTER + 63, 560);
+			rightAlign(L"Letters18", stopwatch.min(), Window::Center().x - 15, 560);
+			rightAlign(L"CicaR18", L":", Window::Center().x + 3, 560);
+			rightAlign(L"Letters18", fillZero(stopwatch.s() % 60), Window::Center().x + 63, 560);
 
 			// Graph
 			drawHPGraph(900, 540, LHPGraph, RHPGraph);
@@ -247,7 +247,7 @@ String Game::fillZero(int n) {
 
 
 void Game::drawCountDown(const Stopwatch& _countDown) {
-	const Vec2 pos(Config::CENTER, Config::HEIGHT / 2);
+	const Vec2 pos(Window::Center().x, Window::Center().y);
 	const HSV color(28 + (3 - _countDown.s() * 8), 1.0, 1.0);
 
 	if (_countDown.s() < 3)
@@ -288,13 +288,13 @@ void Game::drawHPGauge(bool _isLeft) {
 	const int dist = 90;
 	if (_isLeft) {
 		width = Data::LPlayer.HP / 1000.0 * 360;
-		pos.x = Config::CENTER - dist - width;
-		reflectionX = Config::CENTER - dist - 360;
+		pos.x = Window::Center().x - dist - width;
+		reflectionX = Window::Center().x - dist - 360;
 	}
 	else {
 		width = Data::RPlayer.HP / 1000.0 * 360;
-		pos.x = Config::CENTER + dist - 12;
-		reflectionX = Config::CENTER + dist - 12;
+		pos.x = Window::Center().x + dist - 12;
+		reflectionX = Window::Center().x + dist - 12;
 	}
 
 	// 背景
@@ -317,13 +317,13 @@ void Game::drawTemperatureGauge(bool _isLeft) {
 	const int dist = 80;
 	if (_isLeft) {
 		width = Data::LPlayer.temperature / 1000.0 * 240;
-		pos.x = Config::CENTER - dist - width;
-		reflectionX = Config::CENTER - dist - 240;
+		pos.x = Window::Center().x - dist - width;
+		reflectionX = Window::Center().x - dist - 240;
 	}
 	else {
 		width = Data::RPlayer.temperature / 1000.0 * 240;
-		pos.x = Config::CENTER + dist - 12;
-		reflectionX = Config::CENTER + dist - 12;
+		pos.x = Window::Center().x + dist - 12;
+		reflectionX = Window::Center().x + dist - 12;
 	}
 
 	// 背景
@@ -349,8 +349,8 @@ void Game::drawChargeGauge(bool _isLeft) {
 	double reqCharge = PLAYER->requireCharge[PLAYER->whatSpecialSkill];
 	int arcCnt = (int)floor(PLAYER->charge / reqCharge * 30);
 
-	if (_isLeft) pos.x = Config::CENTER - dist;
-	else		 pos.x = Config::CENTER + dist;
+	if (_isLeft) pos.x = Window::Center().x - dist;
+	else		 pos.x = Window::Center().x + dist;
 
 	color.s = 0.75 + PLAYER->charge / reqCharge * 0.25;
 	if (PLAYER->charge >= reqCharge)
