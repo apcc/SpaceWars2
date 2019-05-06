@@ -40,6 +40,7 @@ void Main(){
 	FontAsset::Register(L"CicaR32", 32, L"Cica");
 	FontAsset::Register(L"CicaR18", 18, L"Cica");
 	FontAsset::Register(L"CicaR12", 12, L"Cica");
+	FontAsset::Register(L"Letters32", 32, L"Letters Laughing");
 	FontAsset::Register(L"Letters18", 18, L"Letters Laughing");
 	FontAsset::Register(L"Letters12", 12, L"Letters Laughing");
 	FontAsset::Register(L"Letters10", 10, L"Letters Laughing");

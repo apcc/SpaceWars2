@@ -44,6 +44,7 @@ private:
 	template<typename T>
 	static void rightAlign(Font _font, T _text, int _x, int _y, Color _color = Color(L"#fff"));
 	static String fillZero(int n);
+	static void drawCountDown(const Stopwatch& _countDown);
 	static void drawHPGauge(bool _isLeft);
 	static void drawTemperatureGauge(bool _isLeft);
 	static void drawChargeGauge(bool _isLeft);

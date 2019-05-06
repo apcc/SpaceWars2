@@ -41,6 +41,7 @@ void Game::update() {
 		}
 
 		case GAME_INIT: {
+			countDown.reset();
 			stopwatch.start();
 
 			status = GAME;
@@ -143,7 +144,7 @@ void Game::draw() const {
 
 		case COUNT_DOWN: {
 			Rect(Window::Size()).draw(ColorF(L"#000").setAlpha(0.6));
-			FontAsset(L"Smart32")(3 - countDown.s()).drawCenter(340, Color(L"#fff"));
+			drawCountDown(countDown);
 
 			break;
 		}
@@ -243,6 +244,14 @@ String Game::fillZero(int n) {
 	return Format(n);
 }
 
+
+void Game::drawCountDown(const Stopwatch& _countDown) {
+	const Vec2 pos(Config::CENTER, Config::HEIGHT / 2);
+	const HSV color(28 + (3 - _countDown.s() * 8), 1.0, 1.0);
+
+	if (_countDown.s() < 3)
+		FontAsset(L"Letters32")(3 - _countDown.s()).drawAt(pos, color);
+}
 
 void Game::drawHPGauge(bool _isLeft) {
 	Vec2 pos(0, 40);
