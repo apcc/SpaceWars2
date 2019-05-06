@@ -4,6 +4,7 @@
 #define ROUND_DOWN(x, divisor)	((x - x % divisor) / divisor)
 
 void Game::init() {
+	status = GAME;
 	stopwatch.start();
 
 	stopwatchFrame.asPolygon(16, true).overwrite(outerFrame, Palette::White);
@@ -15,155 +16,181 @@ void Game::init() {
 void Game::update() {
 	changeScene(Debug::InputFnKey(), 250);
 
-	if (!finish) {
+	switch(status) {
+		case COUNT_DOWN: {
 
-		Data::LPlayer.update(bullets);
-		Data::RPlayer.update(bullets);
+			break;
+		}
 
-		if (!Player::inJudgmentTime) {
-			for (auto itr = bullets.begin(); itr != bullets.end();) {
-				Vec2 myPos = ((**itr).isLeft ? Data::LPlayer : Data::RPlayer).circle().center;
-				Vec2 oppPos = ((**itr).isLeft ? Data::RPlayer : Data::LPlayer).circle().center;
+		case GAME: {
+			Data::LPlayer.update(bullets);
+			Data::RPlayer.update(bullets);
 
-				if ((**itr).update(myPos, oppPos)) {
-					delete* itr;
-					itr = bullets.erase(itr);
-				}
-				else {
-					itr++;
+			if (!Player::inJudgmentTime) {
+				for (auto itr = bullets.begin(); itr != bullets.end();) {
+					Vec2 myPos = ((**itr).isLeft ? Data::LPlayer : Data::RPlayer).circle().center;
+					Vec2 oppPos = ((**itr).isLeft ? Data::RPlayer : Data::LPlayer).circle().center;
+
+					if ((**itr).update(myPos, oppPos)) {
+						delete* itr;
+						itr = bullets.erase(itr);
+					}
+					else {
+						itr++;
+					}
 				}
 			}
+
+			if (Data::LPlayer.isHPRunOut() || Data::RPlayer.isHPRunOut())
+				status = FINISH;
+
+			break;
+		}
+
+		case FINISH: {
+			if (!finishInit) {
+				stopwatch.pause();
+
+				double x = 900;
+				for (auto HP : Data::LPlayer.HPLog) {
+					LHPGraph.push_back({ x, 540 - HP / 10.0 });
+					x += 250.0 / Data::LPlayer.HPLog.size();
+				}
+				x = 900;
+				for (auto HP : Data::RPlayer.HPLog) {
+					RHPGraph.push_back({ x, 540 - HP / 10.0 });
+					x += 250.0 / Data::RPlayer.HPLog.size();
+				}
+				finishInit = true;
+			}
+
+			if (Data::KeyEnter.repeat(20))
+				changeScene(L"Ending", 500);
+
+			break;
 		}
 	}
-	else { // finish
-		if (!finishInit) {
-			stopwatch.pause();
-
-			double x = 900;
-			for (auto HP : Data::LPlayer.HPLog) {
-				LHPGraph.push_back({ x, 540 - HP / 10.0 });
-				x += 250.0 / Data::LPlayer.HPLog.size();
-			}
-			x = 900;
-			for (auto HP : Data::RPlayer.HPLog) {
-				RHPGraph.push_back({ x, 540 - HP / 10.0 });
-				x += 250.0 / Data::RPlayer.HPLog.size();
-			}
-			finishInit = true;
-		}
-		if (Data::KeyEnter.repeat(20))
-			changeScene(L"Ending", 500);
-	}
-
-	if (Data::LPlayer.isHPRunOut() || Data::RPlayer.isHPRunOut())
-		finish = true;
 }
 
 void Game::draw() const {
 	TextureAsset(L"background").resize(Config::WIDTH, Config::HEIGHT).draw();
 
-	for (auto bul : bullets) {
-		bul->draw();
-	}
-
-	Data::LPlayer.drawShip();
-	Data::RPlayer.drawShip();
-
-	Line(Config::CENTER, 0, Config::CENTER, Config::HEIGHT).draw(3, ColorF(L"#fff").setAlpha(0.8));
-
-	// HP gauge
-	drawHPGauge(true);
-	drawHPGauge(false);
-
-	// temperature gauge
-	drawTemperatureGauge(true);
-	drawTemperatureGauge(false);
-
-	// charge gauge
-	drawChargeGauge(true);
-	drawChargeGauge(false);
-
-	// temperature value
-	rightAlign(L"Letters10", ROUND_UP(Data::LPlayer.temperature, 10),  309, 62, Color(L"#7f7"));
-	rightAlign(L"Letters10", ROUND_UP(Data::RPlayer.temperature, 10), 1000, 62, Color(L"#7f7"));
-
-	// cooldown value
-	rightAlign(L"Letters10", ROUND_UP(Data::LPlayer.coolDownTime, 60),  230, 62, Color(L"#77f"));
-	rightAlign(L"Letters10", ROUND_UP(Data::RPlayer.coolDownTime, 60), 1085, 62, Color(L"#77f"));
-
-	stopwatchFill.draw(Color(L"#052942"));
-	outerFrameTex.draw(Color(L"#23B5FF"));
-	innerFrameTex.draw(Color(L"#EFF9FF"));
-	rightAlign(L"Letters12", stopwatch.min(), Config::CENTER - 10, 35);
-	rightAlign(L"CicaR12", L":", Config::CENTER, 35);
-	rightAlign(L"Letters12", fillZero(stopwatch.s() % 60), Config::CENTER + 38, 35);
-
-	if (!finish) {
-		Vec2 buttonPos(890, 692);
-
-		buttonPos.x += (int)TextureAsset(L"stick_24").draw(buttonPos).w + 6;
-		buttonPos.x += (int)FontAsset(L"CicaR12")(L"移動").draw(buttonPos).w + 15;
-
-		buttonPos.x += (int)TextureAsset(L"buttonA_24").draw(buttonPos).w + 6;
-		buttonPos.x += (int)FontAsset(L"CicaR12")(L"Main").draw(buttonPos).w + 15;
-
-		buttonPos.x += (int)TextureAsset(L"buttonLB_24").draw(buttonPos).w + 6;
-		buttonPos.x += (int)FontAsset(L"CicaR12")(L"Sub").draw(buttonPos).w + 15;
-
-		buttonPos.x += (int)TextureAsset(L"buttonRB_24").draw(buttonPos).w + 6;
-		buttonPos.x += (int)FontAsset(L"CicaR12")(L"Special").draw(buttonPos).w + 15;
-	}
-	else {
-		Rect(0, 0, Config::WIDTH, Config::HEIGHT).draw(ColorF(L"#000").setAlpha(0.7));
-
-
-		if (Data::LPlayer.isHPRunOut() && Data::RPlayer.isHPRunOut())
-			FontAsset(L"Smart32")(L"引き分け！").drawCenter(300, Color(L"#fff"));
-		else {
-			if (Data::LPlayer.isHPRunOut())
-				FontAsset(L"Smart32")(L"RPlayer win !").drawCenter(250, Color(L"#00f"));
-			if (Data::RPlayer.isHPRunOut())
-				FontAsset(L"Smart32")(L"LPlayer win !").drawCenter(250, Color(L"#f00"));
+	if (status == GAME || status == FINISH) {
+		for (auto bul : bullets) {
+			bul->draw();
 		}
 
-		// 箇条書き
-		FontAsset(L"Smart28")(L"HP:").draw(280, 390);
-		FontAsset(L"Smart28")(L"Skills:").draw(280, 470);
-		FontAsset(L"Smart28")(L"Time:").draw(280, 550);
+		Data::LPlayer.drawShip();
+		Data::RPlayer.drawShip();
 
-		// HP
-		rightAlign(L"Letters18", Format(Data::LPlayer.HP), 550, 400);
-		rightAlign(L"CicaR12", L"/1000", 620, 415);
-		rightAlign(L"Letters18", Format(Data::RPlayer.HP), 770, 400);
-		rightAlign(L"CicaR12", L"/1000", 840, 415);
+		Line(Config::CENTER, 0, Config::CENTER, Config::HEIGHT).draw(3, ColorF(L"#fff").setAlpha(0.8));
 
-		// Skills
-		for (auto isLeft : step(2)) { // LPlayer, RPlayer
-			Player* PLAYER = &(isLeft ? Data::LPlayer : Data::RPlayer);
-			String skillType[3] = { L"main", L"sub", L"special" };
-			int    whatSkill[3] = { PLAYER->whatMainSkill, PLAYER->whatSubSkill, PLAYER->whatSpecialSkill };
-			int	   skillsCnt[3] = { PLAYER->mainSkillCnt, PLAYER->subSkillCnt, PLAYER->specialSkillCnt };
-			String skillColor[3] = { L"#0c0", L"#00c", L"#ffd000" };
-			for (auto type : step(3)) { // mainSkill, subSkill, specialSkill
-				TextureAsset(skillType[type] + Format((int)whatSkill[type])).resize(50, 50)
-					.draw(670 + (60 * type) - (220 * isLeft), 472);
+		// HP gauge
+		drawHPGauge(true);
+		drawHPGauge(false);
 
-				Rect(670 + (60 * type) - (220 * isLeft), 522, 50, 20).draw(Color(skillColor[type]));
+		// temperature gauge
+		drawTemperatureGauge(true);
+		drawTemperatureGauge(false);
 
-				rightAlign(L"Letters7", (skillsCnt[type] < 1000 ? Format(skillsCnt[type]) : L"999+"), 717 + (60 * type) - (220 * isLeft), 525);
+		// charge gauge
+		drawChargeGauge(true);
+		drawChargeGauge(false);
+
+		// temperature value
+		rightAlign(L"Letters10", ROUND_UP(Data::LPlayer.temperature, 10), 309, 62, Color(L"#7f7"));
+		rightAlign(L"Letters10", ROUND_UP(Data::RPlayer.temperature, 10), 1000, 62, Color(L"#7f7"));
+
+		// cooldown value
+		rightAlign(L"Letters10", ROUND_UP(Data::LPlayer.coolDownTime, 60), 230, 62, Color(L"#77f"));
+		rightAlign(L"Letters10", ROUND_UP(Data::RPlayer.coolDownTime, 60), 1085, 62, Color(L"#77f"));
+
+		stopwatchFill.draw(Color(L"#052942"));
+		outerFrameTex.draw(Color(L"#23B5FF"));
+		innerFrameTex.draw(Color(L"#EFF9FF"));
+		rightAlign(L"Letters12", stopwatch.min(), Config::CENTER - 10, 35);
+		rightAlign(L"CicaR12", L":", Config::CENTER, 35);
+		rightAlign(L"Letters12", fillZero(stopwatch.s() % 60), Config::CENTER + 38, 35);
+	}
+
+	switch(status) {
+		case COUNT_DOWN: {
+
+			break;
+		}
+
+		case GAME: {
+			Vec2 buttonPos(890, 692);
+
+			buttonPos.x += (int)TextureAsset(L"stick_24").draw(buttonPos).w + 6;
+			buttonPos.x += (int)FontAsset(L"CicaR12")(L"移動").draw(buttonPos).w + 15;
+
+			buttonPos.x += (int)TextureAsset(L"buttonA_24").draw(buttonPos).w + 6;
+			buttonPos.x += (int)FontAsset(L"CicaR12")(L"Main").draw(buttonPos).w + 15;
+
+			buttonPos.x += (int)TextureAsset(L"buttonLB_24").draw(buttonPos).w + 6;
+			buttonPos.x += (int)FontAsset(L"CicaR12")(L"Sub").draw(buttonPos).w + 15;
+
+			buttonPos.x += (int)TextureAsset(L"buttonRB_24").draw(buttonPos).w + 6;
+			buttonPos.x += (int)FontAsset(L"CicaR12")(L"Special").draw(buttonPos).w + 15;
+
+			break;
+		}
+
+		case FINISH: {
+			Rect(0, 0, Config::WIDTH, Config::HEIGHT).draw(ColorF(L"#000").setAlpha(0.7));
+
+
+			if (Data::LPlayer.isHPRunOut() && Data::RPlayer.isHPRunOut())
+				FontAsset(L"Smart32")(L"引き分け！").drawCenter(300, Color(L"#fff"));
+			else {
+				if (Data::LPlayer.isHPRunOut())
+					FontAsset(L"Smart32")(L"RPlayer win !").drawCenter(250, Color(L"#00f"));
+				if (Data::RPlayer.isHPRunOut())
+					FontAsset(L"Smart32")(L"LPlayer win !").drawCenter(250, Color(L"#f00"));
 			}
+
+			// 箇条書き
+			FontAsset(L"Smart28")(L"HP:").draw(280, 390);
+			FontAsset(L"Smart28")(L"Skills:").draw(280, 470);
+			FontAsset(L"Smart28")(L"Time:").draw(280, 550);
+
+			// HP
+			rightAlign(L"Letters18", Format(Data::LPlayer.HP), 550, 400);
+			rightAlign(L"CicaR12", L"/1000", 620, 415);
+			rightAlign(L"Letters18", Format(Data::RPlayer.HP), 770, 400);
+			rightAlign(L"CicaR12", L"/1000", 840, 415);
+
+			// Skills
+			for (auto isLeft : step(2)) { // LPlayer, RPlayer
+				Player* PLAYER = &(isLeft ? Data::LPlayer : Data::RPlayer);
+				String skillType[3] = { L"main", L"sub", L"special" };
+				int    whatSkill[3] = { PLAYER->whatMainSkill, PLAYER->whatSubSkill, PLAYER->whatSpecialSkill };
+				int	   skillsCnt[3] = { PLAYER->mainSkillCnt, PLAYER->subSkillCnt, PLAYER->specialSkillCnt };
+				String skillColor[3] = { L"#0c0", L"#00c", L"#ffd000" };
+				for (auto type : step(3)) { // mainSkill, subSkill, specialSkill
+					TextureAsset(skillType[type] + Format((int)whatSkill[type])).resize(50, 50)
+						.draw(670 + (60 * type) - (220 * isLeft), 472);
+
+					Rect(670 + (60 * type) - (220 * isLeft), 522, 50, 20).draw(Color(skillColor[type]));
+
+					rightAlign(L"Letters7", (skillsCnt[type] < 1000 ? Format(skillsCnt[type]) : L"999+"), 717 + (60 * type) - (220 * isLeft), 525);
+				}
+			}
+
+			// Time
+			rightAlign(L"Letters18", stopwatch.min(), Config::CENTER - 15, 560);
+			rightAlign(L"CicaR18", L":", Config::CENTER + 3, 560);
+			rightAlign(L"Letters18", fillZero(stopwatch.s() % 60), Config::CENTER + 63, 560);
+
+			// Graph
+			drawHPGraph(900, 540, LHPGraph, RHPGraph);
+
+			// 装飾
+			Line(250, 380, 250, 620).draw(6, ColorF(L"#00BFFF"));
+
+			break;
 		}
-
-		// Time
-		rightAlign(L"Letters18", stopwatch.min(), Config::CENTER - 15, 560);
-		rightAlign(L"CicaR18", L":", Config::CENTER + 3, 560);
-		rightAlign(L"Letters18", fillZero(stopwatch.s() % 60), Config::CENTER + 63, 560);
-
-		// Graph
-		drawHPGraph(900, 540, LHPGraph, RHPGraph);
-
-		// 装飾
-		Line(250, 380, 250, 620).draw(6, ColorF(L"#00BFFF"));
 	}
 }
 

@@ -3,10 +3,16 @@
 #include "../skills/Bullet.hpp"
 #include "../Config.hpp"
 
+enum Status {
+	COUNT_DOWN,
+	GAME,
+	FINISH,
+};
+
 class Game final : public SceneManager<String,CommonData>::Scene {
 private:
+	Status status = COUNT_DOWN;
 	std::vector<Bullet*> bullets;
-	bool finish = false;
 	bool finishInit = false;
 	Stopwatch stopwatch;
 	LineString LHPGraph;
