@@ -11,6 +11,6 @@ void ScreenGuidance::update() {
 }
 
 void ScreenGuidance::draw() const {
-	TextureAsset(L"background").resize(Config::WIDTH, Config::HEIGHT).draw();
+	TextureAsset(L"background").resize(Window::Size()).draw();
 	FontAsset(L"Smart32")(L"ScreenGuidance").drawCenter(40, Color(L"#ffffff"));
 }

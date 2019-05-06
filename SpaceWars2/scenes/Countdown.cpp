@@ -19,7 +19,7 @@ void Three::update() {
 }
 
 void Three::draw() const {
-	TextureAsset(L"background").resize(Config::WIDTH, Config::HEIGHT).draw();
+	TextureAsset(L"background").resize(Window::Size()).draw();
 	FontAsset(L"Smart32")(L"3").drawCenter(360, Color(L"#fff"));
 }
 
@@ -40,7 +40,7 @@ void Two::update() {
 }
 
 void Two::draw() const {
-	TextureAsset(L"background").resize(Config::WIDTH, Config::HEIGHT).draw();
+	TextureAsset(L"background").resize(Window::Size()).draw();
 	FontAsset(L"Smart32")(L"2").drawCenter(360, Color(L"#fff"));
 }
 
@@ -61,6 +61,6 @@ void One::update() {
 }
 
 void One::draw() const {
-	TextureAsset(L"background").resize(Config::WIDTH, Config::HEIGHT).draw();
+	TextureAsset(L"background").resize(Window::Size()).draw();
 	FontAsset(L"Smart32")(L"1").drawCenter(360, Color(L"#fff"));
 }

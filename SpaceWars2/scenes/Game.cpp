@@ -98,7 +98,7 @@ void Game::update() {
 }
 
 void Game::draw() const {
-	TextureAsset(L"background").resize(Config::WIDTH, Config::HEIGHT).draw();
+	TextureAsset(L"background").resize(Window::Size()).draw();
 
 	if (status == GAME || status == FINISH) {
 		for (auto bul : bullets) {
@@ -171,7 +171,7 @@ void Game::draw() const {
 		case FINISH_INIT: break;
 
 		case FINISH: {
-			Rect(0, 0, Config::WIDTH, Config::HEIGHT).draw(ColorF(L"#000").setAlpha(0.7));
+			Rect(Window::Size()).draw(ColorF(L"#000").setAlpha(0.7));
 
 
 			if (Data::LPlayer.isHPRunOut() && Data::RPlayer.isHPRunOut())
