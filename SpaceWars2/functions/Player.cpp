@@ -2,7 +2,7 @@
 #include "../CommonData.hpp"
 #define PLAYER_SPEED 15
 #define GAUGE_LIMIT 1000.0
-#define GAUGE_WIDTH (Config::CENTER.0 / GAUGE_LIMIT)
+#define GAUGE_WIDTH (Config::CENTER / GAUGE_LIMIT)
 
 bool Player::inJudgmentTime = false;
 
