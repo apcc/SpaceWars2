@@ -136,7 +136,7 @@ void Game::draw() const {
 		innerFrameTex.draw(Color(L"#EFF9FF"));
 		rightAlign(L"Letters12", stopwatch.min(), Window::Center().x - 10, 35);
 		rightAlign(L"CicaR12", L":", Window::Center().x, 35);
-		rightAlign(L"Letters12", fillZero(stopwatch.s() % 60), Window::Center().x + 38, 35);
+		rightAlign(L"Letters12", twoDigits(stopwatch.s() % 60), Window::Center().x + 38, 35);
 	}
 
 	switch(status) {
@@ -216,7 +216,7 @@ void Game::draw() const {
 			// Time
 			rightAlign(L"Letters18", stopwatch.min(), Window::Center().x - 15, 560);
 			rightAlign(L"CicaR18", L":", Window::Center().x + 3, 560);
-			rightAlign(L"Letters18", fillZero(stopwatch.s() % 60), Window::Center().x + 63, 560);
+			rightAlign(L"Letters18", twoDigits(stopwatch.s() % 60), Window::Center().x + 63, 560);
 
 			// Graph
 			drawHPGraph(900, 540, LHPGraph, RHPGraph);
@@ -240,7 +240,7 @@ void Game::rightAlign(Font _font, T _text, int _x, int _y, Color _color) {
 	_font(_text).draw(_x - _font(_text).region().w, _y, _color);
 }
 
-String Game::fillZero(int n) {
+String Game::twoDigits(int n) {
 	if (n < 10) return Format(L"0", n);
 	return Format(n);
 }
