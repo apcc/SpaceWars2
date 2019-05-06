@@ -4,16 +4,18 @@
 #include "../Config.hpp"
 
 enum Status {
+	COUNT_DOWN_INIT,
 	COUNT_DOWN,
+	GAME_INIT,
 	GAME,
+	FINISH_INIT,
 	FINISH,
 };
 
 class Game final : public SceneManager<String,CommonData>::Scene {
 private:
-	Status status = COUNT_DOWN;
+	Status status = COUNT_DOWN_INIT;
 	std::vector<Bullet*> bullets;
-	bool finishInit = false;
 	Stopwatch stopwatch;
 	LineString LHPGraph;
 	LineString RHPGraph;

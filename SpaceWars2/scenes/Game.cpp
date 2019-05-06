@@ -4,8 +4,7 @@
 #define ROUND_DOWN(x, divisor)	((x - x % divisor) / divisor)
 
 void Game::init() {
-	status = GAME;
-	stopwatch.start();
+	status = GAME_INIT;
 
 	stopwatchFrame.asPolygon(16, true).overwrite(outerFrame, Palette::White);
 	stopwatchFrame.asPolygon( 7, true).overwrite(innerFrame, Palette::White);
@@ -17,9 +16,20 @@ void Game::update() {
 	changeScene(Debug::InputFnKey(), 250);
 
 	switch(status) {
+		case COUNT_DOWN_INIT: {
+			
+			status = COUNT_DOWN;
+		}
+
 		case COUNT_DOWN: {
 
 			break;
+		}
+
+		case GAME_INIT: {
+			stopwatch.start();
+
+			status = GAME;
 		}
 
 		case GAME: {
@@ -42,28 +52,29 @@ void Game::update() {
 			}
 
 			if (Data::LPlayer.isHPRunOut() || Data::RPlayer.isHPRunOut())
-				status = FINISH;
+				status = FINISH_INIT;
 
 			break;
 		}
 
-		case FINISH: {
-			if (!finishInit) {
-				stopwatch.pause();
+		case FINISH_INIT: {
+			stopwatch.pause();
 
-				double x = 900;
-				for (auto HP : Data::LPlayer.HPLog) {
-					LHPGraph.push_back({ x, 540 - HP / 10.0 });
-					x += 250.0 / Data::LPlayer.HPLog.size();
-				}
-				x = 900;
-				for (auto HP : Data::RPlayer.HPLog) {
-					RHPGraph.push_back({ x, 540 - HP / 10.0 });
-					x += 250.0 / Data::RPlayer.HPLog.size();
-				}
-				finishInit = true;
+			double x = 900;
+			for (auto HP : Data::LPlayer.HPLog) {
+				LHPGraph.push_back({ x, 540 - HP / 10.0 });
+				x += 250.0 / Data::LPlayer.HPLog.size();
 			}
+			x = 900;
+			for (auto HP : Data::RPlayer.HPLog) {
+				RHPGraph.push_back({ x, 540 - HP / 10.0 });
+				x += 250.0 / Data::RPlayer.HPLog.size();
+			}
+			
+			status = FINISH;
+		}
 
+		case FINISH: {
 			if (Data::KeyEnter.repeat(20))
 				changeScene(L"Ending", 500);
 
@@ -114,10 +125,14 @@ void Game::draw() const {
 	}
 
 	switch(status) {
+		case COUNT_DOWN_INIT: break;
+
 		case COUNT_DOWN: {
 
 			break;
 		}
+
+		case GAME_INIT: break;
 
 		case GAME: {
 			Vec2 buttonPos(890, 692);
@@ -136,6 +151,8 @@ void Game::draw() const {
 
 			break;
 		}
+
+		case FINISH_INIT: break;
 
 		case FINISH: {
 			Rect(0, 0, Config::WIDTH, Config::HEIGHT).draw(ColorF(L"#000").setAlpha(0.7));
