@@ -1,20 +1,20 @@
 #include "./Bomb.hpp"
 
-bool Bomb::isLDoing = false;
-bool Bomb::isRDoing = false;
-int Bomb::numberOfBomb = 0;
+int Bomb::numberOfLUsed = 0;
+int Bomb::numberOfRUsed = 0;
 
 bool Bomb::update(Vec2 _myPos, Vec2 _oppPos) {
+	BombUsed = (isLeft) ? numberOfLUsed : numberOfRUsed;
 	if (explosion) {
 		fuse++;
 	}
 	if (isLeft) {
-		if (pos.x >= Config::CENTER + 70 + nowNumberOfBomb % 4 * 160) {//所定のラインを超えていれば左40+-10の位置から160おきにストップ
+		if (pos.x >= Config::CENTER + 70 + nowBombNumber % 4 * 160) {//所定のラインを超えていれば左40+-10の位置から160おきにストップ
 			vel.set(0, 0);
 		}
 	}
 	else {
-		if (pos.x <= Config::CENTER - 70 - nowNumberOfBomb % 4 * 160) {//所定のラインを超えていれば左40+-10の位置から160おきにストップ
+		if (pos.x <= Config::CENTER - 70 - nowBombNumber % 4 * 160) {//所定のラインを超えていれば左40+-10の位置から160おきにストップ
 			vel.set(0, 0);
 		}
 	}
@@ -32,7 +32,7 @@ void Bomb::draw() {
 }
 
 bool Bomb::isVisible() {
-	if (nowNumberOfBomb <= numberOfBomb - 4) {
+	if (nowBombNumber <= BombUsed - 4) {
 		return false;
 	}
 	if (fuse == 60) {
@@ -51,7 +51,7 @@ int Bomb::getDamage(Circle _circle) {
 		vel.set(0, 0);
 		if (explosion) {
 			if (fuse == 0) {
-				return (int)((EXPLODE_RADIUS - pos.distanceFrom(_circle.center)) / EXPLODE_RADIUS * 100);
+				return 70;
 			}
 		}
 	}

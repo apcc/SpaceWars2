@@ -29,5 +29,6 @@ bool InversionRecovery::isVisible() {
 }
 
 int InversionRecovery::getDamage(Circle _circle) {
+	(void)_circle;
 	return 0;
 }

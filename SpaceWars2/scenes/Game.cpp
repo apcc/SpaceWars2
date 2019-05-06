@@ -41,12 +41,12 @@ void Game::update() {
 
 			double x = 900;
 			for (auto HP : Data::LPlayer.HPLog) {
-				LHPGraph.push_back({ x, 540 - HP / 10 });
+				LHPGraph.push_back({ x, 540 - HP / 10.0 });
 				x += 250.0 / Data::LPlayer.HPLog.size();
 			}
 			x = 900;
 			for (auto HP : Data::RPlayer.HPLog) {
-				RHPGraph.push_back({ x, 540 - HP / 10 });
+				RHPGraph.push_back({ x, 540 - HP / 10.0 });
 				x += 250.0 / Data::RPlayer.HPLog.size();
 			}
 			finishInit = true;
@@ -292,7 +292,7 @@ void Game::drawHPGraph(int _x, int _y, LineString _LHPGraph, LineString _RHPGrap
 	constexpr int h = 120;
 
 	// 背景
-	Rect(_x, _y - 120 - 2, w + 2, h + 2).draw(ColorF(L"fff").setAlpha(0.5));
+	Rect(_x, _y - 120 + 2, w, h + 2).draw(ColorF(L"fff").setAlpha(0.5));
 
 	// 目盛り
 	Line(_x, _y - 100, _x + w, _y - 100).draw(1, ColorF(L"#fff").setAlpha(0.8));

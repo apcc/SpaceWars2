@@ -131,7 +131,7 @@ void Player::update(std::vector<Bullet*> &bullets){
 		}
 	}
 
-	HPLog.emplace_back(HP);
+	HPLog.push_back(HP);
 }
 
 int Player::skillSelect(){
