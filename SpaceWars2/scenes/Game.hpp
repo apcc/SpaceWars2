@@ -16,6 +16,7 @@ class Game final : public SceneManager<String,CommonData>::Scene {
 private:
 	Status status = COUNT_DOWN_INIT;
 	std::vector<Bullet*> bullets;
+	Stopwatch countDown;
 	Stopwatch stopwatch;
 	LineString LHPGraph;
 	LineString RHPGraph;
