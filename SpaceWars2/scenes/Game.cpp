@@ -1,7 +1,7 @@
 #include "Game.hpp"
 
-#define ROUND_UP(x, divisor)	((x + x % divisor) / divisor)
 #define ROUND_DOWN(x, divisor)	((x - x % divisor) / divisor)
+#define ROUND_UP(x, divisor)	(ROUND_DOWN(x, divisor) + (x % divisor ? 1 : 0))
 
 void Game::init() {}
 
