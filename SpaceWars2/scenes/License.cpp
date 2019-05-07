@@ -21,8 +21,8 @@ void License::update() {
 }
 
 void License::draw() const {
-	TextureAsset(L"background").resize(Config::WIDTH, Config::HEIGHT).draw();
-	Rect(Config::WIDTH, Config::HEIGHT).draw(ColorF(L"#000").setAlpha(0.4));
+	TextureAsset(L"background").resize(Window::Size()).draw();
+	Rect(Window::Size()).draw(ColorF(L"#000").setAlpha(0.4));
 	TextureAsset(L"license").draw();
 
 	Vec2 buttonPos(1195, 692);

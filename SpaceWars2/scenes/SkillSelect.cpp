@@ -27,7 +27,7 @@ void SkillSelect::init() {
 void SkillSelect::update() {
 	changeScene(Debug::InputFnKey(), 250);
 	 if (nextStageTime > 100)
-	 	changeScene(L"Three", 500);
+	 	changeScene(L"Game", 500);
 
 	if (LContinue && RContinue) ++nextStageTime;
 	else nextStageTime = 0;
@@ -86,7 +86,7 @@ void SkillSelect::update() {
 }
 
 void SkillSelect::draw() const {
-	TextureAsset(L"background").resize(Config::WIDTH, Config::HEIGHT).draw();
+	TextureAsset(L"background").resize(Window::Size()).draw();
 	FontAsset(L"Smart32")(L"SkillSelect").drawCenter(40, Color(L"#ffffff"));
 
 	for (int isLeft = 0; isLeft <= 1; isLeft++) { // LPlayer, RPlayer
@@ -120,8 +120,8 @@ void SkillSelect::draw() const {
 					.draw(755 + (190 * type) - (640 * isLeft), 570, Alpha((int)(255 * alpha[type])));
 		}
 
-		if (LContinue) Rect(0, 0, Config::WIDTH / 2, Config::HEIGHT).draw(ColorF(L"#f00").setAlpha(0.25));
-		if (RContinue) Rect(Config::WIDTH / 2, 0, Config::WIDTH / 2, Config::HEIGHT).draw(ColorF(L"#f00").setAlpha(0.25));
+		if (LContinue) Rect(0, 0, Window::Center().x, Config::HEIGHT).draw(ColorF(L"#f00").setAlpha(0.25));
+		if (RContinue) Rect(Window::Center().x, 0, Window::Center().x, Config::HEIGHT).draw(ColorF(L"#f00").setAlpha(0.25));
 	}
 
 	Vec2 buttonPos(820, 692);

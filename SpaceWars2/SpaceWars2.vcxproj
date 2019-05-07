@@ -178,7 +178,6 @@
     <ClCompile Include="functions\XInput.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Scenes\ControlGuidance.cpp" />
-    <ClCompile Include="scenes\Countdown.cpp" />
     <ClCompile Include="Scenes\Ending.cpp" />
     <ClCompile Include="Scenes\Game.cpp" />
     <ClCompile Include="scenes\License.cpp" />
@@ -314,7 +313,6 @@
     <ClInclude Include="functions\MainSkill.hpp" />
     <ClInclude Include="functions\Player.hpp" />
     <ClInclude Include="functions\Vec2Utils.hpp" />
-    <ClInclude Include="scenes\Countdown.hpp" />
     <ClInclude Include="functions\XInput.hpp" />
     <ClInclude Include="scenes\Include.hpp" />
     <ClInclude Include="Scenes\ControlGuidance.hpp" />
