@@ -16,12 +16,6 @@ bool InversionRecovery::update(Vec2 _myPos, Vec2 _oppPos) {
 }
 
 void InversionRecovery::draw() {
-	if (isLeft) {
-		RectF(0, 60, 1000 * GAUGE_WIDTH, 20).draw(Color(L"#ffd000"));
-	}
-	else {
-		RectF(Config::WIDTH - 1000 * GAUGE_WIDTH, 60, Config::WIDTH, 20).draw(Color(L"#ffd000"));
-	}
 }
 
 bool InversionRecovery::isVisible() {
