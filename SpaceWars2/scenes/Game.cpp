@@ -347,13 +347,17 @@ void Game::drawChargeGauge(bool _isLeft) {
 
 	Player* PLAYER = &(_isLeft ? Data::LPlayer : Data::RPlayer);
 	double reqCharge = PLAYER->requireCharge[PLAYER->whatSpecialSkill];
-	int arcCnt = (int)floor(PLAYER->charge / reqCharge * 30);
+	int arcCnt = 0;
+	if (PLAYER->inRecovery)
+		arcCnt = (int)reqCharge;
+	else
+		arcCnt = (int)floor(PLAYER->charge / reqCharge * 30);
 
 	if (_isLeft) pos.x = Window::Center().x - dist;
 	else		 pos.x = Window::Center().x + dist;
 
 	color.s = 0.75 + PLAYER->charge / reqCharge * 0.25;
-	if (PLAYER->charge >= reqCharge)
+	if (PLAYER->charge >= reqCharge || PLAYER->inRecovery)
 		color.h = 42;
 
 	// 内側 破線
@@ -369,10 +373,10 @@ void Game::drawChargeGauge(bool _isLeft) {
 		Circle(pos, 18).drawArc(Radians(12 * i + 1), 10_deg, 0, 7, color);
 
 	// % 表示
-	if (floor(PLAYER->charge / reqCharge * 100) != 100)
-		rightAlign(L"Letters7", (int)floor(PLAYER->charge / reqCharge * 100), (int)pos.x + 10, (int)pos.y - 7, color);
-	else
+	if (floor(PLAYER->charge / reqCharge * 100) == 100 || PLAYER->inRecovery)
 		FontAsset(L"Letters7")(L"Go").drawAt(pos, color);
+	else
+		rightAlign(L"Letters7", (int)floor(PLAYER->charge / reqCharge * 100), (int)pos.x + 10, (int)pos.y - 7, color);
 
 	// ただの飾り
 	int r = 5;
