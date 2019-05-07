@@ -21,16 +21,25 @@ void Game::update() {
 
 			switch(countDown.s()) {
 			case 0:
-				stopwatchFrame.asPolygon(16, true).overwrite(outerFrame, Palette::White);
-				stopwatchFrame.asPolygon(7, true).overwrite(innerFrame, Palette::White);
+				if (!isFirstLoaded) {
+					stopwatchFrame.asPolygon(16, true).overwrite(outerFrame, Palette::White);
+					stopwatchFrame.asPolygon(7, true).overwrite(innerFrame, Palette::White);
+					isFirstLoaded = true;
+				}
 				break;
 
 			case 1:
-				outerFrameTex = Texture(outerFrame.gaussianBlur(6, 6));
+				if (!isSecondLoaded) {
+					outerFrameTex = Texture(outerFrame.gaussianBlur(6, 6));
+					isSecondLoaded = true;
+				}
 				break;
 
 			case 2:
-				innerFrameTex = Texture(innerFrame.gaussianBlur(3, 3));
+				if (!isThirdLoaded) {
+					innerFrameTex = Texture(innerFrame.gaussianBlur(3, 3));
+					isThirdLoaded = true;
+				}
 				break;
 
 			default:

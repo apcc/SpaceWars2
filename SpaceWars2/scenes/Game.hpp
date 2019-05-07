@@ -25,6 +25,9 @@ private:
 	Image innerFrame = Image(1280, 720, Color(255, 0)); // [stopwatch枠] 内側枠
 	Texture outerFrameTex; // [stopwatch枠] 外側枠
 	Texture innerFrameTex; // [stopwatch枠] 内側枠
+	bool isFirstLoaded;
+	bool isSecondLoaded;
+	bool isThirdLoaded;
 	const LineString stopwatchFrame {
 		{Window::Center().x - 70, 22},
 		{Window::Center().x + 70, 22},
