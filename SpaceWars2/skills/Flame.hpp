@@ -8,7 +8,7 @@ private:
 	Circle getShape() { return Circle(pos, 20); }
 	RectF getShapeFlameBelt() {
 		if (isLeft) {
-			if (bulletSpeed * 120 < pos.x - ppos.x) {
+			if (bulletSpeed * 80 < pos.x - ppos.x) {
 				return  RectF(pos.x, pos.y - 20, -bulletSpeed * 80, 40);
 			}
 			else {
@@ -16,7 +16,7 @@ private:
 			}
 		}
 		else {
-			if (bulletSpeed * 120 < ppos.x - pos.x) {
+			if (bulletSpeed * 80 < ppos.x - pos.x) {
 				return  RectF(pos.x + bulletSpeed, pos.y - 20, bulletSpeed * 80, 40);
 			}
 			else {

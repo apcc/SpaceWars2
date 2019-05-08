@@ -13,7 +13,7 @@ public:
 		PLAYER.changeSpeed(0);
 	}
 	~JudgmentTime(){
-		PLAYER.changeSpeed(15);
+		PLAYER.changeSpeed(8);
 	}
 	bool update(Vec2 _myPos, Vec2 _oppPos) override;
 	void draw() override;
