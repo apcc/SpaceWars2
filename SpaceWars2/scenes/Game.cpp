@@ -322,17 +322,17 @@ void Game::drawHPGauge(bool _isLeft) {
 void Game::drawTemperatureGauge(bool _isLeft) {
 	Vec2 pos(0, 65);
 	Vec2 borderPos(0, 65);
-	double width;
-	int reflectionX;
+	Player* PLAYER = &(_isLeft ? Data::LPlayer : Data::RPlayer);
+	const double width = PLAYER->temperature / 1000.0 * 240;
 	const int dist = 80;
+	int reflectionX;
+
 	if (_isLeft) {
-		width = Data::LPlayer.temperature / 1000.0 * 240;
 		pos.x = Window::Center().x - dist - width;
 		reflectionX = Window::Center().x - dist - 240;
 		borderPos.x = Window::Center().x - dist - 192 - 6;
 	}
 	else {
-		width = Data::RPlayer.temperature / 1000.0 * 240;
 		pos.x = Window::Center().x + dist - 12;
 		reflectionX = Window::Center().x + dist - 12;
 		borderPos.x = Window::Center().x + dist;
