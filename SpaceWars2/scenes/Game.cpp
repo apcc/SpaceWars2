@@ -323,6 +323,7 @@ void Game::drawTemperatureGauge(bool _isLeft) {
 	Vec2 pos(0, 65);
 	Vec2 borderPos(0, 65);
 	Player* PLAYER = &(_isLeft ? Data::LPlayer : Data::RPlayer);
+	HSV color(Color(L"#2f2"));
 	const double width = PLAYER->temperature / 1000.0 * 240;
 	const int dist = 80;
 	int reflectionX;
@@ -338,6 +339,9 @@ void Game::drawTemperatureGauge(bool _isLeft) {
 		borderPos.x = Window::Center().x + dist;
 	}
 
+	if (PLAYER->temperature > 600)
+		color.h -= (PLAYER->temperature - 600) / 4.0;
+
 	// 背景
 	RoundRect({ reflectionX, pos.y }, { 240 + 12, 15 }, 7.5)
 		.draw(ColorF(L"#9f9").setAlpha(0.3));
@@ -348,7 +352,7 @@ void Game::drawTemperatureGauge(bool _isLeft) {
 
 	// 外周
 	RoundRect(pos.asPoint(), { width + 12, 15 }, 7.5)
-		.drawShadow({}, 8, 3, Color(L"#2f2"));
+		.drawShadow({}, 8, 3, color);
 
 	// 内周
 	RoundRect(pos.asPoint() + Vec2(6, 6).asPoint(), { width, 3 }, 1.5)
