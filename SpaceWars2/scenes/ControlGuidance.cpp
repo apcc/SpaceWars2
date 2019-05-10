@@ -12,5 +12,6 @@ void ControlGuidance::update() {
 
 void ControlGuidance::draw() const {
 	TextureAsset(L"background").resize(Window::Size()).draw();
-	FontAsset(L"Smart32")(L"ControlGuidance").drawCenter(40, Color(L"#ffffff"));
+
+	TextureAsset(L"controller").drawAt(Window::Center());
 }

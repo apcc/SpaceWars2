@@ -8,6 +8,8 @@
 7900	FILE	"images/title-logo.png"
 7910	FILE	"images/license.png"
 
+7950	FILE	"images/controller.png"
+
 // skills
 8000	FILE	"images/skills/main-1.png"
 8001	FILE	"images/skills/main0.png"
