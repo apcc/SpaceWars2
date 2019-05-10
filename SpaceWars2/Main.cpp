@@ -1,6 +1,7 @@
 #include <Siv3D.hpp>
 #include "Config.hpp"
 #include "CommonData.hpp"
+#include "functions/Asset.hpp"
 
 // Scenes
 #include "scenes/Opening.hpp"
@@ -33,18 +34,11 @@ void Main(){
 	FontManager::Register(L"/7700");
 	FontManager::Register(L"/7701");
 	FontManager::Register(L"/7702");
-	FontAsset::Register(L"Smart32", 32, L"03SmartFont-Proportional");
-	FontAsset::Register(L"Smart28", 28, L"03SmartFont-Proportional");
-	FontAsset::Register(L"Smart12", 12, L"03SmartFont-Proportional");
-	FontAsset::Register(L"SmartB12", 12, L"03SmartFont-Proportional", FontStyle::Bold);
-	FontAsset::Register(L"CicaR32", 32, L"Cica");
-	FontAsset::Register(L"CicaR18", 18, L"Cica");
-	FontAsset::Register(L"CicaR12", 12, L"Cica");
-	FontAsset::Register(L"Letters32", 32, L"Letters Laughing");
-	FontAsset::Register(L"Letters18", 18, L"Letters Laughing");
-	FontAsset::Register(L"Letters12", 12, L"Letters Laughing");
-	FontAsset::Register(L"Letters10", 10, L"Letters Laughing");
-	FontAsset::Register(L"Letters7", 7, L"Letters Laughing");
+
+	SmartUI::Register();
+	SmartB::Register();
+	CicaR::Register();
+	Letters::Register();
 
 	SceneManager<String,CommonData> manager;
 	manager.add<Opening>(L"Opening");

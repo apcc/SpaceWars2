@@ -133,19 +133,19 @@ void Game::draw() const {
 		drawChargeGauge(false);
 
 		// temperature value
-		rightAlign(L"Letters10", ROUND_UP(Data::LPlayer.temperature, 10), 309, 62, Color(L"#7f7"));
-		rightAlign(L"Letters10", ROUND_UP(Data::RPlayer.temperature, 10), 1000, 62, Color(L"#7f7"));
+		rightAlign(Letters::GetFont(L10), ROUND_UP(Data::LPlayer.temperature, 10), 309, 62, Color(L"#7f7"));
+		rightAlign(Letters::GetFont(L10), ROUND_UP(Data::RPlayer.temperature, 10), 1000, 62, Color(L"#7f7"));
 
 		// cooldown value
-		rightAlign(L"Letters10", ROUND_UP(Data::LPlayer.coolDownTime, 60), 230, 62, Color(L"#77f"));
-		rightAlign(L"Letters10", ROUND_UP(Data::RPlayer.coolDownTime, 60), 1085, 62, Color(L"#77f"));
+		rightAlign(Letters::GetFont(L10), ROUND_UP(Data::LPlayer.coolDownTime, 60), 230, 62, Color(L"#77f"));
+		rightAlign(Letters::GetFont(L10), ROUND_UP(Data::RPlayer.coolDownTime, 60), 1085, 62, Color(L"#77f"));
 
 		stopwatchFill.draw(Color(L"#052942"));
 		outerFrameTex.draw(Color(L"#23B5FF"));
 		innerFrameTex.draw(Color(L"#EFF9FF"));
-		rightAlign(L"Letters12", stopwatch.min(), Window::Center().x - 10, 35);
-		rightAlign(L"CicaR12", L":", Window::Center().x, 35);
-		rightAlign(L"Letters12", twoDigits(stopwatch.s() % 60), Window::Center().x + 38, 35);
+		rightAlign(Letters::GetFont(L12), stopwatch.min(), Window::Center().x - 10, 35);
+		rightAlign(CicaR::GetFont(C12), L":", Window::Center().x, 35);
+		rightAlign(Letters::GetFont(L12), twoDigits(stopwatch.s() % 60), Window::Center().x + 38, 35);
 	}
 
 	switch(status) {
@@ -165,16 +165,16 @@ void Game::draw() const {
 			Vec2 buttonPos(890, 692);
 
 			buttonPos.x += (int)TextureAsset(L"stick_24").draw(buttonPos).w + 6;
-			buttonPos.x += (int)FontAsset(L"CicaR12")(L"移動").draw(buttonPos).w + 15;
+			buttonPos.x += (int)CicaR::GetFont(C12)(L"移動").draw(buttonPos).w + 15;
 
 			buttonPos.x += (int)TextureAsset(L"buttonA_24").draw(buttonPos).w + 6;
-			buttonPos.x += (int)FontAsset(L"CicaR12")(L"Main").draw(buttonPos).w + 15;
+			buttonPos.x += (int)CicaR::GetFont(C12)(L"Main").draw(buttonPos).w + 15;
 
 			buttonPos.x += (int)TextureAsset(L"buttonLB_24").draw(buttonPos).w + 6;
-			buttonPos.x += (int)FontAsset(L"CicaR12")(L"Sub").draw(buttonPos).w + 15;
+			buttonPos.x += (int)CicaR::GetFont(C12)(L"Sub").draw(buttonPos).w + 15;
 
 			buttonPos.x += (int)TextureAsset(L"buttonRB_24").draw(buttonPos).w + 6;
-			buttonPos.x += (int)FontAsset(L"CicaR12")(L"Special").draw(buttonPos).w + 15;
+			buttonPos.x += (int)CicaR::GetFont(C12)(L"Special").draw(buttonPos).w + 15;
 
 			break;
 		}
@@ -186,24 +186,24 @@ void Game::draw() const {
 
 
 			if (Data::LPlayer.isHPRunOut() && Data::RPlayer.isHPRunOut())
-				FontAsset(L"Smart32")(L"引き分け！").drawCenter(300, Color(L"#fff"));
+				SmartUI::GetFont(S32)(L"引き分け！").drawCenter(300, Color(L"#fff"));
 			else {
 				if (Data::LPlayer.isHPRunOut())
-					FontAsset(L"Smart32")(L"RPlayer win !").drawCenter(250, Color(L"#00f"));
+					SmartUI::GetFont(S32)(L"RPlayer win !").drawCenter(250, Color(L"#00f"));
 				if (Data::RPlayer.isHPRunOut())
-					FontAsset(L"Smart32")(L"LPlayer win !").drawCenter(250, Color(L"#f00"));
+					SmartUI::GetFont(S32)(L"LPlayer win !").drawCenter(250, Color(L"#f00"));
 			}
 
 			// 箇条書き
-			FontAsset(L"Smart28")(L"HP:").draw(280, 390);
-			FontAsset(L"Smart28")(L"Skills:").draw(280, 470);
-			FontAsset(L"Smart28")(L"Time:").draw(280, 550);
+			SmartUI::GetFont(S28)(L"HP:").draw(280, 390);
+			SmartUI::GetFont(S28)(L"Skills:").draw(280, 470);
+			SmartUI::GetFont(S28)(L"Time:").draw(280, 550);
 
 			// HP
-			rightAlign(L"Letters18", Format(Data::LPlayer.HP), 550, 400);
-			rightAlign(L"CicaR12", L"/1000", 620, 415);
-			rightAlign(L"Letters18", Format(Data::RPlayer.HP), 770, 400);
-			rightAlign(L"CicaR12", L"/1000", 840, 415);
+			rightAlign(Letters::GetFont(L18), Format(Data::LPlayer.HP), 550, 400);
+			rightAlign(CicaR::GetFont(C12), L"/1000", 620, 415);
+			rightAlign(Letters::GetFont(L18), Format(Data::RPlayer.HP), 770, 400);
+			rightAlign(CicaR::GetFont(C12), L"/1000", 840, 415);
 
 			// Skills
 			for (auto isLeft : step(2)) { // LPlayer, RPlayer
@@ -218,14 +218,14 @@ void Game::draw() const {
 
 					Rect(670 + (60 * type) - (220 * isLeft), 522, 50, 20).draw(Color(skillColor[type]));
 
-					rightAlign(L"Letters7", (skillsCnt[type] < 1000 ? Format(skillsCnt[type]) : L"999+"), 717 + (60 * type) - (220 * isLeft), 525);
+					rightAlign(Letters::GetFont(L7), (skillsCnt[type] < 1000 ? Format(skillsCnt[type]) : L"999+"), 717 + (60 * type) - (220 * isLeft), 525);
 				}
 			}
 
 			// Time
-			rightAlign(L"Letters18", stopwatch.min(), Window::Center().x - 15, 560);
-			rightAlign(L"CicaR18", L":", Window::Center().x + 3, 560);
-			rightAlign(L"Letters18", twoDigits(stopwatch.s() % 60), Window::Center().x + 63, 560);
+			rightAlign(Letters::GetFont(L18), stopwatch.min(), Window::Center().x - 15, 560);
+			rightAlign(CicaR::GetFont(C18), L":", Window::Center().x + 3, 560);
+			rightAlign(Letters::GetFont(L18), twoDigits(stopwatch.s() % 60), Window::Center().x + 63, 560);
 
 			// Graph
 			drawHPGraph(900, 540, LHPGraph, RHPGraph);
@@ -238,11 +238,6 @@ void Game::draw() const {
 	}
 }
 
-
-template<typename T>
-void Game::rightAlign(const String& _font, T _text, int _x, int _y, Color _color) {
-	FontAsset(_font)(Format(_text)).draw(_x - FontAsset(_font)(Format(_text)).region().w, _y, _color);
-}
 
 template <typename T>
 void Game::rightAlign(Font _font, T _text, int _x, int _y, Color _color) {
@@ -260,7 +255,7 @@ void Game::drawCountDown(const Stopwatch& _countDown) {
 	const HSV color(28 + (3 - _countDown.s() * 8), 1.0, 1.0);
 
 	if (_countDown.s() < 3)
-		FontAsset(L"Letters32")(3 - _countDown.s()).drawAt(pos, color);
+		Letters::GetFont(L32)(3 - _countDown.s()).drawAt(pos, color);
 }
 
 void Game::drawLoading(Vec2 _pos, const Stopwatch& _countDown) {
@@ -287,7 +282,7 @@ void Game::drawLoading(Vec2 _pos, const Stopwatch& _countDown) {
 		.drawShadow({}, 8, 3, color);
 
 	// Loading...
-	FontAsset(L"SmartB12")(L"Loading...").draw(_pos + Vec2(20, -10));
+	SmartB::GetFont(Sb12)(L"Loading...").draw(_pos + Vec2(20, -10));
 }
 
 void Game::drawHPGauge(bool _isLeft) {
@@ -383,9 +378,9 @@ void Game::drawChargeGauge(bool _isLeft) {
 
 	// % 表示
 	if (floor(PLAYER->charge / reqCharge * 100) == 100 || PLAYER->inRecovery)
-		FontAsset(L"Letters7")(L"Go").drawAt(pos, color);
+		Letters::GetFont(L7)(L"Go").drawAt(pos, color);
 	else
-		rightAlign(L"Letters7", (int)floor(PLAYER->charge / reqCharge * 100), (int)pos.x + 10, (int)pos.y - 7, color);
+		rightAlign(Letters::GetFont(L7), (int)floor(PLAYER->charge / reqCharge * 100), (int)pos.x + 10, (int)pos.y - 7, color);
 
 	// ただの飾り
 	int r = 5;

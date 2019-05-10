@@ -43,8 +43,6 @@ private:
 
 
 	template<typename T>
-	static void rightAlign(const String& _font, T _text, int _x, int _y, Color _color = Color(L"#fff"));
-	template<typename T>
 	static void rightAlign(Font _font, T _text, int _x, int _y, Color _color = Color(L"#fff"));
 	static String twoDigits(int n);
 	static void drawCountDown(const Stopwatch& _countDown);
