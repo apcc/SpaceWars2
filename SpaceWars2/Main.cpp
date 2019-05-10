@@ -31,10 +31,10 @@ void Main(){
 	TextureAsset::Register(L"buttonRT_24", L"/8513");
 	TextureAsset::Register(L"stick_24", L"/8520");
 	TextureAsset::Register(L"cross_24", L"/8521");
+
 	FontManager::Register(L"/7700");
 	FontManager::Register(L"/7701");
 	FontManager::Register(L"/7702");
-
 	SmartUI::Register();
 	SmartB::Register();
 	CicaR::Register();

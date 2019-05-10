@@ -7,6 +7,7 @@ enum SmartUISize {
 	S32 = 32
 };
 namespace SmartUI {
+	extern Array<SmartUISize> size;
 	bool Register();
 	Font GetFont(SmartUISize _size);
 }
@@ -15,6 +16,7 @@ enum SmartBSize {
 	Sb12 = 12,
 };
 namespace SmartB {
+	extern Array<SmartBSize> size;
 	bool Register();
 	Font GetFont(SmartBSize _size);
 }
@@ -25,6 +27,7 @@ enum CicaRSize {
 	C32 = 32
 };
 namespace CicaR {
+	extern Array<CicaRSize> size;
 	bool Register();
 	Font GetFont(CicaRSize _size);
 }
@@ -37,6 +40,7 @@ enum LettersSize {
 	L32 = 32
 };
 namespace Letters {
+	extern Array<LettersSize> size;
 	bool Register();
 	Font GetFont(LettersSize _size);
 }

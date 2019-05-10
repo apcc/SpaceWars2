@@ -1,8 +1,13 @@
 #include "Asset.hpp"
 
+Array<SmartUISize> SmartUI::size = { S12, S28, S32 };
+Array<SmartBSize>  SmartB::	size = { Sb12 };
+Array<CicaRSize>   CicaR::	size = { C12, C18, C32 };
+Array<LettersSize> Letters::size = { L7, L10, L12, L18, L32 };
+
 bool SmartUI::Register() {
 	bool result = true;
-	for (SmartUISize s : { S12, S28, S32 }) {
+	for (SmartUISize s : size) {
 		const String name = L"Smart" + Format(s);
 		if (!FontAsset::Register(name, s, L"03SmartFont-Proportional"))
 			result = false;
@@ -22,7 +27,7 @@ Font SmartUI::GetFont(SmartUISize _size) {
 
 bool SmartB::Register() {
 	bool result = true;
-	for (SmartBSize s : { Sb12 }) {
+	for (SmartBSize s : size) {
 		const String name = L"SmartB" + Format(s);
 		if (!FontAsset::Register(name, s, L"03SmartFont-Proportional", FontStyle::Bold))
 			result = false;
@@ -42,7 +47,7 @@ Font SmartB::GetFont(SmartBSize _size) {
 
 bool CicaR::Register() {
 	bool result = true;
-	for (CicaRSize s : { C12, C18, C32 }) {
+	for (CicaRSize s : size) {
 		const String name = L"CicaR" + Format(s);
 		if (!FontAsset::Register(name, s, L"Cica"))
 			result = false;
@@ -62,7 +67,7 @@ Font CicaR::GetFont(CicaRSize _size) {
 
 bool Letters::Register() {
 	bool result = true;
-	for (LettersSize s : { L7, L10, L12, L18, L32 }) {
+	for (LettersSize s : size) {
 		const String name = L"Letters" + Format(s);
 		if (!FontAsset::Register(name, s, L"Letters Laughing"))
 			result = false;
