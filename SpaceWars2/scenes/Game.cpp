@@ -131,11 +131,7 @@ void Game::draw() const {
 		// charge gauge
 		drawChargeGauge(true);
 		drawChargeGauge(false);
-
-		// temperature value
-		rightAlign(L"Letters10", ROUND_UP(Data::LPlayer.temperature, 10), 309, 62, Color(L"#7f7"));
-		rightAlign(L"Letters10", ROUND_UP(Data::RPlayer.temperature, 10), 1000, 62, Color(L"#7f7"));
-
+		
 		// cooldown value
 		rightAlign(L"Letters10", ROUND_UP(Data::LPlayer.coolDownTime, 60), 230, 62, Color(L"#77f"));
 		rightAlign(L"Letters10", ROUND_UP(Data::RPlayer.coolDownTime, 60), 1085, 62, Color(L"#77f"));
@@ -321,6 +317,7 @@ void Game::drawHPGauge(bool _isLeft) {
 
 void Game::drawTemperatureGauge(bool _isLeft) {
 	Vec2 pos(0, 65);
+	Vec2 valuePos(0, 62);
 	Vec2 borderPos(0, 65);
 	Player* PLAYER = &(_isLeft ? Data::LPlayer : Data::RPlayer);
 	HSV color(Color(L"#2f2"));
@@ -331,11 +328,13 @@ void Game::drawTemperatureGauge(bool _isLeft) {
 
 	if (_isLeft) {
 		pos.x = Window::Center().x - dist - width;
+		valuePos.x = Window::Center().x - dist - 251;
 		reflectionX = Window::Center().x - dist - 240;
 		borderPos.x = Window::Center().x - dist - 192 - 6;
 	}
 	else {
 		pos.x = Window::Center().x + dist - 12;
+		valuePos.x = Window::Center().x + dist + 365;
 		reflectionX = Window::Center().x + dist - 12;
 		borderPos.x = Window::Center().x + dist;
 	}
@@ -361,6 +360,9 @@ void Game::drawTemperatureGauge(bool _isLeft) {
 	// 内周
 	RoundRect(pos.asPoint() + Vec2(7.5, 7.5).asPoint(), { width, 2 }, 0.5)
 		.drawShadow({}, 8, 4, color - HSV(0, 0.8, 0));
+
+	// value
+	rightAlign(L"Letters10", ROUND_UP(PLAYER->temperature, 10), valuePos.x, valuePos.y, color);
 	
 }
 
