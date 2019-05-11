@@ -311,11 +311,11 @@ void Game::drawHPGauge(bool _isLeft) {
 		.draw(ColorF(L"#f99").setAlpha(0.25));
 
 	// 外周
-	RoundRect(pos.asPoint(), { width + 12, 15 }, 7.5)
+	RoundRect(pos.asPoint(), { width + 15, 15 }, 7.5)
 		.drawShadow({}, 8, 3, Color(L"#f22"));
 
 	// 内周
-	RoundRect(pos.asPoint() + Vec2(6, 7.5).asPoint(), { width - 2, 1 }, 1.5)
+	RoundRect(pos.asPoint() + Vec2(7.5, 7.5).asPoint(), { width, 2 }, 1.5)
 		.drawShadow({}, 8, 4, Color(L"#fee"));
 }
 
@@ -347,7 +347,7 @@ void Game::drawTemperatureGauge(bool _isLeft) {
 	backColor.s = 0.4;
 
 	// 背景
-	RoundRect({ reflectionX, pos.y }, { 240 + 12, 15 }, 7.5)
+	RoundRect({ reflectionX, pos.y }, { 240 + 15, 15 }, 7.5)
 		.draw(backColor.toColorF().setAlpha(0.3));
 
 	// 背景２
@@ -355,11 +355,11 @@ void Game::drawTemperatureGauge(bool _isLeft) {
 		.draw(backColor.toColorF().setAlpha(0.4));
 
 	// 外周
-	RoundRect(pos.asPoint(), { width + 12, 15 }, 7.5)
+	RoundRect(pos.asPoint(), { width + 15, 15 }, 7.5)
 		.drawShadow({}, 8, 3, color);
 
 	// 内周
-	RoundRect(pos.asPoint() + Vec2(7.5, 7.5).asPoint(), { width - 1.5, 1 }, 0.5)
+	RoundRect(pos.asPoint() + Vec2(7.5, 7.5).asPoint(), { width, 2 }, 0.5)
 		.drawShadow({}, 8, 4, color - HSV(0, 0.8, 0));
 	
 }
