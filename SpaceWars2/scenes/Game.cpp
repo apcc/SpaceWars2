@@ -23,7 +23,7 @@ void Game::update() {
 			case 0:
 				if (!isFirstLoaded) {
 					stopwatchFrame.asPolygon(16, true).overwrite(outerFrame, Palette::White);
-					stopwatchFrame.asPolygon(7, true).overwrite(innerFrame, Palette::White);
+					stopwatchFrame.asPolygon(5, true).overwrite(innerFrame, Palette::White);
 					isFirstLoaded = true;
 				}
 				break;
@@ -315,7 +315,7 @@ void Game::drawHPGauge(bool _isLeft) {
 		.drawShadow({}, 8, 3, Color(L"#f22"));
 
 	// 内周
-	RoundRect(pos.asPoint() + Vec2(6, 7.5).asPoint(), { width, 1 }, 1.5)
+	RoundRect(pos.asPoint() + Vec2(6, 7.5).asPoint(), { width - 2, 1 }, 1.5)
 		.drawShadow({}, 8, 4, Color(L"#fee"));
 }
 
@@ -355,7 +355,7 @@ void Game::drawTemperatureGauge(bool _isLeft) {
 		.drawShadow({}, 8, 3, color);
 
 	// 内周
-	RoundRect(pos.asPoint() + Vec2(6, 7.5).asPoint(), { width, 1 }, 1.5)
+	RoundRect(pos.asPoint() + Vec2(7.5, 7.5).asPoint(), { width - 1.5, 1 }, 0.5)
 		.drawShadow({}, 8, 4, Color(L"#efe"));
 	
 }
