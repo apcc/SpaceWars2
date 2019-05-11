@@ -4,12 +4,21 @@
 #define GAUGE_WIDTH (Config::WIDTH / 2.0 / GAUGE_LIMIT)
 
 bool InversionRecovery::update(Vec2 _myPos, Vec2 _oppPos) {
-	if ((time > TRICKING_TIME || PLAYER.HP < 20) && !inRecovery)
+	if ((time > TRICKING_TIME || PLAYER.HP < 20) && !inRecovery){
 		inRecovery = true;
+		RecoverAmount = (initHP - PLAYER.HP) * 1.5;
+		PLAYER.inRecovery = false;
+	}
 
-	if (inRecovery)
-		PLAYER.HP += 3;
-
+	if (inRecovery){
+		if(RecoverAmount < 10){
+			PLAYER.HP += RecoverAmount;
+			RecoverAmount = 0;
+		}
+		else
+			PLAYER.HP += 10;
+			RecoverAmount -= 10;
+	}
 	++time;
 
 	return Bullet::update(_myPos, _oppPos);
@@ -25,7 +34,7 @@ void InversionRecovery::draw() {
 }
 
 bool InversionRecovery::isVisible() {
-	return !(inRecovery && initHP <= PLAYER.HP);
+	return ((!inRecovery) || RecoverAmount > 0);
 }
 
 int InversionRecovery::getDamage(Circle _circle) {

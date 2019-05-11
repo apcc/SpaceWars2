@@ -9,8 +9,9 @@ class InversionRecovery : public Bullet {
 private:
 	int initHP;
 	int time = 0;
+	int RecoverAmount = 1;
 	bool inRecovery;
-	
+
 	const int TRICKING_TIME = 150;
 
 public:
@@ -18,9 +19,6 @@ public:
 		initHP = PLAYER.HP;
 		inRecovery = false;
 		PLAYER.inRecovery = true;
-	}
-	~InversionRecovery() {
-		PLAYER.inRecovery = false;
 	}
 
 	bool update(Vec2 _myPos, Vec2 _oppPos) override;
