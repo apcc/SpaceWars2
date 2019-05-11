@@ -330,7 +330,7 @@ void Game::drawTemperatureGauge(bool _isLeft) {
 		pos.x = Window::Center().x - dist - width;
 		valuePos.x = Window::Center().x - dist - 251;
 		reflectionX = Window::Center().x - dist - 240;
-		borderPos.x = Window::Center().x - dist - 192 - 6;
+		borderPos.x = Window::Center().x - dist - 192;
 	}
 	else {
 		pos.x = Window::Center().x + dist - 12;
@@ -350,7 +350,7 @@ void Game::drawTemperatureGauge(bool _isLeft) {
 		.draw(backColor.toColorF().setAlpha(0.3));
 
 	// 背景２
-	RoundRect(borderPos, { 192 + 6, 15 }, 7.5)
+	RoundRect(borderPos, { 192, 15 }, 7.5)
 		.draw(backColor.toColorF().setAlpha(0.4));
 
 	// 外周
