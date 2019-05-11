@@ -356,7 +356,7 @@ void Game::drawTemperatureGauge(bool _isLeft) {
 
 	// 内周
 	RoundRect(pos.asPoint() + Vec2(7.5, 7.5).asPoint(), { width - 1.5, 1 }, 0.5)
-		.drawShadow({}, 8, 4, Color(L"#efe"));
+		.drawShadow({}, 8, 4, color - HSV(0, 80, 0));
 	
 }
 
