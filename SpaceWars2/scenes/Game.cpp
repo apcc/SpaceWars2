@@ -334,7 +334,7 @@ void Game::drawTemperatureGauge(bool _isLeft) {
 	}
 	else {
 		pos.x = Window::Center().x + dist - 12;
-		valuePos.x = Window::Center().x + dist + 365;
+		valuePos.x = Window::Center().x + dist + 280;
 		reflectionX = Window::Center().x + dist - 12;
 		borderPos.x = Window::Center().x + dist;
 	}
