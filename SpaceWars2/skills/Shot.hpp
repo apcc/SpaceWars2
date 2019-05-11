@@ -15,5 +15,5 @@ public:
 	bool isVisible() override;
 	int getDamage(Circle _circle) override;
 
-	const static int bulletSpeed = 20;
+	const static int bulletSpeed = 30;
 };

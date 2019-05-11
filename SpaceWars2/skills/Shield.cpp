@@ -6,6 +6,7 @@ bool Shield::isRDoing = false;
 bool Shield::update(Vec2 _myPos, Vec2 _oppPos) {
 	pos = _myPos;
 	++frameCount;
+	++(isLeft ? Data::LPlayer : Data::RPlayer).coolDownTime;
 	damage = (isLeft ? Data::LPlayer : Data::RPlayer).changeHitSize(108);
 	return Bullet::update(_myPos, _oppPos);
 }

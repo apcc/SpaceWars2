@@ -5,22 +5,22 @@
 class Flame : public Bullet {
 private:
 	Vec2 ppos;
-	Circle getShape() { return Circle(pos, 20); }
+	Circle getShape() { return Circle(pos, 40); }
 	RectF getShapeFlameBelt() {
 		if (isLeft) {
 			if (bulletSpeed * 80 < pos.x - ppos.x) {
-				return  RectF(pos.x, pos.y - 20, -bulletSpeed * 80, 40);
+				return  RectF(pos.x, pos.y - 40, -bulletSpeed * 80, 80);
 			}
 			else {
-				return RectF(pos.x, pos.y - 20, -(pos.x - ppos.x), 40);
+				return RectF(pos.x, pos.y - 40, -(pos.x - ppos.x), 80);
 			}
 		}
 		else {
 			if (bulletSpeed * 80 < ppos.x - pos.x) {
-				return  RectF(pos.x + bulletSpeed, pos.y - 20, bulletSpeed * 80, 40);
+				return  RectF(pos.x + bulletSpeed, pos.y - 40, bulletSpeed * 80, 80);
 			}
 			else {
-				return RectF(pos.x, pos.y - 20, -(pos.x - ppos.x), 40);
+				return RectF(pos.x, pos.y - 40, -(pos.x - ppos.x), 80);
 			}
 		}
 	}

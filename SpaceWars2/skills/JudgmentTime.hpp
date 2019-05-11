@@ -7,7 +7,7 @@
 
 class JudgmentTime : public Bullet {
 private:
-	int lifeTime = 1;
+	int lifeTime = 100;
 public:
 	JudgmentTime(Vec2 _pos, bool _isLeft) : Bullet(_pos, _isLeft) {
 		PLAYER.changeSpeed(0);

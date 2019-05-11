@@ -32,7 +32,7 @@ public:
 	int nowNumberOfBomb;
 	bool nowDoing = isLeft ? isLDoing : isRDoing;
 	int fuse = 0;
-	int bulletSpeed = 20;
+	int bulletSpeed = 10;
 	bool update(Vec2 _myPos, Vec2 _oppPos) override;
 	void draw() override;
 	bool isVisible() override;

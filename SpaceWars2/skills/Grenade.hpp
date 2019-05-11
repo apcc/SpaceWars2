@@ -8,7 +8,7 @@ private:
 	int fuse;
 	const static int EXPLODE_TIMING = 20;
 		;
-	const static int EXPLODE_RADIUS=250;
+	const static int EXPLODE_RADIUS=225;
 public:
 	Grenade(Vec2 _pos, bool _isLeft) : Bullet(_pos, _isLeft) {
 		vel = Vec2(bulletSpeed * (_isLeft ? 1 : -1), 0).rotate(Radians(Random(-5, 5)));

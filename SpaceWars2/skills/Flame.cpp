@@ -36,7 +36,7 @@ int Flame::getDamage(Circle circle) {
 		return 50;
 	}
 	if (circle.intersects(normalizeRect(getShapeFlameBelt()))) {
-		return 1;
+		return 2;
 	}
 	return 0;
 }
