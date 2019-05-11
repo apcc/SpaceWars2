@@ -298,7 +298,7 @@ void Game::drawHPGauge(bool _isLeft) {
 	}
 	else {
 		width = Data::RPlayer.HP / 1000.0 * 360;
-		pos.x = Window::Center().x + dist - 12;
+		pos.x = Window::Center().x + dist - 15;
 		reflectionX = Window::Center().x + dist - 12;
 	}
 
@@ -333,9 +333,9 @@ void Game::drawTemperatureGauge(bool _isLeft) {
 		borderPos.x = Window::Center().x - dist - 192;
 	}
 	else {
-		pos.x = Window::Center().x + dist - 12;
+		pos.x = Window::Center().x + dist - 15;
 		valuePos.x = Window::Center().x + dist + 280;
-		reflectionX = Window::Center().x + dist - 12;
+		reflectionX = Window::Center().x + dist - 15;
 		borderPos.x = Window::Center().x + dist;
 	}
 
