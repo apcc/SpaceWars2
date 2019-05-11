@@ -34,7 +34,7 @@ bool LockOn::isVisible() {
 int LockOn::getDamage(Circle circle) {
 	if(explodeTime == 0){
 		if(circle.intersects(this->getShape())){
-			return 30;
+			return 50;
 		}
 	}
 	return 0;
