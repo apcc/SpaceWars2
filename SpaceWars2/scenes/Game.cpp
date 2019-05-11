@@ -315,7 +315,7 @@ void Game::drawHPGauge(bool _isLeft) {
 		.drawShadow({}, 8, 3, Color(L"#f22"));
 
 	// 内周
-	RoundRect(pos.asPoint() + Vec2(6, 6).asPoint(), { width, 3 }, 1.5)
+	RoundRect(pos.asPoint() + Vec2(6, 7.5).asPoint(), { width, 1 }, 1.5)
 		.drawShadow({}, 8, 4, Color(L"#fee"));
 }
 
@@ -339,8 +339,8 @@ void Game::drawTemperatureGauge(bool _isLeft) {
 		borderPos.x = Window::Center().x + dist;
 	}
 
-	if (PLAYER->temperature > 600)
-		color.h -= (PLAYER->temperature - 600) / 4.0;
+	if (PLAYER->temperature >300)
+		color.h -= (PLAYER->temperature - 300) / 5.5;
 
 	// 背景
 	RoundRect({ reflectionX, pos.y }, { 240 + 12, 15 }, 7.5)
@@ -355,7 +355,7 @@ void Game::drawTemperatureGauge(bool _isLeft) {
 		.drawShadow({}, 8, 3, color);
 
 	// 内周
-	RoundRect(pos.asPoint() + Vec2(6, 6).asPoint(), { width, 3 }, 1.5)
+	RoundRect(pos.asPoint() + Vec2(6, 7.5).asPoint(), { width, 1 }, 1.5)
 		.drawShadow({}, 8, 4, Color(L"#efe"));
 	
 }
