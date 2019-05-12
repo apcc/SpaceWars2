@@ -23,7 +23,7 @@ void Game::update() {
 			case 0:
 				if (!isFirstLoaded) {
 					stopwatchFrame.asPolygon(16, true).overwrite(outerFrame, Palette::White);
-					stopwatchFrame.asPolygon(7, true).overwrite(innerFrame, Palette::White);
+					stopwatchFrame.asPolygon(5, true).overwrite(innerFrame, Palette::White);
 					isFirstLoaded = true;
 				}
 				break;
@@ -131,11 +131,7 @@ void Game::draw() const {
 		// charge gauge
 		drawChargeGauge(true);
 		drawChargeGauge(false);
-
-		// temperature value
-		rightAlign(Letters::GetFont(L10), ROUND_UP(Data::LPlayer.temperature, 10), 309, 62, Color(L"#7f7"));
-		rightAlign(Letters::GetFont(L10), ROUND_UP(Data::RPlayer.temperature, 10), 1000, 62, Color(L"#7f7"));
-
+    
 		// cooldown value
 		rightAlign(Letters::GetFont(L10), ROUND_UP(Data::LPlayer.coolDownTime, 60), 230, 62, Color(L"#77f"));
 		rightAlign(Letters::GetFont(L10), ROUND_UP(Data::RPlayer.coolDownTime, 60), 1085, 62, Color(L"#77f"));
@@ -297,7 +293,7 @@ void Game::drawHPGauge(bool _isLeft) {
 	}
 	else {
 		width = Data::RPlayer.HP / 1000.0 * 360;
-		pos.x = Window::Center().x + dist - 12;
+		pos.x = Window::Center().x + dist - 15;
 		reflectionX = Window::Center().x + dist - 12;
 	}
 
@@ -306,41 +302,62 @@ void Game::drawHPGauge(bool _isLeft) {
 		.draw(ColorF(L"#f99").setAlpha(0.25));
 
 	// 外周
-	RoundRect(pos.asPoint(), { width + 12, 15 }, 7.5)
+	RoundRect(pos.asPoint(), { width + 15, 15 }, 7.5)
 		.drawShadow({}, 8, 3, Color(L"#f22"));
 
 	// 内周
-	RoundRect(pos.asPoint() + Vec2(6, 6).asPoint(), { width, 3 }, 1.5)
+	RoundRect(pos.asPoint() + Vec2(7.5, 7.5).asPoint(), { width, 2 }, 1.5)
 		.drawShadow({}, 8, 4, Color(L"#fee"));
 }
 
 void Game::drawTemperatureGauge(bool _isLeft) {
 	Vec2 pos(0, 65);
-	double width;
-	int reflectionX;
+	Vec2 valuePos(0, 62);
+	Vec2 borderPos(0, 65);
+	Player* PLAYER = &(_isLeft ? Data::LPlayer : Data::RPlayer);
+	HSV color(Color(L"#2f2"));
+	HSV backColor(Color(L"#9f9"));
+	const double width = PLAYER->temperature / 1000.0 * 240;
 	const int dist = 80;
+	int reflectionX;
+
 	if (_isLeft) {
-		width = Data::LPlayer.temperature / 1000.0 * 240;
 		pos.x = Window::Center().x - dist - width;
+		valuePos.x = Window::Center().x - dist - 251;
 		reflectionX = Window::Center().x - dist - 240;
+		borderPos.x = Window::Center().x - dist - 192;
 	}
 	else {
-		width = Data::RPlayer.temperature / 1000.0 * 240;
-		pos.x = Window::Center().x + dist - 12;
-		reflectionX = Window::Center().x + dist - 12;
+		pos.x = Window::Center().x + dist - 15;
+		valuePos.x = Window::Center().x + dist + 280;
+		reflectionX = Window::Center().x + dist - 15;
+		borderPos.x = Window::Center().x + dist;
 	}
 
+	if (PLAYER->temperature >300)
+		color.h -= (PLAYER->temperature - 300) / 5.5;
+
+	backColor = color;
+	backColor.s = 0.4;
+
 	// 背景
-	RoundRect({ reflectionX, pos.y }, { 240 + 12, 15 }, 7.5)
-		.draw(ColorF(L"#9f9").setAlpha(0.25));
+	RoundRect({ reflectionX, pos.y }, { 240 + 15, 15 }, 7.5)
+		.draw(backColor.toColorF().setAlpha(0.3));
+
+	// 背景２
+	RoundRect(borderPos, { 192, 15 }, 7.5)
+		.draw(backColor.toColorF().setAlpha(0.4));
 
 	// 外周
-	RoundRect(pos.asPoint(), { width + 12, 15 }, 7.5)
-		.drawShadow({}, 8, 3, Color(L"#2f2"));
+	RoundRect(pos.asPoint(), { width + 15, 15 }, 7.5)
+		.drawShadow({}, 8, 3, color);
 
 	// 内周
-	RoundRect(pos.asPoint() + Vec2(6, 6).asPoint(), { width, 3 }, 1.5)
-		.drawShadow({}, 8, 4, Color(L"#efe"));
+	RoundRect(pos.asPoint() + Vec2(7.5, 7.5).asPoint(), { width, 2 }, 0.5)
+		.drawShadow({}, 8, 4, color - HSV(0, 0.8, 0));
+
+	// value
+	rightAlign(L"Letters10", ROUND_UP(PLAYER->temperature, 10), valuePos.x, valuePos.y, color);
 	
 }
 
