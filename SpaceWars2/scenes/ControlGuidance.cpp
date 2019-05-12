@@ -15,10 +15,10 @@ void ControlGuidance::draw() const {
 
 	TextureAsset(L"controller").drawAt(Window::Center());
 
-	drawPointLine({ 265, 435 }, { 540, 435 });
-	drawPointLine({ 265, 320 }, { 445, 320 });
-	drawPointLine({ 1015, 375 }, { 830, 375 }, Color(L"#afa"));
-	drawPointLine({ 1015, 325 }, { 880, 325 }, Color(L"#faa"));
+	drawPointLine({ 540, 435 }, { 265, 435 });
+	drawPointLine({ 445, 320 }, { 265, 320 });
+	drawPointLine({ 830, 375 }, { 1015, 375 }, Color(L"#afa"));
+	drawPointLine({ 880, 325 }, { 1015, 325 }, Color(L"#faa"));
 
 	drawPointLineString(LineString({ {435, 170}, {400, 135}, {265, 135} }));
 	drawPointLineString(LineString({ {450, 165}, {385, 100}, {265, 100} }));
@@ -29,7 +29,7 @@ void ControlGuidance::draw() const {
 
 void ControlGuidance::drawPointLine(Vec2 _root, Vec2 _pos, Color _color) {
 	Line(_root, _pos).draw(5, _color);
-	Circle(_pos, 8).draw(_color);
+	Circle(_root, 8).draw(_color);
 }
 
 void ControlGuidance::drawPointLineString(LineString _line, Color _color) {
