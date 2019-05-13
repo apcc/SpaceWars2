@@ -13,9 +13,9 @@ void ControlGuidance::update() {
 void ControlGuidance::draw() const {
 	TextureAsset(L"background").resize(Window::Size()).draw();
 
-	TextureAsset(L"controller").drawAt(Window::Center());
+	constexpr int cY = 400; //Y軸の基準(center)
 
-	constexpr int cY = 360; //Y軸の基準(center)
+	TextureAsset(L"controller").drawAt(Window::Center().x, cY);
 
 	drawPointLine({ 540, cY + 75 }, {  265, cY + 75 });
 	drawPointLine({ 445, cY - 40 }, {  265, cY - 40 });
