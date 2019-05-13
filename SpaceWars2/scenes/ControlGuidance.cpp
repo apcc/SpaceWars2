@@ -1,4 +1,4 @@
-#include "ControlGuidance.hpp"
+﻿#include "ControlGuidance.hpp"
 
 void ControlGuidance::init() {
 
@@ -15,25 +15,27 @@ void ControlGuidance::draw() const {
 
 	TextureAsset(L"controller").drawAt(Window::Center());
 
-	drawPointLine({ 540, 435 }, { 265, 435 });
-	drawPointLine({ 445, 320 }, { 265, 320 });
-	drawPointLine({ 830, 375 }, { 1015, 375 }, Color(L"#afa"));
-	drawPointLine({ 880, 325 }, { 1015, 325 }, Color(L"#faa"));
+	constexpr int cY = 360; //Y軸の基準(center)
 
-	drawPointLineString(LineString({ {435, 170}, {400, 135}, {265, 135} }));
-	drawPointLineString(LineString({ {450, 165}, {385, 100}, {265, 100} }));
-	drawPointLineString(LineString({ {845, 170}, {880, 135}, {1015, 135} }));
-	drawPointLineString(LineString({ {830, 165}, {895, 100}, {1015, 100} }));
+	drawPointLine({ 540, cY + 75 }, {  265, cY + 75 });
+	drawPointLine({ 445, cY - 40 }, {  265, cY - 40 });
+	drawPointLine({ 830, cY + 15 }, { 1015, cY + 15 }, Color(L"#afa"));
+	drawPointLine({ 880, cY - 35 }, { 1015, cY - 35 }, Color(L"#faa"));
 
-	TextureAsset(L"stick_24").drawAt(245, 435);
-	TextureAsset(L"cross_24").drawAt(245, 320);
-	TextureAsset(L"buttonA_24").drawAt(1035, 375);
-	TextureAsset(L"buttonB_24").drawAt(1035, 325);
+	drawPointLineString(LineString({ {435, cY - 190}, {400, cY - 225}, { 265, cY - 225} }));
+	drawPointLineString(LineString({ {450, cY - 195}, {385, cY - 260}, { 265, cY - 260} }));
+	drawPointLineString(LineString({ {845, cY - 190}, {880, cY - 225}, {1015, cY - 225} }));
+	drawPointLineString(LineString({ {830, cY - 195}, {895, cY - 260}, {1015, cY - 260} }));
 
-	TextureAsset(L"buttonLB_24").drawAt(245, 135);
-	TextureAsset(L"buttonLT_24").drawAt(245, 100);
-	TextureAsset(L"buttonRB_24").drawAt(1035, 135);
-	TextureAsset(L"buttonRT_24").drawAt(1035, 100);
+	TextureAsset(L"stick_24").drawAt(245, cY + 75);
+	TextureAsset(L"cross_24").drawAt(245, cY - 40);
+	TextureAsset(L"buttonA_24").drawAt(1035, cY + 15);
+	TextureAsset(L"buttonB_24").drawAt(1035, cY - 35);
+
+	TextureAsset(L"buttonLB_24").drawAt( 245, cY - 225);
+	TextureAsset(L"buttonLT_24").drawAt( 245, cY - 260);
+	TextureAsset(L"buttonRB_24").drawAt(1035, cY - 225);
+	TextureAsset(L"buttonRT_24").drawAt(1035, cY - 260);
 }
 
 
