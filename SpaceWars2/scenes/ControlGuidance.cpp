@@ -24,6 +24,16 @@ void ControlGuidance::draw() const {
 	drawPointLineString(LineString({ {450, 165}, {385, 100}, {265, 100} }));
 	drawPointLineString(LineString({ {845, 170}, {880, 135}, {1015, 135} }));
 	drawPointLineString(LineString({ {830, 165}, {895, 100}, {1015, 100} }));
+
+	TextureAsset(L"stick_24").drawAt(245, 435);
+	TextureAsset(L"cross_24").drawAt(245, 320);
+	TextureAsset(L"buttonA_24").drawAt(1035, 375);
+	TextureAsset(L"buttonB_24").drawAt(1035, 325);
+
+	TextureAsset(L"buttonLB_24").drawAt(245, 135);
+	TextureAsset(L"buttonLT_24").drawAt(245, 100);
+	TextureAsset(L"buttonRB_24").drawAt(1035, 135);
+	TextureAsset(L"buttonRT_24").drawAt(1035, 100);
 }
 
 
