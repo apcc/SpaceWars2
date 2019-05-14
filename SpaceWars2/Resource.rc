@@ -49,6 +49,18 @@
 8520	FILE	"images/buttons/stick_24.png"
 8521	FILE	"images/buttons/cross_24.png"
 
+8600	FILE	"images/buttons/A_64.png"
+8601	FILE	"images/buttons/B_64.png"
+8602	FILE	"images/buttons/X_64.png"
+8603	FILE	"images/buttons/Y_64.png"
+8610	FILE	"images/buttons/LB_64.png"
+8611	FILE	"images/buttons/RB_64.png"
+8612	FILE	"images/buttons/LT_64.png"
+8613	FILE	"images/buttons/RT_64.png"
+8620	FILE	"images/buttons/stick_64.png"
+8621	FILE	"images/buttons/cross_64.png"
+
+
 // Siv3D Engine Rsource
 64000	FILE	"Engine/LogMessages.txt"
 64080	FILE	"Engine/Assets/engine_textures.s3a"

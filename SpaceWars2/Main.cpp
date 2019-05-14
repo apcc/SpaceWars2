@@ -31,6 +31,16 @@ void Main(){
 	TextureAsset::Register(L"buttonRT_24", L"/8513");
 	TextureAsset::Register(L"stick_24", L"/8520");
 	TextureAsset::Register(L"cross_24", L"/8521");
+	TextureAsset::Register(L"buttonA_64", L"/8600");
+	TextureAsset::Register(L"buttonB_64", L"/8601");
+	TextureAsset::Register(L"buttonX_64", L"/8602");
+	TextureAsset::Register(L"buttonY_64", L"/8603");
+	TextureAsset::Register(L"buttonLB_64", L"/8610");
+	TextureAsset::Register(L"buttonRB_64", L"/8611");
+	TextureAsset::Register(L"buttonLT_64", L"/8612");
+	TextureAsset::Register(L"buttonRT_64", L"/8613");
+	TextureAsset::Register(L"stick_64", L"/8620");
+	TextureAsset::Register(L"cross_64", L"/8621");
 	FontManager::Register(L"/7700");
 	FontManager::Register(L"/7701");
 	FontManager::Register(L"/7702");
