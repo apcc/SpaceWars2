@@ -4,20 +4,21 @@
 #define GAUGE_WIDTH (Config::WIDTH / 2.0 / GAUGE_LIMIT)
 
 bool InversionRecovery::update(Vec2 _myPos, Vec2 _oppPos) {
-	if ((time > TRICKING_TIME || PLAYER.HP < 20) && !inRecovery){
+	if ((time > TRICKING_TIME) && !inRecovery){
 		inRecovery = true;
-		RecoverAmount = (initHP - PLAYER.HP) * 1.5;
-		PLAYER.inRecovery = false;
+		RecoverAmount = PLAYER.recoveryDamage * 2.5;
+		PLAYER.inAbsorption = false;
 	}
 
 	if (inRecovery){
-		if(RecoverAmount < 10){
+		if (RecoverAmount < 20) {
 			PLAYER.HP += RecoverAmount;
 			RecoverAmount = 0;
 		}
-		else
-			PLAYER.HP += 10;
-			RecoverAmount -= 10;
+		else {
+			PLAYER.HP += 20;
+			RecoverAmount -= 20;
+		}
 	}
 	++time;
 

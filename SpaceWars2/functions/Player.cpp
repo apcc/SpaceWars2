@@ -13,8 +13,9 @@ void Player::init(Vec2 _pos, bool _isLeft){
 	temperature = 200;
 	coolDownTime = 0;
 	charge = 0;
+	recoveryDamage = 0;
 	speed = PLAYER_SPEED;
-	inRecovery = false;
+	inAbsorption = false;
 	whatMainSkill = static_cast<MainSkill>(0);
 	whatSubSkill = static_cast<SubSkill>(0);
 	whatSpecialSkill = static_cast<SpecialSkill>(0);
@@ -44,8 +45,16 @@ Circle Player::hitCircle(){
 void Player::receiveDamage(int _damage){
 	if (hitSize == 30) {	// hitSize is default
 		HP -= _damage;
-		if(!inRecovery)
+		if (!inAbsorption) {
 			charge += _damage;
+			recoveryDamage = 0;
+		}
+		else {
+			recoveryDamage += _damage;
+			if (HP < 5)
+				HP = 5;
+		}
+
 		if (charge >= requireCharge[whatSpecialSkill]) {
 			charge = requireCharge[whatSpecialSkill];
 		}
@@ -53,7 +62,6 @@ void Player::receiveDamage(int _damage){
 	else {
 		shieldDamage += _damage;
 	}
-	if (HP < 0) HP = 0;
 }
 
 void Player::changeSpeed(int _speed) {
@@ -83,6 +91,8 @@ void Player::update(std::vector<Bullet*> &bullets){
 
 	howFrameAfterShooting++;
 
+	if (HP < 0) HP = 0;
+	if (HP > 1000) HP = 1000;
 
 	if(isLeft) {
 		if (pos.x < 0 + PLAYER_SIZE)

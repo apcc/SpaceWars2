@@ -58,10 +58,11 @@ public:
 	int temperature;	// MainSkill抑制
 	int coolDownTime;	// SubSkill抑制
 	int charge;			// SpecialSkill抑制
+	int recoveryDamage;	// I.R.用ダメージ
 
 	int howFrameAfterShooting = 0;
 
-	bool inRecovery;
+	bool inAbsorption;
 	static bool inJudgmentTime;
 	const static int JT_TIME = 240;
 	int judgmentLife = -1;	// JudgmentTimeの残り時間
