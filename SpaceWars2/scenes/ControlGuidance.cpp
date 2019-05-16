@@ -17,15 +17,15 @@ void ControlGuidance::draw() const {
 
 	TextureAsset(L"controller").drawAt(Window::Center().x, cY);
 
-	drawPointLine({ 540, cY + 75 }, {  265, cY + 75 });
-	drawPointLine({ 445, cY - 40 }, {  265, cY - 40 });
-	drawPointLine({ 830, cY + 15 }, { 1015, cY + 75 }, Color(L"#afa"));
-	drawPointLine({ 880, cY - 35 }, { 1015, cY - 35 }, Color(L"#faa"));
+	drawPointLine({ 540, cY + 75 }, {  265, cY + 75 }); // stick
+	drawPointLine({ 445, cY - 40 }, {  265, cY - 40 }); // cross
+	drawPointLine({ 830, cY + 15 }, { 1015, cY + 75 }, Color(L"#afa")); // A
+	drawPointLine({ 880, cY - 35 }, { 1015, cY - 35 }, Color(L"#faa")); // B
 
-	drawPointLine({435, cY - 190}, { 265, cY - 225});
-	drawPointLine({450, cY - 195}, { 265, cY - 300});
-	drawPointLine({845, cY - 190}, {1015, cY - 225});
-	drawPointLine({830, cY - 195}, {1015, cY - 300});
+	drawPointLine({435, cY - 190}, { 265, cY - 225}); // LB
+	drawPointLine({450, cY - 195}, { 265, cY - 300}); // LT
+	drawPointLine({845, cY - 190}, {1015, cY - 225}); // RB
+	drawPointLine({830, cY - 195}, {1015, cY - 300}); // RT
 
 	TextureAsset(L"stick_64").drawAt(225, cY + 75);
 	TextureAsset(L"cross_64").drawAt(225, cY - 40);
