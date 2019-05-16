@@ -22,20 +22,20 @@ void ControlGuidance::draw() const {
 	drawPointLine({ 830, cY + 15 }, { 1015, cY + 75 }, Color(L"#afa")); // A
 	drawPointLine({ 880, cY - 35 }, { 1015, cY - 35 }, Color(L"#faa")); // B
 
-	drawPointLine({435, cY - 190}, { 265, cY - 225}); // LB
-	drawPointLine({450, cY - 195}, { 265, cY - 300}); // LT
-	drawPointLine({845, cY - 190}, {1015, cY - 225}); // RB
-	drawPointLine({830, cY - 195}, {1015, cY - 300}); // RT
+	drawPointLine({420, cY - 190}, { 265, cY - 190}); // LT
+	drawPointLine({455, cY - 190}, { 265, cY - 265}); // LB
+	drawPointLine({860, cY - 190}, {1015, cY - 190}); // RT
+	drawPointLine({825, cY - 190}, {1015, cY - 265}); // RB
 
 	TextureAsset(L"stick_64").drawAt(225, cY + 75);
 	TextureAsset(L"cross_64").drawAt(225, cY - 40);
 	TextureAsset(L"buttonA_64").drawAt(1055, cY + 75);
 	TextureAsset(L"buttonB_64").drawAt(1055, cY - 35);
 
-	TextureAsset(L"buttonLB_64").drawAt( 225, cY - 225);
-	TextureAsset(L"buttonLT_64").drawAt( 225, cY - 300);
-	TextureAsset(L"buttonRB_64").drawAt(1055, cY - 225);
-	TextureAsset(L"buttonRT_64").drawAt(1055, cY - 300);
+	TextureAsset(L"buttonLT_64").drawAt( 225, cY - 190);
+	TextureAsset(L"buttonLB_64").drawAt( 225, cY - 265);
+	TextureAsset(L"buttonRT_64").drawAt(1055, cY - 190);
+	TextureAsset(L"buttonRB_64").drawAt(1055, cY - 265);
 }
 
 
