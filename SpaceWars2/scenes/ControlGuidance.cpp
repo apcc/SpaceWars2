@@ -17,10 +17,10 @@ void ControlGuidance::draw() const {
 
 	TextureAsset(L"controller").drawAt(Window::Center().x, cY);
 
-	drawPointLine({ 540, cY + 75 }, {  265, cY + 75 }); // stick
+	drawPointLine({ 539, cY + 72 }, {  265, cY + 72 }); // stick
 	drawPointLine({ 445, cY - 40 }, {  265, cY - 40 }); // cross
-	drawPointLine({ 830, cY + 15 }, { 1015, cY + 75 }, Color(L"#afa")); // A
-	drawPointLine({ 880, cY - 35 }, { 1015, cY - 35 }, Color(L"#faa")); // B
+	drawPointLine({ 830, cY + 13 }, { 1015, cY + 72 }, Color(L"#afa")); // A
+	drawPointLine({ 880, cY - 37 }, { 1015, cY - 37 }, Color(L"#faa")); // B
 
 	drawPointLine({420, cY - 190}, { 265, cY - 190}); // LT
 	drawPointLine({455, cY - 190}, { 265, cY - 265}); // LB
