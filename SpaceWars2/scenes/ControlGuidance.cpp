@@ -38,10 +38,10 @@ void ControlGuidance::draw() const {
 	Line({ 95, cY - 165 }, { 180, cY - 165 }).draw(10, Color(L"#4169E1"));
 	rightCAlign(SmartUI::GetFont(S28), L"sub", 175, cY - 190);
 	// RB
-	drawPointLine({ 845, cY - 190 }, { 1015, cY - 190 });
-	TextureAsset(L"buttonRB_64").drawAt(1055, cY - 190);
-	Line({ 1100, cY - 165 }, { 1260, cY - 165 }).draw(10, Color(L"#FFD000"));
-	leftCAlign(SmartUI::GetFont(S28), L"special", 1105, cY - 190);
+	drawPointLine({ 845, cY - 190 }, { 965, cY - 190 });
+	TextureAsset(L"buttonRB_64").drawAt(1005, cY - 190);
+	Line({ 1050, cY - 165 }, { 1210, cY - 165 }).draw(10, Color(L"#FFD000"));
+	leftCAlign(SmartUI::GetFont(S28), L"special", 1055, cY - 190);
 
 	// 右下操作方法表示
 	Vec2 buttonPos(1190, 692);
