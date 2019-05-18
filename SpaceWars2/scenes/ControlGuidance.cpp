@@ -34,16 +34,20 @@ void ControlGuidance::draw() const {
 	TextureAsset(L"buttonA_64").drawAt(1055, cY + 75);
 	leftCAlign(SmartUI::GetFont(S28), L"決定", 1105, cY + 75);
 	TextureAsset(L"buttonB_64").drawAt(1055, cY - 35);
+	Line({ 1100, cY - 10 }, { 1215, cY - 10 }).draw(10, Color(L"#7CFC00"));
 	leftCAlign(SmartUI::GetFont(S28), L"main", 1105, cY - 35);
 
 	TextureAsset(L"buttonLT_64").drawAt( 225, cY - 190);
 	rightCAlign(SmartUI::GetFont(S28), L"Cancel", 175, cY - 190);
 	TextureAsset(L"buttonLB_64").drawAt( 225, cY - 265);
+	Line({ 90, cY - 240 }, { 180, cY - 240 }).draw(10, Color(L"#4169E1"));
 	rightCAlign(SmartUI::GetFont(S28), L"sub", 175, cY - 265);
 	TextureAsset(L"buttonRT_64").drawAt(1055, cY - 190);
 	leftCAlign(SmartUI::GetFont(S28), L"Cancel", 1105, cY - 190);
 	TextureAsset(L"buttonRB_64").drawAt(1055, cY - 265);
+	Line({ 1100, cY - 240 }, { 1260, cY - 240 }).draw(10, Color(L"#FFD000"));
 	leftCAlign(SmartUI::GetFont(S28), L"special", 1105, cY - 265);
+	
 }
 
 
