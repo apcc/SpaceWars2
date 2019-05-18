@@ -19,36 +19,26 @@ void ControlGuidance::draw() const {
 	TextureAsset(L"controller").drawAt(Window::Center().x, cY);
 
 	drawPointLine({ 539, cY + 72 }, {  265, cY + 72 }); // stick
-	drawPointLine({ 445, cY - 40 }, {  265, cY - 40 }); // cross
 	drawPointLine({ 830, cY + 13 }, { 1015, cY + 72 }, Color(L"#afa")); // A
 	drawPointLine({ 880, cY - 37 }, { 1015, cY - 37 }, Color(L"#faa")); // B
 
-	drawPointLine({420, cY - 190}, { 265, cY - 190}); // LT
-	drawPointLine({455, cY - 190}, { 265, cY - 265}); // LB
-	drawPointLine({860, cY - 190}, {1015, cY - 190}); // RT
-	drawPointLine({825, cY - 190}, {1015, cY - 265}); // RB
+	drawPointLine({435, cY - 190}, { 265, cY - 190}); // LB
+	drawPointLine({845, cY - 190}, {1015, cY - 190}); // RB
 
 	TextureAsset(L"stick_64").drawAt(225, cY + 75);
 	rightCAlign(SmartUI::GetFont(S28), L"移動", 175, cY + 75);
-	TextureAsset(L"cross_64").drawAt(225, cY - 40);
-	rightCAlign(SmartUI::GetFont(S28), L"選択", 175, cY - 40);
 	TextureAsset(L"buttonA_64").drawAt(1055, cY + 75);
 	leftCAlign(SmartUI::GetFont(S28), L"決定", 1105, cY + 75);
 	TextureAsset(L"buttonB_64").drawAt(1055, cY - 35);
 	Line({ 1100, cY - 10 }, { 1215, cY - 10 }).draw(10, Color(L"#7CFC00"));
 	leftCAlign(SmartUI::GetFont(S28), L"main", 1105, cY - 35);
 
-	TextureAsset(L"buttonLT_64").drawAt( 225, cY - 190);
-	rightCAlign(SmartUI::GetFont(S28), L"Cancel", 175, cY - 190);
-	TextureAsset(L"buttonLB_64").drawAt( 225, cY - 265);
-	Line({ 90, cY - 240 }, { 180, cY - 240 }).draw(10, Color(L"#4169E1"));
-	rightCAlign(SmartUI::GetFont(S28), L"sub", 175, cY - 265);
-	TextureAsset(L"buttonRT_64").drawAt(1055, cY - 190);
-	leftCAlign(SmartUI::GetFont(S28), L"Cancel", 1105, cY - 190);
-	TextureAsset(L"buttonRB_64").drawAt(1055, cY - 265);
-	Line({ 1100, cY - 240 }, { 1260, cY - 240 }).draw(10, Color(L"#FFD000"));
-	leftCAlign(SmartUI::GetFont(S28), L"special", 1105, cY - 265);
-	
+	TextureAsset(L"buttonLB_64").drawAt( 225, cY - 190);
+	Line({ 90, cY - 165 }, { 180, cY - 165 }).draw(10, Color(L"#4169E1"));
+	rightCAlign(SmartUI::GetFont(S28), L"sub", 175, cY - 190);
+	TextureAsset(L"buttonRB_64").drawAt(1055, cY - 190);
+	Line({ 1100, cY - 165 }, { 1260, cY - 165 }).draw(10, Color(L"#FFD000"));
+	leftCAlign(SmartUI::GetFont(S28), L"special", 1105, cY - 190);
 }
 
 
