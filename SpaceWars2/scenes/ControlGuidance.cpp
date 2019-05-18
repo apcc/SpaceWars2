@@ -14,35 +14,37 @@ void ControlGuidance::draw() const {
 	TextureAsset(L"background").resize(Window::Size()).draw();
 	Rect(Window::Size()).draw(ColorF(L"#000").setAlpha(0.5));
 
+
 	constexpr int cY = 400; //Y軸の基準(center)
 
 	TextureAsset(L"controller").drawAt(Window::Center().x, cY);
 
-	drawPointLine({ 539, cY + 72 }, {  265, cY + 72 }); // stick
-	drawPointLine({ 830, cY + 13 }, { 1015, cY + 72 }, Color(L"#afa")); // A
-	drawPointLine({ 880, cY - 37 }, { 1015, cY - 37 }, Color(L"#faa")); // B
-
-	drawPointLine({435, cY - 190}, { 265, cY - 190}); // LB
-	drawPointLine({845, cY - 190}, {1015, cY - 190}); // RB
-
+	// stick
+	drawPointLine({ 539, cY + 72 }, { 265, cY + 72 });
 	TextureAsset(L"stick_64").drawAt(225, cY + 72);
 	rightCAlign(SmartUI::GetFont(S28), L"移動", 175, cY + 72);
+	// A
+	drawPointLine({ 830, cY + 13 }, { 1015, cY + 72 }, Color(L"#afa"));
 	TextureAsset(L"buttonA_64").drawAt(1055, cY + 72);
 	leftCAlign(SmartUI::GetFont(S28), L"決定", 1105, cY + 72);
+	// B
+	drawPointLine({ 880, cY - 37 }, { 1015, cY - 37 }, Color(L"#faa"));
 	TextureAsset(L"buttonB_64").drawAt(1055, cY - 37);
 	Line({ 1100, cY - 12 }, { 1210, cY - 12 }).draw(10, Color(L"#7CFC00"));
 	leftCAlign(SmartUI::GetFont(S28), L"main", 1105, cY - 37);
-
+	// LB
+	drawPointLine({ 435, cY - 190 }, { 265, cY - 190 });
 	TextureAsset(L"buttonLB_64").drawAt( 225, cY - 190);
 	Line({ 95, cY - 165 }, { 180, cY - 165 }).draw(10, Color(L"#4169E1"));
 	rightCAlign(SmartUI::GetFont(S28), L"sub", 175, cY - 190);
+	// RB
+	drawPointLine({ 845, cY - 190 }, { 1015, cY - 190 });
 	TextureAsset(L"buttonRB_64").drawAt(1055, cY - 190);
 	Line({ 1100, cY - 165 }, { 1260, cY - 165 }).draw(10, Color(L"#FFD000"));
 	leftCAlign(SmartUI::GetFont(S28), L"special", 1105, cY - 190);
 
-
+	// 右下操作方法表示
 	Vec2 buttonPos(1190, 692);
-
 	buttonPos.x += (int)TextureAsset(L"buttonA_24").draw(buttonPos).w + 6;
 	buttonPos.x += (int)CicaR::GetFont(C12)(L"次へ").draw(buttonPos).w + 15;
 }
