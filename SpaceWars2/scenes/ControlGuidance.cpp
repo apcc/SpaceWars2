@@ -57,10 +57,10 @@ void ControlGuidance::drawPointLine(Vec2 _root, Vec2 _pos, Color _color) {
 
 template <typename T>
 void ControlGuidance::rightCAlign(Font _font, T _text, int _x, int _y, Color _color) {
-	_font(_text).drawAt(_x - _font(_text).region().w / 2, _y, _color);	
+	_font(_text).drawAt(_x - (int)_font(_text).region().w / 2, _y, _color);	
 }
 
 template <typename T>
 void ControlGuidance::leftCAlign(Font _font, T _text, int _x, int _y, Color _color) {
-	_font(_text).drawAt(_x + _font(_text).region().w / 2, _y, _color);
+	_font(_text).drawAt(_x + (int)_font(_text).region().w / 2, _y, _color);
 }
