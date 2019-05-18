@@ -14,6 +14,9 @@ void ControlGuidance::draw() const {
 	TextureAsset(L"background").resize(Window::Size()).draw();
 	Rect(Window::Size()).draw(ColorF(L"#000").setAlpha(0.5));
 
+	SmartUI::GetFont(S32).draw(L"操作方法", { 35, 20 });
+	Line({ 30, 85 }, { 230, 85 }).draw(8);
+
 
 	constexpr int cY = 400; //Y軸の基準(center)
 
