@@ -39,6 +39,12 @@ void ControlGuidance::draw() const {
 	TextureAsset(L"buttonRB_64").drawAt(1055, cY - 190);
 	Line({ 1100, cY - 165 }, { 1260, cY - 165 }).draw(10, Color(L"#FFD000"));
 	leftCAlign(SmartUI::GetFont(S28), L"special", 1105, cY - 190);
+
+
+	Vec2 buttonPos(1190, 692);
+
+	buttonPos.x += (int)TextureAsset(L"buttonA_24").draw(buttonPos).w + 6;
+	buttonPos.x += (int)CicaR::GetFont(C12)(L"次へ").draw(buttonPos).w + 15;
 }
 
 
