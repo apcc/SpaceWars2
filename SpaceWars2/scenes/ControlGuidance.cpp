@@ -12,6 +12,7 @@ void ControlGuidance::update() {
 
 void ControlGuidance::draw() const {
 	TextureAsset(L"background").resize(Window::Size()).draw();
+	Rect(Window::Size()).draw(ColorF(L"#000").setAlpha(0.5));
 
 	constexpr int cY = 400; //Y軸の基準(center)
 
