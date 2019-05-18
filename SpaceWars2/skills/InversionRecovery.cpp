@@ -6,7 +6,7 @@
 bool InversionRecovery::update(Vec2 _myPos, Vec2 _oppPos) {
 	if ((time > TRICKING_TIME) && !inRecovery){
 		inRecovery = true;
-		RecoverAmount = PLAYER.recoveryDamage * 2.5;
+		RecoverAmount = PLAYER.recoveryDamage * 2.0;
 		PLAYER.inAbsorption = false;
 	}
 

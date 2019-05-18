@@ -38,7 +38,7 @@ private:
 	int speed = 0;
 
 
-	int requireCharge[4] = { 400, 400, 400, 400 };
+	int requireCharge[4] = { 400, 270, 400, 200 };
 
 	const int PLAYER_SIZE = 30;
 	int hitSize = 30;		// 当たり判定半径
@@ -64,7 +64,7 @@ public:
 
 	bool inAbsorption;
 	static bool inJudgmentTime;
-	const static int JT_TIME = 240;
+	const static int JT_TIME = 300;
 	int judgmentLife = -1;	// JudgmentTimeの残り時間
 
 	MainSkill whatMainSkill = SHOT;
