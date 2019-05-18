@@ -28,14 +28,22 @@ void ControlGuidance::draw() const {
 	drawPointLine({825, cY - 190}, {1015, cY - 265}); // RB
 
 	TextureAsset(L"stick_64").drawAt(225, cY + 75);
+	rightCAlign(SmartUI::GetFont(S28), L"移動", 175, cY + 75);
 	TextureAsset(L"cross_64").drawAt(225, cY - 40);
+	rightCAlign(SmartUI::GetFont(S28), L"選択", 175, cY - 40);
 	TextureAsset(L"buttonA_64").drawAt(1055, cY + 75);
+	leftCAlign(SmartUI::GetFont(S28), L"決定", 1105, cY + 75);
 	TextureAsset(L"buttonB_64").drawAt(1055, cY - 35);
+	leftCAlign(SmartUI::GetFont(S28), L"main", 1105, cY - 35);
 
 	TextureAsset(L"buttonLT_64").drawAt( 225, cY - 190);
+	rightCAlign(SmartUI::GetFont(S28), L"Cancel", 175, cY - 190);
 	TextureAsset(L"buttonLB_64").drawAt( 225, cY - 265);
+	rightCAlign(SmartUI::GetFont(S28), L"sub", 175, cY - 265);
 	TextureAsset(L"buttonRT_64").drawAt(1055, cY - 190);
+	leftCAlign(SmartUI::GetFont(S28), L"Cancel", 1105, cY - 190);
 	TextureAsset(L"buttonRB_64").drawAt(1055, cY - 265);
+	leftCAlign(SmartUI::GetFont(S28), L"special", 1105, cY - 265);
 }
 
 
@@ -50,4 +58,14 @@ void ControlGuidance::drawPointLine(Vec2 _root, Vec2 _pos, Color _color) {
 
 	Circle(_root, 6).draw(_color);
 	LineString({ _root, _root.movedBy(move * isLeft * xSlope, move), _pos }).draw(5, _color);
+}
+
+template <typename T>
+void ControlGuidance::rightCAlign(Font _font, T _text, int _x, int _y, Color _color) {
+	_font(_text).drawAt(_x - _font(_text).region().w / 2, _y, _color);	
+}
+
+template <typename T>
+void ControlGuidance::leftCAlign(Font _font, T _text, int _x, int _y, Color _color) {
+	_font(_text).drawAt(_x + _font(_text).region().w / 2, _y, _color);
 }
