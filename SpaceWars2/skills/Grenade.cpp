@@ -21,8 +21,10 @@ bool Grenade::isVisible(){
 
 int Grenade::getDamage(Circle _circle){
 	if(_circle.intersects(this->getShape())){
-		if(fuse > EXPLODE_TIMING)
+		if (fuse > EXPLODE_TIMING) {
 			this->explode();
+			return 60;
+		}
 		if(fuse == EXPLODE_TIMING)
 			return (int)(((EXPLODE_RADIUS + 60) - pos.distanceFrom(_circle.center)) / (EXPLODE_RADIUS + 60) * 40);
 		return 0;

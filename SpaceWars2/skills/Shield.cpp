@@ -19,7 +19,7 @@ bool Shield::isVisible() {
 	if (isLeft ? isLInvalid : isRInvalid)
 		return false;
 
-	if (damage > 50)
+	if (damage > 200)
 		return false;
 
 	return true;

@@ -38,7 +38,7 @@ private:
 	int speed = 0;
 
 
-	int requireCharge[4] = { 400, 270, 400, 200 };
+	int requireCharge[4] = { 400, 270, 400, 300 };
 
 	const int PLAYER_SIZE = 30;
 	int hitSize = 30;		// 当たり判定半径

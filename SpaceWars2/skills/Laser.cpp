@@ -19,7 +19,7 @@ bool Laser::update(Vec2 _myPos, Vec2 _oppPos) {
 		--energy;
 		if (energy < 0) energy = 0;
 		if (!(isLeft ? isLInvalid : isRInvalid))
-			(isLeft ? Data::LPlayer : Data::RPlayer).temperature += 1;
+			(isLeft ? Data::LPlayer : Data::RPlayer).temperature -= 2;
 	}
 
 	if(energy >= 180) isCharging = false;
