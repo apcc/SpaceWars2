@@ -25,13 +25,13 @@ void ControlGuidance::draw() const {
 	drawPointLine({435, cY - 190}, { 265, cY - 190}); // LB
 	drawPointLine({845, cY - 190}, {1015, cY - 190}); // RB
 
-	TextureAsset(L"stick_64").drawAt(225, cY + 75);
-	rightCAlign(SmartUI::GetFont(S28), L"移動", 175, cY + 75);
-	TextureAsset(L"buttonA_64").drawAt(1055, cY + 75);
-	leftCAlign(SmartUI::GetFont(S28), L"決定", 1105, cY + 75);
-	TextureAsset(L"buttonB_64").drawAt(1055, cY - 35);
-	Line({ 1100, cY - 10 }, { 1215, cY - 10 }).draw(10, Color(L"#7CFC00"));
-	leftCAlign(SmartUI::GetFont(S28), L"main", 1105, cY - 35);
+	TextureAsset(L"stick_64").drawAt(225, cY + 72);
+	rightCAlign(SmartUI::GetFont(S28), L"移動", 175, cY + 72);
+	TextureAsset(L"buttonA_64").drawAt(1055, cY + 72);
+	leftCAlign(SmartUI::GetFont(S28), L"決定", 1105, cY + 72);
+	TextureAsset(L"buttonB_64").drawAt(1055, cY - 37);
+	Line({ 1100, cY - 12 }, { 1215, cY - 12 }).draw(10, Color(L"#7CFC00"));
+	leftCAlign(SmartUI::GetFont(S28), L"main", 1105, cY - 37);
 
 	TextureAsset(L"buttonLB_64").drawAt( 225, cY - 190);
 	Line({ 90, cY - 165 }, { 180, cY - 165 }).draw(10, Color(L"#4169E1"));
