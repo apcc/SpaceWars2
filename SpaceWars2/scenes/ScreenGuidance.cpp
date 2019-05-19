@@ -12,5 +12,5 @@ void ScreenGuidance::update() {
 
 void ScreenGuidance::draw() const {
 	TextureAsset(L"background").resize(Window::Size()).draw();
-	SmartUI::GetFont(S32)(L"ScreenGuidance").drawCenter(40, Color(L"#ffffff"));
+
 }
