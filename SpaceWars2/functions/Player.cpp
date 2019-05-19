@@ -105,21 +105,20 @@ void Player::update(std::vector<Bullet*> &bullets){
 		pos.y = Config::HEIGHT - PLAYER_SIZE;
 
 
-	if (speed != 0) {
+	if (speed != 0) { // 被J.T.
 		if (temperature > 100) --temperature;
 		if (temperature < 800) doMainSkill(bullets);
 		if (coolDownTime == 0) doSubSkill(bullets); else coolDownTime--;
 		doSpacialSkill(bullets);
 	}
 
-	if (inJudgmentTime) {
-		if(judgmentLife == 0) {
+	if (inJudgmentTime) { // in J.T.
+		if (judgmentLife == 0) {
 			inJudgmentTime = false;
 		}
 		--judgmentLife;
 	}
-
-	if (!inJudgmentTime) {
+	else { // normal
 		for (auto i : bullets) {
 			if (isLeft == i->isLeft) continue;
 			int damage = i->getDamage(this->hitCircle());
