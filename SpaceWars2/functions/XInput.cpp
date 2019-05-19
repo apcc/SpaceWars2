@@ -31,8 +31,8 @@ void GamePad::SetAxis() {
 
 void GamePad::SetButton() {
 	// MainSkill
-	input.addButton(L"L_MainSkill", s3d::Input::KeyQ | XInput(0).buttonA);
-	input.addButton(L"R_MainSkill", s3d::Input::KeyI | XInput(1).buttonA);
+	input.addButton(L"L_MainSkill", s3d::Input::KeyQ | XInput(0).buttonB);
+	input.addButton(L"R_MainSkill", s3d::Input::KeyI | XInput(1).buttonB);
 
 	// SubSkill
 	input.addButton(L"L_SubSkill", s3d::Input::KeyE | XInput(0).buttonLB);
@@ -55,7 +55,7 @@ void GamePad::SetButton() {
 	input.addButton(L"R_KeyRight", s3d::Input::KeySemicolon | XInput(1).buttonRight);
 
 	// 操作
-	input.addButton(L"KeyEnter", s3d::Input::KeyEnter | XInput(0).buttonA | XInput(1).buttonA | XInput(0).buttonB | XInput(1).buttonB);
+	input.addButton(L"KeyEnter", s3d::Input::KeyEnter | XInput(0).buttonA | XInput(1).buttonA);
 	input.addButton(L"L_KeyBack", s3d::Input::KeyLShift | s3d::Input::KeyEnd);
 	input.addButton(L"R_KeyBack", s3d::Input::KeyRShift | s3d::Input::KeyEnd);
 	input.addButton(L"L_KeySelect", s3d::Input::KeyLShift | XInput(0).buttonA | XInput(0).buttonB);
