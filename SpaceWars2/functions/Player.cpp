@@ -104,13 +104,11 @@ void Player::update(std::vector<Bullet*> &bullets){
 	if (pos.y > Config::HEIGHT - PLAYER_SIZE)
 		pos.y = Config::HEIGHT - PLAYER_SIZE;
 
-	if (temperature > 100)
-		--temperature;
 
 	if (speed != 0) {
+		if (temperature > 100) --temperature;
 		if (temperature < 800) doMainSkill(bullets);
-		if (coolDownTime == 0) doSubSkill(bullets);
-		else	coolDownTime--;
+		if (coolDownTime == 0) doSubSkill(bullets); else coolDownTime--;
 		doSpacialSkill(bullets);
 	}
 
