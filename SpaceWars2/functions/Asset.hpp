@@ -16,6 +16,7 @@ namespace SmartUI {
 
 enum SmartBSize {
 	Sb12 = 12,
+	Sb32 = 32
 };
 namespace SmartB {
 	extern Array<SmartBSize> size;

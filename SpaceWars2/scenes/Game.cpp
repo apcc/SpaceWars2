@@ -357,7 +357,7 @@ void Game::drawTemperatureGauge(bool _isLeft) {
 		.drawShadow({}, 8, 4, color - HSV(0, 0.8, 0));
 
 	// value
-	rightAlign(L"Letters10", ROUND_UP(PLAYER->temperature, 10), valuePos.x, valuePos.y, color);
+	rightAlign(Letters::GetFont(L10), ROUND_UP(PLAYER->temperature, 10), valuePos.x, valuePos.y, color);
 	
 }
 
