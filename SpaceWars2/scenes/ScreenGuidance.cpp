@@ -16,6 +16,10 @@ void ScreenGuidance::update() {
 void ScreenGuidance::draw() const {
 	TextureAsset(L"background").resize(Window::Size()).draw();
 
+	Line({ 25, 18 }, { 310, 18 }).draw(5);
+	SmartUI::GetFont(S32).draw(L"画面の見かた", { 30, 20 });
+	Line({ 25, 82 }, { 310, 82 }).draw(5);
+
 	TextureAsset(L"gauge").scale(1.8).draw(10, 200).drawFrame(0, 8, Palette::White);
 }
 
