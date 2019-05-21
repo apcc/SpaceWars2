@@ -87,9 +87,37 @@ void SkillSelect::update() {
 
 void SkillSelect::draw() const {
 	TextureAsset(L"background").resize(Window::Size()).draw();
-	SmartUI::GetFont(S32)(L"SkillSelect").drawCenter(40, Color(L"#ffffff"));
 
 	for (int isLeft = 0; isLeft <= 1; isLeft++) { // LPlayer, RPlayer
+
+		SmartUI::GetFont(S24)(L"[SKILLNAME]").draw((!isLeft) * Window::Width() / 2 + 30, 20, Color(L"#ffffff"));
+
+		Rect({290, 90}, 16*19, 9*19).draw(ColorF(L"#dddddd"));
+
+		Vec2 chartCenter = Vec2(150, 175);
+		const int chartSize = 85;
+		Quad(
+			{ (!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y - chartSize },
+			{ (!isLeft) * Window::Width() / 2 + chartCenter.x + chartSize, chartCenter.y },
+			{ (!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y + chartSize },
+			{ (!isLeft) * Window::Width() / 2 + chartCenter.x - chartSize, chartCenter.y }
+		).draw(ColorF(L"#00bfff").setAlpha(0.4));
+		Line((!isLeft) * Window::Width() / 2 + chartCenter.x - chartSize, chartCenter.y, (!isLeft) * Window::Width() / 2 + chartCenter.x + chartSize, chartCenter.y).draw();
+		Line((!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y - chartSize, (!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y + chartSize).draw();
+
+
+		LineString(
+			{
+				{ (!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y - chartSize * 0.9 },
+				{ (!isLeft) * Window::Width() / 2 + chartCenter.x + chartSize * 0.4, chartCenter.y },
+				{ (!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y + chartSize * 0.6 },
+				{ (!isLeft) * Window::Width() / 2 + chartCenter.x - chartSize * 0.7, chartCenter.y },
+				{ (!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y - chartSize * 0.9 }
+			}
+		).draw(5, ColorF(L"#ffffff").setAlpha(0.9));
+
+		SmartUI::GetFont(S18)(L"１２３４５６７８９１０１１１２１３１４１５").draw((!isLeft) * Window::Width() / 2 + 30, 300, ColorF(L"#ffffff"));
+
 		Player* PLAYER = &(isLeft ? Data::LPlayer : Data::RPlayer);
 		double alpha[3]      = { (isLeft ? LAlpha : RAlpha)[0], (isLeft ? LAlpha : RAlpha)[1], (isLeft ? LAlpha : RAlpha)[2] };
 		String skillType[3]  = { L"main", L"sub", L"special" };
@@ -107,7 +135,7 @@ void SkillSelect::draw() const {
 					TextureAsset(skillType[type] + Format((int)whatSkill[type]))
 						.drawAt(770 + (190 * type) - (640 * isLeft), 520);
 			}
-			
+
 			// 選択中のskillの枠
 			Rect(720 + (190 * type) - (640 * isLeft), 470, 100).drawFrame(0, 4, ColorF(skillColor[type]).setAlpha(alpha[type]));
 
