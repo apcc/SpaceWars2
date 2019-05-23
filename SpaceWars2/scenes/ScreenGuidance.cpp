@@ -21,7 +21,7 @@ void ScreenGuidance::draw() const {
 	SmartUI::GetFont(S32).draw(L"画面の見かた", { 30, 20 });
 	Line({ 25, 82 }, { 310, 82 }).draw(5);
 
-	TextureAsset(L"gauge").scale(1.5).drawAt(Window::Center() + Vec2(0, -70)).drawFrame(0, 8, Palette::White);
+	TextureAsset(L"gauge").scale(1.5).drawAt(Window::Center() + Vec2(0, -70)).drawFrame(0, 3, Palette::White);
 }
 
 
