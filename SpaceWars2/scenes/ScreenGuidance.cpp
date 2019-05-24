@@ -8,9 +8,11 @@ void ScreenGuidance::init() {
 }
 
 void ScreenGuidance::update() {
+	if (Data::KeyEnter.repeat(20, true)) {
+		if (status == LETS_GO) changeScene(L"SkillSelect");
+		else				   status = (Stat)(status + 1);
+	}
 	changeScene(Debug::InputFnKey(), 250);
-	if (Data::KeyEnter.repeat(20))
-		changeScene(L"SkillSelect", 500);
 }
 
 void ScreenGuidance::draw() const {
@@ -21,7 +23,14 @@ void ScreenGuidance::draw() const {
 	SmartUI::GetFont(S32).draw(L"画面の見かた", { 30, 20 });
 	Line({ 25, 82 }, { 310, 82 }).draw(5);
 
-	TextureAsset(L"gauge").scale(1.5).drawAt(Window::Center() + Vec2(0, -70)).drawFrame(0, 3, Palette::White);
+	Vec2 tl = 
+		TextureAsset(L"gauge").scale(1.5)
+			.drawAt(Window::Center() + Vec2(0, -70))
+			.drawFrame(0, 3, Palette::White)
+			.tl; // gauge画像左上pos
+
+	Rect(shadowPos[status][0] + tl.asPoint(), shadowPos[status][1])
+		.drawFrame(3, 2, frameColor[status]);
 }
 
 
