@@ -15,6 +15,7 @@ enum Stat {
 class ScreenGuidance final : public SceneManager<String,CommonData>::Scene {
 private:
 	Stat status = FULL;
+	const Texture gaugePic = Texture(Image(L"/7960").scale(1.5));
 
 	const Array<Array<Point>> shadowPos = {
 	{ { 0, 0 }, { 0, 0 } }, // FULL

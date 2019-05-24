@@ -3,6 +3,8 @@
 #define ROUND_DOWN(x, divisor)	((x - x % divisor) / divisor)
 #define ROUND_UP(x, divisor)	(ROUND_DOWN(x, divisor) + (x % divisor ? 1 : 0))
 
+constexpr double GAUGE_SCALE = 1.5;
+
 void ScreenGuidance::init() {
 
 }
@@ -23,11 +25,14 @@ void ScreenGuidance::draw() const {
 	SmartUI::GetFont(S32).draw(L"画面の見かた", { 30, 20 });
 	Line({ 25, 82 }, { 310, 82 }).draw(5);
 
-	Vec2 tl = 
-		TextureAsset(L"gauge").scale(1.5)
-			.drawAt(Window::Center() + Vec2(0, -70))
-			.drawFrame(0, 3, Palette::White)
-			.tl; // gauge画像左上pos
+	Vec2 tl = gaugePic.drawAt(Window::Center() + Vec2(0, -70))
+					  .drawFrame(0, 3, Palette::White)
+					  .tl; // gauge画像左上pos
+
+	if (status == HP || status == TEMPERATURE || status == OVER_HEAT || status == CHARGE) {
+		Rect(tl.asPoint(), gaugePic.size).draw(ColorF(L"#000").setAlpha(0.3));
+		gaugePic(shadowPos[status][0], shadowPos[status][1]).draw(shadowPos[status][0] + tl.asPoint());
+	}
 
 	Rect(shadowPos[status][0] + tl.asPoint(), shadowPos[status][1])
 		.drawFrame(3, 2, frameColor[status]);
