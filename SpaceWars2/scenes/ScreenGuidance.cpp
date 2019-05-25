@@ -36,6 +36,8 @@ void ScreenGuidance::draw() const {
 		RoundRect(shadowPos[status][0] + tl.asPoint(), shadowPos[status][1], 10)
 			.drawFrame(4, 2, frameColor[status]);
 	}
+
+	SmartUI::GetFont(S28)(description[status]).draw(tl + Vec2(0, 280), frameColor[status]);
 }
 
 

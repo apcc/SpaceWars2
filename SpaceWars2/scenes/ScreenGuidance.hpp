@@ -33,6 +33,14 @@ private:
 		Color(L"#ff2"), // CHARGE
 		Color(L"#fff"), // LETS_GO
 	};
+	const Array<String> description = {
+		L"まずはゲージの全体像を見てみましょう。\nAボタン/Enterで次に進みます。",
+		L"赤いゲージがHPのゲージです。\nHPが0になったらGAME終了です。",
+		L"緑のゲージは機体の温度です。\n温度が80℃以上になるとmainSkillが使えなくなります。",
+		L"青い数字はOVERHEATの待ち時間(秒)です。\nsubSkillを使用すると一定時間待つ必要があります。",
+		L"黄色いリングはcharge状況です。\nダメージを受けると少しづつ溜まり、\n100％まで溜まるとspecialSkillを使用できます。",
+		L"説明は以上です。\nではAボタン/Enterを押してskillを選びに行きましょう。"
+	};
 
 	template<typename T>
 	static void rightAlign(Font _font, T _text, int _x, int _y, Color _color = Color(L"#fff"));
