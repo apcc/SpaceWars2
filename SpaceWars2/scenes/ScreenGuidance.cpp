@@ -33,7 +33,7 @@ void ScreenGuidance::draw() const {
 		Rect(tl.asPoint(), gaugePic.size).draw(ColorF(L"#000").setAlpha(0.3));
 		gaugePic(shadowPos[status][0], shadowPos[status][1])
 			.draw(shadowPos[status][0] + tl.asPoint());
-		Rect(shadowPos[status][0] + tl.asPoint(), shadowPos[status][1])
+		RoundRect(shadowPos[status][0] + tl.asPoint(), shadowPos[status][1], 10)
 			.drawFrame(4, 2, frameColor[status]);
 	}
 }
