@@ -38,6 +38,12 @@ void ScreenGuidance::draw() const {
 	}
 
 	SmartUI::GetFont(S28)(description[status]).draw(tl + Vec2(0, 280), frameColor[status]);
+
+
+	// 右下操作方法表示
+	Vec2 buttonPos(1190, 692);
+	buttonPos.x += (int)TextureAsset(L"buttonA_24").draw(buttonPos).w + 6;
+	buttonPos.x += (int)CicaR::GetFont(C12)(L"次へ").draw(buttonPos).w + 15;
 }
 
 
