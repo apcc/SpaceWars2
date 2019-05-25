@@ -27,9 +27,9 @@ private:
 	};
 	const Array<Color> frameColor = {
 		Color(L"#fff"), // FULL
-		Color(L"#f33"), // HP
+		Color(L"#f66"), // HP
 		Color(L"#2f8"), // TEMPERATURE
-		Color(L"#88f"), // OVER_HEAT
+		Color(L"#bbf"), // OVER_HEAT
 		Color(L"#ff2"), // CHARGE
 		Color(L"#fff"), // LETS_GO
 	};
