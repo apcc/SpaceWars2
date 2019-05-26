@@ -9,7 +9,9 @@ enum Stat {
 	TEMPERATURE,
 	OVER_HEAT,
 	CHARGE,
-	LETS_GO
+	LETS_GO,
+
+	COUNT
 };
 
 class ScreenGuidance final : public SceneManager<String,CommonData>::Scene {
