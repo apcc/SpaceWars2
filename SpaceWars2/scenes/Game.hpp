@@ -12,7 +12,7 @@ enum Status {
 	FINISH,
 };
 
-class Game final : public SceneManager<String,CommonData>::Scene {
+class Game final : public SceneManager<String, CommonData>::Scene {
 private:
 	Status status = COUNT_DOWN_INIT;
 	std::vector<Bullet*> bullets;
@@ -28,7 +28,7 @@ private:
 	bool isFirstLoaded;
 	bool isSecondLoaded;
 	bool isThirdLoaded;
-	const LineString stopwatchFrame {
+	const LineString stopwatchFrame{
 		{Window::Center().x - 70, 22},
 		{Window::Center().x + 70, 22},
 		{Window::Center().x + 50, 72},
@@ -47,9 +47,6 @@ private:
 	static String twoDigits(int n);
 	static void drawCountDown(const Stopwatch& _countDown);
 	static void drawLoading(Vec2 _pos, const Stopwatch& _countDown);
-	static void drawHPGauge(bool _isLeft);
-	static void drawTemperatureGauge(bool _isLeft);
-	static void drawChargeGauge(bool _isLeft);
 	static void drawHPGraph(int _x, int _y, const LineString& _LHPGraph, const LineString& _RHPGraph);
 
 public:
@@ -62,4 +59,8 @@ public:
 		for (auto i : bullets) delete i;
 		bullets.clear();
 	}
+
+	static void drawHPGauge(bool _isLeft);
+	static void drawTemperatureGauge(bool _isLeft);
+	static void drawChargeGauge(bool _isLeft);
 };
