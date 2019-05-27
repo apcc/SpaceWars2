@@ -104,24 +104,21 @@ void Player::update(std::vector<Bullet*> &bullets){
 	if (pos.y > Config::HEIGHT - PLAYER_SIZE)
 		pos.y = Config::HEIGHT - PLAYER_SIZE;
 
-	if (temperature > 100)
-		--temperature;
 
-	if (speed != 0) {
+	if (speed != 0) { // [自機] normal
+		if (temperature > 100) --temperature;
 		if (temperature < 800) doMainSkill(bullets);
-		if (coolDownTime == 0) doSubSkill(bullets);
-		else	coolDownTime--;
+		if (coolDownTime == 0) doSubSkill(bullets); else coolDownTime--;
 		doSpacialSkill(bullets);
 	}
 
-	if (inJudgmentTime) {
-		if(judgmentLife == 0) {
+	if (inJudgmentTime) { // [全体] J.T.
+		if (judgmentLife == 0) {
 			inJudgmentTime = false;
 		}
 		--judgmentLife;
 	}
-
-	if (!inJudgmentTime) {
+	else { // [全体] normal
 		for (auto i : bullets) {
 			if (isLeft == i->isLeft) continue;
 			int damage = i->getDamage(this->hitCircle());
