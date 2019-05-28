@@ -21,9 +21,7 @@ void SkillSelect::init() {
 void SkillSelect::update() {
 	changeScene(Debug::InputFnKey(), 250);
 	if (nextStageTime > 100)
-		changeScene(L"Game", 500);
-	if (Data::KeyEnter.repeat(20, true))
-		changeScene(L"Game", 250);
+		changeScene(L"Three", 500);
 	
 	if (LContinue && RContinue) ++nextStageTime;
 	else nextStageTime = 0;

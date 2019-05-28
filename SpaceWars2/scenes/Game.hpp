@@ -5,7 +5,6 @@
 class Game final : public SceneManager<String,CommonData>::Scene {
 private:
 	std::vector<Bullet*> bullets;
-	Stopwatch stopwatch;
 
 public:
 	void init() override;

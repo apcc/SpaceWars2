@@ -1,8 +1,6 @@
 #include "Game.hpp"
 
-void Game::init() {
-	stopwatch.start();
-}
+void Game::init() {}
 
 void Game::update() {
 	changeScene(Debug::InputFnKey(), 250);
@@ -58,10 +56,4 @@ void Game::draw() const {
 	Data::RPlayer.drawShip();
 	Data::LPlayer.drawGauge();
 	Data::RPlayer.drawGauge();
-
-	ClearPrint();
-	Println(L"経過時間: ", stopwatch.s(), L"s");
-
-	Println(L"LPlayerのHP: ", Data::LPlayer.HP);
-	Println(L"RPlayerのHP: ", Data::RPlayer.HP);
 }
