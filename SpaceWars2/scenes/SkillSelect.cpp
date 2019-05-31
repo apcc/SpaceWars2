@@ -107,7 +107,7 @@ void SkillSelect::draw() const {
 					TextureAsset(skillType[type] + Format((int)whatSkill[type]))
 						.drawAt(770 + (190 * type) - (640 * isLeft), 520);
 			}
-			
+
 			// 選択中のskillの枠
 			Rect(720 + (190 * type) - (640 * isLeft), 470, 100).drawFrame(0, 4, ColorF(skillColor[type]).setAlpha(alpha[type]));
 

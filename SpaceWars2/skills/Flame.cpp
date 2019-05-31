@@ -7,7 +7,7 @@ bool Flame::update(Vec2 myPos, Vec2 oppPos) {
 
 void Flame::draw() {
 	//getShapeFlameBelt().draw(Color(L"#ff8800"));
-	getShapeFlameBelt().draw({ Color(L"#ff8800"), Color(0, 32), Color(0, 32), Color(L"#ff8800"), });
+	getShapeFlameBelt().draw({ Color(L"#ff8800"), Color(L"#221100"), Color(L"#221100"), Color(L"#ff8800"), });
 	getShape().draw(Color(L"#ffff00"));
 };
 
@@ -33,10 +33,10 @@ RectF normalizeRect(RectF rect) {// namae kimete chanto basho kaeyoune
 int Flame::getDamage(Circle circle) {
 	if (circle.intersects(this->getShape())) {
 		shouldBeDestroyed = true;
-		return 30;
+		return 50;
 	}
 	if (circle.intersects(normalizeRect(getShapeFlameBelt()))) {
-		return 5;
+		return 2;
 	}
 	return 0;
 }

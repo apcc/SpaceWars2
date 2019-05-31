@@ -13,7 +13,7 @@ public:
 		REVERSE_PLAYER.changeSpeed(0);
 	}
 	~JudgmentTime(){
-		REVERSE_PLAYER.changeSpeed(15);
+		REVERSE_PLAYER.changeSpeed(8);
 	}
 	bool update(Vec2 _myPos, Vec2 _oppPos) override;
 	void draw() override;

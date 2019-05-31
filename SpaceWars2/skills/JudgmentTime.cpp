@@ -8,7 +8,8 @@ bool JudgmentTime::update(Vec2 _myPos, Vec2 _oppPos){
 }
 
 void JudgmentTime::draw(){
-	Rect(Window::Size()).draw(ColorF(L"#cccccc").setAlpha(REVERSE_PLAYER.judgmentLife / 100.0));
+	Rect(Config::WIDTH, Config::HEIGHT).draw(ColorF(L"#336699").setAlpha((0.6 - (300 - REVERSE_PLAYER.judgmentLife)* (300 - REVERSE_PLAYER.judgmentLife) / 180000.0)));
+	//Master Rect(Window::Size()).draw(ColorF(L"#cccccc").setAlpha(REVERSE_PLAYER.judgmentLife / 100.0));
 }
 
 bool JudgmentTime::isVisible() {
