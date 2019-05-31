@@ -52,7 +52,8 @@ void Title::draw() const{
 		SmartUI::GetFont(S28)(name[i]).draw({ 980, 398 + 70 * i }, (i == selecting ? Color(L"#fff") : Color(L"#ccc")));
 	}
 
-	SmartUI::GetFont(S12)(L"Copyright (c) 2018-2019 APCC").draw(10, 690);
+	Rect(0, 690, 220, 30).draw(ColorF(L"#000").setAlpha(0.5));
+	CicaR::GetFont(C12)(Config::VERSION, L" / ", Config::VER_NUM).draw(10, 695);
 
 	Vec2 buttonPos(1165, 692);
 
