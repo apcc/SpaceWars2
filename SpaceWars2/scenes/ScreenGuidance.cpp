@@ -48,8 +48,3 @@ void ScreenGuidance::draw() const {
 	buttonPos.x += (int)CicaR::Get(C12)(L"次へ").draw(buttonPos).w + 15;
 }
 
-
-template <typename T>
-void ScreenGuidance::rightAlign(Font _font, T _text, int _x, int _y, Color _color) {
-	_font(_text).draw(_x - _font(_text).region().w, _y, _color);
-}

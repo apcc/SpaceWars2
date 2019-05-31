@@ -44,9 +44,6 @@ private:
 		L"説明はここまでです。\nskillによって温度がどれくらい上がりやすいか、\n等が違うのでいろいろ試してみてください。"
 	};
 
-	template<typename T>
-	static void rightAlign(Font _font, T _text, int _x, int _y, Color _color = Color(L"#fff"));
-
 public:
 	void init() override;
 	void update() override;

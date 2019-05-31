@@ -133,15 +133,19 @@ void Game::draw() const {
 		drawChargeGauge(false);
     
 		// cooldown value
-		rightAlign(Letters::Get(L10), ROUND_UP(Data::LPlayer.coolDownTime, 60), 230, 62, Color(L"#77f"));
-		rightAlign(Letters::Get(L10), ROUND_UP(Data::RPlayer.coolDownTime, 60), 1085, 62, Color(L"#77f"));
+		Letters::Get(L10)(ROUND_UP(Data::LPlayer.coolDownTime, 60)).draw(Arg::topRight, {  230, 62 }, Color(L"#77f"));
+		Letters::Get(L10)(ROUND_UP(Data::RPlayer.coolDownTime, 60)).draw(Arg::topRight, { 1085, 62 }, Color(L"#77f"));
 
 		stopwatchFill.draw(Color(L"#052942"));
 		outerFrameTex.draw(Color(L"#23B5FF"));
 		innerFrameTex.draw(Color(L"#EFF9FF"));
-		rightAlign(Letters::Get(L12), stopwatch.min(), Window::Center().x - 10, 35);
-		rightAlign(CicaR::Get(C12), L":", Window::Center().x, 35);
-		rightAlign(Letters::Get(L12), twoDigits(stopwatch.s() % 60), Window::Center().x + 38, 35);
+
+		Letters::Get(L12)(stopwatch.min())
+			.draw(Arg::topRight, { Window::Center().x - 10, 35 });
+		CicaR::Get(C12)(L":")
+			.draw(Arg::topRight, { Window::Center().x, 35 });
+		Letters::Get(L12)(twoDigits(stopwatch.s() % 60))
+			.draw(Arg::topRight, { Window::Center().x + 38, 35 });
 	}
 
 	switch(status) {
@@ -191,15 +195,22 @@ void Game::draw() const {
 			}
 
 			// 箇条書き
-			SmartUI::Get(S28)(L"HP:").draw({ 280, 390 });
-			SmartUI::Get(S28)(L"Skills:").draw({ 280, 470 });
-			SmartUI::Get(S28)(L"Time:").draw({ 280, 550 });
+			SmartUI::Get(S28)(L"HP:")
+				.draw({ 280, 390 });
+			SmartUI::Get(S28)(L"Skills:")
+				.draw({ 280, 470 });
+			SmartUI::Get(S28)(L"Time:")
+				.draw({ 280, 550 });
 
 			// HP
-			rightAlign(Letters::Get(L18), Format(Data::LPlayer.HP), 550, 400);
-			rightAlign(CicaR::Get(C12), L"/1000", 620, 415);
-			rightAlign(Letters::Get(L18), Format(Data::RPlayer.HP), 770, 400);
-			rightAlign(CicaR::Get(C12), L"/1000", 840, 415);
+			Letters::Get(L18)(Format(Data::LPlayer.HP))
+				.draw(Arg::topRight, { 550, 400 });
+			CicaR::Get(C12)(L"/1000")
+				.draw(Arg::topRight, { 620, 415 });
+			Letters::Get(L18)(Format(Data::RPlayer.HP))
+				.draw(Arg::topRight, { 770, 400 });
+			CicaR::Get(C12)(L"/1000")
+				.draw(Arg::topRight, { 840, 415 });
 
 			// Skills
 			for (auto isLeft : step(2)) { // LPlayer, RPlayer
@@ -214,14 +225,18 @@ void Game::draw() const {
 
 					Rect(670 + (60 * type) - (220 * isLeft), 522, 50, 20).draw(Color(skillColor[type]));
 
-					rightAlign(Letters::Get(L7), (skillsCnt[type] < 1000 ? Format(skillsCnt[type]) : L"999+"), 717 + (60 * type) - (220 * isLeft), 525);
+					Letters::Get(L7)(skillsCnt[type] < 1000 ? Format(skillsCnt[type]) : L"999+")
+						.draw(Arg::topRight, { 717 + (60 * type) - (220 * isLeft), 525 });
 				}
 			}
 
 			// Time
-			rightAlign(Letters::Get(L18), stopwatch.min(), Window::Center().x - 15, 560);
-			rightAlign(CicaR::Get(C18), L":", Window::Center().x + 3, 560);
-			rightAlign(Letters::Get(L18), twoDigits(stopwatch.s() % 60), Window::Center().x + 63, 560);
+			Letters::Get(L18)(stopwatch.min())
+				.draw(Arg::topRight, { Window::Center().x - 15, 560 });
+			CicaR::Get(C18)(L":")
+				.draw(Arg::topRight, { Window::Center().x + 3, 560 });
+			Letters::Get(L18)(twoDigits(stopwatch.s() % 60))
+				.draw(Arg::topRight, { Window::Center().x + 63, 560 });
 
 			// Graph
 			drawHPGraph(900, 540, LHPGraph, RHPGraph);
@@ -234,11 +249,6 @@ void Game::draw() const {
 	}
 }
 
-
-template <typename T>
-void Game::rightAlign(Font _font, T _text, int _x, int _y, Color _color) {
-	_font(_text).draw(_x - _font(_text).region().w, _y, _color);
-}
 
 String Game::twoDigits(int n) {
 	if (n < 10) return Format(L"0", n);
@@ -357,7 +367,7 @@ void Game::drawTemperatureGauge(bool _isLeft) {
 		.drawShadow({}, 8, 4, color - HSV(0, 0.8, 0));
 
 	// value
-	rightAlign(Letters::Get(L10), ROUND_UP(PLAYER->temperature, 10), valuePos.x, valuePos.y, color);
+	Letters::Get(L10)(ROUND_UP(PLAYER->temperature, 10)).draw(Arg::topRight, valuePos, color);
 	
 }
 
@@ -397,7 +407,7 @@ void Game::drawChargeGauge(bool _isLeft) {
 	if (floor(PLAYER->charge / reqCharge * 100) == 100 || PLAYER->inRecovery)
 		Letters::Get(L7)(L"Go").drawAt(pos, color);
 	else
-		rightAlign(Letters::Get(L7), (int)floor(PLAYER->charge / reqCharge * 100), (int)pos.x + 10, (int)pos.y - 7, color);
+		Letters::Get(L7)((int)floor(PLAYER->charge / reqCharge * 100)).draw(Arg::topRight, { (int)pos.x + 10, (int)pos.y - 7 }, color);
 
 	// ただの飾り
 	int r = 5;
