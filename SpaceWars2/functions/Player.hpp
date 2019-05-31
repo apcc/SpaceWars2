@@ -36,7 +36,7 @@ private:
 	bool isLeft = true;		// 左右
 	int selectedType = 0;	// skillSelectの選択中項目
 	int speed = 0;
-
+	
 	const int PLAYER_SIZE = 30;
 	int hitSize = 30;		// 当たり判定半径
 	int shieldDamage = 0;	// Shieldが受けたダメージ量
