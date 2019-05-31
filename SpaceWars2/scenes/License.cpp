@@ -28,5 +28,5 @@ void License::draw() const {
 	Vec2 buttonPos(1195, 692);
 
 	buttonPos.x += (int)TextureAsset(L"buttonA_24").draw(buttonPos, Alpha((int)(255 * alpha))).w + 6;
-	buttonPos.x += (int)CicaR::GetFont(C12)(L"Back").draw(buttonPos, Alpha((int)(255 * alpha))).w + 10;
+	buttonPos.x += (int)CicaR::Get(C12)(L"Back").draw(buttonPos, Alpha((int)(255 * alpha))).w + 10;
 }

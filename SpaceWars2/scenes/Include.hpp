@@ -5,5 +5,6 @@
 #include "../functions/Debug.hpp"
 #include "../CommonData.hpp"
 #include "../functions/Asset.hpp"
+#include "../fontPlus/FontP.hpp"
 
 #define BUTTON_ICON { 24, 24 }

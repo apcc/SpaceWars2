@@ -87,7 +87,7 @@ void SkillSelect::update() {
 
 void SkillSelect::draw() const {
 	TextureAsset(L"background").resize(Window::Size()).draw();
-	SmartUI::GetFont(S32)(L"SkillSelect").drawCenter(40, Color(L"#ffffff"));
+	SmartUI::Get(S32)(L"SkillSelect").drawCenter(40, Color(L"#ffffff"));
 
 	for (int isLeft = 0; isLeft <= 1; isLeft++) { // LPlayer, RPlayer
 		Player* PLAYER = &(isLeft ? Data::LPlayer : Data::RPlayer);
@@ -128,12 +128,12 @@ void SkillSelect::draw() const {
 
 	buttonPos.x += (int)TextureAsset(L"cross_24").draw(buttonPos).w + 5;
 	buttonPos.x += (int)TextureAsset(L"stick_24").draw(buttonPos).w + 6;
-	buttonPos.x += (int)CicaR::GetFont(C12)(L"Skill選択").draw(buttonPos).w + 15;
+	buttonPos.x += (int)CicaR::Get(C12)(L"Skill選択").draw(buttonPos).w + 15;
 
 	buttonPos.x += (int)TextureAsset(L"buttonA_24").draw(buttonPos).w + 6;
-	buttonPos.x += (int)CicaR::GetFont(C12)(L"Continue").draw(buttonPos).w + 15;
+	buttonPos.x += (int)CicaR::Get(C12)(L"Continue").draw(buttonPos).w + 15;
 
 	buttonPos.x += (int)TextureAsset(L"buttonLT_24").draw(buttonPos).w + 3;
 	buttonPos.x += (int)TextureAsset(L"buttonRT_24").draw(buttonPos).w + 4;
-	buttonPos.x += (int)CicaR::GetFont(C12)(L"Cancel").draw(buttonPos).w + 15;
+	buttonPos.x += (int)CicaR::Get(C12)(L"Cancel").draw(buttonPos).w + 15;
 }

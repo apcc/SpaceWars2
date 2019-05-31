@@ -22,10 +22,10 @@ void ScreenGuidance::draw() const {
 	Rect(Window::Size()).draw(ColorF(L"#000").setAlpha(0.5));
 
 	Line({ 25, 18 }, { 310, 18 }).draw(5);
-	SmartUI::GetFont(S32).draw(L"画面の見かた", { 30, 20 });
+	SmartUI::Get(S32)(L"画面の見かた").draw({ 30, 20 });
 	Line({ 25, 82 }, { 310, 82 }).draw(5);
 
-	SmartUI::GetFont(S28)(status + 1, L"/", COUNT).draw({ 340, 25 });
+	SmartUI::Get(S28)(status + 1, L"/", COUNT).draw({ 340, 25 });
 
 	Vec2 tl = gaugePic.drawAt(Window::Center() + Vec2(0, -70))
 					  .drawFrame(0, 3, Palette::White)
@@ -39,13 +39,13 @@ void ScreenGuidance::draw() const {
 			.drawFrame(4, 2, frameColor[status]);
 	}
 
-	SmartUI::GetFont(S28)(description[status]).draw(tl + Vec2(0, 280), frameColor[status]);
+	SmartUI::Get(S28)(description[status], L"").draw(tl + Vec2(0, 280), frameColor[status]);
 
 
 	// 右下操作方法表示
 	Vec2 buttonPos(1190, 692);
 	buttonPos.x += (int)TextureAsset(L"buttonA_24").draw(buttonPos).w + 6;
-	buttonPos.x += (int)CicaR::GetFont(C12)(L"次へ").draw(buttonPos).w + 15;
+	buttonPos.x += (int)CicaR::Get(C12)(L"次へ").draw(buttonPos).w + 15;
 }
 
 
