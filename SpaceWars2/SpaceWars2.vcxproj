@@ -168,6 +168,7 @@
     <ClCompile Include="asc\Input\AscInput.cpp" />
     <ClCompile Include="asc\Input\AscInputAxis.cpp" />
     <ClCompile Include="CommonData.cpp" />
+    <ClCompile Include="fontPlus\FontP.cpp" />
     <ClCompile Include="functions\Asset.cpp" />
     <ClCompile Include="functions\Debug.cpp" />
     <ClCompile Include="functions\KeyRepeat.cpp" />
@@ -309,6 +310,7 @@
     <ClInclude Include="asc\Input\CAxis.hpp" />
     <ClInclude Include="CommonData.hpp" />
     <ClInclude Include="Config.hpp" />
+    <ClInclude Include="fontPlus\FontP.hpp" />
     <ClInclude Include="functions\Asset.hpp" />
     <ClInclude Include="functions\Debug.hpp" />
     <ClInclude Include="functions\KeyRepeat.hpp" />
