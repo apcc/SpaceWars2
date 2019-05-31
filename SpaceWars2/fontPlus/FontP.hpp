@@ -172,7 +172,9 @@ namespace s3d {
 		/// <returns>
 		/// DrawableString
 		/// </returns>
-		DrawableStringP operator()(const String& text) const;
+		DrawableStringP operator()(const String& text) const {
+			return DrawableStringP(*this, text);
+		}
 
 		/// <summary>
 		/// 描画するテキストを作成します。
