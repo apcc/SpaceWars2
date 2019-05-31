@@ -9,17 +9,17 @@ bool Bomb::update(Vec2 _myPos, Vec2 _oppPos) {
 		fuse++;
 	}
 	if (isLeft) {
-		if (pos.x >= Window::Center().x + 70 + nowBombNumber % 4 * 160) {//所定のラインを超えていれば左40+-10の位置から160おきにストップ
+		if (pos.x >= Window::Center().x + 75 + nowBombNumber % 4 * 160) {
 			vel.set(0, 0);
 		}
 	}
 	else {
-		if (pos.x <= Window::Center().x - 70 - nowBombNumber % 4 * 160) {//所定のラインを超えていれば左40+-10の位置から160おきにストップ
+		if (pos.x <= Window::Center().x - 75 - nowBombNumber % 4 * 160) {
 			vel.set(0, 0);
 		}
 	}
 	return Bullet::update(_myPos, _oppPos);
-	
+
 }
 
 void Bomb::draw() {

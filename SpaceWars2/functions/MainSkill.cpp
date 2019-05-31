@@ -11,15 +11,17 @@ void Player::doMainSkill(std::vector<Bullet*>& bullets){
 	case SHOT:
 		if (KeyMainSkill.repeat(5)) {
 			bullets.push_back(new Shot(pos, isLeft));
-			temperature += 40;
+			temperature += 20;
+			howFrameAfterShooting = 56;
 			++mainSkillCnt;
 		}
 		break;
 
 	case GRENADE:
-		if (KeyMainSkill.repeat(20)) {
+		if (KeyMainSkill.repeat(30)) {
 			bullets.push_back(new Grenade(pos, isLeft));
 			temperature += 80;
+			howFrameAfterShooting = 0;
 			++mainSkillCnt;
 		}
 		break;
@@ -28,22 +30,25 @@ void Player::doMainSkill(std::vector<Bullet*>& bullets){
 		if (KeyMainSkill.repeat(0)) {
 			bullets.push_back(new Laser(pos, isLeft));
 			// temperature rise is in the Laser Class
+			howFrameAfterShooting = 0;
 			// ++mainSkillCnt; in the Laser Class
 		}
 		break;
 
 	case REFLECTION:
-		if (KeyMainSkill.repeat(30)) {
+		if (KeyMainSkill.repeat(7)) {
 			bullets.push_back(new Reflection(pos, isLeft));
-			temperature += 80;
+			temperature += 40;
+			howFrameAfterShooting = 10;
 			++mainSkillCnt;
 		}
 		break;
 
 	case FLAME:
-		if (KeyMainSkill.repeat(20)) {
+		if (KeyMainSkill.repeat(25)) {
 			bullets.push_back(new Flame(pos, isLeft));
-			temperature += 50;
+			temperature += 70;
+			howFrameAfterShooting = 30;
 			++mainSkillCnt;
 		}
 		break;

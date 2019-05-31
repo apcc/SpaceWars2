@@ -24,7 +24,7 @@ public:
 		}
 	}
 	~Jump() {
-		(isLeft ? Data::LPlayer : Data::RPlayer).changeSpeed(15);
+		(isLeft ? Data::LPlayer : Data::RPlayer).changeSpeed(8);
 
 		if (isLeft ? isLInvalid : isRInvalid)
 			(isLeft ? isLDoing : isRDoing) = false;

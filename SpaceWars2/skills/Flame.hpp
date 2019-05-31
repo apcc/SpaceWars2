@@ -5,22 +5,22 @@
 class Flame : public Bullet {
 private:
 	Vec2 ppos;
-	Circle getShape() { return Circle(pos, 20); }
+	Circle getShape() { return Circle(pos, 40); }
 	RectF getShapeFlameBelt() {
 		if (isLeft) {
-			if (bulletSpeed * 120 < pos.x - ppos.x) {
-				return  RectF(pos.x, pos.y - 20, -bulletSpeed * 120, 40);
+			if (bulletSpeed * 80 < pos.x - ppos.x) {
+				return  RectF(pos.x, pos.y - 40, -bulletSpeed * 80, 80);
 			}
 			else {
-				return RectF(pos.x, pos.y - 20, -(pos.x - ppos.x), 40);
+				return RectF(pos.x, pos.y - 40, -(pos.x - ppos.x), 80);
 			}
 		}
 		else {
-			if (bulletSpeed * 120 < ppos.x - pos.x) {
-				return  RectF(pos.x + bulletSpeed, pos.y - 20, bulletSpeed * 120, 40);
+			if (bulletSpeed * 80 < ppos.x - pos.x) {
+				return  RectF(pos.x + bulletSpeed, pos.y - 40, bulletSpeed * 80, 80);
 			}
 			else {
-				return RectF(pos.x, pos.y - 20, -(pos.x - ppos.x), 40);
+				return RectF(pos.x, pos.y - 40, -(pos.x - ppos.x), 80);
 			}
 		}
 	}
@@ -35,5 +35,5 @@ public:
 	bool isVisible() override;
 	int getDamage(Circle circle) override;
 
-	const static int bulletSpeed = 4;
+	const static int bulletSpeed = 6;
 };

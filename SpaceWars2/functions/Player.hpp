@@ -40,7 +40,7 @@ private:
 	const int PLAYER_SIZE = 30;
 	int hitSize = 30;		// 当たり判定半径
 	int shieldDamage = 0;	// Shieldが受けたダメージ量
-	
+
 	KeyRepeat KeyUp = KeyRepeat();
 	KeyRepeat KeyLeft = KeyRepeat();
 	KeyRepeat KeyDown = KeyRepeat();
@@ -55,12 +55,17 @@ public:
 	int temperature;	// MainSkill抑制
 	int coolDownTime;	// SubSkill抑制
 	int charge;			// SpecialSkill抑制
+	int recoveryDamage;	// I.R.用ダメージ
 
+	int howFrameAfterShooting = 0;
+
+	bool inAbsorption;
+	
 	const int requireCharge[4] = { 400, 400, 400, 400 };
 
 	bool inRecovery;
 	static bool inJudgmentTime;
-	const static int JT_TIME = 180;
+	const static int JT_TIME = 300;
 	int judgmentLife = -1;	// JudgmentTimeの残り時間
 
 	MainSkill whatMainSkill = SHOT;
