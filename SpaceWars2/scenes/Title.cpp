@@ -12,7 +12,7 @@ void Title::update(){
 
 	if (Data::KeyUp.repeat(20, true) && selecting > 0)
 		--selecting;
-	if (Data::KeyDown.repeat(20, true) && selecting < 2)
+	if (Data::KeyDown.repeat(20, true) && selecting < 3)
 		++selecting;
 
 	if (Data::KeyEnter.repeat(20)) {
@@ -22,10 +22,14 @@ void Title::update(){
 			break;
 
 		case 1:
-			changeScene(L"License", 500);
+			changeScene(L"SkillSelect", 500);
 			break;
 
 		case 2:
+			changeScene(L"License", 500);
+			break;
+
+		case 3:
 			System::Exit();
 			break;
 
@@ -41,10 +45,12 @@ void Title::draw() const{
 	TextureAsset(L"title-logo").drawAt(Window::Center().x, 150);
 
 	Circle(1180, 1080, 760).drawFrame(5, 5, Color(L"#00bfff"));
-	SmartUI::GetFont(S32)(L"START").draw(950, 450);
-	SmartUI::GetFont(S32)(L"LICENSE").draw(950, 525);
-	SmartUI::GetFont(S32)(L"EXIT").draw(950, 600);
-	Triangle({ 900, 465 + selecting * 75 }, { 928, 481 + selecting * 75 }, { 900, 497 + selecting * 75 }).draw();
+
+	const String name[4] = { L"START", L"GAME", L"LICENSE", L"EXIT" };
+	for (auto i : step(4)) {
+		TextureAsset(i == selecting ? L"title-button" : L"title-button-hidden").draw(950, 400 + 70 * i);
+		SmartUI::GetFont(S28)(name[i]).draw({ 980, 398 + 70 * i }, (i == selecting ? Color(L"#fff") : Color(L"#ccc")));
+	}
 
 	SmartUI::GetFont(S12)(L"Copyright (c) 2018-2019 APCC").draw(10, 690);
 

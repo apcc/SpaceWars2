@@ -20,6 +20,8 @@ void Main(){
 
 	TextureAsset::Register(L"background", L"/7801");
 	TextureAsset::Register(L"title-logo", L"/7900");
+	TextureAsset::Register(L"title-button", L"/7901");
+	TextureAsset::Register(L"title-button-hidden", L"/7902");
 	TextureAsset::Register(L"license", L"/7910");
 	TextureAsset::Register(L"controller", L"/7950");
 	TextureAsset::Register(L"gauge", L"/7960");

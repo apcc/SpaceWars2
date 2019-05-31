@@ -6,6 +6,8 @@
 // images
 7801 	FILE	"images/background.png"
 7900	FILE	"images/title-logo.png"
+7901	FILE	"images/title-button.png"
+7902	FILE	"images/title-button-hidden.png"
 7910	FILE	"images/license.png"
 
 7950	FILE	"images/controller.png"
