@@ -7,9 +7,12 @@
 class Bomb final : public Bullet {
 private:
 	bool explosion = false;
-	static bool isLDoing;
-	static bool isRDoing;
-	static int numberOfBomb;
+	static int numberOfLUsed;
+	static int numberOfRUsed;
+	int BombUsed;
+	int nowBombNumber;
+	int bulletSpeed = 20;
+	int fuse = 0;
 	const static int EXPLODE_RADIUS = 100;
 	Circle getShape() {
 		if (explosion) {
@@ -23,16 +26,14 @@ private:
 public:
 	Bomb(Vec2 _pos, bool _isLeft) : Bullet(_pos, _isLeft) {
 		vel = Vec2(bulletSpeed * (isLeft ? 1 : -1), 0);
-		numberOfBomb++;
-		nowNumberOfBomb = numberOfBomb;
+		if (isLeft) {
+			numberOfLUsed++;
+		}
+		else {
+			numberOfRUsed++;
+		}
+		nowBombNumber = (isLeft ? numberOfLUsed : numberOfRUsed);
 	}
-	~Bomb() {
-
-	}
-	int nowNumberOfBomb;
-	bool nowDoing = isLeft ? isLDoing : isRDoing;
-	int fuse = 0;
-	int bulletSpeed = 10;
 	bool update(Vec2 _myPos, Vec2 _oppPos) override;
 	void draw() override;
 	bool isVisible() override;

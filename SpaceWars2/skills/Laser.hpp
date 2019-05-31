@@ -1,6 +1,8 @@
 #pragma once
 #include <Siv3D.hpp>
 #include "Bullet.hpp"
+#include "../Scenes/Game.hpp"
+
 
 class Laser final : public Bullet {
 private:
@@ -31,7 +33,11 @@ public:
 		isLeft = _isLeft;
 		if (isLeft ? isLShooting : isRShooting) { // if another instance is already created and still alive...
 			(isLeft ? isLInvalid : isRInvalid) = true; // this laser is disabled
-		} else (isLeft ? isLShooting : isRShooting) = true;
+		}
+		else {
+			(isLeft ? isLShooting : isRShooting) = true;
+			++(isLeft ? Data::LPlayer : Data::RPlayer).mainSkillCnt;
+		}
 	}
 	~Laser() override {
 		if (!(isLeft ? isLInvalid : isRInvalid))

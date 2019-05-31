@@ -2,7 +2,7 @@
 #include "../CommonData.hpp"
 #define PLAYER_SPEED 8
 #define GAUGE_LIMIT 1000.0
-#define GAUGE_WIDTH (Config::WIDTH / 2.0 / GAUGE_LIMIT)
+#define GAUGE_WIDTH (Window::Center().x / GAUGE_LIMIT)
 
 bool Player::inJudgmentTime = false;
 
@@ -19,9 +19,14 @@ void Player::init(Vec2 _pos, bool _isLeft){
 	whatMainSkill = static_cast<MainSkill>(0);
 	whatSubSkill = static_cast<SubSkill>(0);
 	whatSpecialSkill = static_cast<SpecialSkill>(0);
+	mainSkillCnt = 0;
+	subSkillCnt = 0;
+	specialSkillCnt = 0;
 
 	GamePad::SetAxis();
 	GamePad::SetButton();
+
+	HPLog.clear();
 
 	KeyUp = KeyRepeat(isLeft, L"KeyUp");
 	KeyLeft = KeyRepeat(isLeft, L"KeyLeft");
@@ -97,11 +102,11 @@ void Player::update(std::vector<Bullet*> &bullets){
 	if(isLeft) {
 		if (pos.x < 0 + PLAYER_SIZE)
 			pos.x = 0 + PLAYER_SIZE;
-		if (pos.x > Config::WIDTH / 2 - PLAYER_SIZE)
-			pos.x = Config::WIDTH / 2 - PLAYER_SIZE;
+		if (pos.x > Window::Center().x - PLAYER_SIZE)
+			pos.x = Window::Center().x - PLAYER_SIZE;
 	} else {
-		if (pos.x < Config::WIDTH / 2 + PLAYER_SIZE)
-			pos.x = Config::WIDTH / 2 + PLAYER_SIZE;
+		if (pos.x < Window::Center().x + PLAYER_SIZE)
+			pos.x = Window::Center().x + PLAYER_SIZE;
 		if (pos.x > Config::WIDTH - PLAYER_SIZE)
 			pos.x = Config::WIDTH - PLAYER_SIZE;
 	}
@@ -117,21 +122,20 @@ void Player::update(std::vector<Bullet*> &bullets){
 		}
 	}
 
-	if (speed != 0) {
+	if (speed != 0) { // [自機] normal
+		if (temperature > 100) --temperature;
 		if (temperature < 800) doMainSkill(bullets);
-		if (coolDownTime == 0) doSubSkill(bullets);
-		else	coolDownTime--;
+		if (coolDownTime == 0) doSubSkill(bullets); else coolDownTime--;
 		doSpacialSkill(bullets);
 	}
 
-	if (inJudgmentTime) {
-		if(judgmentLife == 0) {
+	if (inJudgmentTime) { // [全体] J.T.
+		if (judgmentLife == 0) {
 			inJudgmentTime = false;
 		}
 		--judgmentLife;
 	}
-
-	if (!inJudgmentTime) {
+	else { // [全体] normal
 		for (auto i : bullets) {
 			if (isLeft == i->isLeft) continue;
 			int damage = i->getDamage(this->hitCircle());
@@ -140,6 +144,8 @@ void Player::update(std::vector<Bullet*> &bullets){
 			}
 		}
 	}
+
+	HPLog.push_back(HP);
 }
 
 int Player::skillSelect(){
@@ -186,21 +192,5 @@ void Player::drawShip(){
 		circle().draw(Color(L"#ff0000"));
 	}else{
 		circle().draw(Color(L"#0000ff"));
-	}
-}
-
-void Player::drawGauge(){
-	Color chargeColor = Color(charge==requireCharge[whatSpecialSkill]? L"#ffd000" : L"#ffff00" );
-	if (isLeft) {
-		RectF(0, 0, HP * GAUGE_WIDTH, 20).draw(Color(L"#ff0000"));
-		RectF(0, 20, temperature * GAUGE_WIDTH, 20).draw(Color(L"#00ff00"));
-		RectF(0, 40, (coolDownTime>1000 ? 1000 : coolDownTime) * GAUGE_WIDTH, 20).draw(Color(L"#0000ff"));
-		RectF(0, 60, (charge * GAUGE_LIMIT) / requireCharge[whatSpecialSkill] * GAUGE_WIDTH, 20).draw(chargeColor);
-	}
-	else {
-		RectF(Config::WIDTH - HP * GAUGE_WIDTH, 0, Config::WIDTH, 20).draw(Color(L"#ff0000"));
-		RectF(Config::WIDTH - temperature * GAUGE_WIDTH, 20, Config::WIDTH, 20).draw(Color(L"#00ff00"));
-		RectF(Config::WIDTH - coolDownTime * GAUGE_WIDTH, 40, Config::WIDTH, 20).draw(Color(L"#0000ff"));
-		RectF(Config::WIDTH - (charge * GAUGE_LIMIT) / requireCharge[whatSpecialSkill] * GAUGE_WIDTH, 60, Config::WIDTH, 20).draw(chargeColor);
 	}
 }

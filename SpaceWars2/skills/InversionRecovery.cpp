@@ -1,7 +1,7 @@
 #include "InversionRecovery.hpp"
 
 #define GAUGE_LIMIT 1000.0
-#define GAUGE_WIDTH (Config::WIDTH / 2.0 / GAUGE_LIMIT)
+#define GAUGE_WIDTH (Window::Center().x / GAUGE_LIMIT)
 
 bool InversionRecovery::update(Vec2 _myPos, Vec2 _oppPos) {
 	if ((time > TRICKING_TIME) && !inRecovery){
@@ -26,12 +26,6 @@ bool InversionRecovery::update(Vec2 _myPos, Vec2 _oppPos) {
 }
 
 void InversionRecovery::draw() {
-	if (isLeft) {
-		RectF(0, 60, 1000 * GAUGE_WIDTH, 20).draw(Color(L"#ffd000"));
-	}
-	else {
-		RectF(Config::WIDTH - 1000 * GAUGE_WIDTH, 60, Config::WIDTH, 20).draw(Color(L"#ffd000"));
-	}
 }
 
 bool InversionRecovery::isVisible() {
@@ -39,5 +33,6 @@ bool InversionRecovery::isVisible() {
 }
 
 int InversionRecovery::getDamage(Circle _circle) {
+	(void)_circle;
 	return 0;
 }

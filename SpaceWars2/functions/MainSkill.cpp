@@ -13,6 +13,7 @@ void Player::doMainSkill(std::vector<Bullet*>& bullets){
 			bullets.push_back(new Shot(pos, isLeft));
 			temperature += 20;
 			howFrameAfterShooting = 56;
+			++mainSkillCnt;
 		}
 		break;
 
@@ -21,6 +22,7 @@ void Player::doMainSkill(std::vector<Bullet*>& bullets){
 			bullets.push_back(new Grenade(pos, isLeft));
 			temperature += 80;
 			howFrameAfterShooting = 0;
+			++mainSkillCnt;
 		}
 		break;
 
@@ -29,6 +31,7 @@ void Player::doMainSkill(std::vector<Bullet*>& bullets){
 			bullets.push_back(new Laser(pos, isLeft));
 			// temperature rise is in the Laser Class
 			howFrameAfterShooting = 0;
+			// ++mainSkillCnt; in the Laser Class
 		}
 		break;
 
@@ -37,6 +40,7 @@ void Player::doMainSkill(std::vector<Bullet*>& bullets){
 			bullets.push_back(new Reflection(pos, isLeft));
 			temperature += 40;
 			howFrameAfterShooting = 10;
+			++mainSkillCnt;
 		}
 		break;
 
@@ -45,6 +49,7 @@ void Player::doMainSkill(std::vector<Bullet*>& bullets){
 			bullets.push_back(new Flame(pos, isLeft));
 			temperature += 70;
 			howFrameAfterShooting = 30;
+			++mainSkillCnt;
 		}
 		break;
 

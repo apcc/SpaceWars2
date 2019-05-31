@@ -11,23 +11,27 @@ void Player::doSubSkill(std::vector<Bullet*>& bullets){
 			if (GamePad::Move(isLeft, 1) != Vec2(0, 0)) {
 				bullets.push_back(new Jump(pos, isLeft));
 				coolDownTime = 250;
+				++subSkillCnt;
 			}
 			break;
 
 		case SHIELD:
 			bullets.push_back(new Shield(pos, isLeft));
 			coolDownTime = 600;
+			++subSkillCnt;
 			break;
 
 		case MISSILE:
 			bullets.push_back(new Missile(pos, isLeft));
 			coolDownTime = 50;
+			++subSkillCnt;
 			break;
 
 		case BOMB:
 			for (int i = 0; i < 4; i++)
 				bullets.push_back(new Bomb(pos, isLeft));
 			coolDownTime = 500;
+			++subSkillCnt;
 			break;
 
 		default:

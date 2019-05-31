@@ -16,5 +16,6 @@ bool Jump::isVisible() {
 }
 
 int Jump::getDamage(Circle _circle) {
+	(void)_circle;
 	return 0; // no damage
 }

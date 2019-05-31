@@ -2,17 +2,23 @@
 
 #define V80 { 80, 80 }
 
+bool SkillSelect::isLoaded = false;
+
 void SkillSelect::init() {
-	int i = 0;
-	for (int j = -1; j < 6; j++) {
-		TextureAsset::Register(L"main" + Format(j),		L"/800" + Format(i));
-		TextureAsset::Register(L"sub" + Format(j),		L"/801" + Format(i));
-		TextureAsset::Register(L"special" + Format(j),	L"/802" + Format(i));
-		++i;
+
+	if (!isLoaded) {
+		int i = 0;
+		for (int j = -1; j < 6; j++) {
+			TextureAsset::Register(L"main" + Format(j), L"/800" + Format(i));
+			TextureAsset::Register(L"sub" + Format(j), L"/801" + Format(i));
+			TextureAsset::Register(L"special" + Format(j), L"/802" + Format(i));
+			++i;
+		}
+		TextureAsset::Register(L"mainTriangle", L"/8100");
+		TextureAsset::Register(L"subTriangle", L"/8101");
+		TextureAsset::Register(L"specialTriangle", L"/8102");
+		isLoaded = true;
 	}
-	TextureAsset::Register(L"mainTriangle", L"/8100");
-	TextureAsset::Register(L"subTriangle", L"/8101");
-	TextureAsset::Register(L"specialTriangle", L"/8102");
 
 	LContinue = false;
 	RContinue = false;
@@ -20,9 +26,9 @@ void SkillSelect::init() {
 
 void SkillSelect::update() {
 	changeScene(Debug::InputFnKey(), 250);
-	if (nextStageTime > 100)
-		changeScene(L"Three", 500);
-	
+	 if (nextStageTime > 100)
+	 	changeScene(L"Game", 500);
+
 	if (LContinue && RContinue) ++nextStageTime;
 	else nextStageTime = 0;
 
@@ -80,8 +86,8 @@ void SkillSelect::update() {
 }
 
 void SkillSelect::draw() const {
-	TextureAsset(L"background").resize(Config::WIDTH, Config::HEIGHT).draw();
-	FontAsset(L"Smart32")(L"SkillSelect").drawCenter(40, Color(L"#ffffff"));
+	TextureAsset(L"background").resize(Window::Size()).draw();
+	SmartUI::GetFont(S32)(L"SkillSelect").drawCenter(40, Color(L"#ffffff"));
 
 	for (int isLeft = 0; isLeft <= 1; isLeft++) { // LPlayer, RPlayer
 		Player* PLAYER = &(isLeft ? Data::LPlayer : Data::RPlayer);
@@ -101,7 +107,7 @@ void SkillSelect::draw() const {
 					TextureAsset(skillType[type] + Format((int)whatSkill[type]))
 						.drawAt(770 + (190 * type) - (640 * isLeft), 520);
 			}
-			
+
 			// 選択中のskillの枠
 			Rect(720 + (190 * type) - (640 * isLeft), 470, 100).drawFrame(0, 4, ColorF(skillColor[type]).setAlpha(alpha[type]));
 
@@ -114,7 +120,20 @@ void SkillSelect::draw() const {
 					.draw(755 + (190 * type) - (640 * isLeft), 570, Alpha((int)(255 * alpha[type])));
 		}
 
-		if (LContinue) Rect(0, 0, Config::WIDTH / 2, Config::HEIGHT).draw(ColorF(L"#f00").setAlpha(0.25));
-		if (RContinue) Rect(Config::WIDTH / 2, 0, Config::WIDTH / 2, Config::HEIGHT).draw(ColorF(L"#f00").setAlpha(0.25));
+		if (LContinue) Rect(0, 0, Window::Center().x, Config::HEIGHT).draw(ColorF(L"#f00").setAlpha(0.25));
+		if (RContinue) Rect(Window::Center().x, 0, Window::Center().x, Config::HEIGHT).draw(ColorF(L"#f00").setAlpha(0.25));
 	}
+
+	Vec2 buttonPos(820, 692);
+
+	buttonPos.x += (int)TextureAsset(L"cross_24").draw(buttonPos).w + 5;
+	buttonPos.x += (int)TextureAsset(L"stick_24").draw(buttonPos).w + 6;
+	buttonPos.x += (int)CicaR::GetFont(C12)(L"Skill選択").draw(buttonPos).w + 15;
+
+	buttonPos.x += (int)TextureAsset(L"buttonA_24").draw(buttonPos).w + 6;
+	buttonPos.x += (int)CicaR::GetFont(C12)(L"Continue").draw(buttonPos).w + 15;
+
+	buttonPos.x += (int)TextureAsset(L"buttonLT_24").draw(buttonPos).w + 3;
+	buttonPos.x += (int)TextureAsset(L"buttonRT_24").draw(buttonPos).w + 4;
+	buttonPos.x += (int)CicaR::GetFont(C12)(L"Cancel").draw(buttonPos).w + 15;
 }

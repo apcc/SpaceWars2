@@ -11,6 +11,6 @@ void Ending::update() {
 }
 
 void Ending::draw() const {
-	TextureAsset(L"background").resize(Config::WIDTH, Config::HEIGHT).draw();
-	FontAsset(L"Smart32")(L"Thank you for playing!").drawCenter(40, Color(L"#ffffff"));
+	TextureAsset(L"background").resize(Window::Size()).draw();
+	SmartUI::GetFont(S32)(L"Thank you for playing!").drawCenter(40, Color(L"#ffffff"));
 }

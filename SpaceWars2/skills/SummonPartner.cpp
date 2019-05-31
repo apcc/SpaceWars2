@@ -12,7 +12,7 @@ bool SummonPartner::update(Vec2 myPos, Vec2 oppPos) {
 			delete *itr;
 			itr = bullets.erase(itr);
 		}else{
-			itr++;
+			++itr;
 		}
 	}
 

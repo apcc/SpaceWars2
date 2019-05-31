@@ -21,8 +21,12 @@ void License::update() {
 }
 
 void License::draw() const {
-	TextureAsset(L"background").resize(Config::WIDTH, Config::HEIGHT).draw();
-	Rect(Config::WIDTH, Config::HEIGHT).draw(ColorF(L"#000").setAlpha(0.4));
+	TextureAsset(L"background").resize(Window::Size()).draw();
+	Rect(Window::Size()).draw(ColorF(L"#000").setAlpha(0.4));
 	TextureAsset(L"license").draw();
-	FontAsset(L"Smart12")(L"Click Enter to back.").draw(1020, 690, ColorF(L"#fff").setAlpha(alpha));
+
+	Vec2 buttonPos(1195, 692);
+
+	buttonPos.x += (int)TextureAsset(L"buttonA_24").draw(buttonPos, Alpha((int)(255 * alpha))).w + 6;
+	buttonPos.x += (int)CicaR::GetFont(C12)(L"Back").draw(buttonPos, Alpha((int)(255 * alpha))).w + 10;
 }

@@ -37,13 +37,10 @@ private:
 	int selectedType = 0;	// skillSelectの選択中項目
 	int speed = 0;
 
-
-	int requireCharge[4] = { 400, 270, 400, 300 };
-
 	const int PLAYER_SIZE = 30;
 	int hitSize = 30;		// 当たり判定半径
 	int shieldDamage = 0;	// Shieldが受けたダメージ量
-	
+
 	KeyRepeat KeyUp = KeyRepeat();
 	KeyRepeat KeyLeft = KeyRepeat();
 	KeyRepeat KeyDown = KeyRepeat();
@@ -63,6 +60,10 @@ public:
 	int howFrameAfterShooting = 0;
 
 	bool inAbsorption;
+	
+	const int requireCharge[4] = { 400, 400, 400, 400 };
+
+	bool inRecovery;
 	static bool inJudgmentTime;
 	const static int JT_TIME = 300;
 	int judgmentLife = -1;	// JudgmentTimeの残り時間
@@ -70,6 +71,12 @@ public:
 	MainSkill whatMainSkill = SHOT;
 	SubSkill whatSubSkill = JUMP;
 	SpecialSkill whatSpecialSkill = JUDGMENT_TIME;
+
+	int mainSkillCnt;
+	int subSkillCnt;
+	int specialSkillCnt;
+
+	std::vector<int> HPLog;
 
 	void doMainSkill(std::vector<Bullet*>& bullets);
 	void doSubSkill(std::vector<Bullet*>& bullets);
@@ -85,5 +92,4 @@ public:
 	void update(std::vector<Bullet*> &bullets);
 	int skillSelect();
 	void drawShip();
-	void drawGauge();
 };

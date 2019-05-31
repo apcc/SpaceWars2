@@ -168,6 +168,7 @@
     <ClCompile Include="asc\Input\AscInput.cpp" />
     <ClCompile Include="asc\Input\AscInputAxis.cpp" />
     <ClCompile Include="CommonData.cpp" />
+    <ClCompile Include="functions\Asset.cpp" />
     <ClCompile Include="functions\Debug.cpp" />
     <ClCompile Include="functions\KeyRepeat.cpp" />
     <ClCompile Include="functions\MainSkill.cpp" />
@@ -178,9 +179,7 @@
     <ClCompile Include="functions\XInput.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Scenes\ControlGuidance.cpp" />
-    <ClCompile Include="scenes\Countdown.cpp" />
     <ClCompile Include="Scenes\Ending.cpp" />
-    <ClCompile Include="Scenes\Finish.cpp" />
     <ClCompile Include="Scenes\Game.cpp" />
     <ClCompile Include="scenes\License.cpp" />
     <ClCompile Include="Scenes\Opening.cpp" />
@@ -310,17 +309,16 @@
     <ClInclude Include="asc\Input\CAxis.hpp" />
     <ClInclude Include="CommonData.hpp" />
     <ClInclude Include="Config.hpp" />
+    <ClInclude Include="functions\Asset.hpp" />
     <ClInclude Include="functions\Debug.hpp" />
     <ClInclude Include="functions\KeyRepeat.hpp" />
     <ClInclude Include="functions\MainSkill.hpp" />
     <ClInclude Include="functions\Player.hpp" />
     <ClInclude Include="functions\Vec2Utils.hpp" />
-    <ClInclude Include="scenes\Countdown.hpp" />
     <ClInclude Include="functions\XInput.hpp" />
     <ClInclude Include="scenes\Include.hpp" />
     <ClInclude Include="Scenes\ControlGuidance.hpp" />
     <ClInclude Include="Scenes\Ending.hpp" />
-    <ClInclude Include="Scenes\Finish.hpp" />
     <ClInclude Include="Scenes\Game.hpp" />
     <ClInclude Include="scenes\License.hpp" />
     <ClInclude Include="Scenes\Opening.hpp" />

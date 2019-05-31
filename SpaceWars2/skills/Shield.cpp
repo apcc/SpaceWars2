@@ -26,5 +26,6 @@ bool Shield::isVisible() {
 }
 
 int Shield::getDamage(Circle _circle) {
+	(void)_circle;
 	return 0; // no damage
 }
