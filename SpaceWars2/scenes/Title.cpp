@@ -1,18 +1,18 @@
-#include "Opening.hpp"
+#include "Title.hpp"
 
-int Opening::selecting = 0;
+int Title::selecting = 0;
 
-void Opening::init(){
+void Title::init(){
 	Data::LPlayer.init(Vec2(  80, Config::HEIGHT/2), true);  //円の半径
 	Data::RPlayer.init(Vec2(1200, Config::HEIGHT/2), false); //WIDTH-円の半径
 }
 
-void Opening::update(){
+void Title::update(){
 	changeScene(Debug::InputFnKey(), 250);
 
 	if (Data::KeyUp.repeat(20, true) && selecting > 0)
 		--selecting;
-	if (Data::KeyDown.repeat(20, true) && selecting < 2)
+	if (Data::KeyDown.repeat(20, true) && selecting < 3)
 		++selecting;
 
 	if (Data::KeyEnter.repeat(20)) {
@@ -22,10 +22,14 @@ void Opening::update(){
 			break;
 
 		case 1:
-			changeScene(L"License", 500);
+			changeScene(L"SkillSelect", 500);
 			break;
 
 		case 2:
+			changeScene(L"License", 500);
+			break;
+
+		case 3:
 			System::Exit();
 			break;
 
@@ -36,17 +40,20 @@ void Opening::update(){
 
 }
 
-void Opening::draw() const{
+void Title::draw() const{
 	TextureAsset(L"background").resize(Window::Size()).draw();
 	TextureAsset(L"title-logo").drawAt(Window::Center().x, 150);
 
 	Circle(1180, 1080, 760).drawFrame(5, 5, Color(L"#00bfff"));
-	SmartUI::Get(S32)(L"START").draw({ 950, 450 });
-	SmartUI::Get(S32)(L"LICENSE").draw({ 950, 525 });
-	SmartUI::Get(S32)(L"EXIT").draw({ 950, 600 });
-	Triangle({ 900, 465 + selecting * 75 }, { 928, 481 + selecting * 75 }, { 900, 497 + selecting * 75 }).draw();
 
-	SmartUI::Get(S12)(L"Copyright (c) 2018-2019 APCC").draw({ 10, 690 });
+	const String name[4] = { L"START", L"GAME", L"LICENSE", L"EXIT" };
+	for (auto i : step(4)) {
+		TextureAsset(i == selecting ? L"title-button" : L"title-button-hidden").draw(950, 400 + 70 * i);
+		SmartUI::Get(S28)(name[i]).draw({ 980, 398 + 70 * i }, (i == selecting ? Color(L"#fff") : Color(L"#ccc")));
+	}
+
+	Rect(0, 690, 220, 30).draw(ColorF(L"#000").setAlpha(0.5));
+	CicaR::Get(C12)(Config::VERSION, L" / ", Config::VER_NUM).draw({ 10, 695 });
 
 	Vec2 buttonPos(1165, 692);
 

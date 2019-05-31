@@ -1,7 +1,7 @@
 #pragma once
 #include "Include.hpp"
 
-class Opening final : public SceneManager<String, CommonData>::Scene{
+class Title final : public SceneManager<String, CommonData>::Scene{
 private:
 	static int selecting;
 

@@ -7,7 +7,7 @@ void Ending::init() {
 void Ending::update() {
 	changeScene(Debug::InputFnKey(), 250);
 	if (Data::KeyEnter.repeat(20))
-		changeScene(L"Opening");
+		changeScene(L"Title");
 }
 
 void Ending::draw() const {
