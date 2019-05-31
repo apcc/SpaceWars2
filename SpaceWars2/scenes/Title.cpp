@@ -49,16 +49,16 @@ void Title::draw() const{
 	const String name[4] = { L"START", L"GAME", L"LICENSE", L"EXIT" };
 	for (auto i : step(4)) {
 		TextureAsset(i == selecting ? L"title-button" : L"title-button-hidden").draw(950, 400 + 70 * i);
-		SmartUI::GetFont(S28)(name[i]).draw({ 980, 398 + 70 * i }, (i == selecting ? Color(L"#fff") : Color(L"#ccc")));
+		SmartUI::Get(S28)(name[i]).draw({ 980, 398 + 70 * i }, (i == selecting ? Color(L"#fff") : Color(L"#ccc")));
 	}
 
 	Rect(0, 690, 220, 30).draw(ColorF(L"#000").setAlpha(0.5));
-	CicaR::GetFont(C12)(Config::VERSION, L" / ", Config::VER_NUM).draw(10, 695);
+	CicaR::Get(C12)(Config::VERSION, L" / ", Config::VER_NUM).draw(10, 695);
 
 	Vec2 buttonPos(1165, 692);
 
 	buttonPos.x += (int)TextureAsset(L"cross_24").draw(buttonPos, Alpha(200)).w + 5;
 	buttonPos.x += (int)TextureAsset(L"stick_24").draw(buttonPos, Alpha(200)).w + 10;
-	buttonPos.x += (int)CicaR::GetFont(C12)(L"/").draw(buttonPos, Alpha(200)).w + 10;
+	buttonPos.x += (int)CicaR::Get(C12)(L"/").draw(buttonPos, Alpha(200)).w + 10;
 	buttonPos.x += (int)TextureAsset(L"buttonA_24").draw(buttonPos, Alpha(200)).w + 6;
 }

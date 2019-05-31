@@ -1,5 +1,10 @@
 #pragma once
 #include <Siv3D.hpp>
+#include "../fontPlus/FontP.hpp"
+
+namespace FontPAsset {
+	extern std::map<String, FontP> fonts;
+}
 
 enum SmartUISize {
 	S12 = 12,
@@ -10,8 +15,8 @@ namespace SmartUI {
 	extern Array<SmartUISize> size;
 	// register all
 	bool Register();
-	// Returns: Font
-	Font GetFont(SmartUISize _size);
+	// Returns: FontP
+	FontP Get(SmartUISize _size);
 }
 
 enum SmartBSize {
@@ -22,8 +27,8 @@ namespace SmartB {
 	extern Array<SmartBSize> size;
 	// register all
 	bool Register();
-	// Returns: Font
-	Font GetFont(SmartBSize _size);
+	// Returns: FontP
+	FontP Get(SmartBSize _size);
 }
 
 enum CicaRSize {
@@ -35,8 +40,8 @@ namespace CicaR {
 	extern Array<CicaRSize> size;
 	// register all
 	bool Register();
-	// Returns: Font
-	Font GetFont(CicaRSize _size);
+	// Returns: FontP
+	FontP Get(CicaRSize _size);
 }
 
 enum LettersSize {
@@ -50,6 +55,6 @@ namespace Letters {
 	extern Array<LettersSize> size;
 	// register all
 	bool Register();
-	// Returns: Font
-	Font GetFont(LettersSize _size);
+	// Returns: FontP
+	FontP Get(LettersSize _size);
 }
