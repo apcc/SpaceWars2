@@ -4,7 +4,7 @@
 #include "functions/Asset.hpp"
 
 // Scenes
-#include "scenes/Opening.hpp"
+#include "scenes/Title.hpp"
 #include "scenes/License.hpp"
 #include "scenes/ControlGuidance.hpp"
 #include "scenes/ScreenGuidance.hpp"
@@ -53,7 +53,7 @@ void Main(){
 	Letters::Register();
 
 	SceneManager<String,CommonData> manager;
-	manager.add<Opening>(L"Opening");
+	manager.add<Title>(L"Title");
 	manager.add<License>(L"License");
 	manager.add<ControlGuidance>(L"ControlGuidance");
 	manager.add<ScreenGuidance>(L"ScreenGuidance");

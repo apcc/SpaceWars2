@@ -17,7 +17,7 @@ void License::update() {
 
 	changeScene(Debug::InputFnKey(), 250);
 	if (Data::KeyEnter.repeat(20))
-		changeScene(L"Opening", 250);
+		changeScene(L"Title", 250);
 }
 
 void License::draw() const {

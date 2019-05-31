@@ -3,7 +3,7 @@
 
 String Debug::InputFnKey(){
 	String sceneName;
-	if(Input::KeyF1.clicked) sceneName = L"Opening";
+	if(Input::KeyF1.clicked) sceneName = L"Title";
 	if(Input::KeyF2.clicked) sceneName = L"ControlGuidance";
 	if(Input::KeyF3.clicked) sceneName = L"ScreenGuidance";
 	if(Input::KeyF4.clicked) sceneName = L"SkillSelect";

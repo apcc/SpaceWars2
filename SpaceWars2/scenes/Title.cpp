@@ -1,13 +1,13 @@
-#include "Opening.hpp"
+#include "Title.hpp"
 
-int Opening::selecting = 0;
+int Title::selecting = 0;
 
-void Opening::init(){
+void Title::init(){
 	Data::LPlayer.init(Vec2(  80, Config::HEIGHT/2), true);  //円の半径
 	Data::RPlayer.init(Vec2(1200, Config::HEIGHT/2), false); //WIDTH-円の半径
 }
 
-void Opening::update(){
+void Title::update(){
 	changeScene(Debug::InputFnKey(), 250);
 
 	if (Data::KeyUp.repeat(20, true) && selecting > 0)
@@ -36,7 +36,7 @@ void Opening::update(){
 
 }
 
-void Opening::draw() const{
+void Title::draw() const{
 	TextureAsset(L"background").resize(Window::Size()).draw();
 	TextureAsset(L"title-logo").drawAt(Window::Center().x, 150);
 
