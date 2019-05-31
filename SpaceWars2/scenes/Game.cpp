@@ -149,7 +149,10 @@ void Game::draw() const {
 	}
 
 	switch(status) {
-		case COUNT_DOWN_INIT: break;
+		case COUNT_DOWN_INIT: {
+			Rect(Window::Size()).draw(ColorF(L"#000").setAlpha(0.6));
+			break;
+		}
 
 		case COUNT_DOWN: {
 			Rect(Window::Size()).draw(ColorF(L"#000").setAlpha(0.6));
