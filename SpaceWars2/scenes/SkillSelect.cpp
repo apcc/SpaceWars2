@@ -25,9 +25,8 @@ void SkillSelect::init() {
 		while (descReader.readLine(str)) {
 			lane++;
 			if (lane == 1)continue;
-			skillSelectManager.AddDescript(str);
+			skillDescriptManager.AddDescript(str);
 		}
-
 
 		isLoaded = true;
 	}

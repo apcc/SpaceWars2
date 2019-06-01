@@ -44,7 +44,7 @@ private:
 
 		case 1: name = str; break;
 		case 2: descript = str; break;
-		case 3: iconPath = str; break;
+		case 3: count++; //iconPath = str; break;
 		default:
 			if (count >= PARM_COUNT) {
 				LOG_ERROR(L"SkillDescrpit: Write Eror: out of range in ", name);
@@ -119,7 +119,7 @@ private:
 	double LAlpha[3] = { 0.5, 0.5, 0.5 };
 	double RAlpha[3] = { 0.5, 0.5, 0.5 };
 
-	SkillDescriptManager skillSelectManager;
+	SkillDescriptManager skillDescriptManager;
 public:
 	void init() override;
 	void update() override;

@@ -1,14 +1,14 @@
-SkillType,SkillName,Description,Image,Stats1,Stats2,Stats3,Stats4
-Main,Shot,Shot.
-Main,Grenade,Grenede.
-Main,Laser,Laser.
-Main,Reflection,Refl.
-Main,Flame,Flam
-Sub,Jump,biyo-n.
-Sub,Shield,pikka-n.
-Sub,Missle,dokka-n.
-Sub,Bomb,bo-nn.
-Special,Judgement Time,....
-Special,Lock On,pipipipi
-Special,Summon Partner,Partner,denden
-Special,Inversion Recovery,gugugugu
+SkillType,SkillName,Description,Stats1,Stats2,Stats3,Stats4
+Main,Shot,拡散する弾を高速で連射する,10,4,10,5
+Main,Grenade,時間経過か着弾で爆発する弾を撃つ,6,8,5,4
+Main,Laser,チャージした後にレーザービームを放つ,12,7,4,9
+Main,Reflection,壁に当たると反射する弾を撃つ,8,3,7,12
+Main,Flame,大きくて弾道が燃える弾を撃つ,4,9,5,7
+Sub,Jump,瞬時に中距離移動し、弾をよける,5,7,4
+Sub,Shield,自身を守るシールドを周囲に展開する,9,2,10
+Sub,Missle,敵を追尾するミサイルを発射する,4,9,8,
+Sub,Bomb,相手が触れると爆発する地雷を設置する,8,6,6
+Special,Judgement Time,5秒間自分機体以外の時間を止める,10,4,6
+Special,Lock On,相手の位置に三連続で狙撃を行う,4,8,5
+Special,Summon Partner,グレネードを発射する味方を召喚する,8,6,9
+Special,Inversion Recovery,発動後1.5秒間で攻撃を受けた分だけ回復する,7,9,3
