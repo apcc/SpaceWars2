@@ -31,8 +31,8 @@ void SkillSelect::init() {
 		isLoaded = true;
 	}
 
-	LContinue = false;
-	RContinue = false;
+	LReady = false;
+	RReady = false;
 }
 
 void SkillSelect::update() {
@@ -40,60 +40,17 @@ void SkillSelect::update() {
 	 if (nextStageTime > 100)
 	 	changeScene(L"Game", 500);
 
-	if (LContinue && RContinue) ++nextStageTime;
+	if (LReady && RReady) ++nextStageTime;
 	else nextStageTime = 0;
 
-	if (Data::LKeyBack.repeat(20, true)) LContinue = false;
-	if (Data::RKeyBack.repeat(20, true)) RContinue = false;
+	if (Data::LKeyBack.repeat(20, true)) LReady = false;
+	if (Data::RKeyBack.repeat(20, true)) RReady = false;
 
-	if (Data::LKeySelect.repeat(20, true)) LContinue = true;
-	if (Data::RKeySelect.repeat(20, true)) RContinue = true;
+	if (Data::LKeySelect.repeat(20, true)) LReady = true;
+	if (Data::RKeySelect.repeat(20, true)) RReady = true;
 
-	if (!LContinue) {
-		switch (Data::LPlayer.skillSelect()) {
-		case 0:
-			LAlpha[0] = 1.0;
-			LAlpha[1] = 0.5;
-			break;
-
-		case 1:
-			LAlpha[0] = 0.5;
-			LAlpha[1] = 1.0;
-			LAlpha[2] = 0.5;
-			break;
-
-		case 2:
-			LAlpha[1] = 0.5;
-			LAlpha[2] = 1.0;
-			break;
-
-		default:
-			LOG_ERROR(L"SkillSelect::update()のLPlayer用switchでdefaultが参照されました。");
-		}
-	}
-
-	if (!RContinue) {
-		switch (Data::RPlayer.skillSelect()) {
-		case 0:
-			RAlpha[0] = 1.0;
-			RAlpha[1] = 0.5;
-			break;
-
-		case 1:
-			RAlpha[0] = 0.5;
-			RAlpha[1] = 1.0;
-			RAlpha[2] = 0.5;
-			break;
-
-		case 2:
-			RAlpha[1] = 0.5;
-			RAlpha[2] = 1.0;
-			break;
-
-		default:
-			LOG_ERROR(L"SkillSelect::update()のRPlayer用switchでdefaultが参照されました。");
-		}
-	}
+	if(!LReady) whatLselecting = Data::LPlayer.skillSelect();
+	if(!RReady) whatRselecting = Data::RPlayer.skillSelect();
 }
 
 void SkillSelect::draw() const {
@@ -130,7 +87,8 @@ void SkillSelect::draw() const {
 		SmartUI::GetFont(S18)(L"１２３４５６７８９１０１１１２１３１４１５").draw((!isLeft) * Window::Width() / 2 + 30, 300, ColorF(L"#ffffff"));
 
 		Player* PLAYER = &(isLeft ? Data::LPlayer : Data::RPlayer);
-		double alpha[3]      = { (isLeft ? LAlpha : RAlpha)[0], (isLeft ? LAlpha : RAlpha)[1], (isLeft ? LAlpha : RAlpha)[2] };
+		double alpha[3]      = { 0.5, 0.5, 0.5 };
+		alpha[(isLeft ? whatLselecting : whatRselecting)] = 1.0;
 		String skillType[3]  = { L"main", L"sub", L"special" };
 		int    whatSkill[3]  = { PLAYER->whatMainSkill, PLAYER->whatSubSkill, PLAYER->whatSpecialSkill };
 		int    skillNum[3]   = { MAIN_NUM - 1, SUB_NUM - 1, SPECIAL_NUM - 1 };
@@ -159,8 +117,8 @@ void SkillSelect::draw() const {
 					.draw(755 + (190 * type) - (640 * isLeft), 570, Alpha((int)(255 * alpha[type])));
 		}
 
-		if (LContinue) Rect(0, 0, Window::Center().x, Config::HEIGHT).draw(ColorF(L"#f00").setAlpha(0.25));
-		if (RContinue) Rect(Window::Center().x, 0, Window::Center().x, Config::HEIGHT).draw(ColorF(L"#f00").setAlpha(0.25));
+		if (LReady) Rect(0, 0, Window::Center().x, Config::HEIGHT).draw(ColorF(L"#f00").setAlpha(0.25));
+		if (RReady) Rect(Window::Center().x, 0, Window::Center().x, Config::HEIGHT).draw(ColorF(L"#f00").setAlpha(0.25));
 	}
 
 	Vec2 buttonPos(820, 692);
