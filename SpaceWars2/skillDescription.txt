@@ -1,0 +1,14 @@
+SkillType,SkillName,Description,Image,Stats1,Stats2,Stats3,Stats4
+Main,Shot,Shot.
+Main,Grenade,Grenede.
+Main,Laser,Laser.
+Main,Reflection,Refl.
+Main,Flame,Flam
+Sub,Jump,biyo-n.
+Sub,Shield,pikka-n.
+Sub,Missle,dokka-n.
+Sub,Bomb,bo-nn.
+Special,Judgement Time,....
+Special,Lock On,pipipipi
+Special,Summon Partner,Partner,denden
+Special,Inversion Recovery,gugugugu

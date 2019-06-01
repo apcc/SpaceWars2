@@ -17,6 +17,18 @@ void SkillSelect::init() {
 		TextureAsset::Register(L"mainTriangle", L"/8100");
 		TextureAsset::Register(L"subTriangle", L"/8101");
 		TextureAsset::Register(L"specialTriangle", L"/8102");
+
+		TextReader descReader(L"skillDescription.txt");
+
+		String str;//毎行用
+		int lane = 0;
+		while (descReader.readLine(str)) {
+			lane++;
+			if (lane == 1)continue;
+			skillSelectManager.AddDescript(str);
+		}
+
+
 		isLoaded = true;
 	}
 
