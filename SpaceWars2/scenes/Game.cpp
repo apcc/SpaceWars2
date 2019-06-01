@@ -110,19 +110,18 @@ void Game::update() {
 			if (selecting > 2) selecting = 2;
 
 			if (Data::KeyEnter.repeat(0, true)){
-				switch (selecting) {
-				case 0:
-					changeScene(L"SkillSelect", 500);
-					break;
-				case 1:
-					changeScene(L"Title", 500);
-					break;
-				case 2:
-					System::Exit();
-					break;
-				default: break;
-				}
-			}
+			switch (selecting) {
+			case 0: 
+				changeScene(L"SkillSelect", 500);
+				break;
+			case 1: 
+				changeScene(L"Title", 500);
+				break;
+			case 2:
+				System::Exit();
+				break;
+			default: break;
+			}}
 
 			break;
 		}
@@ -285,6 +284,10 @@ void Game::draw() const {
 					).draw();
 				}
 			}
+
+			Vec2 pos = CicaR::Get(C12)(L"subaru2003/SpaceWars2").draw(Arg::rightCenter, Window::Size() + Vec2(-15, -25)).pos;
+			pos.x += -35;
+			TextureAsset(L"github-light").scale(0.8).draw(pos);
 
 			break;
 		}
