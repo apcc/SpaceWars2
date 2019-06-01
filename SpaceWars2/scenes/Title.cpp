@@ -2,9 +2,9 @@
 
 int Title::selecting = 0;
 
-void Title::init(){
-	Data::LPlayer.init(Vec2(  80, Config::HEIGHT/2), true);  //円の半径
-	Data::RPlayer.init(Vec2(1200, Config::HEIGHT/2), false); //WIDTH-円の半径
+void Title::init() {
+	Data::LPlayer.init(Vec2(80, Config::HEIGHT / 2), true);  //円の半径
+	Data::RPlayer.init(Vec2(1200, Config::HEIGHT / 2), false); //WIDTH-円の半径
 }
 
 void Title::update(){
