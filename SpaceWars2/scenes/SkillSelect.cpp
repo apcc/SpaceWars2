@@ -58,34 +58,6 @@ void SkillSelect::draw() const {
 
 	for (int isLeft = 0; isLeft <= 1; isLeft++) { // LPlayer, RPlayer
 
-		SmartUI::GetFont(S24)(L"[SKILLNAME]").draw((!isLeft) * Window::Width() / 2 + 30, 20, Color(L"#ffffff"));
-
-		Rect({290, 90}, 16*19, 9*19).draw(ColorF(L"#dddddd"));
-
-		Vec2 chartCenter = Vec2(150, 175);
-		const int chartSize = 85;
-		Quad(
-			{ (!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y - chartSize },
-			{ (!isLeft) * Window::Width() / 2 + chartCenter.x + chartSize, chartCenter.y },
-			{ (!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y + chartSize },
-			{ (!isLeft) * Window::Width() / 2 + chartCenter.x - chartSize, chartCenter.y }
-		).draw(ColorF(L"#00bfff").setAlpha(0.4));
-		Line((!isLeft) * Window::Width() / 2 + chartCenter.x - chartSize, chartCenter.y, (!isLeft) * Window::Width() / 2 + chartCenter.x + chartSize, chartCenter.y).draw();
-		Line((!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y - chartSize, (!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y + chartSize).draw();
-
-
-		LineString(
-			{
-				{ (!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y - chartSize * 0.9 },
-				{ (!isLeft) * Window::Width() / 2 + chartCenter.x + chartSize * 0.4, chartCenter.y },
-				{ (!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y + chartSize * 0.6 },
-				{ (!isLeft) * Window::Width() / 2 + chartCenter.x - chartSize * 0.7, chartCenter.y },
-				{ (!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y - chartSize * 0.9 }
-			}
-		).draw(5, ColorF(L"#ffffff").setAlpha(0.9));
-
-		SmartUI::GetFont(S18)(L"１２３４５６７８９１０１１１２１３１４１５").draw((!isLeft) * Window::Width() / 2 + 30, 300, ColorF(L"#ffffff"));
-
 		Player* PLAYER = &(isLeft ? Data::LPlayer : Data::RPlayer);
 		double alpha[3]      = { 0.5, 0.5, 0.5 };
 		alpha[(isLeft ? whatLselecting : whatRselecting)] = 1.0;
@@ -93,6 +65,61 @@ void SkillSelect::draw() const {
 		int    whatSkill[3]  = { PLAYER->whatMainSkill, PLAYER->whatSubSkill, PLAYER->whatSpecialSkill };
 		int    skillNum[3]   = { MAIN_NUM - 1, SUB_NUM - 1, SPECIAL_NUM - 1 };
 		String skillColor[3] = { L"#7cfc00", L"#4169e1", L"#ffd000" };
+		int selectingType = (isLeft ? whatLselecting : whatRselecting);
+		SkillDescript descript = skillDescriptManager.skillDescription[selectingType][whatSkill[selectingType]];
+
+		SmartUI::GetFont(S24)(descript.name).draw((!isLeft) * Window::Width() / 2 + 30, 20, Color(L"#ffffff"));
+
+		Rect({290, 90}, 16*19, 9*19).draw(ColorF(L"#dddddd"));
+
+		Vec2 chartCenter = Vec2(150, 175);
+		const double chartSize = 85;
+
+		if (selectingType == 0) {
+			Quad(
+				{ (!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y - chartSize },
+				{ (!isLeft) * Window::Width() / 2 + chartCenter.x + chartSize, chartCenter.y },
+				{ (!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y + chartSize },
+				{ (!isLeft) * Window::Width() / 2 + chartCenter.x - chartSize, chartCenter.y }
+			).draw(ColorF(L"#00bfff").setAlpha(0.4));
+			Line((!isLeft) * Window::Width() / 2 + chartCenter.x - chartSize, chartCenter.y, (!isLeft) * Window::Width() / 2 + chartCenter.x + chartSize, chartCenter.y).draw();
+			Line((!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y - chartSize, (!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y + chartSize).draw();
+
+
+			LineString(
+				{
+					{ (!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y - chartSize * descript.status[0] / 10 },
+					{ (!isLeft) * Window::Width() / 2 + chartCenter.x + chartSize * descript.status[1] / 10, chartCenter.y },
+					{ (!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y + chartSize * descript.status[2] / 10 },
+					{ (!isLeft) * Window::Width() / 2 + chartCenter.x - chartSize * descript.status[3] / 10, chartCenter.y },
+					{ (!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y - chartSize * descript.status[0] / 10 }
+				}
+			).draw(5, ColorF(L"#ffffff").setAlpha(0.9));
+		}
+		else {
+			chartCenter += Vec2((!isLeft) * Window::Width() / 2, 0);
+			Triangle(chartCenter, chartSize*sqrt(3), 0_deg).draw(ColorF(L"#00bfff").setAlpha(0.4));
+			Vec2 posOftriangle[3] = {
+				{chartCenter - Vec2(0, chartSize)},
+				{chartCenter + Vec2(chartSize, 0).rotated(Pi * 5 / 6)},
+				{chartCenter + Vec2(chartSize, 0).rotated(Pi * 1 / 6)},
+			};
+			for (int i = 0; i < 3; i++) {
+				Line(chartCenter, posOftriangle[i]).draw();
+			}
+
+			LineString(
+				{
+					{chartCenter - Vec2(0, chartSize * descript.status[0] / 10)},
+					{chartCenter + Vec2(chartSize * descript.status[1] / 10, 0).rotated(Pi * 5 / 6)},
+					{chartCenter + Vec2(chartSize * descript.status[2] / 10, 0).rotated(Pi * 1 / 6)},
+					{chartCenter - Vec2(0, chartSize * descript.status[0] / 10)}
+				}
+			).draw(5, ColorF(L"#ffffff").setAlpha(0.9));
+		}
+
+		SmartUI::GetFont(S18)(descript.descript).draw((!isLeft) * Window::Width() / 2 + 30, 300, ColorF(L"#ffffff"));
+
 		for (int type = 0; type < 3; type++) { // mainSkill, subSkill, specialSkill
 
 			// skillIconの描画
