@@ -84,14 +84,14 @@ void Game::update() {
 		case FINISH_INIT: {
 			stopwatch.pause();
 
-			double x = 900;
+			double x = 0;
 			for (auto HP : Data::LPlayer.HPLog) {
-				LHPGraph.push_back({ x, 540 - HP / 10.0 });
+				LHPGraph.push_back({ x, 100 - HP / 10.0 });
 				x += 250.0 / Data::LPlayer.HPLog.size();
 			}
-			x = 900;
+			x = 0;
 			for (auto HP : Data::RPlayer.HPLog) {
-				RHPGraph.push_back({ x, 540 - HP / 10.0 });
+				RHPGraph.push_back({ x, 100 - HP / 10.0 });
 				x += 250.0 / Data::RPlayer.HPLog.size();
 			}
 			
@@ -187,33 +187,38 @@ void Game::draw() const {
 		case FINISH: {
 			Rect(Window::Size()).draw(ColorF(L"#000").setAlpha(0.7));
 
+			constexpr int y = 125;
+			constexpr int hy = 100 + y;
+			constexpr int sy = 80 + hy;
+			constexpr int ty = 80 + sy;
+
 
 			if (Data::LPlayer.isHPRunOut() && Data::RPlayer.isHPRunOut())
-				SmartUI::Get(S32)(L"引き分け！").drawCenter(300, Color(L"#fff"));
+				SmartUI::Get(S32)(L"引き分け！").drawCenter(y, Color(L"#fff"));
 			else {
 				if (Data::LPlayer.isHPRunOut())
-					SmartUI::Get(S32)(L"RPlayer win !").drawCenter(250, Color(L"#00f"));
+					SmartUI::Get(S32)(L"RPlayer win !").drawCenter(y, Color(L"#00f"));
 				if (Data::RPlayer.isHPRunOut())
-					SmartUI::Get(S32)(L"LPlayer win !").drawCenter(250, Color(L"#f00"));
+					SmartUI::Get(S32)(L"LPlayer win !").drawCenter(y, Color(L"#f00"));
 			}
 
 			// 箇条書き
 			SmartUI::Get(S28)(L"HP:")
-				.draw({ 280, 390 });
+				.draw({ 280, hy });
 			SmartUI::Get(S28)(L"Skills:")
-				.draw({ 280, 470 });
+				.draw({ 280, sy });
 			SmartUI::Get(S28)(L"Time:")
-				.draw({ 280, 550 });
+				.draw({ 280, ty });
 
 			// HP
 			Letters::Get(L18)(Format(Data::LPlayer.HP))
-				.draw(Arg::topRight, { 550, 400 });
+				.draw(Arg::topRight, { 550, hy + 10 });
 			CicaR::Get(C12)(L"/1000")
-				.draw(Arg::topRight, { 620, 415 });
+				.draw(Arg::topRight, { 620, hy + 25 });
 			Letters::Get(L18)(Format(Data::RPlayer.HP))
-				.draw(Arg::topRight, { 770, 400 });
+				.draw(Arg::topRight, { 770, hy + 10 });
 			CicaR::Get(C12)(L"/1000")
-				.draw(Arg::topRight, { 840, 415 });
+				.draw(Arg::topRight, { 840, hy + 25 });
 
 			// Skills
 			for (auto isLeft : step(2)) { // LPlayer, RPlayer
@@ -224,28 +229,28 @@ void Game::draw() const {
 				String skillColor[3] = { L"#0c0", L"#00c", L"#ffd000" };
 				for (auto type : step(3)) { // mainSkill, subSkill, specialSkill
 					TextureAsset(skillType[type] + Format((int)whatSkill[type])).resize(50, 50)
-						.draw(670 + (60 * type) - (220 * isLeft), 472);
+						.draw(670 + (60 * type) - (220 * isLeft), sy + 2);
 
-					Rect(670 + (60 * type) - (220 * isLeft), 522, 50, 20).draw(Color(skillColor[type]));
+					Rect(670 + (60 * type) - (220 * isLeft), sy + 52, 50, 20).draw(Color(skillColor[type]));
 
 					Letters::Get(L7)(skillsCnt[type] < 1000 ? Format(skillsCnt[type]) : L"999+")
-						.draw(Arg::topRight, { 717 + (60 * type) - (220 * isLeft), 525 });
+						.draw(Arg::topRight, { 717 + (60 * type) - (220 * isLeft), sy + 55 });
 				}
 			}
 
 			// Time
 			Letters::Get(L18)(stopwatch.min())
-				.draw(Arg::topRight, { Window::Center().x - 15, 560 });
+				.draw(Arg::topRight, { Window::Center().x - 15, ty + 10 });
 			CicaR::Get(C18)(L":")
-				.draw(Arg::topRight, { Window::Center().x + 3, 560 });
+				.draw(Arg::topRight, { Window::Center().x + 3, ty + 10 });
 			Letters::Get(L18)(twoDigits(stopwatch.s() % 60))
-				.draw(Arg::topRight, { Window::Center().x + 63, 560 });
+				.draw(Arg::topRight, { Window::Center().x + 63, ty + 10 });
 
 			// Graph
-			drawHPGraph(900, 540, LHPGraph, RHPGraph);
+			drawHPGraph(900, y + 250, LHPGraph, RHPGraph);
 
 			// 装飾
-			Line(250, 380, 250, 620).draw(6, ColorF(L"#00BFFF"));
+			Line(250, hy - 10, 250, ty + 70).draw(6, ColorF(L"#00BFFF"));
 
 			break;
 		}
@@ -434,8 +439,8 @@ void Game::drawHPGraph(int _x, int _y, const LineString& _LHPGraph, const LineSt
 	Line(_x, _y -  50, _x + w, _y -  50).draw(1, ColorF(L"#fff").setAlpha(0.8));
 
 	// HP graph
-	_LHPGraph.draw(3, ColorF(L"#f00").setAlpha(0.5));
-	_RHPGraph.draw(3, ColorF(L"#00f").setAlpha(0.5));
+	_LHPGraph.movedBy(_x, _y - 100).draw(3, ColorF(L"#f00").setAlpha(0.5));
+	_RHPGraph.movedBy(_x, _y - 100).draw(3, ColorF(L"#00f").setAlpha(0.5));
 
 	// 白い枠
 	LineString{ { _x - 2, _y - h + 2}, { _x - 2, _y + 2 }, { _x + 270, _y + 2 } }.draw(4);
