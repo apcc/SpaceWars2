@@ -102,6 +102,28 @@ void Game::update() {
 			if (Data::KeyEnter.repeat(20))
 				changeScene(L"Ending", 500);
 
+			if (Data::KeyDown.repeat(10, true))
+				++selecting;
+			if (Data::KeyUp.repeat(10, true))
+				--selecting;
+			if (selecting < 0) selecting = 0;
+			if (selecting > 2) selecting = 2;
+
+			if (Data::KeyEnter.repeat(0, true)){
+				switch (selecting) {
+				case 0:
+					changeScene(L"SkillSelect", 500);
+					break;
+				case 1:
+					changeScene(L"Title", 500);
+					break;
+				case 2:
+					System::Exit();
+					break;
+				default: break;
+				}
+			}
+
 			break;
 		}
 	}
@@ -251,6 +273,18 @@ void Game::draw() const {
 
 			// 装飾
 			Line(250, hy - 10, 250, ty + 70).draw(6, ColorF(L"#00BFFF"));
+
+			const String text[3] = { L"RESTART", L"TITLE", L"EXIT" };
+			for (auto i : step(3)) {
+				const int w = (int)(SmartUI::Get(S28)(text[i]).draw(Arg::leftCenter, { 550, 540 + 65 * i }).w / 2);
+				if (i == selecting) {
+					Triangle(
+						{ 530 - 30, 524 + selecting * 65 },
+						{ 530 -  2, 540 + selecting * 65 },
+						{ 530 - 30, 556 + selecting * 65 }
+					).draw();
+				}
+			}
 
 			break;
 		}

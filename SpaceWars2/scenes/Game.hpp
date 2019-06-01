@@ -41,6 +41,8 @@ private:
 		{Window::Center().x - 50, 72}
 	};
 
+	int selecting = 0;
+
 
 	static String twoDigits(int n);
 	static void drawCountDown(const Stopwatch& _countDown);
