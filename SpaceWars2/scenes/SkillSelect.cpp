@@ -18,7 +18,7 @@ void SkillSelect::init() {
 		TextureAsset::Register(L"subTriangle", L"/8101");
 		TextureAsset::Register(L"specialTriangle", L"/8102");
 
-		TextReader descReader(L"skillDescription.txt");
+		TextReader descReader(L"/7601");
 
 		String str;//毎行用
 		int lane = 0;
