@@ -10,7 +10,6 @@
 #include "scenes/ScreenGuidance.hpp"
 #include "scenes/SkillSelect.hpp"
 #include "scenes/Game.hpp"
-#include "scenes/Ending.hpp"
 
 void Main(){
 
@@ -62,7 +61,6 @@ void Main(){
 	manager.add<ScreenGuidance>(L"ScreenGuidance");
 	manager.add<SkillSelect>(L"SkillSelect");
 	manager.add<Game>(L"Game");
-	manager.add<Ending>(L"Ending");
 
 
 	while (System::Update()){
