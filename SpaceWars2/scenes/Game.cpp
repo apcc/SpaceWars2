@@ -1,4 +1,5 @@
 #include "Game.hpp"
+#include "../fontPlus/FontP.hpp"
 
 #define ROUND_DOWN(x, divisor)	((x - x % divisor) / divisor)
 #define ROUND_UP(x, divisor)	(ROUND_DOWN(x, divisor) + (x % divisor ? 1 : 0))
@@ -275,12 +276,12 @@ void Game::draw() const {
 
 			const String text[3] = { L"RESTART", L"TITLE", L"EXIT" };
 			for (auto i : step(3)) {
-				const int w = (int)(SmartUI::Get(S28)(text[i]).draw(Arg::leftCenter, { 550, 540 + 65 * i }).w / 2);
+				SmartUI::Get(S28)(text[i]).draw(Arg::leftCenter, { 280, 540 + 65 * i });
 				if (i == selecting) {
 					Triangle(
-						{ 530 - 30, 524 + selecting * 65 },
-						{ 530 -  2, 540 + selecting * 65 },
-						{ 530 - 30, 556 + selecting * 65 }
+						{ 280 - 40, 524 + selecting * 65 },
+						{ 280 - 12, 540 + selecting * 65 },
+						{ 280 - 40, 556 + selecting * 65 }
 					).draw();
 				}
 			}
