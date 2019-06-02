@@ -278,11 +278,7 @@ void Game::draw() const {
 			for (auto i : step(3)) {
 				SmartUI::Get(S28)(text[i]).draw(Arg::leftCenter, { 280, 540 + 65 * i });
 				if (i == selecting) {
-					Triangle(
-						{ 280 - 40, 524 + selecting * 65 },
-						{ 280 - 12, 540 + selecting * 65 },
-						{ 280 - 40, 556 + selecting * 65 }
-					).draw();
+					Geometry2D::CreateNgon(3, 13, 90_deg, { 245, 540 + selecting * 65 }).draw();
 				}
 			}
 
