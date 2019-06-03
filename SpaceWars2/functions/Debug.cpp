@@ -8,6 +8,5 @@ String Debug::InputFnKey(){
 	if(Input::KeyF3.clicked) sceneName = L"ScreenGuidance";
 	if(Input::KeyF4.clicked) sceneName = L"SkillSelect";
 	if(Input::KeyF5.clicked) sceneName = L"Game";
-	if(Input::KeyF6.clicked) sceneName = L"Ending";
 	return sceneName;
 }

@@ -7,34 +7,37 @@
 bool Player::inJudgmentTime = false;
 
 void Player::init(Vec2 _pos, bool _isLeft){
-	pos = _pos;
-	isLeft = _isLeft;
-	HP = 1000;
-	temperature = 200;
-	coolDownTime = 0;
-	charge = 0;
-	recoveryDamage = 0;
-	speed = PLAYER_SPEED;
-	inAbsorption = false;
-	whatMainSkill = static_cast<MainSkill>(0);
-	whatSubSkill = static_cast<SubSkill>(0);
-	whatSpecialSkill = static_cast<SpecialSkill>(0);
-	mainSkillCnt = 0;
-	subSkillCnt = 0;
-	specialSkillCnt = 0;
+	initWithoutSkill(_pos, _isLeft);
 
-	GamePad::SetAxis();
-	GamePad::SetButton();
+	whatMainSkill    = static_cast<MainSkill>(0);
+	whatSubSkill     = static_cast<SubSkill>(0);
+	whatSpecialSkill = static_cast<SpecialSkill>(0);
+}
+
+void Player::initWithoutSkill(Vec2 _pos, bool _isLeft) {
+	pos             = _pos;
+	isLeft          = _isLeft;
+	HP              = 1000;
+	temperature     = 200;
+	coolDownTime    = 0;
+	charge          = 0;
+	recoveryDamage  = 0;
+	speed           = PLAYER_SPEED;
+	inAbsorption    = false;
+	mainSkillCnt    = 0;
+	subSkillCnt     = 0;
+	specialSkillCnt = 0;
 
 	HPLog.clear();
 
-	KeyUp = KeyRepeat(isLeft, L"KeyUp");
-	KeyLeft = KeyRepeat(isLeft, L"KeyLeft");
-	KeyDown = KeyRepeat(isLeft, L"KeyDown");
-	KeyRight = KeyRepeat(isLeft, L"KeyRight");
-
-	KeyMainSkill = KeyRepeat(isLeft, L"MainSkill");
-	KeySubSkill = KeyRepeat(isLeft, L"SubSkill");
+	GamePad::SetAxis();
+	GamePad::SetButton();
+	KeyUp           = KeyRepeat(isLeft, L"KeyUp");
+	KeyLeft         = KeyRepeat(isLeft, L"KeyLeft");
+	KeyDown         = KeyRepeat(isLeft, L"KeyDown");
+	KeyRight        = KeyRepeat(isLeft, L"KeyRight");
+	KeyMainSkill    = KeyRepeat(isLeft, L"MainSkill");
+	KeySubSkill     = KeyRepeat(isLeft, L"SubSkill");
 	KeySpecialSkill = KeyRepeat(isLeft, L"SpecialSkill");
 }
 

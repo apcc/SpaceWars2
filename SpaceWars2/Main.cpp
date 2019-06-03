@@ -10,7 +10,6 @@
 #include "scenes/ScreenGuidance.hpp"
 #include "scenes/SkillSelect.hpp"
 #include "scenes/Game.hpp"
-#include "scenes/Ending.hpp"
 
 void Main(){
 
@@ -25,6 +24,7 @@ void Main(){
 	TextureAsset::Register(L"license", L"/7910");
 	TextureAsset::Register(L"controller", L"/7950");
 	TextureAsset::Register(L"gauge", L"/7960");
+	TextureAsset::Register(L"github-light", L"/7970");
 	TextureAsset::Register(L"buttonA_24", L"/8500");
 	TextureAsset::Register(L"buttonB_24", L"/8501");
 	TextureAsset::Register(L"buttonX_24", L"/8502");
@@ -61,7 +61,6 @@ void Main(){
 	manager.add<ScreenGuidance>(L"ScreenGuidance");
 	manager.add<SkillSelect>(L"SkillSelect");
 	manager.add<Game>(L"Game");
-	manager.add<Ending>(L"Ending");
 
 
 	while (System::Update()){

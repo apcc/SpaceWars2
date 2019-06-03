@@ -398,9 +398,6 @@
     <ClCompile Include="functions\Player.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Scenes\Ending.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Scenes\Game.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -509,9 +506,6 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Scenes\ControlGuidance.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Scenes\Ending.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Scenes\Game.hpp">
