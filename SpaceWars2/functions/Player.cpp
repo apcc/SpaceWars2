@@ -96,9 +96,6 @@ void Player::update(std::vector<Bullet*> &bullets){
 
 	howFrameAfterShooting++;
 
-	if (HP < 0) HP = 0;
-	if (HP > 1000) HP = 1000;
-
 	if(isLeft) {
 		if (pos.x < 0 + PLAYER_SIZE)
 			pos.x = 0 + PLAYER_SIZE;
@@ -144,6 +141,8 @@ void Player::update(std::vector<Bullet*> &bullets){
 			}
 		}
 	}
+
+	HP = Clamp(HP, 0, 1000);
 
 	HPLog.push_back(HP);
 }
