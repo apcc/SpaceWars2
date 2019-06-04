@@ -474,8 +474,8 @@ void Game::drawHPGraph(int _x, int _y, const LineString& _LHPGraph, const LineSt
 
 	// HP graph
 	for (auto i : step(_LHPGraph.size() - 1)) {
-		_LHPGraph.movedBy(_x, _y - 100).line(i).draw(3, ColorF(L"#f00").setAlpha(0.5));
-		_RHPGraph.movedBy(_x, _y - 100).line(i).draw(3, ColorF(L"#00f").setAlpha(0.5));
+		_LHPGraph.line(i).movedBy(_x, _y - 100).draw(3, ColorF(L"#f00").setAlpha(0.5));
+		_RHPGraph.line(i).movedBy(_x, _y - 100).draw(3, ColorF(L"#00f").setAlpha(0.5));
 	}
 
 	// 白い枠
