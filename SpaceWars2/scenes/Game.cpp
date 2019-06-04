@@ -473,8 +473,10 @@ void Game::drawHPGraph(int _x, int _y, const LineString& _LHPGraph, const LineSt
 	Line(_x, _y -  50, _x + w, _y -  50).draw(1, ColorF(L"#fff").setAlpha(0.8));
 
 	// HP graph
-	_LHPGraph.movedBy(_x, _y - 100).draw(3, ColorF(L"#f00").setAlpha(0.5));
-	_RHPGraph.movedBy(_x, _y - 100).draw(3, ColorF(L"#00f").setAlpha(0.5));
+	for (auto i : step(_LHPGraph.size() - 1)) {
+		_LHPGraph.line(i).movedBy(_x, _y - 100).draw(3, ColorF(L"#f00").setAlpha(0.5));
+		_RHPGraph.line(i).movedBy(_x, _y - 100).draw(3, ColorF(L"#00f").setAlpha(0.5));
+	}
 
 	// 白い枠
 	LineString{ { _x - 2, _y - h + 2}, { _x - 2, _y + 2 }, { _x + 270, _y + 2 } }.draw(4);
