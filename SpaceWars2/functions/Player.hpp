@@ -34,13 +34,12 @@ class Player {
 private:
 	Vec2 pos = {};			// pos
 	bool isLeft = true;		// 左右
-	int selectedType = 0;	// skillSelectの選択中項目
 	int speed = 0;
-	
+
 	const int PLAYER_SIZE = 30;
 	int hitSize = 30;		// 当たり判定半径
 	int shieldDamage = 0;	// Shieldが受けたダメージ量
-	
+
 	KeyRepeat KeyUp = KeyRepeat();
 	KeyRepeat KeyLeft = KeyRepeat();
 	KeyRepeat KeyDown = KeyRepeat();
@@ -55,6 +54,7 @@ public:
 	int temperature;	// MainSkill抑制
 	int coolDownTime;	// SubSkill抑制
 	int charge;			// SpecialSkill抑制
+	int selectedType = 0;	// skillSelectの選択中項目
 
 	const int requireCharge[4] = { 400, 400, 400, 400 };
 
@@ -66,6 +66,7 @@ public:
 	MainSkill whatMainSkill = SHOT;
 	SubSkill whatSubSkill = JUMP;
 	SpecialSkill whatSpecialSkill = JUDGMENT_TIME;
+	int whatSelecting = 0;
 
 	int mainSkillCnt;
 	int subSkillCnt;
@@ -85,6 +86,6 @@ public:
 	int changeHitSize(int _hitSize);
 	bool isHPRunOut();
 	void update(std::vector<Bullet*> &bullets);
-	int skillSelect();
+	bool skillSelect();
 	void drawShip();
 };

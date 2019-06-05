@@ -2,6 +2,8 @@
 
 #define V80 { 80, 80 }
 
+SkillDescriptManager SkillSelect::skillDescriptManager;
+
 bool SkillSelect::isLoaded = false;
 
 void SkillSelect::init() {
@@ -37,7 +39,7 @@ void SkillSelect::init() {
 
 void SkillSelect::update() {
 	changeScene(Debug::InputFnKey(), 250);
-	 if (nextStageTime > 100)
+	if (nextStageTime > 100)
 	 	changeScene(L"Game", 500);
 
 	if (LReady && RReady) ++nextStageTime;
@@ -49,8 +51,8 @@ void SkillSelect::update() {
 	if (Data::LKeySelect.repeat(20, true)) LReady = true;
 	if (Data::RKeySelect.repeat(20, true)) RReady = true;
 
-	if(!LReady) whatLselecting = Data::LPlayer.skillSelect();
-	if(!RReady) whatRselecting = Data::RPlayer.skillSelect();
+	Data::LPlayer.skillSelect();
+	Data::RPlayer.skillSelect();
 }
 
 void SkillSelect::draw() const {
@@ -59,18 +61,18 @@ void SkillSelect::draw() const {
 	for (int isLeft = 0; isLeft <= 1; isLeft++) { // LPlayer, RPlayer
 
 		Player* PLAYER = &(isLeft ? Data::LPlayer : Data::RPlayer);
+		int selectingType = PLAYER->selectedType;
 		double alpha[3]      = { 0.5, 0.5, 0.5 };
-		alpha[(isLeft ? whatLselecting : whatRselecting)] = 1.0;
+		alpha[selectingType] = 1.0;
 		String skillType[3]  = { L"main", L"sub", L"special" };
 		int    whatSkill[3]  = { PLAYER->whatMainSkill, PLAYER->whatSubSkill, PLAYER->whatSpecialSkill };
 		int    skillNum[3]   = { MAIN_NUM - 1, SUB_NUM - 1, SPECIAL_NUM - 1 };
 		String skillColor[3] = { L"#7cfc00", L"#4169e1", L"#ffd000" };
-		int selectingType = (isLeft ? whatLselecting : whatRselecting);
 		SkillDescript descript = skillDescriptManager.skillDescription[selectingType][whatSkill[selectingType]];
 
 		SmartUI::GetFont(S24)(descript.name).draw((!isLeft) * Window::Width() / 2 + 30, 20, Color(L"#ffffff"));
 
-		Rect({290, 90}, 16*19, 9*19).draw(ColorF(L"#dddddd"));
+		Rect({290 + (isLeft ? Window::Size().x : 0)/2 , 90}, 16*19, 9*19).draw(ColorF(L"#dddddd"));
 
 		Vec2 chartCenter = Vec2(150, 175);
 		const double chartSize = 85;

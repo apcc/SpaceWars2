@@ -8,10 +8,8 @@ private:
 	int nextStageTime = 0;
 	bool LReady = false;
 	bool RReady = false;
-	int whatLselecting = 0;
-	int whatRselecting = 0;
 
-	SkillDescriptManager skillDescriptManager;
+	static SkillDescriptManager skillDescriptManager;
 public:
 	void init() override;
 	void update() override;

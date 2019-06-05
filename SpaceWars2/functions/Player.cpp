@@ -134,45 +134,69 @@ void Player::update(std::vector<Bullet*> &bullets){
 	HPLog.push_back(HP);
 }
 
-int Player::skillSelect(){
+bool Player::skillSelect() {
 
-	switch(selectedType){
+	switch (selectedType) {
 	case 0:	//MainSkill
 		if (KeyRight.repeat(20, true))
 			++selectedType;
-		if (KeyDown	.repeat(20, true) && whatMainSkill < MAIN_NUM - 1)
+		if (KeyDown.repeat(20, true) && whatMainSkill < MAIN_NUM - 1)
 			whatMainSkill = static_cast<MainSkill>(whatMainSkill + 1);
-		if (KeyUp	.repeat(20, true) && whatMainSkill > 0)
+		if (KeyUp.repeat(20, true) && whatMainSkill > 0)
 			whatMainSkill = static_cast<MainSkill>(whatMainSkill - 1);
 		break;
 
 	case 1:	//SubSkill
-		if (KeyLeft	.repeat(20, true))
+		if (KeyLeft.repeat(20, true))
 			--selectedType;
 		if (KeyRight.repeat(20, true))
 			++selectedType;
-		if (KeyDown	.repeat(20, true) && whatSubSkill < SUB_NUM - 1)
+		if (KeyDown.repeat(20, true) && whatSubSkill < SUB_NUM - 1)
 			whatSubSkill = static_cast<SubSkill>(whatSubSkill + 1);
-		if (KeyUp	.repeat(20, true) && whatSubSkill > 0)
+		if (KeyUp.repeat(20, true) && whatSubSkill > 0)
 			whatSubSkill = static_cast<SubSkill>(whatSubSkill - 1);
 		break;
 
 	case 2:	//SpecialSkill
-		if (KeyLeft	.repeat(20, true))
+		if (KeyLeft.repeat(20, true))
 			--selectedType;
-		if (KeyDown	.repeat(20, true) && whatSpecialSkill < SPECIAL_NUM - 1)
+		if (KeyDown.repeat(20, true) && whatSpecialSkill < SPECIAL_NUM - 1)
 			whatSpecialSkill = static_cast<SpecialSkill>(whatSpecialSkill + 1);
-		if (KeyUp	.repeat(20, true) && whatSpecialSkill > 0)
+		if (KeyUp.repeat(20, true) && whatSpecialSkill > 0)
 			whatSpecialSkill = static_cast<SpecialSkill>(whatSpecialSkill - 1);
 		break;
 
 	default:
-			LOG_ERROR(L"SkillSelecterで意図しない値が参照されました。");
+		LOG_ERROR(L"SkillSelecterで意図しない値が参照されました。");
 	}
 
-	return selectedType;
+	if (selectedType != 2) {
+		if (KeyRight.repeat(20, true)) {
+			++selectedType;
+			return true;
+		}
+	}
+	if (selectedType != 0) {
+		if (KeyLeft.repeat(20, true)) {
+			++selectedType;
+			return true;
+		}
+	}
+	int numberOfSkill[3] = { MAIN_NUM, SUB_NUM, SPECIAL_NUM };
+	int skills[3] = { whatMainSkill, whatSubSkill, whatSpecialSkill };
+	if (skills[selectedType] != 0) {
+		if (KeyUp.repeat(20, true)) {
+			++skills[selectedType];
+			return true;
+		}
+	}if (skills[selectedType] != numberOfSkill[selectedType]) {
+		if (KeyDown.repeat(20, true)) {
+			--skills[selectedType];
+			return true;
+		}
+	}
+	return false;
 }
-
 void Player::drawShip(){
 	if(isLeft){
 		circle().draw(Color(L"#ff0000"));
