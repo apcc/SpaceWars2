@@ -45,7 +45,7 @@ void Player::doMainSkill(std::vector<Bullet*>& bullets){
 		break;
 
 	case FLAME:
-		if (KeyMainSkill.repeat(25)) {
+		if (KeyMainSkill.repeat(30)) {
 			bullets.push_back(new Flame(pos, isLeft));
 			temperature += 70;
 			howFrameAfterShooting = 30;

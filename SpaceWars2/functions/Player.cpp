@@ -123,7 +123,6 @@ void Player::update(std::vector<Bullet*> &bullets){
 	}
 
 	if (speed != 0) { // [自機] normal
-		if (temperature > 100) --temperature;
 		if (temperature < 800) doMainSkill(bullets);
 		if (coolDownTime == 0) doSubSkill(bullets); else coolDownTime--;
 		doSpacialSkill(bullets);
