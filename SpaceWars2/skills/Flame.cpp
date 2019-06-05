@@ -7,7 +7,7 @@ bool Flame::update(Vec2 myPos, Vec2 oppPos) {
 
 void Flame::draw() {
 	//getShapeFlameBelt().draw(Color(L"#ff8800"));
-	getShapeFlameBelt().draw({ Color(L"#ff8800"), Color(L"#221100"), Color(L"#221100"), Color(L"#ff8800"), });
+	getShapeFlameBelt().draw({ Color(L"#ff8800"), Color(L"#ff8800").setAlpha(16), Color(L"#ff8800").setAlpha(16), Color(L"#ff8800"), });
 	getShape().draw(Color(L"#ffff00"));
 };
 
