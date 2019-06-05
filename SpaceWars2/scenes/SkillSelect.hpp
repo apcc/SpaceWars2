@@ -8,6 +8,11 @@ private:
 	int nextStageTime = 0;
 	bool LReady = false;
 	bool RReady = false;
+	int skillsDisplayed[2][3] = {}; //[isLeft][skillType]
+	int skillTypeDisplayed[2] = {}; //[isLeft]
+	int whiteOutTime[2] = {};
+	bool goingTowhiteout[2] = {};
+	int WHITEOUT_TIME = 6;
 
 	static SkillDescriptManager skillDescriptManager;
 public:

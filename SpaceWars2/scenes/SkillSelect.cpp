@@ -51,8 +51,25 @@ void SkillSelect::update() {
 	if (Data::LKeySelect.repeat(20, true)) LReady = true;
 	if (Data::RKeySelect.repeat(20, true)) RReady = true;
 
-	Data::LPlayer.skillSelect();
-	Data::RPlayer.skillSelect();
+	for(int isLeft = 0; isLeft < 2; isLeft++){
+		Player* PLAYER = &(isLeft ? Data::LPlayer : Data::RPlayer);
+
+		if(PLAYER->skillSelect())	goingTowhiteout[isLeft] = true;
+
+		if(goingTowhiteout[isLeft]){
+			whiteOutTime[isLeft]++;
+			if(whiteOutTime[isLeft]>=WHITEOUT_TIME){
+				goingTowhiteout[isLeft] = false;
+				skillsDisplayed[isLeft][0] = PLAYER->whatMainSkill;
+				skillsDisplayed[isLeft][1] = PLAYER->whatSubSkill;
+				skillsDisplayed[isLeft][2] = PLAYER->whatSpecialSkill;
+				skillTypeDisplayed[isLeft] = PLAYER->selectedType;
+				goingTowhiteout[isLeft] = false;
+			}
+		}else{
+			if(whiteOutTime[isLeft]>0)whiteOutTime[isLeft]--;
+		}
+	}
 }
 
 void SkillSelect::draw() const {
@@ -68,16 +85,17 @@ void SkillSelect::draw() const {
 		int    whatSkill[3]  = { PLAYER->whatMainSkill, PLAYER->whatSubSkill, PLAYER->whatSpecialSkill };
 		int    skillNum[3]   = { MAIN_NUM - 1, SUB_NUM - 1, SPECIAL_NUM - 1 };
 		String skillColor[3] = { L"#7cfc00", L"#4169e1", L"#ffd000" };
-		SkillDescript descript = skillDescriptManager.skillDescription[selectingType][whatSkill[selectingType]];
+
+		SkillDescript descript = skillDescriptManager.skillDescription[skillTypeDisplayed[isLeft]][skillsDisplayed[isLeft][skillTypeDisplayed[isLeft]]];
 
 		SmartUI::GetFont(S24)(descript.name).draw((!isLeft) * Window::Width() / 2 + 30, 20, Color(L"#ffffff"));
 
-		Rect({290 + (isLeft ? Window::Size().x : 0)/2 , 90}, 16*19, 9*19).draw(ColorF(L"#dddddd"));
+		Rect({290 + (!isLeft ? Window::Size().x : 0)/2 , 90}, 16*19, 9*19).draw(ColorF(L"#dddddd"));
 
 		Vec2 chartCenter = Vec2(150, 175);
 		const double chartSize = 85;
 
-		if (selectingType == 0) {
+		if (skillTypeDisplayed[isLeft] == 0) {
 			Quad(
 				{ (!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y - chartSize },
 				{ (!isLeft) * Window::Width() / 2 + chartCenter.x + chartSize, chartCenter.y },
@@ -121,6 +139,9 @@ void SkillSelect::draw() const {
 		}
 
 		SmartUI::GetFont(S18)(descript.descript).draw((!isLeft) * Window::Width() / 2 + 30, 300, ColorF(L"#ffffff"));
+
+		Rect({ 15 + (!isLeft) * Window::Width() / 2, 10 }, { 610 + (!isLeft) * Window::Width() / 2, 290 }).draw(ColorF(L"#000000").setAlpha((double)whiteOutTime[isLeft] / WHITEOUT_TIME));
+
 
 		for (int type = 0; type < 3; type++) { // mainSkill, subSkill, specialSkill
 
