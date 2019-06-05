@@ -30,6 +30,13 @@ void ControlGuidance::draw() const {
 
 		TextureAsset(L"keyboard").drawAt(Window::Center() + Vec2(0, 50));
 
+		Rect(620, 20, 630, 80).draw(Color(L"#ffc")).drawFrame(2, 2, Color(L"#fb0"));
+		CicaR::Get(C12)(L"",
+			L"＊注意事項＊\n", 
+			L"- キー配置はキーボードによって異なる場合があります。\n",
+			L"- キーの同時押し数に制限がある場合があります。\n"
+		).draw({ 630, 25 }, Color(L"#000"));
+
 		break;
 	}
 
