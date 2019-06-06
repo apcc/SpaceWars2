@@ -19,6 +19,7 @@ void SkillSelect::init() {
 		TextureAsset::Register(L"mainTriangle", L"/8100");
 		TextureAsset::Register(L"subTriangle", L"/8101");
 		TextureAsset::Register(L"specialTriangle", L"/8102");
+		TextureAsset::Register(L"ready", L"/8110");
 		isLoaded = true;
 	}
 
@@ -122,8 +123,16 @@ void SkillSelect::draw() const {
 					.draw(755 + (190 * type) - (640 * isLeft), 570, Alpha((int)(255 * alpha[type])));
 		}
 
-		if (LContinue) Rect(0, 0, Window::Center().x, Config::HEIGHT).draw(ColorF(L"#f00").setAlpha(0.25));
-		if (RContinue) Rect(Window::Center().x, 0, Window::Center().x, Config::HEIGHT).draw(ColorF(L"#f00").setAlpha(0.25));
+		if (LContinue) {
+			Rect(0, 0, Window::Center().x, Config::HEIGHT)
+				.draw(ColorF(L"#00f").setAlpha(0.1));
+			TextureAsset(L"ready").drawAt(Window::Center().x / 2, Window::Center().y);
+		}
+		if (RContinue) {
+			Rect(Window::Center().x, 0, Window::Center().x, Config::HEIGHT)
+				.draw(ColorF(L"#00f").setAlpha(0.1));
+			TextureAsset(L"ready").drawAt(Window::Center().x * 1.5, Window::Center().y);
+		}
 	}
 
 	Vec2 buttonPos(820, 692);
