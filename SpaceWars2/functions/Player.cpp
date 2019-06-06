@@ -95,6 +95,8 @@ bool Player::isHPRunOut(){
 }
 
 void Player::update(std::vector<Bullet*> &bullets){
+
+	isMoving = (pos != pos + GamePad::Move(isLeft, speed));
 	pos += GamePad::Move(isLeft, speed);
 
 	howFrameAfterShooting++;
@@ -191,4 +193,13 @@ int Player::skillSelect(){
 void Player::drawShip(){
 	const String name = isLeft ? L"l" : L"r";
 	TextureAsset(name + L"-player").drawAt(pos);
+
+	if (isMoving) {
+		if (isLeft) {
+			TextureAsset(L"fire").drawAt(pos + Vec2(-60, 0));
+		}
+		else {
+			TextureAsset(L"fire").mirror().drawAt(pos + Vec2(60, 0));
+		}
+	}
 }

@@ -41,6 +41,8 @@ private:
 	int hitSize = 30;		// 当たり判定半径
 	int shieldDamage = 0;	// Shieldが受けたダメージ量
 
+	bool isMoving = true;
+
 	KeyRepeat KeyUp = KeyRepeat();
 	KeyRepeat KeyLeft = KeyRepeat();
 	KeyRepeat KeyDown = KeyRepeat();

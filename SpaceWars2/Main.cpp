@@ -28,6 +28,7 @@ void Main(){
 	TextureAsset::Register(L"keyboard", L"/7980");
 	TextureAsset::Register(L"l-player", L"/7990");
 	TextureAsset::Register(L"r-player", L"/7991");
+	TextureAsset::Register(L"fire", L"/7995");
 	TextureAsset::Register(L"buttonA_24", L"/8500");
 	TextureAsset::Register(L"buttonB_24", L"/8501");
 	TextureAsset::Register(L"buttonX_24", L"/8502");
