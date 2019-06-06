@@ -44,6 +44,7 @@
 8100	FILE	"images/mainSkillTriangle.png"
 8101	FILE	"images/subSkillTriangle.png"
 8102	FILE	"images/specialSkillTriangle.png"
+8110	FILE	"images/ready.png"
 
 // controllerButtons
 8500	FILE	"images/buttons/A_24.png"
