@@ -189,9 +189,6 @@ int Player::skillSelect(){
 }
 
 void Player::drawShip(){
-	if(isLeft){
-		circle().draw(Color(L"#ff0000"));
-	}else{
-		circle().draw(Color(L"#0000ff"));
-	}
+	const String name = isLeft ? L"l" : L"r";
+	TextureAsset(name + L"-player").drawAt(pos);
 }
