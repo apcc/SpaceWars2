@@ -85,6 +85,7 @@ void SkillSelect::draw() const {
 		int    whatSkill[3]  = { PLAYER->whatMainSkill, PLAYER->whatSubSkill, PLAYER->whatSpecialSkill };
 		int    skillNum[3]   = { MAIN_NUM - 1, SUB_NUM - 1, SPECIAL_NUM - 1 };
 		String skillColor[3] = { L"#7cfc00", L"#4169e1", L"#ffd000" };
+		String skillBackColor[3] = { L"#dfd", L"#ddf", L"#fed" };
 
 		SkillDescript descript = skillDescriptManager.skillDescription[skillTypeDisplayed[isLeft]][skillsDisplayed[isLeft][skillTypeDisplayed[isLeft]]];
 
@@ -145,18 +146,26 @@ void SkillSelect::draw() const {
 
 		for (int type = 0; type < 3; type++) { // mainSkill, subSkill, specialSkill
 
+			// 選択中のskillの枠
+			Rect(720 + (190 * type) - (640 * isLeft), 470, 100).draw(ColorF(skillBackColor[type]).setAlpha(0.7)).drawFrame(0, 4, ColorF(skillColor[type]).setAlpha(alpha[type]));
+
 			// skillIconの描画
 			for (int i = -1; i <= 1; i++) { // -1:前 0:選択中 1:後
-				if (i)
+				if (i) {
+					if(0<=whatSkill[type] + i && whatSkill[type] + i<=skillNum[type])
+					Rect({ 770 + (190 * type) - (640 * isLeft) - 40, 520 + 110 * i - 40 }, V80)
+						.draw(ColorF(skillBackColor[type]).setAlpha(0.7));
 					TextureAsset(skillType[type] + Format((int)whatSkill[type] + i)).resize(V80)
 						.drawAt(770 + (190 * type) - (640 * isLeft), 520 + 110 * i);
-				else
+				}
+				else {
+					Rect(720 + (190 * type) - (640 * isLeft), 470, 100)
+						.draw(ColorF(skillBackColor[type]).setAlpha(0.7))
+						.drawFrame(0, 4, ColorF(skillColor[type]).setAlpha(alpha[type]));
 					TextureAsset(skillType[type] + Format((int)whatSkill[type]))
 						.drawAt(770 + (190 * type) - (640 * isLeft), 520);
+				}
 			}
-
-			// 選択中のskillの枠
-			Rect(720 + (190 * type) - (640 * isLeft), 470, 100).drawFrame(0, 4, ColorF(skillColor[type]).setAlpha(alpha[type]));
 
 			// 三角マークの描画
 			if (whatSkill[type] != 0)
