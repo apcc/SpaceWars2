@@ -65,5 +65,6 @@ void Main(){
 
 	while (System::Update()){
 		manager.updateAndDraw();
+		Debug::DebugModeWarning();
 	}
 }

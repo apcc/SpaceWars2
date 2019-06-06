@@ -3,4 +3,5 @@
 
 namespace Debug {
 	String InputFnKey();
+	void DebugModeWarning();
 };

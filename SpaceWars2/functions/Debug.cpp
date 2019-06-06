@@ -1,5 +1,6 @@
 #include <Siv3D.hpp>
 #include "./Debug.hpp"
+#include "Asset.hpp"
 
 String Debug::InputFnKey(){
 	String sceneName;
@@ -9,4 +10,8 @@ String Debug::InputFnKey(){
 	if(Input::KeyF4.clicked) sceneName = L"SkillSelect";
 	if(Input::KeyF5.clicked) sceneName = L"Game";
 	return sceneName;
+}
+
+void Debug::DebugModeWarning() {
+	CicaR::Get(C12)(L"Debug Mode").draw(Arg::topRight, { 1275, 5 }, Color(L"#f22"));
 }
