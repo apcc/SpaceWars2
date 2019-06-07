@@ -50,6 +50,13 @@ void Main(){
 	TextureAsset::Register(L"stick_64", L"/8620");
 	TextureAsset::Register(L"cross_64", L"/8621");
 
+	SoundAsset::Register(L"shot", L"/9000");
+	SoundAsset::Register(L"grenade1", L"/9010");
+	SoundAsset::Register(L"grenade2", L"/9011");
+	SoundAsset::Register(L"laser", L"/9020");
+	SoundAsset::Register(L"reflection", L"/9030");
+	SoundAsset::Register(L"flame", L"/9040");
+
 	FontManager::Register(L"/7700");
 	FontManager::Register(L"/7701");
 	FontManager::Register(L"/7702");

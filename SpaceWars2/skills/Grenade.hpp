@@ -13,6 +13,7 @@ public:
 	Grenade(Vec2 _pos, bool _isLeft) : Bullet(_pos, _isLeft) {
 		vel = Vec2(bulletSpeed * (_isLeft ? 1 : -1), 0).rotate(Radians(Random(-5, 5)));
 		fuse = 1 * 30 + EXPLODE_TIMING;
+		SoundAsset(L"grenade1").playMulti(0.4);
 	}
 
 	bool update(Vec2 _myPos, Vec2 _oppPos) override;
