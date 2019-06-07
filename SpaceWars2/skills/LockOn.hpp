@@ -12,6 +12,7 @@ public:
 	LockOn(Vec2 p, bool left, int Time) : Bullet(p, left) {
 		waitTime = Time;
 		vel = Vec2(0,0);
+		SoundAsset(L"LO").playMulti();
 	}
 	bool update(Vec2 myPos, Vec2 oppPos) override;
 	void draw() override;

@@ -8,6 +8,7 @@ bool InversionRecovery::update(Vec2 _myPos, Vec2 _oppPos) {
 		inRecovery = true;
 		RecoverAmount = PLAYER.recoveryDamage * 2.0;
 		PLAYER.inAbsorption = false;
+		SoundAsset(L"IR").playMulti();
 	}
 
 	if (inRecovery){

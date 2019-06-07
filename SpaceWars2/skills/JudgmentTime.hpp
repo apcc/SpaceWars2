@@ -11,6 +11,7 @@ private:
 public:
 	JudgmentTime(Vec2 _pos, bool _isLeft) : Bullet(_pos, _isLeft) {
 		REVERSE_PLAYER.changeSpeed(0);
+		SoundAsset(L"JY").playMulti(0.6);
 	}
 	~JudgmentTime(){
 		REVERSE_PLAYER.changeSpeed(8);

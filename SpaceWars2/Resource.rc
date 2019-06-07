@@ -83,6 +83,11 @@
 9120	FILE	"sounds/missile.mp3"
 9130	FILE	"sounds/bomb.mp3"
 
+9200	FILE	"sounds/JT.mp3"
+9210	FILE	"sounds/LO.mp3"
+9220	FILE	"sounds/SP.mp3"
+9230	FILE	"sounds/IR.mp3"
+
 
 // Siv3D Engine Rsource
 64000	FILE	"Engine/LogMessages.txt"

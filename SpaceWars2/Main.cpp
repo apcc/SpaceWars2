@@ -60,6 +60,10 @@ void Main(){
 	SoundAsset::Register(L"shield", L"/9110");
 	SoundAsset::Register(L"missile", L"/9120");
 	SoundAsset::Register(L"bomb", L"/9130");
+	SoundAsset::Register(L"JT", L"/9200");
+	SoundAsset::Register(L"LO", L"/9210");
+	SoundAsset::Register(L"SP", L"/9220");
+	SoundAsset::Register(L"IR", L"/9230");
 
 	FontManager::Register(L"/7700");
 	FontManager::Register(L"/7701");
