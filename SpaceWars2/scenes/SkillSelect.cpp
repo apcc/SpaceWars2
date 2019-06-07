@@ -35,11 +35,17 @@ void SkillSelect::update() {
 	if (LContinue && RContinue) ++nextStageTime;
 	else nextStageTime = 0;
 
+	if (Data::LKeySelect.repeat(20, true) && !LContinue) {
+		LContinue = true;
+		SoundAsset(L"click1").playMulti();
+	}
+	if (Data::RKeySelect.repeat(20, true) && !RContinue) {
+		RContinue = true;
+		SoundAsset(L"click1").playMulti();
+	}
+
 	if (Data::LKeyBack.repeat(20, true)) LContinue = false;
 	if (Data::RKeyBack.repeat(20, true)) RContinue = false;
-
-	if (Data::LKeySelect.repeat(20, true)) LContinue = true;
-	if (Data::RKeySelect.repeat(20, true)) RContinue = true;
 
 	if (!LContinue) {
 		switch (Data::LPlayer.skillSelect()) {

@@ -152,40 +152,50 @@ void Player::update(std::vector<Bullet*> &bullets){
 }
 
 int Player::skillSelect(){
+	bool sound = true;
 
 	switch(selectedType){
 	case 0:	//MainSkill
 		if (KeyRight.repeat(20, true))
 			++selectedType;
-		if (KeyDown	.repeat(20, true) && whatMainSkill < MAIN_NUM - 1)
+		else if (KeyDown	.repeat(20, true) && whatMainSkill < MAIN_NUM - 1)
 			whatMainSkill = static_cast<MainSkill>(whatMainSkill + 1);
-		if (KeyUp	.repeat(20, true) && whatMainSkill > 0)
+		else if (KeyUp.repeat(20, true) && whatMainSkill > 0)
 			whatMainSkill = static_cast<MainSkill>(whatMainSkill - 1);
+		else
+			sound = false;
 		break;
 
 	case 1:	//SubSkill
 		if (KeyLeft	.repeat(20, true))
 			--selectedType;
-		if (KeyRight.repeat(20, true))
+		else if (KeyRight.repeat(20, true))
 			++selectedType;
-		if (KeyDown	.repeat(20, true) && whatSubSkill < SUB_NUM - 1)
+		else if (KeyDown	.repeat(20, true) && whatSubSkill < SUB_NUM - 1)
 			whatSubSkill = static_cast<SubSkill>(whatSubSkill + 1);
-		if (KeyUp	.repeat(20, true) && whatSubSkill > 0)
+		else if (KeyUp.repeat(20, true) && whatSubSkill > 0)
 			whatSubSkill = static_cast<SubSkill>(whatSubSkill - 1);
+		else
+			sound = false;
 		break;
 
 	case 2:	//SpecialSkill
 		if (KeyLeft	.repeat(20, true))
 			--selectedType;
-		if (KeyDown	.repeat(20, true) && whatSpecialSkill < SPECIAL_NUM - 1)
+		else if (KeyDown	.repeat(20, true) && whatSpecialSkill < SPECIAL_NUM - 1)
 			whatSpecialSkill = static_cast<SpecialSkill>(whatSpecialSkill + 1);
-		if (KeyUp	.repeat(20, true) && whatSpecialSkill > 0)
+		else if (KeyUp.repeat(20, true) && whatSpecialSkill > 0)
 			whatSpecialSkill = static_cast<SpecialSkill>(whatSpecialSkill - 1);
+		else
+			sound = false;
 		break;
 
 	default:
 			LOG_ERROR(L"SkillSelecterで意図しない値が参照されました。");
 	}
+
+	if (sound)
+		SoundAsset(L"cursor1").playMulti();
 
 	return selectedType;
 }

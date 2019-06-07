@@ -90,6 +90,10 @@
 
 9400	FILE	"sounds/CometHighway.m4a"
 
+9500	FILE	"sounds/click1.mp3"
+9501	FILE	"sounds/click2.mp3"
+9510	FILE	"sounds/cursor1.mp3"
+
 
 // Siv3D Engine Rsource
 64000	FILE	"Engine/LogMessages.txt"

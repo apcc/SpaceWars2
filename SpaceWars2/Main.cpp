@@ -65,6 +65,9 @@ void Main(){
 	SoundAsset::Register(L"SP", L"/9220");
 	SoundAsset::Register(L"IR", L"/9230");
 	SoundAsset::Register(L"BGM", L"/9400");
+	SoundAsset::Register(L"click1", L"/9500");
+	SoundAsset::Register(L"click2", L"/9501");
+	SoundAsset::Register(L"cursor1", L"/9510");
 
 	FontManager::Register(L"/7700");
 	FontManager::Register(L"/7701");

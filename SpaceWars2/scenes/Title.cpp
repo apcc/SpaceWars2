@@ -10,12 +10,17 @@ void Title::init() {
 void Title::update(){
 	changeScene(Debug::InputFnKey(), 250);
 
-	if (Data::KeyUp.repeat(20, true) && selecting > 0)
+	if (Data::KeyUp.repeat(20, true) && selecting > 0) {
 		--selecting;
-	if (Data::KeyDown.repeat(20, true) && selecting < 3)
+		SoundAsset(L"cursor1").playMulti();
+	}
+	if (Data::KeyDown.repeat(20, true) && selecting < 3) {
 		++selecting;
+		SoundAsset(L"cursor1").playMulti();
+	}
 
 	if (Data::KeyEnter.repeat(20)) {
+		SoundAsset(L"click1").play();
 		switch(selecting) {
 		case 0:
 			changeScene(L"ControlGuidance", 500);
