@@ -78,6 +78,11 @@
 9030	FILE	"sounds/reflection.mp3"
 9040	FILE	"sounds/flame.mp3"
 
+9100	FILE	"sounds/jump.mp3"
+9110	FILE	"sounds/shield.mp3"
+9120	FILE	"sounds/missile.mp3"
+9130	FILE	"sounds/bomb.mp3"
+
 
 // Siv3D Engine Rsource
 64000	FILE	"Engine/LogMessages.txt"

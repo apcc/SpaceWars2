@@ -56,6 +56,10 @@ void Main(){
 	SoundAsset::Register(L"laser", L"/9020");
 	SoundAsset::Register(L"reflection", L"/9030");
 	SoundAsset::Register(L"flame", L"/9040");
+	SoundAsset::Register(L"jump", L"/9100");
+	SoundAsset::Register(L"shield", L"/9110");
+	SoundAsset::Register(L"missile", L"/9120");
+	SoundAsset::Register(L"bomb", L"/9130");
 
 	FontManager::Register(L"/7700");
 	FontManager::Register(L"/7701");
