@@ -88,6 +88,8 @@
 9220	FILE	"sounds/SP.mp3"
 9230	FILE	"sounds/IR.mp3"
 
+9400	FILE	"sounds/CometHighway.m4a"
+
 
 // Siv3D Engine Rsource
 64000	FILE	"Engine/LogMessages.txt"

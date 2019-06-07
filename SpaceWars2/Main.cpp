@@ -64,6 +64,7 @@ void Main(){
 	SoundAsset::Register(L"LO", L"/9210");
 	SoundAsset::Register(L"SP", L"/9220");
 	SoundAsset::Register(L"IR", L"/9230");
+	SoundAsset::Register(L"BGM", L"/9400");
 
 	FontManager::Register(L"/7700");
 	FontManager::Register(L"/7701");
@@ -81,6 +82,9 @@ void Main(){
 	manager.add<SkillSelect>(L"SkillSelect");
 	manager.add<Game>(L"Game");
 
+	SoundAsset(L"BGM").setLoop(true);
+	SoundAsset(L"BGM").setVolume(0.3);
+	SoundAsset(L"BGM").play();
 
 	while (System::Update()){
 		manager.updateAndDraw();
