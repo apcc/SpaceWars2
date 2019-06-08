@@ -146,6 +146,15 @@ void Player::update(std::vector<Bullet*> &bullets){
 		}
 	}
 
+	if (floor(charge / requireCharge[whatSpecialSkill] * 100) == 100) {
+		if (!isSounded) {
+			SoundAsset(L"chargeFull").playMulti();
+			isSounded = true;
+		}
+	}
+	else
+		isSounded = false;
+
 	HP = Clamp(HP, 0, 1000);
 
 	HPLog.push_back(HP);

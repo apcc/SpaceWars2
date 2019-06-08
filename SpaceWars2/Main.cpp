@@ -64,6 +64,7 @@ void Main(){
 	SoundAsset::Register(L"LO", L"/9210");
 	SoundAsset::Register(L"SP", L"/9220");
 	SoundAsset::Register(L"IR", L"/9230");
+	SoundAsset::Register(L"chargeFull", L"/9300");
 	SoundAsset::Register(L"BGM", L"/9400");
 	SoundAsset::Register(L"click1", L"/9500");
 	SoundAsset::Register(L"click2", L"/9501");

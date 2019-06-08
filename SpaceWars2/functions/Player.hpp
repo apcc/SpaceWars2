@@ -42,6 +42,7 @@ private:
 	int shieldDamage = 0;	// Shieldが受けたダメージ量
 
 	bool isMoving = true;
+	bool isSounded = false;
 
 	KeyRepeat KeyUp = KeyRepeat();
 	KeyRepeat KeyLeft = KeyRepeat();
