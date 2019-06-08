@@ -17,6 +17,9 @@
 7320	FILE	"assets/gauge.png"
 
 7400	FILE	"assets/ready.png"
+7410	FILE	"assets/mainSkillTriangle.png"
+7411	FILE	"assets/subSkillTriangle.png"
+7412	FILE	"assets/specialSkillTriangle.png"
 
 7500	FILE	"assets/l-player.png"
 7501	FILE	"assets/r-player.png"
@@ -103,10 +106,6 @@
 	8221	FILE	"assets/skills/sounds/LO.mp3"
 	8222	FILE	"assets/skills/sounds/SP.mp3"
 	8223	FILE	"assets/skills/sounds/IR.mp3"
-
-8300	FILE	"assets/mainSkillTriangle.png"
-8301	FILE	"assets/subSkillTriangle.png"
-8302	FILE	"assets/specialSkillTriangle.png"
 
 // Sounds
 9000	FILE	"assets/sounds/chargeFull.mp3" // in Game
