@@ -25,6 +25,33 @@ void Game::update() {
 				if (!isFirstLoaded) {
 					stopwatchFrame.asPolygon(16, true).overwrite(outerFrame, Palette::White);
 					stopwatchFrame.asPolygon(5, true).overwrite(innerFrame, Palette::White);
+
+					if (!SoundAsset::IsRegistered(L"shot")) {
+						SoundAsset::Register(L"shot"      , L"/9000");
+						SoundAsset::Register(L"grenade1"  , L"/9010");
+						SoundAsset::Register(L"grenade2"  , L"/9011");
+						SoundAsset::Register(L"laser"     , L"/9020");
+						SoundAsset::Register(L"reflection", L"/9030");
+						SoundAsset::Register(L"flame"     , L"/9040");
+						SoundAsset::Register(L"jump"      , L"/9100");
+						SoundAsset::Register(L"shield"    , L"/9110");
+						SoundAsset::Register(L"missile"   , L"/9120");
+						SoundAsset::Register(L"bomb"      , L"/9130");
+						SoundAsset::Register(L"JT"        , L"/9200");
+						SoundAsset::Register(L"LO"        , L"/9210");
+						SoundAsset::Register(L"SP"        , L"/9220");
+						SoundAsset::Register(L"IR"        , L"/9230");
+						SoundAsset::Register(L"chargeFull", L"/9300");
+					}
+
+					if (!TextureAsset::IsRegistered(L"github-light")) {
+						TextureAsset::Register(L"github-light", L"/7970");
+						TextureAsset::Register(L"keyboard"    , L"/7980");
+						TextureAsset::Register(L"l-player"    , L"/7990");
+						TextureAsset::Register(L"r-player"    , L"/7991");
+						TextureAsset::Register(L"fire"        , L"/7995");
+					}
+
 					isFirstLoaded = true;
 				}
 				break;
