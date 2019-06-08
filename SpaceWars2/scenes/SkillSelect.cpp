@@ -15,14 +15,14 @@ void SkillSelect::init() {
 			TextureAsset::Register(L"special" + Format(i - 1), L"/802" + Format(i));
 		}
 		for (auto i : step(5)) {
-			TextureAsset::Register(L"mainBullet"    + Format(i), L"/820" + Format(i));
-			TextureAsset::Register(L"subBullet"     + Format(i), L"/821" + Format(i));
-			TextureAsset::Register(L"specialBullet" + Format(i), L"/822" + Format(i));
+			TextureAsset::Register(L"mainBullet"    + Format(i), L"/810" + Format(i));
+			TextureAsset::Register(L"subBullet"     + Format(i), L"/811" + Format(i));
+			TextureAsset::Register(L"specialBullet" + Format(i), L"/812" + Format(i));
 		}
-		TextureAsset::Register(L"mainTriangle", L"/8100");
-		TextureAsset::Register(L"subTriangle", L"/8101");
-		TextureAsset::Register(L"specialTriangle", L"/8102");
-		TextureAsset::Register(L"ready", L"/8110");
+		TextureAsset::Register(L"mainTriangle"   , L"/8300");
+		TextureAsset::Register(L"subTriangle"    , L"/8301");
+		TextureAsset::Register(L"specialTriangle", L"/8302");
+		TextureAsset::Register(L"ready"          , L"/7400");
 		isLoaded = true;
 	}
 

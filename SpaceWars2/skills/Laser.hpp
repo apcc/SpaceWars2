@@ -39,8 +39,8 @@ public:
 		else {
 			(isLeft ? isLShooting : isRShooting) = true;
 			++(isLeft ? Data::LPlayer : Data::RPlayer).mainSkillCnt;
-			chargeSound = Sound(L"/9020");
-			laserSound = Sound(L"/9021");
+			chargeSound = Sound(L"/8203");
+			laserSound = Sound(L"/8204");
 			chargeSound.setLoop(true);
 			laserSound.setLoop(true);
 			chargeSound.play();
