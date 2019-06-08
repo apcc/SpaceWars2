@@ -13,6 +13,7 @@ void ScreenGuidance::update() {
 	if (Data::KeyEnter.repeat(20, true)) {
 		if (status == LETS_GO) changeScene(L"SkillSelect", 500);
 		else				   status = (Stat)(status + 1);
+		SoundAsset(L"move1").playMulti();
 	}
 	changeScene(Debug::InputFnKey(), 250);
 }

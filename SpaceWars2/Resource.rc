@@ -93,6 +93,7 @@
 9500	FILE	"sounds/click1.mp3"
 9501	FILE	"sounds/click2.mp3"
 9510	FILE	"sounds/cursor1.mp3"
+9520	FILE	"sounds/move1.mp3"
 
 
 // Siv3D Engine Rsource

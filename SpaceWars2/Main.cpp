@@ -68,6 +68,7 @@ void Main(){
 	SoundAsset::Register(L"click1", L"/9500");
 	SoundAsset::Register(L"click2", L"/9501");
 	SoundAsset::Register(L"cursor1", L"/9510");
+	SoundAsset::Register(L"move1", L"/9520");
 
 	FontManager::Register(L"/7700");
 	FontManager::Register(L"/7701");
