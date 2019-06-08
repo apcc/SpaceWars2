@@ -56,6 +56,17 @@ void SkillSelect::update() {
 
 		if(PLAYER->skillSelect())	goingTowhiteout[isLeft] = true;
 
+		for (auto itr = bullets[isLeft].begin(); itr != bullets[isLeft].end();) {
+
+			if ((**itr).update({ 20,Window::Height() / 2 }, { Window::Width() - 20,Window::Height() / 2 })) {
+				delete* itr;
+				itr = bullets[isLeft].erase(itr);
+			}
+			else {
+				++itr;
+			}
+		}
+
 		if(goingTowhiteout[isLeft]){
 			whiteOutTime[isLeft]++;
 			if(whiteOutTime[isLeft]>=WHITEOUT_TIME){
@@ -65,10 +76,23 @@ void SkillSelect::update() {
 				skillsDisplayed[isLeft][2] = PLAYER->whatSpecialSkill;
 				skillTypeDisplayed[isLeft] = PLAYER->selectedType;
 				goingTowhiteout[isLeft] = false;
+
+				/*for(auto itr : bullets[isLeft]) {
+					delete itr;
+				}
+				bullets[isLeft].clear();
+				coolDownTime[isLeft] = 0;*/
 			}
 		}else{
 			if(whiteOutTime[isLeft]>0)whiteOutTime[isLeft]--;
 		}
+		if (coolDownTime[isLeft] == 0) {
+			Bullet* bullet = new Shot({ isLeft?20:(Window::Width()-20),Window::Height() / 2 }, isLeft);
+			bullet->Shrink(Rect({ 290 + (!isLeft ? Window::Size().x : 0) / 2 , 90 }, 16 * 19, 9 * 19));
+			bullets[isLeft].push_back(bullet);
+			coolDownTime[isLeft] = 6;
+		}
+		coolDownTime[isLeft]--;
 	}
 }
 
@@ -91,7 +115,7 @@ void SkillSelect::draw() const {
 
 		SmartUI::GetFont(S24)(descript.name).draw((!isLeft) * Window::Width() / 2 + 30, 20, Color(L"#ffffff"));
 
-		Rect({290 + (!isLeft ? Window::Size().x : 0)/2 , 90}, 16*19, 9*19).draw(ColorF(L"#dddddd"));
+		Rect({290 + (!isLeft ? Window::Size().x : 0)/2 , 90}, 16*19, 9*19).draw(ColorF(L"#0000dd"));
 
 		Vec2 chartCenter = Vec2(150, 175);
 		const double chartSize = 85;
@@ -174,6 +198,10 @@ void SkillSelect::draw() const {
 			if (whatSkill[type] != skillNum[type])
 				TextureAsset(skillType[type] + L"Triangle").flip()
 					.draw(755 + (190 * type) - (640 * isLeft), 570, Alpha((int)(255 * alpha[type])));
+
+			for (auto itr : bullets[isLeft]) {
+				itr->draw();
+			}
 		}
 
 		if (LReady) Rect(0, 0, Window::Center().x, Config::HEIGHT).draw(ColorF(L"#f00").setAlpha(0.25));
