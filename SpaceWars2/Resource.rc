@@ -1,3 +1,34 @@
+// ========================
+//   SpaceWars2 Resources
+// ========================
+
+// ========================
+//      【付番ルール】
+// ========================
+// 
+// 6000 Fonts
+// 
+// 7000 Images
+//  000 全体
+//  100 Title
+//  200 License
+//  300 Guidance
+//  400 SkillSelect
+//  500 Game
+//  600 Result
+//  700 その他
+//  800 button_24
+//  900 button_64
+// 
+// 8000 Skills
+//  000 Icons
+//  100 Textures
+//  200 Sounds
+// 
+// 9000 Sounds
+// 
+// ========================
+
 // Fonts
 6000	FILE	"fonts/03SmartFont-P.ttf"
 6010	FILE	"fonts/Cica-Regular.ttf"
