@@ -50,6 +50,27 @@ void Main(){
 	TextureAsset::Register(L"stick_64", L"/8620");
 	TextureAsset::Register(L"cross_64", L"/8621");
 
+	SoundAsset::Register(L"shot", L"/9000");
+	SoundAsset::Register(L"grenade1", L"/9010");
+	SoundAsset::Register(L"grenade2", L"/9011");
+	SoundAsset::Register(L"laser", L"/9020");
+	SoundAsset::Register(L"reflection", L"/9030");
+	SoundAsset::Register(L"flame", L"/9040");
+	SoundAsset::Register(L"jump", L"/9100");
+	SoundAsset::Register(L"shield", L"/9110");
+	SoundAsset::Register(L"missile", L"/9120");
+	SoundAsset::Register(L"bomb", L"/9130");
+	SoundAsset::Register(L"JT", L"/9200");
+	SoundAsset::Register(L"LO", L"/9210");
+	SoundAsset::Register(L"SP", L"/9220");
+	SoundAsset::Register(L"IR", L"/9230");
+	SoundAsset::Register(L"chargeFull", L"/9300");
+	SoundAsset::Register(L"BGM", L"/9400");
+	SoundAsset::Register(L"click1", L"/9500");
+	SoundAsset::Register(L"click2", L"/9501");
+	SoundAsset::Register(L"cursor1", L"/9510");
+	SoundAsset::Register(L"move1", L"/9520");
+
 	FontManager::Register(L"/7700");
 	FontManager::Register(L"/7701");
 	FontManager::Register(L"/7702");
@@ -66,6 +87,9 @@ void Main(){
 	manager.add<SkillSelect>(L"SkillSelect");
 	manager.add<Game>(L"Game");
 
+	SoundAsset(L"BGM").setLoop(true);
+	SoundAsset(L"BGM").setVolume(0.3);
+	SoundAsset(L"BGM").play();
 
 	while (System::Update()){
 		manager.updateAndDraw();

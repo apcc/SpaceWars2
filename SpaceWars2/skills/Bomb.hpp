@@ -26,6 +26,8 @@ private:
 public:
 	Bomb(Vec2 _pos, bool _isLeft) : Bullet(_pos, _isLeft) {
 		vel = Vec2(bulletSpeed * (isLeft ? 1 : -1), 0);
+		SoundAsset(L"bomb").playMulti(0.8);
+
 		if (isLeft) {
 			numberOfLUsed++;
 		}

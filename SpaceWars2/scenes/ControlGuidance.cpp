@@ -12,6 +12,7 @@ void ControlGuidance::update() {
 		} else {
 			changeScene(L"ScreenGuidance", 250);
 		}
+		SoundAsset(L"move1").playMulti();
 	}
 }
 

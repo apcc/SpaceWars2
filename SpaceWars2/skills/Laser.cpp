@@ -13,6 +13,8 @@ bool Laser::update(Vec2 _myPos, Vec2 _oppPos) {
 			(isLeft ? Data::LPlayer : Data::RPlayer).temperature += 6;
 		}
 		else {
+			chargeSound.stop();
+			laserSound.play();
 			isCharging = false;
 		}
 	}else{

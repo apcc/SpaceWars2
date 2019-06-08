@@ -69,6 +69,34 @@
 8620	FILE	"images/buttons/stick_64.png"
 8621	FILE	"images/buttons/cross_64.png"
 
+// sound effects
+9000	FILE	"sounds/shot.mp3"
+9010	FILE	"sounds/grenade1.mp3"
+9011	FILE	"sounds/grenade2.mp3"
+9020	FILE	"sounds/laser1.mp3"
+9021	FILE	"sounds/laser2.mp3"
+9030	FILE	"sounds/reflection.mp3"
+9040	FILE	"sounds/flame.mp3"
+
+9100	FILE	"sounds/jump.mp3"
+9110	FILE	"sounds/shield.mp3"
+9120	FILE	"sounds/missile.mp3"
+9130	FILE	"sounds/bomb.mp3"
+
+9200	FILE	"sounds/JT.mp3"
+9210	FILE	"sounds/LO.mp3"
+9220	FILE	"sounds/SP.mp3"
+9230	FILE	"sounds/IR.mp3"
+
+9300	FILE	"sounds/chargeFull.mp3"
+
+9400	FILE	"sounds/CometHighway.m4a"
+
+9500	FILE	"sounds/click1.mp3"
+9501	FILE	"sounds/click2.mp3"
+9510	FILE	"sounds/cursor1.mp3"
+9520	FILE	"sounds/move1.mp3"
+
 
 // Siv3D Engine Rsource
 64000	FILE	"Engine/LogMessages.txt"

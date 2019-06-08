@@ -103,26 +103,33 @@ void Game::update() {
 			if (Data::KeyEnter.repeat(20))
 				changeScene(L"Ending", 500);
 
+			bool sound = true;
+
 			if (Data::KeyDown.repeat(10, true))
 				++selecting;
-			if (Data::KeyUp.repeat(10, true))
+			else if (Data::KeyUp.repeat(10, true))
 				--selecting;
-			if (selecting < 0) selecting = 0;
-			if (selecting > 2) selecting = 2;
+			else
+				sound = false;
+			selecting = Clamp(selecting, 0, 2);
+			if (sound)
+				SoundAsset(L"cursor1").playMulti();
 
 			if (Data::KeyEnter.repeat(0, true)){
-			switch (selecting) {
-			case 0: 
-				changeScene(L"SkillSelect", 500);
-				break;
-			case 1: 
-				changeScene(L"Title", 500);
-				break;
-			case 2:
-				System::Exit();
-				break;
-			default: break;
-			}}
+				SoundAsset(L"click2").playMulti();
+				switch (selecting) {
+				case 0: 
+					changeScene(L"SkillSelect", 500);
+					break;
+				case 1: 
+					changeScene(L"Title", 500);
+					break;
+				case 2:
+					System::Exit();
+					break;
+				default: break;
+				}
+			}
 
 			break;
 		}
