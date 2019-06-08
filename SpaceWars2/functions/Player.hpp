@@ -64,7 +64,7 @@ public:
 
 	bool inAbsorption;
 	
-	const int requireCharge[4] = { 400, 400, 400, 400 };
+	const int requireCharge[4] = { 400, 250, 400, 200 };
 
 	bool inRecovery;
 	static bool inJudgmentTime;

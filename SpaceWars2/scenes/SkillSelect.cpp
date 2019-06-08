@@ -9,12 +9,15 @@ void SkillSelect::init() {
 	Data::RPlayer.initWithoutSkill(Vec2(1200, Config::HEIGHT / 2), false); //WIDTH-円の半径
 
 	if (!isLoaded) {
-		int i = 0;
-		for (int j = -1; j < 6; j++) {
-			TextureAsset::Register(L"main" + Format(j), L"/800" + Format(i));
-			TextureAsset::Register(L"sub" + Format(j), L"/801" + Format(i));
-			TextureAsset::Register(L"special" + Format(j), L"/802" + Format(i));
-			++i;
+		for (auto i : step(7)) {
+			TextureAsset::Register(L"main"    + Format(i - 1), L"/800" + Format(i));
+			TextureAsset::Register(L"sub"     + Format(i - 1), L"/801" + Format(i));
+			TextureAsset::Register(L"special" + Format(i - 1), L"/802" + Format(i));
+		}
+		for (auto i : step(5)) {
+			TextureAsset::Register(L"mainBullet"    + Format(i), L"/820" + Format(i));
+			TextureAsset::Register(L"subBullet"     + Format(i), L"/821" + Format(i));
+			TextureAsset::Register(L"specialBullet" + Format(i), L"/822" + Format(i));
 		}
 		TextureAsset::Register(L"mainTriangle", L"/8100");
 		TextureAsset::Register(L"subTriangle", L"/8101");

@@ -18,7 +18,7 @@ bool LockOn::update(Vec2 myPos, Vec2 oppPos) {
 void LockOn::draw() {
 	if(waitTime <= 0){
 		if(explodeTime > 0){
-			getShape().draw(ColorF(L"#ff8800").setAlpha(((double)30 - explodeTime) / EXPLODE_TIMING / 2));
+			TextureAsset(L"specialBullet1").resize(400, 400).drawAt(pos);
 		}else{
 			getShape().draw(ColorF(L"#ff0000").setAlpha(((double)30 + explodeTime)/ EXPLODE_TIMING / 2));
 		}
