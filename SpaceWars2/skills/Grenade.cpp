@@ -11,7 +11,8 @@ void Grenade::draw(){
 	if(fuse<=EXPLODE_TIMING){
 		getShape().draw(ColorF(L"#ff8800").setAlpha(((double)fuse) / EXPLODE_TIMING));
 	}else{
-		getShape().draw(Color(L"#ff0000"));
+	TextureAsset(L"mainBullet1").resize(30,30).drawAt(pos);
+	//	getShape().draw(Color(L"#ff0000"));
 	}
 }
 

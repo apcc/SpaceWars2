@@ -17,7 +17,7 @@ private:
 		}
 		else {
 			if (bulletSpeed * 80 < ppos.x - pos.x) {
-				return  RectF(pos.x + bulletSpeed, pos.y - 40, bulletSpeed * 80, 70);
+				return  RectF(pos.x + bulletSpeed, pos.y - 35, bulletSpeed * 80, 70);
 			}
 			else {
 				return RectF(pos.x, pos.y - 35, -(pos.x - ppos.x), 70);

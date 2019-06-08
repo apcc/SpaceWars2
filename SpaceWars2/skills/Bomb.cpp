@@ -27,7 +27,7 @@ void Bomb::draw() {
 		getShape().draw(ColorF(L"#ff8800").setAlpha((255 - (double)fuse * 4) / 64));
 	}
 	else {
-		getShape().draw(ColorF(L"#00ff00"));
+		TextureAsset(L"subBullet3").resize(60, 60).drawAt(pos);
 	}
 }
 

@@ -184,7 +184,8 @@ void Game::draw() const {
 			break;
 		}
 
-		case GAME_INIT: break;
+		case GAME_INIT:
+				break;
 
 		case GAME: {
 			Vec2 buttonPos(890, 692);

@@ -46,6 +46,23 @@
 8102	FILE	"images/specialSkillTriangle.png"
 8110	FILE	"images/ready.png"
 
+8200	FILE	"images/nothing.png"
+8201	FILE	"images/grenade.png"
+8202	FILE	"images/nothing.png"
+8203	FILE	"images/nothing.png"
+8204	FILE	"images/flame.png"
+8210	FILE	"images/nothing.png"
+8211	FILE	"images/nothing.png"
+8212	FILE	"images/missile.png"
+8213	FILE	"images/bomb.png"
+8220	FILE	"images/clock.png"
+8221	FILE	"images/Lockon.png"
+8222	FILE	"images/l-playerSP.png"
+8223	FILE	"images/r-playerSP.png"
+8224	FILE	"images/nothing.png"
+
+
+
 // controllerButtons
 8500	FILE	"images/buttons/A_24.png"
 8501	FILE	"images/buttons/B_24.png"

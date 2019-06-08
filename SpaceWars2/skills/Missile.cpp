@@ -7,7 +7,12 @@ bool Missile::update(Vec2 myPos, Vec2 oppPos) {
 }
 
 void Missile::draw() {
-	getShape().draw(Color(L"#00ff00"));
+	if (isLeft) {
+		TextureAsset(L"subBullet2").resize(30, 30).rotate(Vec2Angle(vel)).drawAt(pos);
+	}
+	else {
+		TextureAsset(L"subBullet2").resize(30, 30).rotate(Vec2Angle(vel)).drawAt(pos);
+	}
 }
 
 bool Missile::isVisible() {

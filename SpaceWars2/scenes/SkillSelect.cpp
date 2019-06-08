@@ -16,6 +16,12 @@ void SkillSelect::init() {
 			TextureAsset::Register(L"special" + Format(j), L"/802" + Format(i));
 			++i;
 		}
+		for (auto j : step(5)) {
+			TextureAsset::Register(L"mainBullet" + Format(j), L"/820" + Format(j));
+			TextureAsset::Register(L"subBullet" + Format(j), L"/821" + Format(j));
+			TextureAsset::Register(L"specialBullet" + Format(j), L"/822" + Format(j));
+
+		}
 		TextureAsset::Register(L"mainTriangle", L"/8100");
 		TextureAsset::Register(L"subTriangle", L"/8101");
 		TextureAsset::Register(L"specialTriangle", L"/8102");

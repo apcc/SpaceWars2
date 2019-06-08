@@ -8,7 +8,13 @@ bool Flame::update(Vec2 myPos, Vec2 oppPos) {
 void Flame::draw() {
 	//getShapeFlameBelt().draw(Color(L"#ff8800"));
 	getShapeFlameBelt().draw({ Color(L"#ff8800"), Color(L"#ff8800").setAlpha(16), Color(L"#ff8800").setAlpha(16), Color(L"#ff8800"), });
-	getShape().draw(Color(L"#ffff00"));
+	//getShape().draw(Color(L"#ffff00"));
+	if (isLeft) {
+		TextureAsset(L"mainBullet4").resize(200, 200).drawAt(pos - Vec2(40, 10));
+	}
+	else {
+		TextureAsset(L"mainBullet4").resize(200, 200).mirror().drawAt(pos - Vec2(-40, 10));
+	}
 };
 
 bool Flame::isVisible() {

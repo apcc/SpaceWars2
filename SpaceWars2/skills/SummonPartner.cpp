@@ -23,7 +23,15 @@ void SummonPartner::draw() {
 	for(auto bul : bullets){
 		bul->draw();
 	}
-	getShape().draw(ColorF(isLeft?L"#ff0000":L"#0000ff").setAlpha(0.5));
+	if (isLeft) {
+		TextureAsset(L"fire").drawAt(pos + Vec2(-60, 0));
+		TextureAsset(L"specialBullet2").resize(60, 60).drawAt(pos);
+	}
+	else {
+		TextureAsset(L"fire").mirror().drawAt(pos + Vec2(60, 0));
+		TextureAsset(L"specialBullet3").resize(60, 60).drawAt(pos);
+	}
+	//getShape().draw(ColorF(isLeft?L"#ff0000":L"#0000ff").setAlpha(0.5));
 }
 
 bool SummonPartner::isVisible() {
