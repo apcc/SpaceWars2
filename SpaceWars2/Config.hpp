@@ -8,7 +8,7 @@ namespace Config {
 	const int	 VER_NUM	= 19053123;
 
 	// タイトル
-	const String TITLE		= L"SPACE WARS 2";
+	const String TITLE		= L"SpaceWars 2";
 
 	// サイズ
 	const int32  WIDTH		= 1280;
