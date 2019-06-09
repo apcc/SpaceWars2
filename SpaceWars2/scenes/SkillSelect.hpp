@@ -2,6 +2,7 @@
 #include "Include.hpp"
 #include "../functions/SkillDescription.hpp"
 #include "../skills/Shot.hpp"
+#include "../skills/Grenade.hpp"
 
 class SkillSelect final : public SceneManager<String, CommonData>::Scene {
 private:

@@ -77,20 +77,36 @@ void SkillSelect::update() {
 				skillTypeDisplayed[isLeft] = PLAYER->selectedType;
 				goingTowhiteout[isLeft] = false;
 
-				/*for(auto itr : bullets[isLeft]) {
+				for(auto itr : bullets[isLeft]) {
 					delete itr;
 				}
 				bullets[isLeft].clear();
-				coolDownTime[isLeft] = 0;*/
+				coolDownTime[isLeft] = 0;
 			}
 		}else{
 			if(whiteOutTime[isLeft]>0)whiteOutTime[isLeft]--;
 		}
 		if (coolDownTime[isLeft] == 0) {
-			Bullet* bullet = new Shot({ isLeft?20:(Window::Width()-20),Window::Height() / 2 }, isLeft);
+			Vec2 ppos = { isLeft ? 20 : (Window::Width() - 20),Window::Height() / 2 };
+			Bullet* bullet;
+			switch (skillTypeDisplayed[isLeft]) {
+			case 0://Main
+				switch (skillsDisplayed[isLeft][0]) {
+				case SHOT://Shot
+					bullet = new Shot(ppos, isLeft);
+					coolDownTime[isLeft] = 6;
+					break;
+				case GRENADE:
+					bullet = new Grenade(ppos, isLeft);
+					coolDownTime[isLeft] = 20;
+					break;
+				default: bullet = new Shot(ppos, isLeft); break; break;
+				}
+				break;
+			default:bullet = new Shot(ppos, isLeft); break; break;
+			}
 			bullet->Shrink(Rect({ 290 + (!isLeft ? Window::Size().x : 0) / 2 , 90 }, 16 * 19, 9 * 19));
 			bullets[isLeft].push_back(bullet);
-			coolDownTime[isLeft] = 6;
 		}
 		coolDownTime[isLeft]--;
 	}

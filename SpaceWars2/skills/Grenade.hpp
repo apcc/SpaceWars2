@@ -4,7 +4,7 @@
 
 class Grenade final : public Bullet {
 private:
-	Circle getShape() { return Circle(pos, (fuse>EXPLODE_TIMING)?8:EXPLODE_RADIUS); }
+	Circle getShape() { return Circle(pos, shrinkRate*((fuse>EXPLODE_TIMING)?8:EXPLODE_RADIUS)); }
 	int fuse;
 	const static int EXPLODE_TIMING=20;
 	const static int EXPLODE_RADIUS=300;
