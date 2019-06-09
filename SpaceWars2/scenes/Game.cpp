@@ -4,6 +4,17 @@
 #define ROUND_DOWN(x, divisor)	((x - x % divisor) / divisor)
 #define ROUND_UP(x, divisor)	(ROUND_DOWN(x, divisor) + (x % divisor ? 1 : 0))
 
+const Array<String> mainSkillSound = {
+	L"shot", L"grenade1", L"grenade2", L"laser1", L"laser2", L"reflection", L"flame"
+};
+const Array<String> subSkillSound = {
+	L"jump", L"shield", L"missile", L"bomb"
+};
+const Array<String> specialSkillSound = {
+	L"JT", L"LO", L"SP", L"IR"
+};
+
+
 void Game::init() {}
 
 void Game::update() {
@@ -25,6 +36,26 @@ void Game::update() {
 				if (!isFirstLoaded) {
 					stopwatchFrame.asPolygon(16, true).overwrite(outerFrame, Palette::White);
 					stopwatchFrame.asPolygon(5, true).overwrite(innerFrame, Palette::White);
+
+					if (!SoundAsset::IsRegistered(L"IR")) {
+						const Array<String> sound[3] = { mainSkillSound, subSkillSound, specialSkillSound };
+						for (auto i : step(3)) {
+							int j = 0;
+							for (const auto& name : sound[i]) {
+								SoundAsset::Register(name, L"/82" + Format(i) + Format(j));
+								++j;
+							}
+						}
+						SoundAsset::Register(L"chargeFull", L"/9000");
+					}
+
+					if (!TextureAsset::IsRegistered(L"github-light")) {
+						TextureAsset::Register(L"l-player"    , L"/7500");
+						TextureAsset::Register(L"r-player"    , L"/7501");
+						TextureAsset::Register(L"fire"        , L"/7510");
+						TextureAsset::Register(L"github-light", L"/7600");
+					}
+
 					isFirstLoaded = true;
 				}
 				break;

@@ -1,7 +1,11 @@
 #include "ControlGuidance.hpp"
 
 void ControlGuidance::init() {
-
+	if (!TextureAsset::IsRegistered(L"keyboard")) {
+		TextureAsset::Register(L"keyboard"  , L"/7300");
+		TextureAsset::Register(L"controller", L"/7310");
+		TextureAsset::Register(L"gauge"     , L"/7320");
+	}
 }
 
 void ControlGuidance::update() {
