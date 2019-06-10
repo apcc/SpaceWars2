@@ -15,6 +15,11 @@ void ScreenGuidance::update() {
 		else				   status = (Stat)(status + 1);
 		SoundAsset(L"move1").playMulti();
 	}
+	if (Data::KeyBack.repeat(20, true)) {
+		if (status == FULL) changeScene(L"ControlGuidance", 500);
+		else				   status = (Stat)(status - 1);
+		SoundAsset(L"move1").playMulti();
+	}
 	changeScene(Debug::InputFnKey(), 250);
 }
 
