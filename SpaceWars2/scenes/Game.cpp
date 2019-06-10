@@ -28,49 +28,46 @@ void Game::update() {
 		}
 
 		case COUNT_DOWN: {
-			if (countDown.s() == 3)
+			if (countDown.s() == 3) {
 				status = GAME_INIT;
+				return;
+			}
+
+			const Array<String> sound[3] = { mainSkillSound, subSkillSound, specialSkillSound };
+
+			// 疑似for
+			int i = countDown.s();
+			if (!isSoundLoaded[i]) {
+				int j = 0;
+				for (const auto& name : sound[i]) {
+					SoundAsset::Register(name, L"/82" + Format(i) + Format(j));
+					++j;
+				}
+				isSoundLoaded[i] = true;
+			}
 
 			switch(countDown.s()) {
 			case 0:
-				if (!isFirstLoaded) {
-					stopwatchFrame.asPolygon(16, true).overwrite(outerFrame, Palette::White);
-					stopwatchFrame.asPolygon(5, true).overwrite(innerFrame, Palette::White);
-
-					if (!SoundAsset::IsRegistered(L"IR")) {
-						const Array<String> sound[3] = { mainSkillSound, subSkillSound, specialSkillSound };
-						for (auto i : step(3)) {
-							int j = 0;
-							for (const auto& name : sound[i]) {
-								SoundAsset::Register(name, L"/82" + Format(i) + Format(j));
-								++j;
-							}
-						}
-						SoundAsset::Register(L"chargeFull", L"/9000");
-					}
-
-					if (!TextureAsset::IsRegistered(L"github-light")) {
-						TextureAsset::Register(L"l-player"    , L"/7500");
-						TextureAsset::Register(L"r-player"    , L"/7501");
-						TextureAsset::Register(L"fire"        , L"/7510");
-						TextureAsset::Register(L"github-light", L"/7600");
-					}
-
-					isFirstLoaded = true;
+				if (!isLoaded[i]) {
+					TextureAsset::Register(L"l-player", L"/7500");
+					TextureAsset::Register(L"r-player", L"/7501");
+					isLoaded[i] = true;
 				}
 				break;
 
 			case 1:
-				if (!isSecondLoaded) {
-					outerFrameTex = Texture(outerFrame.gaussianBlur(6, 6));
-					isSecondLoaded = true;
+				if (!isLoaded[i]) {
+					TextureAsset::Register(L"fire", L"/7510");
+					TextureAsset::Register(L"stopwatch-frame", L"/7520");
+					isLoaded[i] = true;
 				}
 				break;
 
 			case 2:
-				if (!isThirdLoaded) {
-					innerFrameTex = Texture(innerFrame.gaussianBlur(3, 3));
-					isThirdLoaded = true;
+				if (!isLoaded[i]) {
+					TextureAsset::Register(L"github-light", L"/7600");
+					SoundAsset::Register(L"chargeFull", L"/9000");
+					isLoaded[i] = true;
 				}
 				break;
 
@@ -197,8 +194,7 @@ void Game::draw() const {
 		Letters::Get(L10)(ROUND_UP(Data::RPlayer.coolDownTime, 60)).draw(Arg::topRight, { 1085, 62 }, Color(L"#77f"));
 
 		stopwatchFill.draw(Color(L"#052942"));
-		outerFrameTex.draw(Color(L"#23B5FF"));
-		innerFrameTex.draw(Color(L"#EFF9FF"));
+		TextureAsset(L"stopwatch-frame").draw();
 
 		Letters::Get(L12)(stopwatch.min())
 			.draw(Arg::topRight, { Window::Center().x - 10, 35 });
