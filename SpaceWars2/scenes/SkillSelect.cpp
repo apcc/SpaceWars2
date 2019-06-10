@@ -5,8 +5,8 @@
 bool SkillSelect::isLoaded = false;
 
 void SkillSelect::init() {
-	Data::LPlayer.initSkill();  //円の半径
-	Data::RPlayer.initSkill(); //WIDTH-円の半径
+	Data::LPlayer.init(Vec2(80, Config::HEIGHT / 2), true);  //円の半径
+	Data::RPlayer.init(Vec2(1200, Config::HEIGHT / 2), false); //WIDTH-円の半径
 
 	if (!isLoaded) {
 		for (auto i : step(7)) {
