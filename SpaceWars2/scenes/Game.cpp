@@ -20,6 +20,12 @@ void Game::init() {}
 void Game::update() {
 	changeScene(Debug::InputFnKey(), 250);
 
+#	ifdef _DEBUG
+	if (Input::KeyF5.pressed) status = COUNT_DOWN_INIT;
+	if (Input::KeyF6.pressed) status = GAME_INIT;
+	if (Input::KeyF7.pressed) status = FINISH_INIT;
+#	endif
+
 	switch(status) {
 		case COUNT_DOWN_INIT: {
 			countDown.start();
@@ -82,6 +88,11 @@ void Game::update() {
 			countDown.reset();
 			stopwatch.start();
 
+			if (!TextureAsset::IsRegistered(L"github-light")) {
+				status = COUNT_DOWN_INIT;
+				return;
+			}
+
 			status = GAME;
 		}
 
@@ -111,6 +122,11 @@ void Game::update() {
 		}
 
 		case FINISH_INIT: {
+			if (!Data::LPlayer.isHPRunOut() || !Data::RPlayer.isHPRunOut()) {
+				status = GAME_INIT;
+				return;
+			}
+
 			stopwatch.pause();
 
 			double x = 0;
