@@ -27,6 +27,7 @@ void Player::initWithoutSkill(Vec2 _pos, bool _isLeft) {
 	mainSkillCnt    = 0;
 	subSkillCnt     = 0;
 	specialSkillCnt = 0;
+	selectedType    = 0;
 
 	HPLog.clear();
 
