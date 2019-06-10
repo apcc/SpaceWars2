@@ -86,7 +86,7 @@ public:
 	void doSpacialSkill(std::vector<Bullet*>& bullets);
 
 	void init(Vec2 _pos, bool _isLeft);
-	void initWithoutSkill(Vec2 _pos, bool _isLeft);
+	void initSkill();
 	Circle circle();	// 本体Circle
 	Circle hitCircle();	// 当たり判定
 	void receiveDamage(int _damage);

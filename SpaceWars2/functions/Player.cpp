@@ -6,15 +6,7 @@
 
 bool Player::inJudgmentTime = false;
 
-void Player::init(Vec2 _pos, bool _isLeft){
-	initWithoutSkill(_pos, _isLeft);
-
-	whatMainSkill    = static_cast<MainSkill>(0);
-	whatSubSkill     = static_cast<SubSkill>(0);
-	whatSpecialSkill = static_cast<SpecialSkill>(0);
-}
-
-void Player::initWithoutSkill(Vec2 _pos, bool _isLeft) {
+void Player::init(Vec2 _pos, bool _isLeft) {
 	pos             = _pos;
 	isLeft          = _isLeft;
 	HP              = 1000;
@@ -40,6 +32,12 @@ void Player::initWithoutSkill(Vec2 _pos, bool _isLeft) {
 	KeyMainSkill    = KeyRepeat(isLeft, L"MainSkill");
 	KeySubSkill     = KeyRepeat(isLeft, L"SubSkill");
 	KeySpecialSkill = KeyRepeat(isLeft, L"SpecialSkill");
+}
+
+void Player::initSkill() {
+	whatMainSkill = static_cast<MainSkill>(0);
+	whatSubSkill = static_cast<SubSkill>(0);
+	whatSpecialSkill = static_cast<SpecialSkill>(0);
 }
 
 Circle Player::circle(){
