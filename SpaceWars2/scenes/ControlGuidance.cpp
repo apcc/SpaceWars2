@@ -18,6 +18,12 @@ void ControlGuidance::update() {
 		}
 		SoundAsset(L"move1").playMulti();
 	}
+	if (Data::KeyBack.repeat(20)) {
+		if (status != KEY) {
+			status = (ControlType)(status - 1);
+			SoundAsset(L"move1").playMulti();
+		}
+	}
 }
 
 void ControlGuidance::draw() const {
