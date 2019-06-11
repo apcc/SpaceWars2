@@ -1,8 +1,9 @@
 #pragma once
 #include "Include.hpp"
 
-class Ending final : public SceneManager<String, CommonData>::Scene {
+class Title final : public SceneManager<String, CommonData>::Scene{
 private:
+	static int selecting;
 
 public:
 	void init() override;

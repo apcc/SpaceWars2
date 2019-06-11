@@ -17,6 +17,8 @@ private:
 	Vec2 ShrinkVec2 (Vec2);
 public:
 	Shield(Vec2 _pos, bool _isLeft) : Bullet(_pos, _isLeft) {
+		SoundAsset(L"shield").playMulti(1.0);
+
 		if (isLeft ? isLDoing : isRDoing) {
 			(isLeft ? isLInvalid : isRInvalid) = true;
 			frameCount = 100005;

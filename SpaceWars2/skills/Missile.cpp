@@ -7,7 +7,10 @@ bool Missile::update(Vec2 myPos, Vec2 oppPos) {
 }
 
 void Missile::draw() {
-	getShape().draw(Color(L"#00ff00"));
+	if (isLeft)
+		TextureAsset(L"subBullet2").resize(30, 30).rotate(Vec2Angle(vel)).drawAt(pos);
+	else
+		TextureAsset(L"subBullet2").resize(30, 30).rotate(Vec2Angle(vel)).drawAt(pos);
 }
 
 bool Missile::isVisible() {
@@ -22,24 +25,18 @@ int Missile::getDamage(Circle circle) {
 	return 0;
 }
 
-/*int*/void Missile::bend(Vec2 oppPos, double thre) {
+void Missile::bend(Vec2 oppPos, double thre) {
 	if ((pos - oppPos).length() < thre) {
 		//(vel.normalized()*100).draw(ColorF(L"ff0000"));
 
 		double angle = AngleNormalize(Vec2Angle(vel) - Vec2Angle(oppPos - pos));// Atan2(vel.y, vel.x);
 
 		if (angle > EPS) {
-			//return -20;
 			vel.rotate(-ROTATEPOWER);
 		}
 		else  if (angle < -EPS) {
-			//return 20;
 			vel.rotate(ROTATEPOWER);
 		}
-	}
-	else {
-
-		//return 0;
 	}
 }
 

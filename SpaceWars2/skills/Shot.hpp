@@ -9,6 +9,7 @@ private:
 public:
 	Shot(Vec2 _pos, bool _isLeft) : Bullet(_pos, _isLeft) {
 		vel = Vec2(bulletSpeed * (isLeft ? 1 : -1), 0).rotate(Radians(Random(-5, 5)));
+		SoundAsset(L"shot").playMulti(0.4);
 	}
 
 	Vec2 Shrink(Rect _area) override{
@@ -23,5 +24,5 @@ public:
 	bool isVisible() override;
 	int getDamage(Circle _circle) override;
 
-	const static int bulletSpeed = 20;
+	const static int bulletSpeed = 30;
 };

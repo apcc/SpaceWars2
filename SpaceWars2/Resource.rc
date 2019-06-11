@@ -1,67 +1,154 @@
-// TextFile
-7601	FILE	"skillDescription.txt"
+// ========================
+//   SpaceWars2 Resources
+// ========================
+
+// ========================
+//      【付番ルール】
+// ========================
+//
+// 6000 Fonts
+//
+// 7000 Images
+//  000 全体
+//  100 Title
+//  200 License
+//  300 Guidance
+//  400 SkillSelect
+//  500 Game
+//  600 Result
+//  700 その他
+//  800 button_24
+//  900 button_64
+//
+// 8000 Skills
+//  000 Icons
+//  100 Textures
+//  200 Sounds
+//  300 Texts
+//
+// 9000 Sounds
+//
+// ========================
 
 // Fonts
-7700	FILE	"fonts/03SmartFont-P.ttf"
-7701	FILE	"fonts/Cica-Regular.ttf"
-7702	FILE	"fonts/LettersLaughing.ttf"
+6000	FILE	"fonts/03SmartFont-P.ttf"
+6010	FILE	"fonts/Cica-Regular.ttf"
+6020	FILE	"fonts/LettersLaughing.ttf"
 
-// images
-7801 	FILE	"images/background.png"
-7900	FILE	"images/title-logo.png"
-7910	FILE	"images/license.png"
+// Images
+7000 	FILE	"assets/background.png"
 
-7950	FILE	"images/controller.png"
+7100	FILE	"assets/title-logo.png"
+7110	FILE	"assets/title-button.png"
+7111	FILE	"assets/title-button-hidden.png"
 
-// skillIcons
-8000	FILE	"images/skills/main-1.png"
-8001	FILE	"images/skills/shot.png"
-8002	FILE	"images/skills/grenade.png"
-8003	FILE	"images/skills/laser.png"
-8004	FILE	"images/skills/reflection.png"
-8005	FILE	"images/skills/flame.png"
-8006	FILE	"images/skills/main5.png"
-8010	FILE	"images/skills/sub-1.png"
-8011	FILE	"images/skills/jump.png"
-8012	FILE	"images/skills/shield.png"
-8013	FILE	"images/skills/missile.png"
-8014	FILE	"images/skills/bomb.png"
-8015	FILE	"images/skills/sub4.png"
-8016	FILE	"images/skills/sub9.png" // 範囲外
-8020	FILE	"images/skills/special-1.png"
-8021	FILE	"images/skills/J.T._.png"
-8022	FILE	"images/skills/L.O._.png"
-8023	FILE	"images/skills/S.P._.png"
-8024	FILE	"images/skills/I.R._.png"
-8025	FILE	"images/skills/special4.png"
-8026	FILE	"images/skills/special9.png" // 範囲外
+7200	FILE	"assets/license.png"
 
-8100	FILE	"images/mainSkillTriangle.png"
-8101	FILE	"images/subSkillTriangle.png"
-8102	FILE	"images/specialSkillTriangle.png"
+7300	FILE	"assets/keyboard.png"
+7310	FILE	"assets/controller.png"
+7320	FILE	"assets/gauge.png"
 
-// controllerButtons
-8500	FILE	"images/buttons/A_24.png"
-8501	FILE	"images/buttons/B_24.png"
-8502	FILE	"images/buttons/X_24.png"
-8503	FILE	"images/buttons/Y_24.png"
-8510	FILE	"images/buttons/LB_24.png"
-8511	FILE	"images/buttons/RB_24.png"
-8512	FILE	"images/buttons/LT_24.png"
-8513	FILE	"images/buttons/RT_24.png"
-8520	FILE	"images/buttons/stick_24.png"
-8521	FILE	"images/buttons/cross_24.png"
+7400	FILE	"assets/ready.png"
+7410	FILE	"assets/mainSkillTriangle.png"
+7411	FILE	"assets/subSkillTriangle.png"
+7412	FILE	"assets/specialSkillTriangle.png"
 
-8600	FILE	"images/buttons/A_64.png"
-8601	FILE	"images/buttons/B_64.png"
-8602	FILE	"images/buttons/X_64.png"
-8603	FILE	"images/buttons/Y_64.png"
-8610	FILE	"images/buttons/LB_64.png"
-8611	FILE	"images/buttons/RB_64.png"
-8612	FILE	"images/buttons/LT_64.png"
-8613	FILE	"images/buttons/RT_64.png"
-8620	FILE	"images/buttons/stick_64.png"
-8621	FILE	"images/buttons/cross_64.png"
+7500	FILE	"assets/l-player.png"
+7501	FILE	"assets/r-player.png"
+7510	FILE	"assets/fire.png"
+7520	FILE	"assets/stopwatch-frame.png"
+
+7600	FILE	"assets/github-light.png"
+
+7800	FILE	"assets/buttons/A_24.png"
+7801	FILE	"assets/buttons/B_24.png"
+//7802	FILE	"assets/buttons/X_24.png"
+//7803	FILE	"assets/buttons/Y_24.png"
+7810	FILE	"assets/buttons/LB_24.png"
+7811	FILE	"assets/buttons/RB_24.png"
+7812	FILE	"assets/buttons/LT_24.png"
+7813	FILE	"assets/buttons/RT_24.png"
+7820	FILE	"assets/buttons/stick_24.png"
+7821	FILE	"assets/buttons/cross_24.png"
+
+7900	FILE	"assets/buttons/A_64.png"
+7901	FILE	"assets/buttons/B_64.png"
+//7902	FILE	"assets/buttons/X_64.png"
+//7903	FILE	"assets/buttons/Y_64.png"
+7910	FILE	"assets/buttons/LB_64.png"
+7911	FILE	"assets/buttons/RB_64.png"
+//7912	FILE	"assets/buttons/LT_64.png"
+//7913	FILE	"assets/buttons/RT_64.png"
+7920	FILE	"assets/buttons/stick_64.png"
+//7921	FILE	"assets/buttons/cross_64.png"
+
+
+// Skills
+	8000	FILE	"assets/skills/icons/main-1.png"
+	8001	FILE	"assets/skills/icons/shot.png"
+	8002	FILE	"assets/skills/icons/grenade.png"
+	8003	FILE	"assets/skills/icons/laser.png"
+	8004	FILE	"assets/skills/icons/reflection.png"
+	8005	FILE	"assets/skills/icons/flame.png"
+	8006	FILE	"assets/skills/icons/main5.png"
+	8010	FILE	"assets/skills/icons/sub-1.png"
+	8011	FILE	"assets/skills/icons/jump.png"
+	8012	FILE	"assets/skills/icons/shield.png"
+	8013	FILE	"assets/skills/icons/missile.png"
+	8014	FILE	"assets/skills/icons/bomb.png"
+	8015	FILE	"assets/skills/icons/sub4.png"
+	8016	FILE	"assets/skills/icons/sub9.png" // 範囲外
+	8020	FILE	"assets/skills/icons/special-1.png"
+	8021	FILE	"assets/skills/icons/J.T._.png"
+	8022	FILE	"assets/skills/icons/L.O._.png"
+	8023	FILE	"assets/skills/icons/S.P._.png"
+	8024	FILE	"assets/skills/icons/I.R._.png"
+	8025	FILE	"assets/skills/icons/special4.png"
+	8026	FILE	"assets/skills/icons/special9.png" // 範囲外
+
+	// Textures
+	8100	FILE	"assets/skills/textures/nothing.png"
+	8101	FILE	"assets/skills/textures/grenade.png"
+	8102	FILE	"assets/skills/textures/nothing.png"
+	8103	FILE	"assets/skills/textures/nothing.png"
+	8104	FILE	"assets/skills/textures/flame.png"
+	8110	FILE	"assets/skills/textures/nothing.png"
+	8111	FILE	"assets/skills/textures/nothing.png"
+	8112	FILE	"assets/skills/textures/missile.png"
+	8113	FILE	"assets/skills/textures/bomb.png"
+	8120	FILE	"assets/skills/textures/clock.png"
+	8121	FILE	"assets/skills/textures/Lockon.png"
+	8122	FILE	"assets/skills/textures/l-playerSP.png"
+	8123	FILE	"assets/skills/textures/r-playerSP.png"
+	8124	FILE	"assets/skills/textures/nothing.png"
+
+	// Sounds
+	8200	FILE	"assets/skills/sounds/shot.mp3"
+	8201	FILE	"assets/skills/sounds/grenade1.mp3"
+	8202	FILE	"assets/skills/sounds/grenade2.mp3"
+	8203	FILE	"assets/skills/sounds/laser1.mp3" // in Laser
+	8204	FILE	"assets/skills/sounds/laser2.mp3" // in Laser
+	8205	FILE	"assets/skills/sounds/reflection.mp3"
+	8206	FILE	"assets/skills/sounds/flame.mp3"
+	8210	FILE	"assets/skills/sounds/jump.mp3"
+	8211	FILE	"assets/skills/sounds/shield.mp3"
+	8212	FILE	"assets/skills/sounds/missile.mp3"
+	8213	FILE	"assets/skills/sounds/bomb.mp3"
+	8220	FILE	"assets/skills/sounds/JT.mp3"
+	8221	FILE	"assets/skills/sounds/LO.mp3"
+	8222	FILE	"assets/skills/sounds/SP.mp3"
+	8223	FILE	"assets/skills/sounds/IR.mp3"
+
+	// Texts
+	8300	FILE	"assets/skills/texts/skillDescription.txt"
+
+// Sounds
+9000	FILE	"assets/sounds/chargeFull.mp3" // in Game
+9100	FILE	"assets/sounds/CometHighway.m4a"
+9200	FILE	"assets/sounds/click1.mp3"
+9201	FILE	"assets/sounds/click2.mp3"
+9210	FILE	"assets/sounds/cursor1.mp3"
+9220	FILE	"assets/sounds/move1.mp3"
 
 
 // Siv3D Engine Rsource

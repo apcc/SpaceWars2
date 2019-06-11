@@ -14,6 +14,8 @@ private:
 	bool isRInvalid = false;
 	static bool isLShooting;
 	static bool isRShooting;
+	Sound chargeSound;
+	Sound laserSound;
 
 	const static int CHARGE_TIME_LIMIT = 1000; // charge時間の上限
 	const static int WAITING_TIME = 100; // 実行までにかかるwaiting時間
@@ -37,11 +39,17 @@ public:
 		else {
 			(isLeft ? isLShooting : isRShooting) = true;
 			++(isLeft ? Data::LPlayer : Data::RPlayer).mainSkillCnt;
+			chargeSound = Sound(L"/8203");
+			laserSound = Sound(L"/8204");
+			chargeSound.setLoop(true);
+			laserSound.setLoop(true);
+			chargeSound.play();
 		}
 	}
 	~Laser() override {
 		if (!(isLeft ? isLInvalid : isRInvalid))
 			(isLeft ? isLShooting : isRShooting) = false;
+		laserSound.stop(1s);
 	};
 
 	bool update(Vec2 _myPos, Vec2 _oppPos) override;

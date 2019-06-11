@@ -12,7 +12,7 @@ enum Status {
 	FINISH,
 };
 
-class Game final : public SceneManager<String,CommonData>::Scene {
+class Game final : public SceneManager<String, CommonData>::Scene {
 private:
 	Status status = COUNT_DOWN_INIT;
 	std::vector<Bullet*> bullets;
@@ -21,14 +21,8 @@ private:
 	LineString LHPGraph;
 	LineString RHPGraph;
 
-	Image outerFrame = Image(1280, 720, Color(255, 0)); // [stopwatch枠] 外側枠
-	Image innerFrame = Image(1280, 720, Color(255, 0)); // [stopwatch枠] 内側枠
-	Texture outerFrameTex; // [stopwatch枠] 外側枠
-	Texture innerFrameTex; // [stopwatch枠] 内側枠
-	bool isFirstLoaded;
-	bool isSecondLoaded;
-	bool isThirdLoaded;
-	const LineString stopwatchFrame {
+	bool isLoaded[3] = { false, false, false };
+	const LineString stopwatchFrame{
 		{Window::Center().x - 70, 22},
 		{Window::Center().x + 70, 22},
 		{Window::Center().x + 50, 72},
@@ -41,15 +35,12 @@ private:
 		{Window::Center().x - 50, 72}
 	};
 
+	int selecting = 0;
 
-	template<typename T>
-	static void rightAlign(Font _font, T _text, int _x, int _y, Color _color = Color(L"#fff"));
+
 	static String twoDigits(int n);
 	static void drawCountDown(const Stopwatch& _countDown);
 	static void drawLoading(Vec2 _pos, const Stopwatch& _countDown);
-	static void drawHPGauge(bool _isLeft);
-	static void drawTemperatureGauge(bool _isLeft);
-	static void drawChargeGauge(bool _isLeft);
 	static void drawHPGraph(int _x, int _y, const LineString& _LHPGraph, const LineString& _RHPGraph);
 
 public:
@@ -62,4 +53,8 @@ public:
 		for (auto i : bullets) delete i;
 		bullets.clear();
 	}
+
+	static void drawHPGauge(bool _isLeft);
+	static void drawTemperatureGauge(bool _isLeft);
+	static void drawChargeGauge(bool _isLeft);
 };

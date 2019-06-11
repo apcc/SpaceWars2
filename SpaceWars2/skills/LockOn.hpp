@@ -7,11 +7,12 @@ private:
 	int waitTime;
 	const int EXPLODE_TIMING = 30;
 	int explodeTime = EXPLODE_TIMING;
-	Circle getShape() { return Circle(pos, 150); }
+	Circle getShape() { return Circle(pos, 200); }
 public:
 	LockOn(Vec2 p, bool left, int Time) : Bullet(p, left) {
 		waitTime = Time;
 		vel = Vec2(0,0);
+		SoundAsset(L"LO").playMulti();
 	}
 	bool update(Vec2 myPos, Vec2 oppPos) override;
 	void draw() override;

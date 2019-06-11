@@ -1,85 +1,66 @@
 #include "Asset.hpp"
 
+#define RETURN_FONTP FontP(FontAsset(name).size(), FontAsset(name).name(), FontAsset(name).style())
+
+using std::make_pair;
+
 Array<SmartUISize> SmartUI::size = { S12, S18, S24, S28, S32 };
 Array<SmartBSize>  SmartB::	size = { Sb12, Sb32 };
 Array<CicaRSize>   CicaR::	size = { C12, C18, C32 };
 Array<LettersSize> Letters::size = { L7, L10, L12, L18, L32 };
+std::map<String, FontP> FontPAsset::fonts = {};
 
 bool SmartUI::Register() {
-	bool result = true;
 	for (SmartUISize s : size) {
 		const String name = L"Smart" + Format(s);
-		if (!FontAsset::Register(name, s, L"03SmartFont-Proportional"))
-			result = false;
+		FontPAsset::fonts.insert(make_pair(name, FontP(s, L"03SmartFont-Proportional")));
 	}
-	return result;
+	return true;
 }
 
-Font SmartUI::GetFont(SmartUISize _size) {
+FontP SmartUI::Get(SmartUISize _size) {
 	const String name = L"Smart" + Format(_size);
-	if (!FontAsset::IsRegistered(name)) {
-		LOG_ERROR(L"SmartFontUIを参照中に、未登録のフォントサイズが指定されました: ", _size, L" at Fonts::SmartUI::GetFont(SmartUISize _size)");
-		return Font();
-	}
-	return FontAsset(name);
+	return FontPAsset::fonts[name];
 }
 
 
 bool SmartB::Register() {
-	bool result = true;
 	for (SmartBSize s : size) {
 		const String name = L"SmartB" + Format(s);
-		if (!FontAsset::Register(name, s, L"03SmartFont-Proportional", FontStyle::Bold))
-			result = false;
+		FontPAsset::fonts.insert(make_pair(name, FontP(s, L"03SmartFont-Proportional", FontStyle::Bold)));
 	}
-	return result;
+	return true;
 }
 
-Font SmartB::GetFont(SmartBSize _size) {
+FontP SmartB::Get(SmartBSize _size) {
 	const String name = L"SmartB" + Format(_size);
-	if (!FontAsset::IsRegistered(name)) {
-		LOG_ERROR(L"SmartFontUIを参照中に、未登録のフォントサイズが指定されました: ", _size, L" at Fonts::SmartB::GetFont(SmartUISize _size)");
-		return Font();
-	}
-	return FontAsset(name);
+	return FontPAsset::fonts[name];
 }
 
 
 bool CicaR::Register() {
-	bool result = true;
 	for (CicaRSize s : size) {
-		const String name = L"CicaR" + Format(s);
-		if (!FontAsset::Register(name, s, L"Cica"))
-			result = false;
+		const String name = L"Cica" + Format(s);
+		FontPAsset::fonts.insert(make_pair(name, FontP(s, L"Cica")));
 	}
-	return result;
+	return true;
 }
 
-Font CicaR::GetFont(CicaRSize _size) {
-	const String name = L"CicaR" + Format(_size);
-	if (!FontAsset::IsRegistered(name)) {
-		LOG_ERROR(L"SmartFontUIを参照中に、未登録のフォントサイズが指定されました: ", _size, L" at Fonts::CicaR::GetFont(SmartUISize _size)");
-		return Font();
-	}
-	return FontAsset(name);
+FontP CicaR::Get(CicaRSize _size) {
+	const String name = L"Cica" + Format(_size);
+	return FontPAsset::fonts[name];
 }
 
 
 bool Letters::Register() {
-	bool result = true;
 	for (LettersSize s : size) {
 		const String name = L"Letters" + Format(s);
-		if (!FontAsset::Register(name, s, L"Letters Laughing"))
-			result = false;
+		FontPAsset::fonts.insert(make_pair(name, FontP(s, L"Letters Laughing")));
 	}
-	return result;
+	return true;
 }
 
-Font Letters::GetFont(LettersSize _size) {
+FontP Letters::Get(LettersSize _size) {
 	const String name = L"Letters" + Format(_size);
-	if (!FontAsset::IsRegistered(name)) {
-		LOG_ERROR(L"SmartFontUIを参照中に、未登録のフォントサイズが指定されました: ", _size, L" at Fonts::Letters::GetFont(SmartUISize _size)");
-		return Font();
-	}
-	return FontAsset(name);
+	return FontPAsset::fonts[name];
 }

@@ -15,9 +15,9 @@ void License::update() {
 			increase = true;
 	}
 
-	changeScene(Debug::InputFnKey(), 250);
+	changeScene(Debug::InputFnKey(), 100);
 	if (Data::KeyEnter.repeat(20))
-		changeScene(L"Opening", 250);
+		changeScene(L"Title", 250);
 }
 
 void License::draw() const {
@@ -28,5 +28,5 @@ void License::draw() const {
 	Vec2 buttonPos(1195, 692);
 
 	buttonPos.x += (int)TextureAsset(L"buttonA_24").draw(buttonPos, Alpha((int)(255 * alpha))).w + 6;
-	buttonPos.x += (int)CicaR::GetFont(C12)(L"Back").draw(buttonPos, Alpha((int)(255 * alpha))).w + 10;
+	buttonPos.x += (int)CicaR::Get(C12)(L"Back").draw(buttonPos, Alpha((int)(255 * alpha))).w + 10;
 }

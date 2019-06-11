@@ -1,12 +1,12 @@
 #include "./SummonPartner.hpp"
-#include "Shot.hpp"
+#include "Grenade.hpp"
 #include "../CommonData.hpp"
 
 bool SummonPartner::update(Vec2 myPos, Vec2 oppPos) {
 	pos.x = myPos.x;
 	pos.y += (oppPos.y > pos.y ? 3 : -3);
 	LifeTime--;
-	if(!(LifeTime%20)) bullets.push_back(new Shot(pos, isLeft));
+	if(!(LifeTime%30)) bullets.push_back(new Grenade(pos, isLeft));
 	for(auto itr = bullets.begin(); itr != bullets.end();){
 		if((**itr).update(myPos, oppPos)){
 			delete *itr;
@@ -23,7 +23,15 @@ void SummonPartner::draw() {
 	for(auto bul : bullets){
 		bul->draw();
 	}
-	getShape().draw(ColorF(isLeft?L"#ff0000":L"#0000ff").setAlpha(0.5));
+	if (isLeft) {
+		TextureAsset(L"fire").drawAt(pos + Vec2(-60, 0));
+		TextureAsset(L"specialBullet2").resize(60, 60).drawAt(pos);
+	}
+	else {
+		TextureAsset(L"fire").mirror().drawAt(pos + Vec2(60, 0));
+		TextureAsset(L"specialBullet3").resize(60, 60).drawAt(pos);
+	}
+	//getShape().draw(ColorF(isLeft?L"#ff0000":L"#0000ff").setAlpha(0.5));
 }
 
 bool SummonPartner::isVisible() {

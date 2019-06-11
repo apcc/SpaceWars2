@@ -5,6 +5,7 @@ namespace Data {
 	Player RPlayer;
 
 	KeyRepeat KeyEnter	 = KeyRepeat(L"KeyEnter");
+	KeyRepeat KeyBack	 = KeyRepeat(L"KeyBack");
 	KeyRepeat LKeyBack	 = KeyRepeat(true,  L"KeyBack");
 	KeyRepeat RKeyBack	 = KeyRepeat(false, L"KeyBack");
 	KeyRepeat LKeySelect = KeyRepeat(true,  L"KeySelect");

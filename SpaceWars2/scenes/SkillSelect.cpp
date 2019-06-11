@@ -4,23 +4,43 @@
 
 SkillDescriptManager SkillSelect::skillDescriptManager;
 
+const Array<String> mainSkillSound = {
+	L"shot", L"grenade1", L"grenade2", L"laser1", L"laser2", L"reflection", L"flame"
+};
+const Array<String> subSkillSound = {
+	L"jump", L"shield", L"missile", L"bomb"
+};
+const Array<String> specialSkillSound = {
+	L"JT", L"LO", L"SP", L"IR"
+};
+
 bool SkillSelect::isLoaded = false;
 
 void SkillSelect::init() {
+	Data::LPlayer.init(Vec2(80, Config::HEIGHT / 2), true);  //円の半径
+	Data::RPlayer.init(Vec2(1200, Config::HEIGHT / 2), false); //WIDTH-円の半径
 
 	if (!isLoaded) {
-		int i = 0;
-		for (int j = -1; j < 6; j++) {
-			TextureAsset::Register(L"main" + Format(j), L"/800" + Format(i));
-			TextureAsset::Register(L"sub" + Format(j), L"/801" + Format(i));
-			TextureAsset::Register(L"special" + Format(j), L"/802" + Format(i));
-			++i;
+		for (auto i : step(7)) {
+			TextureAsset::Register(L"main"    + Format(i - 1), L"/800" + Format(i));
+			TextureAsset::Register(L"sub"     + Format(i - 1), L"/801" + Format(i));
+			TextureAsset::Register(L"special" + Format(i - 1), L"/802" + Format(i));
 		}
-		TextureAsset::Register(L"mainTriangle", L"/8100");
-		TextureAsset::Register(L"subTriangle", L"/8101");
-		TextureAsset::Register(L"specialTriangle", L"/8102");
 
-		TextReader descReader(L"/7601");
+		const Array<String> sound[3] = { mainSkillSound, subSkillSound, specialSkillSound };
+		bool isSoundLoaded[3] = { false, false, false };
+		for (int i = 0; i < 3; i++) {
+			if (!isSoundLoaded[i]) {
+				int j = 0;
+				for (const auto& name : sound[i]) {
+					SoundAsset::Register(name, L"/82" + Format(i) + Format(j));
+					++j;
+				}
+				isSoundLoaded[i] = true;
+			}
+		}
+
+		TextReader descReader(L"/8300");
 
 		String str;//毎行用
 		int lane = 0;
@@ -30,6 +50,15 @@ void SkillSelect::init() {
 			skillDescriptManager.AddDescript(str);
 		}
 
+		for (auto i : step(5)) {
+			TextureAsset::Register(L"mainBullet"    + Format(i), L"/810" + Format(i));
+			TextureAsset::Register(L"subBullet"     + Format(i), L"/811" + Format(i));
+			TextureAsset::Register(L"specialBullet" + Format(i), L"/812" + Format(i));
+		}
+		TextureAsset::Register(L"ready"          , L"/7400");
+		TextureAsset::Register(L"mainTriangle"   , L"/7410");
+		TextureAsset::Register(L"subTriangle"    , L"/7411");
+		TextureAsset::Register(L"specialTriangle", L"/7412");
 		isLoaded = true;
 	}
 
@@ -38,23 +67,30 @@ void SkillSelect::init() {
 }
 
 void SkillSelect::update() {
-	changeScene(Debug::InputFnKey(), 250);
-	if (nextStageTime > 100)
+	changeScene(Debug::InputFnKey(), 100);
+	 if (nextStageTime > 100)
 	 	changeScene(L"Game", 500);
 
 	if (LReady && RReady) ++nextStageTime;
 	else nextStageTime = 0;
 
-	if (Data::LKeyBack.repeat(20, true)) LReady = false;
-	if (Data::RKeyBack.repeat(20, true)) RReady = false;
-
+	if (Data::LKeySelect.repeat(20, true) && !LReady) {
+		LReady = true;
+		SoundAsset(L"click1").playMulti();
+	}
+	if (Data::RKeySelect.repeat(20, true) && !RReady) {
+		RReady = true;
+		SoundAsset(L"click1").playMulti();
+	}
 	if (Data::LKeySelect.repeat(20, true)) LReady = true;
 	if (Data::RKeySelect.repeat(20, true)) RReady = true;
 
 	for(int isLeft = 0; isLeft < 2; isLeft++){
 		Player* PLAYER = &(isLeft ? Data::LPlayer : Data::RPlayer);
 
-		if(PLAYER->skillSelect())	goingTowhiteout[isLeft] = true;
+		if(isLeft ? !LReady : !RReady){
+			if(PLAYER->skillSelect())	goingTowhiteout[isLeft] = true;
+		}
 
 		for (auto itr = bullets[isLeft].begin(); itr != bullets[isLeft].end();) {
 			Vec2 ppos = isLeft ? Vec2(20, Window::Height() / 2) : Vec2(Window::Width() - 20, Window::Height() / 2);
@@ -170,7 +206,7 @@ void SkillSelect::draw() const {
 
 		SkillDescript descript = skillDescriptManager.skillDescription[skillTypeDisplayed[isLeft]][skillsDisplayed[isLeft][skillTypeDisplayed[isLeft]]];
 
-		SmartUI::GetFont(S24)(descript.name).draw((!isLeft) * Window::Width() / 2 + 30, 20, Color(L"#ffffff"));
+		SmartUI::Get(S24)(descript.name).draw({ (!isLeft) * Window::Width() / 2 + 30, 20 }, Color(L"#ffffff"));
 
 		Rect({290 + (!isLeft ? Window::Size().x : 0)/2 , 90}, 16*19, 9*19).draw(ColorF(L"#0000dd"));
 
@@ -220,7 +256,7 @@ void SkillSelect::draw() const {
 			).draw(5, ColorF(L"#ffffff").setAlpha(0.9));
 		}
 
-		SmartUI::GetFont(S18)(descript.descript).draw((!isLeft) * Window::Width() / 2 + 30, 300, ColorF(L"#ffffff"));
+		SmartUI::Get(S18)(descript.descript).draw({ (!isLeft) * Window::Width() / 2 + 30, 300 }, ColorF(L"#ffffff"));
 
 		Rect({ 15 + (!isLeft) * Window::Width() / 2, 10 }, { 610 + (!isLeft) * Window::Width() / 2, 290 }).draw(ColorF(L"#000000").setAlpha((double)whiteOutTime[isLeft] / WHITEOUT_TIME));
 
@@ -261,20 +297,28 @@ void SkillSelect::draw() const {
 			}
 		}
 
-		if (LReady) Rect(0, 0, Window::Center().x, Config::HEIGHT).draw(ColorF(L"#f00").setAlpha(0.25));
-		if (RReady) Rect(Window::Center().x, 0, Window::Center().x, Config::HEIGHT).draw(ColorF(L"#f00").setAlpha(0.25));
+		if (LReady) {
+			Rect(0, 0, Window::Center().x, Config::HEIGHT)
+				.draw(ColorF(L"#00f").setAlpha(0.1));
+			TextureAsset(L"ready").drawAt(Window::Center().x / 2, Window::Center().y);
+		}
+		if (RReady) {
+			Rect(Window::Center().x, 0, Window::Center().x, Config::HEIGHT)
+				.draw(ColorF(L"#00f").setAlpha(0.1));
+			TextureAsset(L"ready").drawAt(Window::Center().x * 1.5, Window::Center().y);
+		}
 	}
 
 	Vec2 buttonPos(820, 692);
 
 	buttonPos.x += (int)TextureAsset(L"cross_24").draw(buttonPos).w + 5;
 	buttonPos.x += (int)TextureAsset(L"stick_24").draw(buttonPos).w + 6;
-	buttonPos.x += (int)CicaR::GetFont(C12)(L"Skill選択").draw(buttonPos).w + 15;
+	buttonPos.x += (int)CicaR::Get(C12)(L"Skill選択").draw(buttonPos).w + 15;
 
 	buttonPos.x += (int)TextureAsset(L"buttonA_24").draw(buttonPos).w + 6;
-	buttonPos.x += (int)CicaR::GetFont(C12)(L"Continue").draw(buttonPos).w + 15;
+	buttonPos.x += (int)CicaR::Get(C12)(L"Continue").draw(buttonPos).w + 15;
 
 	buttonPos.x += (int)TextureAsset(L"buttonLT_24").draw(buttonPos).w + 3;
 	buttonPos.x += (int)TextureAsset(L"buttonRT_24").draw(buttonPos).w + 4;
-	buttonPos.x += (int)CicaR::GetFont(C12)(L"Cancel").draw(buttonPos).w + 15;
+	buttonPos.x += (int)CicaR::Get(C12)(L"Cancel").draw(buttonPos).w + 15;
 }

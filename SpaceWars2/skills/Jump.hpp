@@ -15,6 +15,7 @@ private:
 public:
 	Jump(Vec2 _pos, bool _isLeft) : Bullet(_pos, _isLeft) {
 		(isLeft ? Data::LPlayer : Data::RPlayer).changeSpeed(200);
+		SoundAsset(L"jump").playMulti(0.8);
 
 		if (!(isLeft ? isLDoing : isRDoing)){
 			(isLeft ? isLInvalid : isRInvalid) = true;
@@ -24,7 +25,7 @@ public:
 		}
 	}
 	~Jump() {
-		(isLeft ? Data::LPlayer : Data::RPlayer).changeSpeed(15);
+		(isLeft ? Data::LPlayer : Data::RPlayer).changeSpeed(8);
 
 		if (isLeft ? isLInvalid : isRInvalid)
 			(isLeft ? isLDoing : isRDoing) = false;

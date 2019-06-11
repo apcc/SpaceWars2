@@ -40,6 +40,9 @@ private:
 	int hitSize = 30;		// 当たり判定半径
 	int shieldDamage = 0;	// Shieldが受けたダメージ量
 
+	bool isMoving = true;
+	bool isSounded = false;
+
 	KeyRepeat KeyUp = KeyRepeat();
 	KeyRepeat KeyLeft = KeyRepeat();
 	KeyRepeat KeyDown = KeyRepeat();
@@ -55,12 +58,17 @@ public:
 	int coolDownTime;	// SubSkill抑制
 	int charge;			// SpecialSkill抑制
 	int selectedType = 0;	// skillSelectの選択中項目
+	int recoveryDamage;	// I.R.用ダメージ
 
-	const int requireCharge[4] = { 400, 400, 400, 400 };
+	int howFrameAfterShooting = 0;
+
+	bool inAbsorption;
+
+	const int requireCharge[4] = { 400, 250, 400, 200 };
 
 	bool inRecovery;
 	static bool inJudgmentTime;
-	const static int JT_TIME = 180;
+	const static int JT_TIME = 300;
 	int judgmentLife = -1;	// JudgmentTimeの残り時間
 
 	MainSkill whatMainSkill = SHOT;
@@ -79,6 +87,7 @@ public:
 	void doSpacialSkill(std::vector<Bullet*>& bullets);
 
 	void init(Vec2 _pos, bool _isLeft);
+	void initSkill();
 	Circle circle();	// 本体Circle
 	Circle hitCircle();	// 当たり判定
 	void receiveDamage(int _damage);
