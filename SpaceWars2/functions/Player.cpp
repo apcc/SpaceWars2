@@ -10,7 +10,7 @@ void Player::init(Vec2 _pos, bool _isLeft) {
 	pos             = _pos;
 	isLeft          = _isLeft;
 	HP              = 1000;
-	temperature     = 200;
+	temperature     = 100;
 	coolDownTime    = 0;
 	charge          = 0;
 	recoveryDamage  = 0;
@@ -122,6 +122,7 @@ void Player::update(std::vector<Bullet*> &bullets){
 			temperature -= 5;
 		}
 	}
+	temperature = Clamp(temperature, 100, 1000);
 
 	if (speed != 0) { // [自機] normal
 		if (temperature < 800) doMainSkill(bullets);
