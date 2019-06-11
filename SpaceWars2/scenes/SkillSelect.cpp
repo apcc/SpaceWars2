@@ -100,10 +100,42 @@ void SkillSelect::update() {
 					bullet = new Grenade(ppos, isLeft);
 					coolDownTime[isLeft] = 20;
 					break;
+				case LASER:
+					bullet = new VLaser(ppos, isLeft);
+					coolDownTime[isLeft]++;
+					break;
+				case REFLECTION:
+					bullet = new Reflection(ppos, isLeft);
+					coolDownTime[isLeft] = 30;
+					break;
+				case FLAME:
+					bullet = new Flame(ppos, isLeft);
+					coolDownTime[isLeft] = 20;
+					break;
 				default: bullet = new Shot(ppos, isLeft); break; break;
 				}
 				break;
-			default:bullet = new Shot(ppos, isLeft); break; break;
+			/* case 1://Sub
+				switch (skillsDisplayed[isLeft][1]) {
+				case JUMP:
+				case SHIELD:
+				case MISSILE:
+				case BOMB:
+					break;
+				}
+				break;
+			case 2://Special
+				switch (skillsDisplayed[isLeft][2]) {
+				case LOCK_ON:
+				case SUMMON_PARTNER:
+				case JUDGMENT_TIME:
+				case INVERSION_RECOVERY:
+					break;
+				}
+				break;
+				 */
+			default:
+				bullet = new Shot(ppos, isLeft); break;
 			}
 			bullet->Shrink(Rect({ 290 + (!isLeft ? Window::Size().x : 0) / 2 , 90 }, 16 * 19, 9 * 19));
 			bullets[isLeft].push_back(bullet);

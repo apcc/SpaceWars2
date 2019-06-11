@@ -26,9 +26,9 @@ public:
 		return pos;
 	}
 
-	Vec2 Shrink(Rect _area) {
+	virtual Vec2 Shrink(Rect _area) {
 		if (_area.w * 9 != _area.h * 16) {
-			LOG_ERROR(L"縮小に失敗しました;引数は縦横比が9:16のVec2でなくてはなりません");
+			LOG(L"Bullet::Shrink() :WARNING:引数は縦横比が9:16のVec2で指定して下さい。正常に動かない可能性があります。");
 		}
 		shrinkRate = (double)_area.w / activeField.w;
 		Vec2 distance = pos.asPoint() - activeField.center;

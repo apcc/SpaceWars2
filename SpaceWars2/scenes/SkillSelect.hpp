@@ -1,8 +1,20 @@
 #pragma once
 #include "Include.hpp"
 #include "../functions/SkillDescription.hpp"
+#include "../skills/Bullet.hpp"
 #include "../skills/Shot.hpp"
 #include "../skills/Grenade.hpp"
+#include "../skills/VLaser.hpp"
+#include "../skills/Reflection.hpp"
+#include "../skills/Flame.hpp"
+#include "../skills/Jump.hpp"
+#include "../skills/Shield.hpp"
+#include "../skills/Missile.hpp"
+#include "../skills/Bomb.hpp"
+#include "../skills/LockOn.hpp"
+#include "../skills/SummonPartner.hpp"
+#include "../skills/JudgmentTime.hpp"
+#include "../skills/InversionRecovery.hpp"
 
 class SkillSelect final : public SceneManager<String, CommonData>::Scene {
 private:
