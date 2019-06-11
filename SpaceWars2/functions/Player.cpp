@@ -18,7 +18,7 @@ void Player::initWithoutSkill(Vec2 _pos, bool _isLeft) {
 	pos             = _pos;
 	isLeft          = _isLeft;
 	HP              = 1000;
-	temperature     = 100;
+	temperature     = 200;
 	coolDownTime    = 0;
 	charge          = 0;
 	recoveryDamage  = 0;
