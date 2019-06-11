@@ -31,7 +31,7 @@ void SkillSelect::init() {
 }
 
 void SkillSelect::update() {
-	changeScene(Debug::InputFnKey(), 250);
+	changeScene(Debug::InputFnKey(), 100);
 	 if (nextStageTime > 100)
 	 	changeScene(L"Game", 500);
 

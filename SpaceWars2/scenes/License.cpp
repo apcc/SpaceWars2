@@ -15,7 +15,7 @@ void License::update() {
 			increase = true;
 	}
 
-	changeScene(Debug::InputFnKey(), 250);
+	changeScene(Debug::InputFnKey(), 100);
 	if (Data::KeyEnter.repeat(20))
 		changeScene(L"Title", 250);
 }

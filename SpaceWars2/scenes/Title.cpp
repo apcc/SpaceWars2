@@ -10,7 +10,7 @@ void Title::init() {
 }
 
 void Title::update(){
-	changeScene(Debug::InputFnKey(), 250);
+	changeScene(Debug::InputFnKey(), 100);
 
 	if (Data::KeyUp.repeat(20, true) && selecting > 0) {
 		--selecting;
