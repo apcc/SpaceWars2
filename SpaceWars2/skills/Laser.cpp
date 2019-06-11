@@ -51,3 +51,4 @@ bool Laser::isVisible(){
 	if (energy <= 0) return false;
 	return true;
 }
+

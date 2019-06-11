@@ -126,7 +126,6 @@ void Game::update() {
 				RHPGraph.push_back({ x, 100 - HP / 10.0 });
 				x += 250.0 / Data::RPlayer.HPLog.size();
 			}
-			
 			status = FINISH;
 		}
 
