@@ -27,11 +27,13 @@ void Player::doMainSkill(std::vector<Bullet*>& bullets){
 		break;
 
 	case LASER:
-		if (KeyMainSkill.repeat(0)) {
-			bullets.push_back(new Laser(pos, isLeft));
-			// temperature rise is in the Laser Class
-			howFrameAfterShooting = 0;
-			// ++mainSkillCnt; in the Laser Class
+		if (!Player::inJudgmentTime) {
+			if (KeyMainSkill.repeat(0)) {
+				bullets.push_back(new Laser(pos, isLeft));
+				// temperature rise is in the Laser Class
+				howFrameAfterShooting = 0;
+				// ++mainSkillCnt; in the Laser Class
+			}
 		}
 		break;
 
