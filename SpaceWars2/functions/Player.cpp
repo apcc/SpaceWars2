@@ -114,7 +114,6 @@ void Player::update(std::vector<Bullet*> &bullets){
 	if (howFrameAfterShooting >= 60) {
 		temperature -= 5;
 	}
-	temperature = Clamp(temperature, 100, 1000);
 
 	if (speed != 0) { // [自機] normal
 		if (temperature < 800) doMainSkill(bullets);
@@ -147,7 +146,10 @@ void Player::update(std::vector<Bullet*> &bullets){
 	else
 		isSounded = false;
 
-	HP = Clamp(HP, 0, 1000);
+	HP           = Clamp(HP,           0,   1000);
+	temperature  = Clamp(temperature,  100, 1000);
+	coolDownTime = Clamp(coolDownTime, 0,   1000);
+	charge       = Clamp(charge,       0,   1000);
 
 	HPLog.push_back(HP);
 }
