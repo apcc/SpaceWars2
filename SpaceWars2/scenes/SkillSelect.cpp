@@ -57,8 +57,9 @@ void SkillSelect::update() {
 		if(PLAYER->skillSelect())	goingTowhiteout[isLeft] = true;
 
 		for (auto itr = bullets[isLeft].begin(); itr != bullets[isLeft].end();) {
-
-			if ((**itr).update({ 20,Window::Height() / 2 }, { Window::Width() - 20,Window::Height() / 2 })) {
+			Vec2 ppos = isLeft ? Vec2(20, Window::Height() / 2) : Vec2(Window::Width() - 20, Window::Height() / 2);
+			Vec2 opps = !isLeft ? Vec2(20, Window::Height() * 3 / 4) : Vec2(Window::Width() - 20, Window::Height() * 3 / 4);
+			if ((**itr).update(ppos, opps)) {
 				delete* itr;
 				itr = bullets[isLeft].erase(itr);
 			}
@@ -112,19 +113,27 @@ void SkillSelect::update() {
 					bullet = new Flame(ppos, isLeft);
 					coolDownTime[isLeft] = 20;
 					break;
-				default: bullet = new Shot(ppos, isLeft); break; break;
+				default: bullet = new Shot(ppos, isLeft); break;
 				}
 				break;
-			/* case 1://Sub
+			case 1://Sub
 				switch (skillsDisplayed[isLeft][1]) {
 				case JUMP:
+					bullet = new Shot(ppos, isLeft); break;
 				case SHIELD:
+					bullet = new Shield(ppos, isLeft); break;
 				case MISSILE:
-				case BOMB:
+					bullet = new Missile(ppos, isLeft);
+					coolDownTime[isLeft] = 40;
 					break;
+				case BOMB:
+					bullet = new Bomb(ppos, isLeft);
+					coolDownTime[isLeft] = 30;
+					break;
+				default: bullet = new Shot(ppos, isLeft); break;
 				}
 				break;
-			case 2://Special
+			/*case 2://Special
 				switch (skillsDisplayed[isLeft][2]) {
 				case LOCK_ON:
 				case SUMMON_PARTNER:

@@ -2,7 +2,7 @@
 #include "../functions/Vec2Utils.hpp"
 
 bool Missile::update(Vec2 myPos, Vec2 oppPos) {
-	/*angle += */bend(/*Circle(myPos, 300), */oppPos, 300);
+	/*angle += */bend(/*Circle(myPos, 300), */ShrinkVec2(oppPos), 300*shrinkRate);
 	return Bullet::update(myPos, oppPos);
 }
 
@@ -11,7 +11,7 @@ void Missile::draw() {
 }
 
 bool Missile::isVisible() {
-	return getShape().intersects(Rect(0, 0, Config::WIDTH + 1, Config::HEIGHT + 1));
+	return getShape().intersects(activeField);
 }
 
 int Missile::getDamage(Circle circle) {
@@ -41,4 +41,11 @@ int Missile::getDamage(Circle circle) {
 
 		//return 0;
 	}
+}
+
+Vec2 Missile::ShrinkVec2(Vec2 _d) {
+	RectF screen(0, 0 , Window::Width(), Window::Height());
+	Vec2 dis = _d.asPoint() - screen.center;
+	_d = dis * shrinkRate + activeField.center;
+	return _d;
 }

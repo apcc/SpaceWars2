@@ -12,7 +12,9 @@ private:
 	bool isRInvalid = false;
 	static bool isLDoing;
 	static bool isRDoing;
-	Circle getShape() { return Circle(pos, 100); }
+	double drawRate = 1;
+	Circle getShape() { return Circle(pos, 100*drawRate); }
+	Vec2 ShrinkVec2 (Vec2);
 public:
 	Shield(Vec2 _pos, bool _isLeft) : Bullet(_pos, _isLeft) {
 		if (isLeft ? isLDoing : isRDoing) {
@@ -34,4 +36,5 @@ public:
 	void draw() override;
 	bool isVisible() override;
 	int getDamage(Circle _circle) override;
+	Vec2 Shrink(Rect) override;
 };

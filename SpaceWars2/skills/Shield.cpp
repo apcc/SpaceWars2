@@ -4,7 +4,7 @@ bool Shield::isLDoing = false;
 bool Shield::isRDoing = false;
 
 bool Shield::update(Vec2 _myPos, Vec2 _oppPos) {
-	pos = _myPos;
+	pos = ShrinkVec2(_myPos);
 	++frameCount;
 	damage = (isLeft ? Data::LPlayer : Data::RPlayer).changeHitSize(108);
 	return Bullet::update(_myPos, _oppPos);
@@ -27,4 +27,18 @@ bool Shield::isVisible() {
 int Shield::getDamage(Circle _circle) {
 	(void)_circle;
 	return 0; // no damage
+}
+
+Vec2 Shield::ShrinkVec2(Vec2 _d) {
+	RectF screen(0, 0 , Window::Width(), Window::Height());
+	Vec2 dis = _d.asPoint() - screen.center;
+	_d = dis * shrinkRate + activeField.center;
+	return _d;
+}
+
+Vec2 Shield::Shrink(Rect _area){
+	Bullet::Shrink(_area);
+	drawRate = shrinkRate * 2;
+	vel *= 2;
+	return pos;
 }
