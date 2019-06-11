@@ -15,7 +15,7 @@ void ScreenGuidance::update() {
 		else				   status = (Stat)(status + 1);
 		SoundAsset(L"move1").playMulti();
 	}
-	changeScene(Debug::InputFnKey(), 250);
+	changeScene(Debug::InputFnKey(), 100);
 }
 
 void ScreenGuidance::draw() const {

@@ -18,7 +18,7 @@ const Array<String> specialSkillSound = {
 void Game::init() {}
 
 void Game::update() {
-	changeScene(Debug::InputFnKey(), 250);
+	changeScene(Debug::InputFnKey(), 100);
 
 #	ifdef _DEBUG
 	if (Input::KeyF5.pressed) status = COUNT_DOWN_INIT;

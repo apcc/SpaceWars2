@@ -9,7 +9,7 @@ void ControlGuidance::init() {
 }
 
 void ControlGuidance::update() {
-	changeScene(Debug::InputFnKey(), 250);
+	changeScene(Debug::InputFnKey(), 100);
 	if (Data::KeyEnter.repeat(20)) {
 		if (status != CONTROLLER) {
 			status = (ControlType)(status + 1);
