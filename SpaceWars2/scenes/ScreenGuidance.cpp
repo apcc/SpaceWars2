@@ -10,12 +10,18 @@ void ScreenGuidance::init() {
 }
 
 void ScreenGuidance::update() {
+	changeScene(Debug::InputFnKey(), 100);
 	if (Data::KeyEnter.repeat(20, true)) {
 		if (status == LETS_GO) changeScene(L"SkillSelect", 500);
 		else				   status = (Stat)(status + 1);
 		SoundAsset(L"move1").playMulti();
 	}
-	changeScene(Debug::InputFnKey(), 100);
+	if (Data::KeyBack.repeat(20, true)) {
+		if (status == FULL) changeScene(L"ControlGuidance", 500);
+		else				   status = (Stat)(status - 1);
+		SoundAsset(L"move1").playMulti();
+	}
+	changeScene(Debug::InputFnKey(), 250);
 }
 
 void ScreenGuidance::draw() const {
