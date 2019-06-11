@@ -117,10 +117,8 @@ void Player::update(std::vector<Bullet*> &bullets){
 	if (pos.y > Config::HEIGHT - PLAYER_SIZE)
 		pos.y = Config::HEIGHT - PLAYER_SIZE;
 
-	if (temperature > 100) {
-		if (howFrameAfterShooting >= 60) {
-			temperature -= 5;
-		}
+	if (howFrameAfterShooting >= 60) {
+		temperature -= 5;
 	}
 	temperature = Clamp(temperature, 100, 1000);
 
