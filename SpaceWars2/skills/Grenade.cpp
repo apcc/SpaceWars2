@@ -11,9 +11,11 @@ bool Grenade::update(Vec2 _myPos, Vec2 _oppPos) {
 void Grenade::draw(){
 	if(fuse<=EXPLODE_TIMING){
 		getShape().draw(ColorF(L"#ff8800").setAlpha(((double)fuse) / EXPLODE_TIMING));
-	}else{
-	TextureAsset(L"mainBullet1").resize(30,30).drawAt(pos);
-	//	getShape().draw(Color(L"#ff0000"));
+	}
+	else {
+		if (isLeft)TextureAsset(L"mainBullet1").resize(30, 30).drawAt(pos);
+		else TextureAsset(L"mainBullet1").resize(30, 30).mirror().drawAt(pos);
+		//	getShape().draw(Color(L"#ff0000"));
 	}
 }
 
