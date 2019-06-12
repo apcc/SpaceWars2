@@ -57,6 +57,12 @@ class SkillDescriptManager final {
 public:
 	std::vector<SkillDescript> skillDescription[3]; // [int Skilltype][int SkillId] : string info
 
+	/// <summary>
+	/// 説明を管理するインスタンスを追加します
+	/// </summary>
+	/// <param name="_str">
+	/// 説明文を含んだ読み込みたいcsvの1行
+	/// </param>
 	void AddDescript(String _str) {
 		SkillDescript data(_str);
 		skillDescription[data.type].emplace_back(data);
