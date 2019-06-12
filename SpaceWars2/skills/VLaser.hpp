@@ -21,10 +21,13 @@ private:
 	const static int COOLDOWN_TIME = 1000; // 実行後のクールダウン時間（要検討）
 
 	RectF getShapeShotten() {
-		return RectF(myPos - Vec2(20*shrinkRate, energy*shrinkRate), activeField.w, energy * 2 * shrinkRate);
+		if(isLeft)	return RectF(myPos - Vec2(0, energy * shrinkRate), { activeField.x + activeField.w - myPos.x, energy * 2 * shrinkRate});
+		else		return RectF({ activeField.x, myPos.y - energy * shrinkRate }, myPos.x - activeField.x, energy * 2 * shrinkRate);
+
 	}
 	Circle getShapeCharging() {
-		return Circle(myPos + Vec2((25 + energy)*drawRate, 0), energy*drawRate);
+		if(isLeft)	return Circle(myPos + Vec2((25 + energy)*drawRate, 0), energy*drawRate);
+		else		return Circle(myPos + Vec2((-25 - energy)*drawRate, 0), energy*drawRate);
 	}
 
 public:
