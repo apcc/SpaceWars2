@@ -118,7 +118,10 @@ void SkillSelect::update() {
 		}
 	}
 
-	for(int isLeft = 0; isLeft < 2; isLeft++){
+	for(int player = 0; player < 2; player++){
+		bool isLeft;
+		if(player) isLeft = 1;
+		else isLeft = 0;
 		Player* PLAYER = &(isLeft ? Data::LPlayer : Data::RPlayer);
 
 		if(isLeft ? !LReady : !RReady){
