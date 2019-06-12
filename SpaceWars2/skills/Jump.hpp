@@ -30,7 +30,11 @@ public:
 		if (isLeft ? isLInvalid : isRInvalid)
 			(isLeft ? isLDoing : isRDoing) = false;
 	}
-
+	Vec2 Shrink(Rect _a) override {
+		_a;
+		shouldBeDestroyed = true;
+		return pos;
+	}
 	bool update(Vec2 _myPos, Vec2 _oppPos) override;
 	void draw() override;
 	bool isVisible() override;

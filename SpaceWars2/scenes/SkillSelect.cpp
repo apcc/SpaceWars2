@@ -108,7 +108,7 @@ void SkillSelect::update() {
 			}
 			else {
 				playerPos[isLeft][i] += Vec2(0, 3);
-				if (playerPos[isLeft][i].y == Window::Height()*4/5) {
+				if (playerPos[isLeft][i].y > Window::Height()*4/5) {
 					movetoUp[isLeft][i] = true;
 				}
 			}
@@ -191,7 +191,11 @@ void SkillSelect::update() {
 			case 1://Sub
 				switch (skillsDisplayed[isLeft][1]) {
 				case JUMP:
-					bullet = new Shot(ppos, isLeft); break;
+					if (movetoUp[isLeft][0]) playerPos[isLeft][0].y -= 160;
+					else playerPos[isLeft][0].y += 160;
+					coolDownTime[isLeft] = 80;
+					bullet = new Jump(ppos, isLeft);
+					break;
 				case SHIELD:
 					bullet = new Shield(ppos, isLeft); break;
 				case MISSILE:
