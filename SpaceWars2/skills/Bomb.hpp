@@ -37,8 +37,8 @@ public:
 		}
 		nowBombNumber = (isLeft ? numberOfLUsed : numberOfRUsed);
 	}
-	Vec2 Shrink(Rect _area) override {
-		Bullet::Shrink(_area);
+	Vec2 shrink(Rect _area) override {
+		Bullet::shrink(_area);
 		drawRate = shrinkRate * 2;
 		return pos;
 	}

@@ -8,7 +8,7 @@ private:
 	const int EXPLODE_TIMING = 30;
 	int explodeTime = EXPLODE_TIMING;
 	Circle getShape() { return Circle(pos, 200*shrinkRate); }
-	Vec2 ShrinkVec2(Vec2);
+	Vec2 shrinkVec2(Vec2);
 public:
 	LockOn(Vec2 p, bool left, int Time) : Bullet(p, left) {
 		waitTime = Time;

@@ -30,7 +30,7 @@ public:
 		if (isLeft ? isLInvalid : isRInvalid)
 			(isLeft ? isLDoing : isRDoing) = false;
 	}
-	Vec2 Shrink(Rect _a) override {
+	Vec2 shrink(Rect _a) override {
 		_a;
 		shouldBeDestroyed = true;
 		return pos;

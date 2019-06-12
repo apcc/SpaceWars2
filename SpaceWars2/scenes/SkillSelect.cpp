@@ -141,14 +141,14 @@ void SkillSelect::update() {
 		else {
 			if (judgementTime[isLeft] % 10 == 0) {
 				Bullet* bullet = new Shot(playerPos[isLeft][0], isLeft);
-				bullet->Shrink(bulletArea[isLeft]);
+				bullet->shrink(bulletArea[isLeft]);
 				bullets[isLeft].push_back(bullet);
 			}
 			judgementTime[isLeft]--;
 		}
 		if(goingTowhiteout[isLeft]){
-			whiteOutTime[isLeft]++;
-			if(whiteOutTime[isLeft]>=WHITEOUT_TIME){
+			blackOutTime[isLeft]++;
+			if(blackOutTime[isLeft]>=BLACKOUT_TIME){
 				goingTowhiteout[isLeft] = false;
 				skillsDisplayed[isLeft][0] = PLAYER->whatMainSkill;
 				skillsDisplayed[isLeft][1] = PLAYER->whatSubSkill;
@@ -168,7 +168,7 @@ void SkillSelect::update() {
 				isLeft ? playerPos[1][1] : playerPos[0][0] = Vec2(1100, Window::Height() / 2);
 			}
 		}else{
-			if(whiteOutTime[isLeft]>0)whiteOutTime[isLeft]--;
+			if(blackOutTime[isLeft]>0)blackOutTime[isLeft]--;
 		}
 		if (coolDownTime[isLeft] == 0) {
 			Vec2 ppos = playerPos[isLeft][0];
@@ -229,7 +229,7 @@ void SkillSelect::update() {
 				case BOMB:
 					for(int i = 0; i < 3; i++){
 						Bullet* subBul = new Bomb(ppos, isLeft);
-						subBul->Shrink(bulletArea[isLeft]);
+						subBul->shrink(bulletArea[isLeft]);
 						bullets[isLeft].push_back(subBul);
 					}
 					bullet = new Bomb(ppos, isLeft);
@@ -244,7 +244,7 @@ void SkillSelect::update() {
 					for (int i = 0; i < 3; i++) {
 						bullet = new LockOn(ppos, isLeft, 30 * i);
 						if (i == 2)continue;
-						bullet->Shrink(bulletArea[isLeft]);
+						bullet->shrink(bulletArea[isLeft]);
 						bullets[isLeft].push_back(bullet);
 					}
 					coolDownTime[isLeft] = 240;
@@ -266,7 +266,7 @@ void SkillSelect::update() {
 			default:
 				bullet = new Shot(ppos, isLeft); break;
 			}
-			bullet->Shrink(bulletArea[isLeft]);
+			bullet->shrink(bulletArea[isLeft]);
 			bullets[isLeft].push_back(bullet);
 		}
 		coolDownTime[isLeft]--;
@@ -346,7 +346,7 @@ void SkillSelect::draw() const {
 
 		SmartUI::Get(S18)(descript.descript).draw({ (!isLeft) * Window::Width() / 2 + 30, 300 }, ColorF(L"#ffffff"));
 
-		Rect({ 15 + (!isLeft) * Window::Width() / 2, 10 }, { 610 + (!isLeft) * Window::Width() / 2, 290 }).draw(ColorF(L"#000000").setAlpha((double)whiteOutTime[isLeft] / WHITEOUT_TIME));
+		Rect({ 15 + (!isLeft) * Window::Width() / 2, 10 }, { 610 + (!isLeft) * Window::Width() / 2, 290 }).draw(ColorF(L"#000000").setAlpha((double)blackOutTime[isLeft] / BLACKOUT_TIME));
 
 
 		for (int type = 0; type < 3; type++) { // mainSkill, subSkill, specialSkill
@@ -388,7 +388,7 @@ void SkillSelect::draw() const {
 
 		for (int i = 0; i < 2; i++) {
 			String text = isLeft ^ i ? L"l-player" : L"r-player";
-			TextureAsset(text).resize({ 40, 40 }).drawAt(ShrinkVec2(playerPos[isLeft][i], isLeft));
+			TextureAsset(text).resize({ 40, 40 }).drawAt(shrinkVec2(playerPos[isLeft][i], isLeft));
 
 		}
 	}
@@ -418,7 +418,7 @@ void SkillSelect::draw() const {
 	buttonPos.x += (int)CicaR::Get(C12)(L"Cancel").draw(buttonPos).w + 15;
 }
 
-Vec2 SkillSelect::ShrinkVec2(Vec2 _d, int isLeft) const {
+Vec2 SkillSelect::shrinkVec2(Vec2 _d, int isLeft) const {
 	RectF screen(0, 0, Window::Width(), Window::Height());
 	Vec2 dis = _d.asPoint() - screen.center;
 	_d = dis * shrinkRate + bulletArea[isLeft].center;

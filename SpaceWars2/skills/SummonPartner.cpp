@@ -3,12 +3,12 @@
 #include "../CommonData.hpp"
 
 bool SummonPartner::update(Vec2 myPos, Vec2 oppPos) {
-	pos.x = ShrinkVec2(myPos).x;
-	pos.y += (ShrinkVec2(oppPos).y > pos.y ? 3*moveRate : -3*moveRate);
+	pos.x = shrinkVec2(myPos).x;
+	pos.y += (shrinkVec2(oppPos).y > pos.y ? 3*moveRate : -3*moveRate);
 	LifeTime--;
 	if (!(LifeTime % 30)) {
-		Bullet* bul = new Grenade(ShrinkVec2(pos, activeField, Rect(0, 0, Window::Width(), Window::Height())), isLeft);
-		bul->Shrink(activeField);
+		Bullet* bul = new Grenade(shrinkVec2(pos, activeField, Rect(0, 0, Window::Width(), Window::Height())), isLeft);
+		bul->shrink(activeField);
 		bullets.push_back(bul);
 	}
 	for(auto itr = bullets.begin(); itr != bullets.end();){
@@ -50,14 +50,14 @@ int SummonPartner::getDamage(Circle circle) {
 	return _damage;
 }
 
-Vec2 SummonPartner::ShrinkVec2(Vec2 _d) {
+Vec2 SummonPartner::shrinkVec2(Vec2 _d) {
 	RectF screen(0, 0, Window::Width(), Window::Height());
 	Vec2 dis = _d.asPoint() - screen.center;
 	_d = dis * shrinkRate + activeField.center;
 	return _d;
 }
 
-Vec2 SummonPartner::ShrinkVec2(
+Vec2 SummonPartner::shrinkVec2(
 	Vec2 _d, 
 	Rect _from, 
 	Rect _to

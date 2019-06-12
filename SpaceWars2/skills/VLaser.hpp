@@ -47,8 +47,8 @@ public:
 	};
 
 
-	Vec2 Shrink(Rect _area) override {
-		Bullet::Shrink(_area);
+	Vec2 shrink(Rect _area) override {
+		Bullet::shrink(_area);
 		drawRate = shrinkRate * 2;
 		return pos;
 	}
@@ -56,6 +56,6 @@ public:
 	void draw() override;
 	bool isVisible() override;
 	int getDamage(Circle _circle) override;
-	Vec2 ShrinkVec2(Vec2 _d);
+	Vec2 shrinkVec2(Vec2 _d);
 	const static int bulletSpeed = 10;
 };

@@ -6,7 +6,7 @@ bool VLaser::isLShooting = false;
 bool VLaser::isRShooting = false;
 
 bool VLaser::update(Vec2 _myPos, Vec2 _oppPos) {
-	myPos = ShrinkVec2(_myPos);
+	myPos = shrinkVec2(_myPos);
 	if (isCharging) {
 		++energy;
 		if (energy >= 60) isCharging = false;
@@ -39,7 +39,7 @@ bool VLaser::isVisible() {
 	return true;
 }
 
-Vec2 VLaser::ShrinkVec2(Vec2 _d) {
+Vec2 VLaser::shrinkVec2(Vec2 _d) {
 	RectF screen(0, 0 , Window::Width(), Window::Height());
 	Vec2 dis = _d.asPoint() - screen.center;
 	_d = dis * shrinkRate + activeField.center;

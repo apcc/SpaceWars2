@@ -5,7 +5,7 @@
 class Missile : public Bullet {
 private:
 	Circle getShape() { return Circle(pos, 8*drawRate); }
-	Vec2 ShrinkVec2(Vec2 _d);
+	Vec2 shrinkVec2(Vec2 _d);
 	double drawRate = 1;
 public:
 	Missile(Vec2 p, bool left) : Bullet(p, left) {
@@ -33,8 +33,8 @@ public:
 	const static int bulletSpeed = 7;
 	const double EPS = 1e-2;
 	const double ROTATEPOWER = Pi / 180.0;
-	Vec2 Shrink(Rect _area) override {
-		Bullet::Shrink(_area);
+	Vec2 shrink(Rect _area) override {
+		Bullet::shrink(_area);
 		drawRate = shrinkRate * 3;
 		return pos;
 	}

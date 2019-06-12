@@ -1,7 +1,7 @@
 #include "./LockOn.hpp"
 
 bool LockOn::update(Vec2 myPos, Vec2 oppPos) {
-	oppPos = ShrinkVec2(oppPos);
+	oppPos = shrinkVec2(oppPos);
 	if(waitTime<0){
 		if(--explodeTime <= -30){
 			shouldBeDestroyed = true;
@@ -41,7 +41,7 @@ int LockOn::getDamage(Circle circle) {
 	return 0;
 }
 
-Vec2 LockOn::ShrinkVec2(Vec2 _d) {
+Vec2 LockOn::shrinkVec2(Vec2 _d) {
 	RectF screen(0, 0, Window::Width(), Window::Height());
 	Vec2 dis = _d.asPoint() - screen.center;
 	_d = dis * shrinkRate + activeField.center;

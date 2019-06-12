@@ -2,7 +2,7 @@
 #include "../functions/Vec2Utils.hpp"
 
 bool Missile::update(Vec2 myPos, Vec2 oppPos) {
-	/*angle += */bend(/*Circle(myPos, 300), */ShrinkVec2(oppPos), 300*shrinkRate);
+	/*angle += */bend(/*Circle(myPos, 300), */shrinkVec2(oppPos), 300*shrinkRate);
 	return Bullet::update(myPos, oppPos);
 }
 
@@ -40,7 +40,7 @@ void Missile::bend(Vec2 oppPos, double thre) {
 	}
 }
 
-Vec2 Missile::ShrinkVec2(Vec2 _d) {
+Vec2 Missile::shrinkVec2(Vec2 _d) {
 	RectF screen(0, 0 , Window::Width(), Window::Height());
 	Vec2 dis = _d.asPoint() - screen.center;
 	_d = dis * shrinkRate + activeField.center;

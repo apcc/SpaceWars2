@@ -7,8 +7,8 @@ private:
 	int LifeTime = 600;
 	std::vector<Bullet*> bullets;
 	Circle getShape() { return Circle(pos, 40*shrinkRate); }
-	Vec2 ShrinkVec2(Vec2);
-	Vec2 ShrinkVec2(Vec2, Rect, Rect);
+	Vec2 shrinkVec2(Vec2);
+	Vec2 shrinkVec2(Vec2, Rect, Rect);
 	double drawRate = 1;
 	double moveRate = 1;
 public:
@@ -25,10 +25,10 @@ public:
 		bullets.clear();
 	}
 
-	Vec2 Shrink(Rect _area) {
+	Vec2 shrink(Rect _area) {
 		LifeTime = 100;
 		drawRate = 0.6;
 		moveRate = 0.1;
-		return Bullet::Shrink(_area);
+		return Bullet::shrink(_area);
 	}
 };

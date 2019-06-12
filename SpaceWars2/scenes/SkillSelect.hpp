@@ -13,7 +13,6 @@
 #include "../skills/Bomb.hpp"
 #include "../skills/LockOn.hpp"
 #include "../skills/SummonPartner.hpp"
-#include "../skills/JudgmentTime.hpp"
 #include "../skills/InversionRecovery.hpp"
 
 class SkillSelect final : public SceneManager<String, CommonData>::Scene {
@@ -26,17 +25,15 @@ private:
 	bool movetoUp[2][2] = {};
 	int skillsDisplayed[2][3] = {}; //[isLeft][skillType]
 	int skillTypeDisplayed[2] = {}; //[isLeft]
-	int whiteOutTime[2] = {};
+	int blackOutTime[2] = {};
 	bool goingTowhiteout[2] = {};
-	int WHITEOUT_TIME = 6;
-	Bullet* a;
-	bool flaga = true;//TODO
+	int BLACKOUT_TIME = 6;
 	std::vector<Bullet*> bullets[2];
 	int coolDownTime[2] = {};
 	double shrinkRate;
 	Rect bulletArea[2] = {};
 	int judgementTime[2] = {};
-	Vec2 ShrinkVec2(Vec2, int) const;
+	Vec2 shrinkVec2(Vec2, int) const;
 
 	static SkillDescriptManager skillDescriptManager;
 public:

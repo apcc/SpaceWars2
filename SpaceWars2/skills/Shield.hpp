@@ -14,7 +14,7 @@ private:
 	static bool isRDoing;
 	double drawRate = 1;
 	Circle getShape() { return Circle(pos, 100*drawRate); }
-	Vec2 ShrinkVec2 (Vec2);
+	Vec2 shrinkVec2 (Vec2);
 public:
 	Shield(Vec2 _pos, bool _isLeft) : Bullet(_pos, _isLeft) {
 		SoundAsset(L"shield").playMulti(1.0);
@@ -38,5 +38,5 @@ public:
 	void draw() override;
 	bool isVisible() override;
 	int getDamage(Circle _circle) override;
-	Vec2 Shrink(Rect) override;
+	Vec2 shrink(Rect) override;
 };

@@ -12,8 +12,8 @@ public:
 		SoundAsset(L"shot").playMulti(0.4);
 	}
 
-	Vec2 Shrink(Rect _area) override{
-		Bullet::Shrink(_area);
+	Vec2 shrink(Rect _area) override{
+		Bullet::shrink(_area);
 		drawRate = shrinkRate * 3;
 		vel *= 2;
 		return pos;
