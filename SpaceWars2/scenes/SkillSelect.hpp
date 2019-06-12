@@ -22,6 +22,8 @@ private:
 	int nextStageTime = 0;
 	bool LReady = false;
 	bool RReady = false;
+	Vec2 playerPos[2][2];
+	bool movetoUp[2][2] = {};
 	int skillsDisplayed[2][3] = {}; //[isLeft][skillType]
 	int skillTypeDisplayed[2] = {}; //[isLeft]
 	int whiteOutTime[2] = {};
@@ -31,6 +33,9 @@ private:
 	bool flaga = true;//TODO
 	std::vector<Bullet*> bullets[2];
 	int coolDownTime[2] = {};
+	double shrinkRate;
+	Rect bulletArea[2] = {};
+	Vec2 ShrinkVec2(Vec2, int) const;
 
 	static SkillDescriptManager skillDescriptManager;
 public:

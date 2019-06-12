@@ -17,6 +17,12 @@ const Array<String> specialSkillSound = {
 bool SkillSelect::isLoaded = false;
 
 void SkillSelect::init() {
+	movetoUp[0][0] = movetoUp[1][1] = true;
+	movetoUp[0][1] = movetoUp[1][0] = true;
+
+	playerPos[1][0] = playerPos[0][1] = Vec2(80, Window::Height() / 2);
+	playerPos[1][1] = playerPos[0][0] = Vec2(1200, Window::Height() / 2);
+
 	Data::LPlayer.init(Vec2(80, Config::HEIGHT / 2), true);  //円の半径
 	Data::RPlayer.init(Vec2(1200, Config::HEIGHT / 2), false); //WIDTH-円の半径
 
@@ -26,6 +32,9 @@ void SkillSelect::init() {
 			TextureAsset::Register(L"sub"     + Format(i - 1), L"/801" + Format(i));
 			TextureAsset::Register(L"special" + Format(i - 1), L"/802" + Format(i));
 		}
+
+		TextureAsset::Register(L"l-player", L"/7500");
+		TextureAsset::Register(L"r-player", L"/7501");
 
 		const Array<String> sound[3] = { mainSkillSound, subSkillSound, specialSkillSound };
 		bool isSoundLoaded[3] = { false, false, false };
@@ -62,6 +71,9 @@ void SkillSelect::init() {
 		isLoaded = true;
 	}
 
+	bulletArea[0] = Rect({ 290 + Window::Size().x / 2 , 90 }, 16 * 19, 9 * 19); //Right
+	bulletArea[1] = Rect({ 290 , 90 }, 16 * 19, 9 * 19); //Left
+	shrinkRate = (double)bulletArea[0].w / Window::Width();
 	LReady = false;
 	RReady = false;
 }
@@ -85,6 +97,24 @@ void SkillSelect::update() {
 	if (Data::LKeySelect.repeat(20, true)) LReady = true;
 	if (Data::RKeySelect.repeat(20, true)) RReady = true;
 
+	// 機体の処理
+	for (int isLeft = 0; isLeft < 2; isLeft++) {
+		for (int i = 0; i < 2; i++) {
+			if (movetoUp[isLeft][i]) {
+				playerPos[isLeft][i] -= Vec2(0, 3);
+				if (playerPos[isLeft][i].y < Window::Height()/5) {
+					movetoUp[isLeft][i] = false;
+				}
+			}
+			else {
+				playerPos[isLeft][i] += Vec2(0, 3);
+				if (playerPos[isLeft][i].y == Window::Height()*4/5) {
+					movetoUp[isLeft][i] = true;
+				}
+			}
+		}
+	}
+
 	for(int isLeft = 0; isLeft < 2; isLeft++){
 		Player* PLAYER = &(isLeft ? Data::LPlayer : Data::RPlayer);
 
@@ -93,8 +123,8 @@ void SkillSelect::update() {
 		}
 
 		for (auto itr = bullets[isLeft].begin(); itr != bullets[isLeft].end();) {
-			Vec2 ppos = isLeft ? Vec2(20, Window::Height() / 2) : Vec2(Window::Width() - 20, Window::Height() / 2);
-			Vec2 opps = !isLeft ? Vec2(20, Window::Height() * 3 / 4) : Vec2(Window::Width() - 20, Window::Height() * 3 / 4);
+			Vec2 ppos = playerPos[isLeft][0];
+			Vec2 opps = playerPos[isLeft][1];
 			if ((**itr).update(ppos, opps)) {
 				delete* itr;
 				itr = bullets[isLeft].erase(itr);
@@ -119,12 +149,18 @@ void SkillSelect::update() {
 				}
 				bullets[isLeft].clear();
 				coolDownTime[isLeft] = 0;
+
+				movetoUp[0][0] = movetoUp[1][1] = true;
+				movetoUp[0][1] = movetoUp[1][0] = true;
+
+				playerPos[1][0] = playerPos[0][1] = Vec2(80, Window::Height() / 2);
+				playerPos[1][1] = playerPos[0][0] = Vec2(1200, Window::Height() / 2);
 			}
 		}else{
 			if(whiteOutTime[isLeft]>0)whiteOutTime[isLeft]--;
 		}
 		if (coolDownTime[isLeft] == 0) {
-			Vec2 ppos = { isLeft ? 20 : (Window::Width() - 20),Window::Height() / 2 };
+			Vec2 ppos = playerPos[isLeft][0];
 			Bullet* bullet;
 			switch (skillTypeDisplayed[isLeft]) {
 			case 0://Main
@@ -182,7 +218,7 @@ void SkillSelect::update() {
 			default:
 				bullet = new Shot(ppos, isLeft); break;
 			}
-			bullet->Shrink(Rect({ 290 + (!isLeft ? Window::Size().x : 0) / 2 , 90 }, 16 * 19, 9 * 19));
+			bullet->Shrink(bulletArea[isLeft]);
 			bullets[isLeft].push_back(bullet);
 		}
 		coolDownTime[isLeft]--;
@@ -292,21 +328,28 @@ void SkillSelect::draw() const {
 				TextureAsset(skillType[type] + L"Triangle").flip()
 					.draw(755 + (190 * type) - (640 * isLeft), 570, Alpha((int)(255 * alpha[type])));
 
-			for (auto itr : bullets[isLeft]) {
-				itr->draw();
-			}
 		}
 
-		if (LReady) {
-			Rect(0, 0, Window::Center().x, Config::HEIGHT)
-				.draw(ColorF(L"#00f").setAlpha(0.1));
-			TextureAsset(L"ready").drawAt(Window::Center().x / 2, Window::Center().y);
+		for (auto itr : bullets[isLeft]) {
+			itr->draw();
 		}
-		if (RReady) {
-			Rect(Window::Center().x, 0, Window::Center().x, Config::HEIGHT)
-				.draw(ColorF(L"#00f").setAlpha(0.1));
-			TextureAsset(L"ready").drawAt(Window::Center().x * 1.5, Window::Center().y);
+
+		for (int i = 0; i < 2; i++) {
+			String text = isLeft ^ i ? L"l-player" : L"r-player";
+			TextureAsset(text).resize({ 40, 40 }).drawAt(ShrinkVec2(playerPos[isLeft][i], isLeft));
+
 		}
+	}
+
+	if (LReady) {
+		Rect(0, 0, Window::Center().x, Config::HEIGHT)
+			.draw(ColorF(L"#00f").setAlpha(0.1));
+		TextureAsset(L"ready").drawAt(Window::Center().x / 2, Window::Center().y);
+	}
+	if (RReady) {
+		Rect(Window::Center().x, 0, Window::Center().x, Config::HEIGHT)
+			.draw(ColorF(L"#00f").setAlpha(0.1));
+		TextureAsset(L"ready").drawAt(Window::Center().x * 1.5, Window::Center().y);
 	}
 
 	Vec2 buttonPos(820, 692);
@@ -321,4 +364,11 @@ void SkillSelect::draw() const {
 	buttonPos.x += (int)TextureAsset(L"buttonLT_24").draw(buttonPos).w + 3;
 	buttonPos.x += (int)TextureAsset(L"buttonRT_24").draw(buttonPos).w + 4;
 	buttonPos.x += (int)CicaR::Get(C12)(L"Cancel").draw(buttonPos).w + 15;
+}
+
+Vec2 SkillSelect::ShrinkVec2(Vec2 _d, int isLeft) const {
+	RectF screen(0, 0, Window::Width(), Window::Height());
+	Vec2 dis = _d.asPoint() - screen.center;
+	_d = dis * shrinkRate + bulletArea[isLeft].center;
+	return _d;
 }
