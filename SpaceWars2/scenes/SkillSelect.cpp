@@ -160,11 +160,10 @@ void SkillSelect::update() {
 				bullets[isLeft].clear();
 				coolDownTime[isLeft] = 0;
 
-				movetoUp[0][0] = movetoUp[1][1] = true;
-				movetoUp[0][1] = movetoUp[1][0] = true;
-
-				playerPos[1][0] = playerPos[0][1] = Vec2(80, Window::Height() / 2);
-				playerPos[1][1] = playerPos[0][0] = Vec2(1200, Window::Height() / 2);
+				movetoUp[isLeft][0] = movetoUp[isLeft][1] = true;
+				judgementTime[isLeft] = 0;
+				isLeft ? playerPos[1][0] : playerPos[0][1] = Vec2(80, Window::Height() / 2);
+				isLeft ? playerPos[1][1] : playerPos[0][0] = Vec2(1200, Window::Height() / 2);
 			}
 		}else{
 			if(whiteOutTime[isLeft]>0)whiteOutTime[isLeft]--;
