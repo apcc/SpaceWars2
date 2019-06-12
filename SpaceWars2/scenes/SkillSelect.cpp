@@ -105,12 +105,14 @@ void SkillSelect::update() {
 				playerPos[isLeft][i] -= Vec2(0, 3);
 				if (playerPos[isLeft][i].y < Window::Height()/5) {
 					movetoUp[isLeft][i] = false;
+					playerPos[isLeft][i].y = Window::Height()/5;
 				}
 			}
 			else {
 				playerPos[isLeft][i] += Vec2(0, 3);
 				if (playerPos[isLeft][i].y > Window::Height()*4/5) {
 					movetoUp[isLeft][i] = true;
+					playerPos[isLeft][i].y = Window::Height()*4/5;
 				}
 			}
 		}
@@ -200,8 +202,21 @@ void SkillSelect::update() {
 			case 1://Sub
 				switch (skillsDisplayed[isLeft][1]) {
 				case JUMP:
-					if (movetoUp[isLeft][0]) playerPos[isLeft][0].y -= 160;
-					else playerPos[isLeft][0].y += 160;
+					if (movetoUp[isLeft][0]) {
+						playerPos[isLeft][0].y -= 160;
+						if (playerPos[isLeft][0].y < Window::Height()/5) {
+							movetoUp[isLeft][0] = false;
+							playerPos[isLeft][0].y = Window::Height()/5;
+						}
+					}
+					else {
+						playerPos[isLeft][0].y += 160;
+						if (playerPos[isLeft][0].y > Window::Height()*4/5) {
+							movetoUp[isLeft][0] = true;
+							playerPos[isLeft][0].y = Window::Height()*4/5;
+						}
+					}
+					
 					coolDownTime[isLeft] = 80;
 					bullet = new Jump(ppos, isLeft);
 					break;
