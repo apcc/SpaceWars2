@@ -12,15 +12,15 @@ private:
 				return  RectF(pos.x, pos.y - 35*shrinkRate, -bulletSpeed * 80*shrinkRate, 70*shrinkRate);
 			}
 			else {
-				return RectF(pos.x, pos.y - 35*shrinkRate, -(pos.x - ppos.x)*shrinkRate, 70*shrinkRate);
+				return RectF(pos.x, pos.y - 35*shrinkRate, -(pos.x - ppos.x), 70*shrinkRate);
 			}
 		}
 		else {
-			if (bulletSpeed * 80 < ppos.x - pos.x) {
-				return  RectF(pos.x + bulletSpeed, pos.y - 35, bulletSpeed * 80, 70);
+			if (bulletSpeed * 80 * shrinkRate < ppos.x - pos.x) {
+				return  RectF(pos.x + bulletSpeed*shrinkRate, pos.y - 35*shrinkRate, bulletSpeed * 80 * shrinkRate, 70*shrinkRate);
 			}
 			else {
-				return RectF(pos.x, pos.y - 35, -(pos.x - ppos.x), 70);
+				return RectF(pos.x, pos.y - 35*shrinkRate, -(pos.x - ppos.x), 70*shrinkRate);
 			}
 		}
 	}
