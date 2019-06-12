@@ -226,7 +226,15 @@ void SkillSelect::update() {
 				break;
 			case 2://Special
 				switch (skillsDisplayed[isLeft][2]) {
-				//case LOCK_ON:	
+				case LOCK_ON:
+					for (int i = 0; i < 3; i++) {
+						bullet = new LockOn(ppos, isLeft, 30 * i);
+						if (i == 2)continue;
+						bullet->Shrink(bulletArea[isLeft]);
+						bullets[isLeft].push_back(bullet);
+					}
+					coolDownTime[isLeft] = 240;
+					break;
 				//case SUMMON_PARTNER:
 				case JUDGMENT_TIME:
 					judgementTime[isLeft] = 120;
