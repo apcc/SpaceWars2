@@ -35,6 +35,7 @@ private:
 	int coolDownTime[2] = {};
 	double shrinkRate;
 	Rect bulletArea[2] = {};
+	int judgementTime[2] = {};
 	Vec2 ShrinkVec2(Vec2, int) const;
 
 	static SkillDescriptManager skillDescriptManager;

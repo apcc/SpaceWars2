@@ -100,6 +100,7 @@ void SkillSelect::update() {
 	// 機体の処理
 	for (int isLeft = 0; isLeft < 2; isLeft++) {
 		for (int i = 0; i < 2; i++) {
+			if (i == 1 && judgementTime[isLeft] != 0) continue;
 			if (movetoUp[isLeft][i]) {
 				playerPos[isLeft][i] -= Vec2(0, 3);
 				if (playerPos[isLeft][i].y < Window::Height()/5) {
@@ -122,18 +123,27 @@ void SkillSelect::update() {
 			if(PLAYER->skillSelect())	goingTowhiteout[isLeft] = true;
 		}
 
-		for (auto itr = bullets[isLeft].begin(); itr != bullets[isLeft].end();) {
-			Vec2 ppos = playerPos[isLeft][0];
-			Vec2 opps = playerPos[isLeft][1];
-			if ((**itr).update(ppos, opps)) {
-				delete* itr;
-				itr = bullets[isLeft].erase(itr);
-			}
-			else {
-				++itr;
+		if (judgementTime[isLeft] == 0) {
+			for (auto itr = bullets[isLeft].begin(); itr != bullets[isLeft].end();) {
+				Vec2 ppos = playerPos[isLeft][0];
+				Vec2 opps = playerPos[isLeft][1];
+				if ((**itr).update(ppos, opps)) {
+					delete* itr;
+					itr = bullets[isLeft].erase(itr);
+				}
+				else {
+					++itr;
+				}
 			}
 		}
-
+		else {
+			if (judgementTime[isLeft] % 10 == 0) {
+				Bullet* bullet = new Shot(playerPos[isLeft][0], isLeft);
+				bullet->Shrink(bulletArea[isLeft]);
+				bullets[isLeft].push_back(bullet);
+			}
+			judgementTime[isLeft]--;
+		}
 		if(goingTowhiteout[isLeft]){
 			whiteOutTime[isLeft]++;
 			if(whiteOutTime[isLeft]>=WHITEOUT_TIME){
@@ -214,16 +224,20 @@ void SkillSelect::update() {
 				default: bullet = new Shot(ppos, isLeft); break;
 				}
 				break;
-			/*case 2://Special
+			case 2://Special
 				switch (skillsDisplayed[isLeft][2]) {
-				case LOCK_ON:
-				case SUMMON_PARTNER:
+				//case LOCK_ON:	
+				//case SUMMON_PARTNER:
 				case JUDGMENT_TIME:
-				case INVERSION_RECOVERY:
+					judgementTime[isLeft] = 120;
+					coolDownTime[isLeft] = 300;
+					bullet = new Shot(ppos, isLeft);
 					break;
+				//case INVERSION_RECOVERY:
+				default:
+					bullet = new Shot(ppos, isLeft); break;
 				}
 				break;
-				 */
 			default:
 				bullet = new Shot(ppos, isLeft); break;
 			}
@@ -346,6 +360,10 @@ void SkillSelect::draw() const {
 		for (int i = 0; i < 2; i++) {
 			String text = isLeft ^ i ? L"l-player" : L"r-player";
 			TextureAsset(text).resize({ 40, 40 }).drawAt(ShrinkVec2(playerPos[isLeft][i], isLeft));
+
+		}
+		if (judgementTime[isLeft]) {
+			Rect(bulletArea[isLeft]).draw(ColorF(L"#336699").setAlpha((0.6 - (120 - judgementTime[isLeft]) * (120 - judgementTime[isLeft]) / 28800.0)));
 
 		}
 	}
