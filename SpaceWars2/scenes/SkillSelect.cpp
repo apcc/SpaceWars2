@@ -234,7 +234,10 @@ void SkillSelect::update() {
 					}
 					coolDownTime[isLeft] = 240;
 					break;
-				//case SUMMON_PARTNER:
+				case SUMMON_PARTNER:
+					bullet = new SummonPartner(ppos, isLeft);
+					coolDownTime[isLeft] = 150;
+					break;
 				case JUDGMENT_TIME:
 					judgementTime[isLeft] = 120;
 					coolDownTime[isLeft] = 300;

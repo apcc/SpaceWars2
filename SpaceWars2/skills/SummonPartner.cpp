@@ -3,10 +3,14 @@
 #include "../CommonData.hpp"
 
 bool SummonPartner::update(Vec2 myPos, Vec2 oppPos) {
-	pos.x = myPos.x;
-	pos.y += (oppPos.y > pos.y ? 3 : -3);
+	pos.x = ShrinkVec2(myPos).x;
+	pos.y += (ShrinkVec2(oppPos).y > pos.y ? 3*moveRate : -3*moveRate);
 	LifeTime--;
-	if(!(LifeTime%30)) bullets.push_back(new Grenade(pos, isLeft));
+	if (!(LifeTime % 30)) {
+		Bullet* bul = new Grenade(ShrinkVec2(pos, activeField, Rect(0, 0, Window::Width(), Window::Height())), isLeft);
+		bul->Shrink(activeField);
+		bullets.push_back(bul);
+	}
 	for(auto itr = bullets.begin(); itr != bullets.end();){
 		if((**itr).update(myPos, oppPos)){
 			delete *itr;
@@ -24,12 +28,12 @@ void SummonPartner::draw() {
 		bul->draw();
 	}
 	if (isLeft) {
-		TextureAsset(L"fire").drawAt(pos + Vec2(-60, 0));
-		TextureAsset(L"specialBullet2").resize(60, 60).drawAt(pos);
+		if (shrinkRate == 1)TextureAsset(L"fire").drawAt(pos + Vec2(-60, 0));
+		TextureAsset(L"specialBullet2").resize(60*drawRate, 60*drawRate).drawAt(pos);
 	}
 	else {
-		TextureAsset(L"fire").mirror().drawAt(pos + Vec2(60, 0));
-		TextureAsset(L"specialBullet3").resize(60, 60).drawAt(pos);
+		if (shrinkRate == 1)TextureAsset(L"fire").mirror().drawAt(pos + Vec2(60, 0));
+		TextureAsset(L"specialBullet3").resize(60*drawRate, 60*drawRate).drawAt(pos);
 	}
 	//getShape().draw(ColorF(isLeft?L"#ff0000":L"#0000ff").setAlpha(0.5));
 }
@@ -44,4 +48,22 @@ int SummonPartner::getDamage(Circle circle) {
 		_damage += i->getDamage(circle);
 	}
 	return _damage;
+}
+
+Vec2 SummonPartner::ShrinkVec2(Vec2 _d) {
+	RectF screen(0, 0, Window::Width(), Window::Height());
+	Vec2 dis = _d.asPoint() - screen.center;
+	_d = dis * shrinkRate + activeField.center;
+	return _d;
+}
+
+Vec2 SummonPartner::ShrinkVec2(
+	Vec2 _d, 
+	Rect _from, 
+	Rect _to
+) {
+	Vec2 dis = _d.asPoint() - _from.center;
+	double rate = (double)_to.w / _from.w;
+	_d = dis * rate + _to.center;
+	return _d;
 }
