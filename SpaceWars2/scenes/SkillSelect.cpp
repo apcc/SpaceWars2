@@ -203,8 +203,13 @@ void SkillSelect::update() {
 					coolDownTime[isLeft] = 40;
 					break;
 				case BOMB:
+					for(int i = 0; i < 3; i++){
+						Bullet* subBul = new Bomb(ppos, isLeft);
+						subBul->Shrink(bulletArea[isLeft]);
+						bullets[isLeft].push_back(subBul);
+					}
 					bullet = new Bomb(ppos, isLeft);
-					coolDownTime[isLeft] = 30;
+					coolDownTime[isLeft] = 240;
 					break;
 				default: bullet = new Shot(ppos, isLeft); break;
 				}
