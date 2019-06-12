@@ -278,6 +278,10 @@ void SkillSelect::draw() const {
 
 	for (int isLeft = 0; isLeft <= 1; isLeft++) { // LPlayer, RPlayer
 
+		if (judgementTime[isLeft]) {
+			Rect(bulletArea[isLeft]).draw(ColorF(L"#336699").setAlpha((0.6 - (120 - judgementTime[isLeft]) * (120 - judgementTime[isLeft]) / 28800.0)));
+		}
+
 		Player* PLAYER = &(isLeft ? Data::LPlayer : Data::RPlayer);
 		int selectingType = PLAYER->selectedType;
 		double alpha[3]      = { 0.5, 0.5, 0.5 };
@@ -385,10 +389,6 @@ void SkillSelect::draw() const {
 		for (int i = 0; i < 2; i++) {
 			String text = isLeft ^ i ? L"l-player" : L"r-player";
 			TextureAsset(text).resize({ 40, 40 }).drawAt(ShrinkVec2(playerPos[isLeft][i], isLeft));
-
-		}
-		if (judgementTime[isLeft]) {
-			Rect(bulletArea[isLeft]).draw(ColorF(L"#336699").setAlpha((0.6 - (120 - judgementTime[isLeft]) * (120 - judgementTime[isLeft]) / 28800.0)));
 
 		}
 	}
