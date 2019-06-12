@@ -17,15 +17,24 @@ const Array<String> specialSkillSound = {
 bool SkillSelect::isLoaded = false;
 
 void SkillSelect::init() {
+	// スキル説明動画回り
 	movetoUp[0][0] = movetoUp[1][1] = true;
 	movetoUp[0][1] = movetoUp[1][0] = true;
 
 	playerPos[1][0] = playerPos[0][1] = Vec2(160, Window::Height() / 2);
 	playerPos[1][1] = playerPos[0][0] = Vec2(1100, Window::Height() / 2);
 
+	bulletArea[0] = Rect({ 290 + Window::Size().x / 2 , 90 }, 16 * 19, 9 * 19); //Right
+	bulletArea[1] = Rect({ 290 , 90 }, 16 * 19, 9 * 19); //Left
+	shrinkRate = (double)bulletArea[0].w / Window::Width();
+	LReady = false;
+	RReady = false;
+
+	// Player init
 	Data::LPlayer.init(Vec2(160, Config::HEIGHT / 2), true);  //円の半径
 	Data::RPlayer.init(Vec2(1100, Config::HEIGHT / 2), false); //WIDTH-円の半径
 
+	// Dataの読み込み
 	if (!isLoaded) {
 		for (auto i : step(7)) {
 			TextureAsset::Register(L"main"    + Format(i - 1), L"/800" + Format(i));
@@ -70,15 +79,10 @@ void SkillSelect::init() {
 		TextureAsset::Register(L"specialTriangle", L"/7412");
 		isLoaded = true;
 	}
-
-	bulletArea[0] = Rect({ 290 + Window::Size().x / 2 , 90 }, 16 * 19, 9 * 19); //Right
-	bulletArea[1] = Rect({ 290 , 90 }, 16 * 19, 9 * 19); //Left
-	shrinkRate = (double)bulletArea[0].w / Window::Width();
-	LReady = false;
-	RReady = false;
 }
 
 void SkillSelect::update() {
+	// シーン変更の操作
 	changeScene(Debug::InputFnKey(), 100);
 	 if (nextStageTime > 100)
 	 	changeScene(L"Game", 500);
@@ -123,11 +127,13 @@ void SkillSelect::update() {
 		if(player) isLeft = 1;
 		else isLeft = 0;
 		Player* PLAYER = &(isLeft ? Data::LPlayer : Data::RPlayer);
-
+		
+		// Skill選択操作
 		if(isLeft ? !LReady : !RReady){
 			if(PLAYER->skillSelect())	goingTowhiteout[isLeft] = true;
 		}
 
+		// 説明動画: 弾
 		if (judgementTime[isLeft] == 0) {
 			for (auto itr = bullets[isLeft].begin(); itr != bullets[isLeft].end();) {
 				Vec2 ppos = playerPos[isLeft][0];
@@ -149,9 +155,12 @@ void SkillSelect::update() {
 			}
 			judgementTime[isLeft]--;
 		}
+
+		// 上半分のブラックアウト処理
 		if(goingTowhiteout[isLeft]){
 			blackOutTime[isLeft]++;
 			if(blackOutTime[isLeft]>=BLACKOUT_TIME){
+				// 真っ暗になったタイミング = 表示させるスキルを切り替えるタイミング
 				goingTowhiteout[isLeft] = false;
 				skillsDisplayed[isLeft][0] = PLAYER->whatMainSkill;
 				skillsDisplayed[isLeft][1] = PLAYER->whatSubSkill;
@@ -173,6 +182,8 @@ void SkillSelect::update() {
 		}else{
 			if(blackOutTime[isLeft]>0)blackOutTime[isLeft]--;
 		}
+
+		// 動画: 各スキルの発動
 		if (coolDownTime[isLeft] == 0) {
 			Vec2 ppos = playerPos[isLeft][0];
 			Bullet* bullet;
@@ -281,9 +292,6 @@ void SkillSelect::draw() const {
 
 	for (int isLeft = 0; isLeft <= 1; isLeft++) { // LPlayer, RPlayer
 
-		if (judgementTime[isLeft]) {
-			Rect(bulletArea[isLeft]).draw(ColorF(L"#336699").setAlpha((0.6 - (120 - judgementTime[isLeft]) * (120 - judgementTime[isLeft]) / 28800.0)));
-		}
 
 		Player* PLAYER = &(isLeft ? Data::LPlayer : Data::RPlayer);
 		int selectingType = PLAYER->selectedType;
@@ -296,11 +304,23 @@ void SkillSelect::draw() const {
 		String skillBackColor[3] = { L"#dfd", L"#ddf", L"#fed" };
 
 		SkillDescript descript = skillDescriptManager.skillDescription[skillTypeDisplayed[isLeft]][skillsDisplayed[isLeft][skillTypeDisplayed[isLeft]]];
+		
+		// JudgementTimeの凍結背景描写
+		if (judgementTime[isLeft]) {
+			Rect(bulletArea[isLeft]).draw(ColorF(L"#336699").setAlpha((0.6 - (120 - judgementTime[isLeft]) * (120 - judgementTime[isLeft]) / 28800.0)));
+		}
 
+		// Skillの名前
 		SmartUI::Get(S24)(descript.name).draw({ (!isLeft) * Window::Width() / 2 + 30, 20 }, Color(L"#ffffff"));
 
+		// 説明文
+		SmartUI::Get(S18)(descript.descript).draw({ (!isLeft) * Window::Width() / 2 + 30, 300 }, ColorF(L"#ffffff"));
+
+
+		// 動画エリアの背景
 		Rect({290 + (!isLeft ? Window::Size().x : 0)/2 , 90}, 16*19, 9*19).draw(ColorF(L"#0000dd"));
 
+		// グラフ描画
 		Vec2 chartCenter = Vec2(150, 175);
 		const double chartSize = 85;
 
@@ -347,8 +367,7 @@ void SkillSelect::draw() const {
 			).draw(5, ColorF(L"#ffffff").setAlpha(0.9));
 		}
 
-		SmartUI::Get(S18)(descript.descript).draw({ (!isLeft) * Window::Width() / 2 + 30, 300 }, ColorF(L"#ffffff"));
-
+		// ブラックアウト処理
 		Rect({ 15 + (!isLeft) * Window::Width() / 2, 10 }, { 610 + (!isLeft) * Window::Width() / 2, 290 }).draw(ColorF(L"#000000").setAlpha((double)blackOutTime[isLeft] / BLACKOUT_TIME));
 
 
@@ -385,10 +404,12 @@ void SkillSelect::draw() const {
 
 		}
 
+		// 弾描画
 		for (auto itr : bullets[isLeft]) {
 			itr->draw();
 		}
 
+		// 機体描画
 		for (int i = 0; i < 2; i++) {
 			String text = isLeft ^ i ? L"l-player" : L"r-player";
 			TextureAsset(text).resize({ 40, 40 }).drawAt(shrinkVec2(playerPos[isLeft][i], isLeft));
