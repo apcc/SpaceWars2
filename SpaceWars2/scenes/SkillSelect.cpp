@@ -529,8 +529,8 @@ Vec2 SkillSelect::shrinkVec2(Vec2 _d, int isLeft) const {
 
 void SkillSelect::drawHPGauge(bool _isLeft, int HP) const {
 	Rect area = bulletArea[_isLeft];
-	Rect(area.x, area.y, area.w, 60 * shrinkRate).draw(Color(L"#ffffff"));
-	Rect(area.x, area.y, (double)area.w * HP / 1000, 60 * shrinkRate).draw(Color(L"#ff0000"));
+	Rect(area.x, area.y, area.w, 60 * shrinkRate).draw(Color(L"#f99"));
+	Rect(area.x, area.y, (double)area.w * HP / 1000, 60 * shrinkRate).draw(Color(L"#f11"));
 	Vec2 pos(0, 40); // hidariue
 	/*
 	double width; // haba
