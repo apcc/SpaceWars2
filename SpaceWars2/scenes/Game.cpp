@@ -515,7 +515,7 @@ void Game::drawHPGraph(int _x, int _y, const LineString& _LHPGraph, const LineSt
 	constexpr int h = 120;
 
 	// 背景
-	Rect(_x, _y - 120 + 2, w, h + 2).draw(ColorF(L"fff").setAlpha(0.5));
+	Rect(_x, _y - 120 + 2, w, h + 2).draw(ColorF(L"#fff").setAlpha(0.5));
 
 	// 目盛り
 	Line(_x, _y - 100, _x + w, _y - 100).draw(1, ColorF(L"#fff").setAlpha(0.8));
