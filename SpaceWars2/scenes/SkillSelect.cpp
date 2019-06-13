@@ -19,7 +19,7 @@ bool SkillSelect::isLoaded = false;
 void SkillSelect::init() {
 	// スキル説明動画回り
 	movetoUp[0][0] = movetoUp[1][1] = true;
-	movetoUp[0][1] = movetoUp[1][0] = true;
+	movetoUp[0][1] = movetoUp[1][0] = false;
 
 	playerPos[1][0] = playerPos[0][1] = Vec2(140, Window::Height() / 2);
 	playerPos[1][1] = playerPos[0][0] = Vec2(1100, Window::Height() / 2);
@@ -180,7 +180,7 @@ void SkillSelect::update() {
 				bullets[isLeft].clear();
 				coolDownTime[isLeft] = 0;
 
-				movetoUp[isLeft][0] = movetoUp[isLeft][1] = true;
+				movetoUp[isLeft][0] = true; movetoUp[isLeft][1] = false;
 				judgementTime[isLeft] = 0;
 				isLeft ? playerPos[1][0] : playerPos[0][1] = Vec2(140, Window::Height() / 2);
 				isLeft ? playerPos[1][1] : playerPos[0][0] = Vec2(1100, Window::Height() / 2);

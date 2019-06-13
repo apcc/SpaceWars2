@@ -17,10 +17,10 @@ private:
 	const static int EXPLODE_RADIUS = 100;
 	Circle getShape() {
 		if (explosion) {
-			return Circle(pos, EXPLODE_RADIUS);
+			return Circle(pos, EXPLODE_RADIUS*drawRate);
 		}
 		else {
-			return Circle(pos, 40);
+			return Circle(pos, 40*drawRate);
 		}
 
 	}
