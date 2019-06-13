@@ -22,7 +22,6 @@ private:
 	LineString RHPGraph;
 
 	bool isLoaded[3] = { false, false, false };
-	bool isSoundLoaded[3] = { false, false, false };
 	const LineString stopwatchFrame{
 		{Window::Center().x - 70, 22},
 		{Window::Center().x + 70, 22},

@@ -15,6 +15,7 @@ private:
 public:
 	Jump(Vec2 _pos, bool _isLeft) : Bullet(_pos, _isLeft) {
 		(isLeft ? Data::LPlayer : Data::RPlayer).changeSpeed(200);
+		SoundAsset(L"jump").setVolume(Config::MASTER_VOLUME * Config::EFFECT_VOLUME);
 		SoundAsset(L"jump").playMulti(0.8);
 
 		if (!(isLeft ? isLDoing : isRDoing)){
@@ -30,7 +31,11 @@ public:
 		if (isLeft ? isLInvalid : isRInvalid)
 			(isLeft ? isLDoing : isRDoing) = false;
 	}
-
+	Vec2 shrink(Rect _a) override {
+		_a;
+		shouldBeDestroyed = true;
+		return pos;
+	}
 	bool update(Vec2 _myPos, Vec2 _oppPos) override;
 	void draw() override;
 	bool isVisible() override;

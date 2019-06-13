@@ -8,6 +8,8 @@ namespace FontPAsset {
 
 enum SmartUISize {
 	S12 = 12,
+	S18 = 18,
+	S24 = 24,
 	S28 = 28,
 	S32 = 32
 };

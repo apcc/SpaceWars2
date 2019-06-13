@@ -4,7 +4,7 @@
 
 using std::make_pair;
 
-Array<SmartUISize> SmartUI::size = { S12, S28, S32 };
+Array<SmartUISize> SmartUI::size = { S12, S18, S24, S28, S32 };
 Array<SmartBSize>  SmartB::	size = { Sb12, Sb32 };
 Array<CicaRSize>   CicaR::	size = { C12, C18, C32 };
 Array<LettersSize> Letters::size = { L7, L10, L12, L18, L32 };

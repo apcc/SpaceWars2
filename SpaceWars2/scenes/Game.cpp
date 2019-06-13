@@ -38,27 +38,11 @@ void Game::update() {
 				status = GAME_INIT;
 				return;
 			}
-
-			const Array<String> sound[3] = { mainSkillSound, subSkillSound, specialSkillSound };
-
 			// 疑似for
 			int i = countDown.s();
-			if (!isSoundLoaded[i]) {
-				int j = 0;
-				for (const auto& name : sound[i]) {
-					SoundAsset::Register(name, L"/82" + Format(i) + Format(j));
-					++j;
-				}
-				isSoundLoaded[i] = true;
-			}
 
 			switch(countDown.s()) {
 			case 0:
-				if (!isLoaded[i]) {
-					TextureAsset::Register(L"l-player", L"/7500");
-					TextureAsset::Register(L"r-player", L"/7501");
-					isLoaded[i] = true;
-				}
 				break;
 
 			case 1:
@@ -139,6 +123,7 @@ void Game::update() {
 				RHPGraph.push_back({ x, 100 - HP / 10.0 });
 				x += 250.0 / Data::RPlayer.HPLog.size();
 			}
+
 			status = FINISH;
 		}
 
@@ -155,16 +140,19 @@ void Game::update() {
 			else
 				sound = false;
 			selecting = Clamp(selecting, 0, 2);
-			if (sound)
+			if (sound) {
+				SoundAsset(L"cursor1").setVolume(Config::MASTER_VOLUME * Config::CURSOR_VOLUME);
 				SoundAsset(L"cursor1").playMulti();
+			}
 
 			if (Data::KeyEnter.repeat(0, true)){
+				SoundAsset(L"click2").setVolume(Config::MASTER_VOLUME * Config::CURSOR_VOLUME);
 				SoundAsset(L"click2").playMulti();
 				switch (selecting) {
-				case 0: 
+				case 0:
 					changeScene(L"SkillSelect", 500);
 					break;
-				case 1: 
+				case 1:
 					changeScene(L"Title", 500);
 					break;
 				case 2:
@@ -203,7 +191,7 @@ void Game::draw() const {
 		// charge gauge
 		drawChargeGauge(true);
 		drawChargeGauge(false);
-    
+
 		// cooldown value
 		Letters::Get(L10)(ROUND_UP(Data::LPlayer.coolDownTime, 60)).draw(Arg::topRight, {  230, 62 }, Color(L"#77f"));
 		Letters::Get(L10)(ROUND_UP(Data::RPlayer.coolDownTime, 60)).draw(Arg::topRight, { 1085, 62 }, Color(L"#77f"));
@@ -370,7 +358,7 @@ void Game::drawLoading(Vec2 _pos, const Stopwatch& _countDown) {
 
 		Circle(tPos, tRadius * radius / 5.0).draw();
 	}
-	
+
 	const int width = (int)(_countDown.ms() / 3000.0 * 90.0);
 	const HSV color(28 + (3 - _countDown.s() * 8), 1.0, 1.0);
 
@@ -459,7 +447,7 @@ void Game::drawTemperatureGauge(bool _isLeft) {
 
 	// value
 	Letters::Get(L10)(ROUND_UP(PLAYER->temperature, 10)).draw(Arg::topRight, valuePos, color);
-	
+
 }
 
 void Game::drawChargeGauge(bool _isLeft) {
@@ -515,7 +503,7 @@ void Game::drawHPGraph(int _x, int _y, const LineString& _LHPGraph, const LineSt
 	constexpr int h = 120;
 
 	// 背景
-	Rect(_x, _y - 120 + 2, w, h + 2).draw(ColorF(L"fff").setAlpha(0.5));
+	Rect(_x, _y - 120 + 2, w, h + 2).draw(ColorF(L"#fff").setAlpha(0.5));
 
 	// 目盛り
 	Line(_x, _y - 100, _x + w, _y - 100).draw(1, ColorF(L"#fff").setAlpha(0.8));

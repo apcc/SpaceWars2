@@ -5,9 +5,9 @@
 // ========================
 //      【付番ルール】
 // ========================
-// 
+//
 // 6000 Fonts
-// 
+//
 // 7000 Images
 //  000 全体
 //  100 Title
@@ -19,14 +19,15 @@
 //  700 その他
 //  800 button_24
 //  900 button_64
-// 
+//
 // 8000 Skills
 //  000 Icons
 //  100 Textures
 //  200 Sounds
-// 
+//  300 Texts
+//
 // 9000 Sounds
-// 
+//
 // ========================
 
 // Fonts
@@ -83,28 +84,27 @@
 
 
 // Skills
-	// Icons
 	8000	FILE	"assets/skills/icons/main-1.png"
-	8001	FILE	"assets/skills/icons/main0.png"
-	8002	FILE	"assets/skills/icons/main1.png"
-	8003	FILE	"assets/skills/icons/main2.png"
-	8004	FILE	"assets/skills/icons/main3.png"
-	8005	FILE	"assets/skills/icons/main4.png"
+	8001	FILE	"assets/skills/icons/shot.png"
+	8002	FILE	"assets/skills/icons/grenade.png"
+	8003	FILE	"assets/skills/icons/laser.png"
+	8004	FILE	"assets/skills/icons/reflection.png"
+	8005	FILE	"assets/skills/icons/flame.png"
 	8006	FILE	"assets/skills/icons/main5.png"
 	8010	FILE	"assets/skills/icons/sub-1.png"
-	8011	FILE	"assets/skills/icons/sub0.png"
-	8012	FILE	"assets/skills/icons/sub1.png"
-	8013	FILE	"assets/skills/icons/sub2.png"
-	8014	FILE	"assets/skills/icons/sub3.png"
+	8011	FILE	"assets/skills/icons/jump.png"
+	8012	FILE	"assets/skills/icons/shield.png"
+	8013	FILE	"assets/skills/icons/missile.png"
+	8014	FILE	"assets/skills/icons/bomb.png"
 	8015	FILE	"assets/skills/icons/sub4.png"
-	8016	FILE	"assets/skills/icons/sub9.png"
+	8016	FILE	"assets/skills/icons/sub9.png" // 範囲外
 	8020	FILE	"assets/skills/icons/special-1.png"
-	8021	FILE	"assets/skills/icons/special0.png"
-	8022	FILE	"assets/skills/icons/special1.png"
-	8023	FILE	"assets/skills/icons/special2.png"
-	8024	FILE	"assets/skills/icons/special3.png"
+	8021	FILE	"assets/skills/icons/J.T._.png"
+	8022	FILE	"assets/skills/icons/L.O._.png"
+	8023	FILE	"assets/skills/icons/S.P._.png"
+	8024	FILE	"assets/skills/icons/I.R._.png"
 	8025	FILE	"assets/skills/icons/special4.png"
-	8026	FILE	"assets/skills/icons/special9.png"
+	8026	FILE	"assets/skills/icons/special9.png" // 範囲外
 
 	// Textures
 	8100	FILE	"assets/skills/textures/nothing.png"
@@ -139,9 +139,12 @@
 	8222	FILE	"assets/skills/sounds/SP.mp3"
 	8223	FILE	"assets/skills/sounds/IR.mp3"
 
+	// Texts
+	8300	FILE	"assets/skills/texts/skillDescription.txt"
+
 // Sounds
 9000	FILE	"assets/sounds/chargeFull.mp3" // in Game
-9100	FILE	"assets/sounds/CometHighway.m4a"
+9100	FILE	"assets/sounds/Space_Wars.wav"
 9200	FILE	"assets/sounds/click1.mp3"
 9201	FILE	"assets/sounds/click2.mp3"
 9210	FILE	"assets/sounds/cursor1.mp3"

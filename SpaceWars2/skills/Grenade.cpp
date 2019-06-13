@@ -3,7 +3,10 @@
 bool Grenade::update(Vec2 _myPos, Vec2 _oppPos) {
 	if (fuse == 0) return true;
 	if (fuse <= EXPLODE_TIMING) vel.set(0,0);
-	if (fuse == EXPLODE_TIMING) SoundAsset(L"grenade2").playMulti();
+	if (fuse == EXPLODE_TIMING) {
+		SoundAsset(L"grenade2").setVolume(Config::MASTER_VOLUME * Config::CURSOR_VOLUME);
+		SoundAsset(L"grenade2").playMulti();
+		}
 	--fuse;
 	return Bullet::update(_myPos, _oppPos);
 }
@@ -13,8 +16,8 @@ void Grenade::draw(){
 		getShape().draw(ColorF(L"#ff8800").setAlpha(((double)fuse) / EXPLODE_TIMING));
 	}
 	else {
-		if (isLeft)TextureAsset(L"mainBullet1").resize(30, 30).drawAt(pos);
-		else TextureAsset(L"mainBullet1").resize(30, 30).mirror().drawAt(pos);
+		if (isLeft)TextureAsset(L"mainBullet1").resize(30*drawRate, 30*drawRate).drawAt(pos);
+		else TextureAsset(L"mainBullet1").resize(30*drawRate, 30*drawRate).mirror().drawAt(pos);
 		//	getShape().draw(Color(L"#ff0000"));
 	}
 }

@@ -9,7 +9,7 @@ void Shot::draw(){
 }
 
 bool Shot::isVisible(){
-	return getShape().intersects(Rect(0, 0, Config::WIDTH + 1, Config::HEIGHT + 1));
+	return getShape().intersects(activeField);
 }
 
 int Shot::getDamage(Circle _circle) {
