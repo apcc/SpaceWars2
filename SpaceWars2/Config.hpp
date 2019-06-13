@@ -14,6 +14,12 @@ namespace Config {
 	const int32  WIDTH		= 1280;
 	const int32  HEIGHT		= 720;
 
+	//各種音量
+	const double masterVolume = 1.0;
+	const double effectSoundVolume = 0.5;
+	const double bgmVolume = 1.0;
+	const double cursolSoundVolume = 0.3;
+
 	// 背景色
 	const String BACKGROUND	= L"#ffffff";
 }

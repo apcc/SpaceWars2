@@ -8,6 +8,7 @@ private:
 public:
 	Reflection(Vec2 p, bool left) : Bullet(p, left) {
 		vel = Vec2(bulletSpeed * (left ? 1 : -1), 0).rotate(Radians(Random(-40, 40)));
+		SoundAsset(L"reflection").setVolume(Config::masterVolume*Config::effectSoundVolume);
 		SoundAsset(L"reflection").playMulti(0.4);
 	}
 

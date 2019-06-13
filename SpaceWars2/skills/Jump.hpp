@@ -15,6 +15,7 @@ private:
 public:
 	Jump(Vec2 _pos, bool _isLeft) : Bullet(_pos, _isLeft) {
 		(isLeft ? Data::LPlayer : Data::RPlayer).changeSpeed(200);
+		SoundAsset(L"jump").setVolume(Config::masterVolume*Config::effectSoundVolume);
 		SoundAsset(L"jump").playMulti(0.8);
 
 		if (!(isLeft ? isLDoing : isRDoing)){

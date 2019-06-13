@@ -14,14 +14,17 @@ void Title::update(){
 
 	if (Data::KeyUp.repeat(20, true) && selecting > 0) {
 		--selecting;
+		SoundAsset(L"cursor1").setVolume(Config::masterVolume*Config::cursolSoundVolume);
 		SoundAsset(L"cursor1").playMulti();
 	}
 	if (Data::KeyDown.repeat(20, true) && selecting < 3) {
 		++selecting;
+		SoundAsset(L"cursor1").setVolume(Config::masterVolume*Config::cursolSoundVolume);
 		SoundAsset(L"cursor1").playMulti();
 	}
 
 	if (Data::KeyEnter.repeat(20)) {
+		SoundAsset(L"click1").setVolume(Config::masterVolume*Config::cursolSoundVolume);
 		SoundAsset(L"click1").play();
 		switch(selecting) {
 		case 0:

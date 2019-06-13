@@ -14,11 +14,13 @@ void ScreenGuidance::update() {
 	if (Data::KeyEnter.repeat(20, true)) {
 		if (status == LETS_GO) changeScene(L"SkillSelect", 500);
 		else				   status = (Stat)(status + 1);
+		SoundAsset(L"move1").setVolume(Config::masterVolume*Config::cursolSoundVolume);
 		SoundAsset(L"move1").playMulti();
 	}
 	if (Data::KeyBack.repeat(20, true)) {
 		if (status == FULL) changeScene(L"ControlGuidance", 500);
 		else				   status = (Stat)(status - 1);
+		SoundAsset(L"move1").setVolume(Config::masterVolume*Config::cursolSoundVolume);
 		SoundAsset(L"move1").playMulti();
 	}
 	changeScene(Debug::InputFnKey(), 250);

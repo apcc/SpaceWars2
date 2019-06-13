@@ -15,6 +15,7 @@ bool Laser::update(Vec2 _myPos, Vec2 _oppPos) {
 			}
 			else {
 				chargeSound.stop();
+				laserSound.setVolume(Config::masterVolume*Config::effectSoundVolume);
 				laserSound.play();
 				isCharging = false;
 			}
