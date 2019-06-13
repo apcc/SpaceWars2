@@ -141,7 +141,7 @@
 
 // Sounds
 9000	FILE	"assets/sounds/chargeFull.mp3" // in Game
-9100	FILE	"assets/sounds/CometHighway.m4a"
+9100	FILE	"assets/sounds/Space_Wars.wav"
 9200	FILE	"assets/sounds/click1.mp3"
 9201	FILE	"assets/sounds/click2.mp3"
 9210	FILE	"assets/sounds/cursor1.mp3"
