@@ -10,7 +10,7 @@ void Player::init(Vec2 _pos, bool _isLeft) {
 	pos             = _pos;
 	isLeft          = _isLeft;
 	HP              = 1000;
-	temperature     = 200;
+	temperature     = 100;
 	coolDownTime    = 0;
 	charge          = 0;
 	recoveryDamage  = 0;
@@ -100,27 +100,19 @@ void Player::update(std::vector<Bullet*> &bullets){
 
 	howFrameAfterShooting++;
 
-	if(isLeft) {
-		if (pos.x < 0 + PLAYER_SIZE)
-			pos.x = 0 + PLAYER_SIZE;
-		if (pos.x > Window::Center().x - PLAYER_SIZE)
-			pos.x = Window::Center().x - PLAYER_SIZE;
-	} else {
-		if (pos.x < Window::Center().x + PLAYER_SIZE)
-			pos.x = Window::Center().x + PLAYER_SIZE;
-		if (pos.x > Config::WIDTH - PLAYER_SIZE)
-			pos.x = Config::WIDTH - PLAYER_SIZE;
-	}
+	pos = Clamp(pos,
+				{
+					(isLeft ? PLAYER_SIZE : Window::Center().x + PLAYER_SIZE),
+					PLAYER_SIZE
+				},
+				{
+					(isLeft ? Window::Center().x - PLAYER_SIZE : Window::Width() - PLAYER_SIZE),
+					Window::Height() - PLAYER_SIZE
+				}
+		  );
 
-	if (pos.y < 0 + PLAYER_SIZE)
-		pos.y = 0 + PLAYER_SIZE;
-	if (pos.y > Config::HEIGHT - PLAYER_SIZE)
-		pos.y = Config::HEIGHT - PLAYER_SIZE;
-
-	if (temperature > 100) {
-		if (howFrameAfterShooting >= 60) {
-			temperature -= 5;
-		}
+	if (howFrameAfterShooting >= 60) {
+		temperature -= 5;
 	}
 
 	if (speed != 0) { // [自機] normal
@@ -154,7 +146,10 @@ void Player::update(std::vector<Bullet*> &bullets){
 	else
 		isSounded = false;
 
-	HP = Clamp(HP, 0, 1000);
+	HP           = Clamp(HP,           0,   1000);
+	temperature  = Clamp(temperature,  100, 1000);
+	coolDownTime = Clamp(coolDownTime, 0,   1000);
+	charge       = Clamp(charge,       0,   1000);
 
 	HPLog.push_back(HP);
 }

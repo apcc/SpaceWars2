@@ -106,7 +106,7 @@ void Game::update() {
 		}
 
 		case FINISH_INIT: {
-			if (!Data::LPlayer.isHPRunOut() || !Data::RPlayer.isHPRunOut()) {
+			if (!Data::LPlayer.isHPRunOut() && !Data::RPlayer.isHPRunOut()) {
 				status = GAME_INIT;
 				return;
 			}
