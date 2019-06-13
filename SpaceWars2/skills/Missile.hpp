@@ -30,5 +30,5 @@ public:
 
 	const static int bulletSpeed = 7;
 	const double EPS = 1e-2;
-	const double ROTATEPOWER = Pi / 180.0;
+	const double ROTATEPOWER = Pi / 120.0;
 };
