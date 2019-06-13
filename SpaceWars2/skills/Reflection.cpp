@@ -31,7 +31,7 @@ bool Reflection::isVisible() {
 	if (activeField.y + activeField.h < pos.y) {
 		vel.y *= -1;
 	}
-	if (ReflectCount < 3) {
+	if (ReflectCount < 2) {
 		if (activeField.x > pos.x) {
 			vel.x *= -1;
 			ReflectCount++;
