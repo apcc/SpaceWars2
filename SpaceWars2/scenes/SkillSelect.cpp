@@ -102,10 +102,12 @@ void SkillSelect::update() {
 
 	if (Data::LKeySelect.repeat(20, true) && !LReady) {
 		LReady = true;
+		SoundAsset(L"click1").setVolume(Config::MASTER_VOLUME * Config::CURSOR_VOLUME);
 		SoundAsset(L"click1").playMulti();
 	}
 	if (Data::RKeySelect.repeat(20, true) && !RReady) {
 		RReady = true;
+		SoundAsset(L"click1").setVolume(Config::MASTER_VOLUME * Config::CURSOR_VOLUME);
 		SoundAsset(L"click1").playMulti();
 	}
 	if (Data::LKeySelect.repeat(20, true)) LReady = true;

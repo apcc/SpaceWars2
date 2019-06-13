@@ -139,6 +139,7 @@ void Player::update(std::vector<Bullet*> &bullets){
 
 	if (floor(charge / requireCharge[whatSpecialSkill] * 100) == 100) {
 		if (!isSounded) {
+			SoundAsset(L"chargeFull").setVolume(Config::MASTER_VOLUME * Config::EFFECT_VOLUME);
 			SoundAsset(L"chargeFull").playMulti();
 			isSounded = true;
 		}
@@ -186,8 +187,10 @@ bool Player::skillSelect() {
 	whatSubSkill = (SubSkill)skills[1];
 	whatSpecialSkill = (SpecialSkill)skills[2];
 
-	if (returnFlag)
+	if (returnFlag){
+		SoundAsset(L"cursor1").setVolume(Config::MASTER_VOLUME * Config::CURSOR_VOLUME);
 		SoundAsset(L"cursor1").playMulti();
+	}
 
 	return returnFlag;
 }

@@ -8,7 +8,7 @@ class InversionRecovery : public Bullet {
 private:
 	int initHP;
 	int time = 0;
-	int RecoverAmount = 1;
+	int recoverAmount = 1;
 	bool inRecovery;
 	Player* PLAYER;
 

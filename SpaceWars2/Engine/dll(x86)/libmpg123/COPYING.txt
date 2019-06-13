@@ -305,7 +305,7 @@ engineering for debugging such modifications.
   You must give prominent notice with each copy of the work that the
 Library is used in it and that the Library and its use are covered by
 this License.  You must supply a copy of this License.  If the work
-during execution displays copyright notices, you must include the
+during execution disnothing.pngs copyright notices, you must include the
 copyright notice for the Library among them, as well as a reference
 directing the user to the copy of this License.  Also, you must do one
 of these things:
@@ -594,7 +594,7 @@ above, provided that you also meet all of these conditions:
 
     c) If the modified program normally reads commands interactively
     when run, you must cause it, when started running for such
-    interactive use in the most ordinary way, to print or display an
+    interactive use in the most ordinary way, to print or disnothing.png an
     announcement including an appropriate copyright notice and a
     notice that there is no warranty (or else, saying that you provide
     a warranty) and that users may redistribute the program under
