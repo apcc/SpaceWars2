@@ -13,13 +13,14 @@ private:
 	int nowBombNumber;
 	int bulletSpeed = 20;
 	int fuse = 0;
+	double drawRate = 1;
 	const static int EXPLODE_RADIUS = 100;
 	Circle getShape() {
 		if (explosion) {
-			return Circle(pos, EXPLODE_RADIUS);
+			return Circle(pos, EXPLODE_RADIUS*drawRate);
 		}
 		else {
-			return Circle(pos, 40);
+			return Circle(pos, 40*drawRate);
 		}
 
 	}
@@ -36,6 +37,11 @@ public:
 			numberOfRUsed++;
 		}
 		nowBombNumber = (isLeft ? numberOfLUsed : numberOfRUsed);
+	}
+	Vec2 shrink(Rect _area) override {
+		Bullet::shrink(_area);
+		drawRate = shrinkRate * 2;
+		return pos;
 	}
 	bool update(Vec2 _myPos, Vec2 _oppPos) override;
 	void draw() override;

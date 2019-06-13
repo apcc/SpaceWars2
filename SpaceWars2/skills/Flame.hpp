@@ -5,24 +5,29 @@
 class Flame : public Bullet {
 private:
 	Vec2 ppos;
-	Circle getShape() { return Circle(pos, 35); }
+	Circle getShape() { return Circle(pos, shrinkRate * 35); }
 	RectF getShapeFlameBelt() {
 		if (isLeft) {
-			if (bulletSpeed * 80 < pos.x - ppos.x) {
-				return  RectF(pos.x, pos.y - 35, -bulletSpeed * 80, 70);
+			if (bulletSpeed * 80 * shrinkRate < pos.x - ppos.x) {
+				return  RectF(pos.x, pos.y - 35*shrinkRate, -bulletSpeed * 80*shrinkRate, 70*shrinkRate);
 			}
 			else {
-				return RectF(pos.x, pos.y - 35, -(pos.x - ppos.x), 70);
+				return RectF(pos.x, pos.y - 35*shrinkRate, -(pos.x - ppos.x), 70*shrinkRate);
 			}
 		}
 		else {
-			if (bulletSpeed * 80 < ppos.x - pos.x) {
-				return  RectF(pos.x + bulletSpeed, pos.y - 35, bulletSpeed * 80, 70);
+			if (bulletSpeed * 80 * shrinkRate < ppos.x - pos.x) {
+				return  RectF(pos.x + bulletSpeed*shrinkRate, pos.y - 35*shrinkRate, bulletSpeed * 80 * shrinkRate, 70*shrinkRate);
 			}
 			else {
-				return RectF(pos.x, pos.y - 35, -(pos.x - ppos.x), 70);
+				return RectF(pos.x, pos.y - 35*shrinkRate, -(pos.x - ppos.x), 70*shrinkRate);
 			}
 		}
+	}
+	Vec2 shrink(Rect _area) override {
+		Bullet::shrink(_area);
+		ppos = pos;
+		return pos;
 	}
 public:
 	Flame(Vec2 p, bool left) : Bullet(p, left) {

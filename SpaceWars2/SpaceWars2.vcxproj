@@ -175,6 +175,7 @@
     <ClCompile Include="functions\KeyRepeat.cpp" />
     <ClCompile Include="functions\MainSkill.cpp" />
     <ClCompile Include="functions\Player.cpp" />
+    <ClCompile Include="functions\SkillDescription.cpp" />
     <ClCompile Include="functions\SpecialSkill.cpp" />
     <ClCompile Include="functions\SubSkill.cpp" />
     <ClCompile Include="functions\Vec2Utils.cpp" />
@@ -188,6 +189,7 @@
     <ClCompile Include="scenes\SkillSelect.cpp" />
     <ClCompile Include="skills\InversionRecovery.cpp" />
     <ClCompile Include="skills\JudgmentTime.cpp" />
+    <ClCompile Include="skills\VLaser.cpp" />
     <ClCompile Include="skills\SummonPartner.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -316,6 +318,7 @@
     <ClInclude Include="functions\KeyRepeat.hpp" />
     <ClInclude Include="functions\MainSkill.hpp" />
     <ClInclude Include="functions\Player.hpp" />
+    <ClInclude Include="functions\SkillDescription.hpp" />
     <ClInclude Include="functions\Vec2Utils.hpp" />
     <ClInclude Include="functions\XInput.hpp" />
     <ClInclude Include="scenes\Include.hpp" />
@@ -340,6 +343,7 @@
     <ClInclude Include="skills\Bullet.hpp" />
     <ClInclude Include="skills\Flame.hpp" />
     <ClInclude Include="skills\Grenade.hpp" />
+    <ClInclude Include="skills\VLaser.hpp" />
     <ClInclude Include="skills\InversionRecovery.hpp" />
     <ClInclude Include="skills\JudgmentTime.hpp" />
     <ClInclude Include="skills\Jump.hpp" />

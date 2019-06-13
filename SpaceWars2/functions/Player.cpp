@@ -155,57 +155,45 @@ void Player::update(std::vector<Bullet*> &bullets){
 	HPLog.push_back(HP);
 }
 
-int Player::skillSelect(){
-	bool sound = true;
+bool Player::skillSelect() {
+	bool returnFlag = false;
 
-	switch(selectedType){
-	case 0:	//MainSkill
-		if (KeyRight.repeat(20, true))
+	if (selectedType != 2) {
+		if (KeyRight.repeat(20, true)) {
 			++selectedType;
-		else if (KeyDown	.repeat(20, true) && whatMainSkill < MAIN_NUM - 1)
-			whatMainSkill = static_cast<MainSkill>(whatMainSkill + 1);
-		else if (KeyUp.repeat(20, true) && whatMainSkill > 0)
-			whatMainSkill = static_cast<MainSkill>(whatMainSkill - 1);
-		else
-			sound = false;
-		break;
-
-	case 1:	//SubSkill
-		if (KeyLeft	.repeat(20, true))
-			--selectedType;
-		else if (KeyRight.repeat(20, true))
-			++selectedType;
-		else if (KeyDown	.repeat(20, true) && whatSubSkill < SUB_NUM - 1)
-			whatSubSkill = static_cast<SubSkill>(whatSubSkill + 1);
-		else if (KeyUp.repeat(20, true) && whatSubSkill > 0)
-			whatSubSkill = static_cast<SubSkill>(whatSubSkill - 1);
-		else
-			sound = false;
-		break;
-
-	case 2:	//SpecialSkill
-		if (KeyLeft	.repeat(20, true))
-			--selectedType;
-		else if (KeyDown	.repeat(20, true) && whatSpecialSkill < SPECIAL_NUM - 1)
-			whatSpecialSkill = static_cast<SpecialSkill>(whatSpecialSkill + 1);
-		else if (KeyUp.repeat(20, true) && whatSpecialSkill > 0)
-			whatSpecialSkill = static_cast<SpecialSkill>(whatSpecialSkill - 1);
-		else
-			sound = false;
-		break;
-
-	default:
-			LOG_ERROR(L"SkillSelecterで意図しない値が参照されました。");
+			returnFlag = true;
+		}
 	}
+	if (selectedType != 0) {
+		if (KeyLeft.repeat(20, true)) {
+			--selectedType;
+			returnFlag = true;
+		}
+	}
+	int numberOfSkill[3] = { MAIN_NUM, SUB_NUM, SPECIAL_NUM };
+	int skills[3] = { whatMainSkill, whatSubSkill, whatSpecialSkill };
+	if (skills[selectedType] > 0) {
+		if (KeyUp.repeat(20, true)) {
+			--skills[selectedType];
+			returnFlag = true;
+		}
+	}if (skills[selectedType] < numberOfSkill[selectedType]-1) {
+		if (KeyDown.repeat(20, true)) {
+			++skills[selectedType];
+			returnFlag = true;
+		}
+	}
+	whatMainSkill = (MainSkill)skills[0];
+	whatSubSkill = (SubSkill)skills[1];
+	whatSpecialSkill = (SpecialSkill)skills[2];
 
-	if (sound) {
+	if (returnFlag){
 		SoundAsset(L"cursor1").setVolume(Config::MASTER_VOLUME * Config::CURSOR_VOLUME);
 		SoundAsset(L"cursor1").playMulti();
 	}
 
-	return selectedType;
+	return returnFlag;
 }
-
 void Player::drawShip(){
 	const String name = isLeft ? L"l" : L"r";
 	TextureAsset(name + L"-player").drawAt(pos);

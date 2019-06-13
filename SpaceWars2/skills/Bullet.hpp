@@ -6,6 +6,8 @@ class Bullet {
 protected:
 	Vec2 pos, vel = {};
 	bool shouldBeDestroyed = false;
+	RectF activeField = RectF(0, 0, Config::WIDTH, Config::HEIGHT);
+	double shrinkRate = 1;
 public:
 	Bullet():
 		pos(Vec2(0, 0)),
@@ -19,6 +21,22 @@ public:
 	virtual void draw() = 0;
 	virtual bool isVisible() = 0;
 	virtual int getDamage(Circle _circle) = 0;
+
+	Vec2 getPos() {
+		return pos;
+	}
+
+	virtual Vec2 shrink(Rect _area) {
+		if (_area.w * 9 != _area.h * 16) {
+			LOG(L"Bullet::shrink() :WARNING:引数は縦横比が9:16のVec2で指定して下さい。正常に動かない可能性があります。");
+		}
+		shrinkRate = (double)_area.w / activeField.w;
+		Vec2 distance = pos.asPoint() - activeField.center;
+		pos = distance * shrinkRate + _area.center;
+		vel *= shrinkRate;
+		activeField = _area;
+		return pos;
+	}
 
 	bool isLeft;
 };

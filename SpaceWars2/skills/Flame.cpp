@@ -10,16 +10,17 @@ void Flame::draw() {
 	getShapeFlameBelt().draw({ Color(L"#ff8800"), Color(L"#ff8800").setAlpha(16), Color(L"#ff8800").setAlpha(16), Color(L"#ff8800"), });
 	//getShape().draw(Color(L"#ffff00"));
 	if (isLeft) {
-		TextureAsset(L"mainBullet4").resize(200, 200).drawAt(pos - Vec2(40, 10));
+		TextureAsset(L"mainBullet4").resize(200 * shrinkRate, 200 * shrinkRate).drawAt(pos - Vec2(40*shrinkRate, 10*shrinkRate));
 	}
 	else {
-		TextureAsset(L"mainBullet4").resize(200, 200).mirror().drawAt(pos - Vec2(-40, 10));
+		TextureAsset(L"mainBullet4").resize(200 * shrinkRate, 200 * shrinkRate).mirror().drawAt(pos - Vec2(-40*shrinkRate, 10*shrinkRate));
 	}
 };
 
 bool Flame::isVisible() {
-	return getShape().intersects(Rect(0 - bulletSpeed * 60, 0, Config::WIDTH + 1 + bulletSpeed * 120, Config::HEIGHT + 1));
+	return getShape().intersects(shrinkRate==1 ? Rect(0 - bulletSpeed * 60, 0, Config::WIDTH + 1 + bulletSpeed * 120, Config::HEIGHT + 1) : activeField);
 	//暗すぎる部分だけの場合は消してます
+	//説明時は、実装の都合で球がエリア内にあるかないかで判断しています
 }
 
 RectF normalizeRect(RectF rect) {// namae kimete chanto basho kaeyoune

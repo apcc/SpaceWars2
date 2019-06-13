@@ -9,12 +9,12 @@ bool Bomb::update(Vec2 _myPos, Vec2 _oppPos) {
 		fuse++;
 	}
 	if (isLeft) {
-		if (pos.x >= Window::Center().x + 75 + nowBombNumber % 4 * 160) {
+		if (pos.x >= activeField.x + activeField.w/2 + (75 + nowBombNumber % 4 * 160) * shrinkRate) {
 			vel.set(0, 0);
 		}
 	}
 	else {
-		if (pos.x <= Window::Center().x - 75 - nowBombNumber % 4 * 160) {
+		if (pos.x <= activeField.x + activeField.w/2 - (75 + nowBombNumber % 4 * 160) * shrinkRate) {
 			vel.set(0, 0);
 		}
 	}
@@ -27,7 +27,7 @@ void Bomb::draw() {
 		getShape().draw(ColorF(L"#ff8800").setAlpha((255 - (double)fuse * 4) / 64));
 	}
 	else {
-		TextureAsset(L"subBullet3").resize(60, 60).drawAt(pos);
+		TextureAsset(L"subBullet3").resize(60*drawRate, 60*drawRate).drawAt(pos);
 	}
 }
 
