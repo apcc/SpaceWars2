@@ -33,8 +33,10 @@ private:
 	double shrinkRate;
 	Rect bulletArea[2] = {};
 	int judgementTime[2] = {};
+	int playerHP[2] = {};
+	int timerCount[2] = {};
 	Vec2 shrinkVec2(Vec2, int) const;
-
+	void drawHPGauge(bool _isLeft, int HP) const;
 	Circle getHitCircle(Vec2 _pos, bool isLeft) {
 		if(skillTypeDisplayed[isLeft] == 1 && skillsDisplayed[isLeft][1] == 1) {
 			return Circle(_pos, 200*shrinkRate);

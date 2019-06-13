@@ -146,8 +146,7 @@ void SkillSelect::update() {
 					++itr;
 				}
 			}
-		}
-		else {
+		} else {
 			if (judgementTime[isLeft] % 10 == 0) {
 				Bullet* bullet = new Shot(playerPos[isLeft][0], isLeft);
 				bullet->shrink(bulletArea[isLeft]);
@@ -156,10 +155,42 @@ void SkillSelect::update() {
 			judgementTime[isLeft]--;
 		}
 
+		// INVERSION_RECOVERY
+		if (skillTypeDisplayed[isLeft] == 2 && skillsDisplayed[isLeft][2] == 3) {
+			if (timerCount[isLeft] == 0) {
+				timerCount[isLeft] = 300;
+				playerHP[isLeft] = 600;
+				coolDownTime[isLeft] = 0;
+				isLeft ? playerPos[1][0] : playerPos[0][1] = Vec2(140, Window::Height() / 2);
+				isLeft ? playerPos[1][1] : playerPos[0][0] = Vec2(1100, Window::Height() / 2);
+				movetoUp[isLeft][0] = true; movetoUp[isLeft][1] = false;
+				for (auto itr : bullets[isLeft]) {
+					delete itr;
+				}
+				bullets[isLeft].clear();
+			}
+			else if (timerCount[isLeft] < 0) {
+				// 虚無時間
+				timerCount[isLeft]++;
+			}
+			else {
+				timerCount[isLeft]--;
+				if (timerCount[isLeft] < 120) {
+					if (playerHP[isLeft] < 600) {
+						playerHP[isLeft] += 3;
+					}
+					else {
+						timerCount[isLeft] *= -1;
+					}
+				}
+			}
+		}
+
 		// 説明動画: 弾の当たり判定
 
 		for (auto b : bullets[isLeft]) {
-			b->getDamage(getHitCircle(shrinkVec2(playerPos[isLeft][!(b->isLeft^isLeft)], isLeft), isLeft));
+			int damage = b->getDamage(getHitCircle(shrinkVec2(playerPos[isLeft][!(b->isLeft^isLeft)], isLeft), isLeft));
+			playerHP[isLeft] -= !(b->isLeft^isLeft) ? 0 : (damage?40:0);
 		}
 
 		// 上半分のブラックアウト処理
@@ -182,6 +213,7 @@ void SkillSelect::update() {
 
 				movetoUp[isLeft][0] = true; movetoUp[isLeft][1] = false;
 				judgementTime[isLeft] = 0;
+				timerCount[isLeft] = 0;
 				isLeft ? playerPos[1][0] : playerPos[0][1] = Vec2(140, Window::Height() / 2);
 				isLeft ? playerPos[1][1] : playerPos[0][0] = Vec2(1100, Window::Height() / 2);
 			}
@@ -282,7 +314,10 @@ void SkillSelect::update() {
 					coolDownTime[isLeft] = 300;
 					bullet = new Shot(ppos, isLeft);
 					break;
-				//case INVERSION_RECOVERY:
+				case INVERSION_RECOVERY:
+					bullet = new Shot(opps, !isLeft);
+					coolDownTime[isLeft] = 6;
+					break;
 				default:
 					bullet = new Shot(ppos, isLeft); break;
 				}
@@ -423,8 +458,10 @@ void SkillSelect::draw() const {
 		for (int i = 0; i < 2; i++) {
 			String text = isLeft ^ i ? L"l-player" : L"r-player";
 			TextureAsset(text).resize({ 40, 40 }).drawAt(shrinkVec2(playerPos[isLeft][i], isLeft));
-
 		}
+
+		if (skillTypeDisplayed[isLeft] == 2 && skillsDisplayed[isLeft][2] == 3)
+			drawHPGauge(isLeft, playerHP[isLeft]);
 	}
 
 	if (LReady) {
@@ -457,4 +494,34 @@ Vec2 SkillSelect::shrinkVec2(Vec2 _d, int isLeft) const {
 	Vec2 dis = _d.asPoint() - screen.center;
 	_d = dis * shrinkRate + bulletArea[isLeft].center;
 	return _d;
+}
+
+
+void SkillSelect::drawHPGauge(bool _isLeft, int HP) const {
+	Rect area = bulletArea[_isLeft];
+	Rect(area.x, area.y, area.w, 60 * shrinkRate).draw(Color(L"#ffffff"));
+	Rect(area.x, area.y, (double)area.w * HP / 1000, 60 * shrinkRate).draw(Color(L"#ff0000"));
+	Vec2 pos(0, 40); // hidariue
+	/*
+	double width; // haba
+	int reflectionX; //
+	const int dist = 90;
+	if (_isLeft) {
+		width = Data::LPlayer.HP / 1000.0 * 360;
+		pos.x = Window::Center().x - dist - width;
+		reflectionX = Window::Center().x - dist - 360;
+	}
+	else {
+		width = Data::RPlayer.HP / 1000.0 * 360;
+		pos.x = Window::Center().x + dist - 15;
+		reflectionX = Window::Center().x + dist - 12;
+	}
+
+	// 背景
+	RoundRect({ reflectionX, pos.y }, { 360 + 12, 15 }, 7.5)
+		.draw(ColorF(L"#f99").setAlpha(0.25));
+
+	// 外周
+	RoundRect(pos.asPoint(), { width + 15, 15 }, 7.5)
+		.drawShadow({}, 8, 3, Color(L"#f22"));*/
 }
