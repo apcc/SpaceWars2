@@ -13,8 +13,8 @@ void Grenade::draw(){
 		getShape().draw(ColorF(L"#ff8800").setAlpha(((double)fuse) / EXPLODE_TIMING));
 	}
 	else {
-		if (isLeft)TextureAsset(L"mainBullet1").resize(30, 30).drawAt(pos);
-		else TextureAsset(L"mainBullet1").resize(30, 30).mirror().drawAt(pos);
+		if (isLeft)TextureAsset(L"mainBullet1").resize(30*drawRate, 30*drawRate).drawAt(pos);
+		else TextureAsset(L"mainBullet1").resize(30*drawRate, 30*drawRate).mirror().drawAt(pos);
 		//	getShape().draw(Color(L"#ff0000"));
 	}
 }
