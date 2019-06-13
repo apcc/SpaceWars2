@@ -198,9 +198,10 @@ int Player::skillSelect(){
 			LOG_ERROR(L"SkillSelecterで意図しない値が参照されました。");
 	}
 
-	if (sound)
+	if (sound) {
 		SoundAsset(L"cursor1").setVolume(Config::masterVolume*Config::cursolSoundVolume);
 		SoundAsset(L"cursor1").playMulti();
+	}
 
 	return selectedType;
 }
