@@ -2,7 +2,7 @@
 
 #define V80 { 80, 80 }
 
-SkillDescriptManager SkillSelect::skillDescriptManager;
+SkillDescriptManager SkillSelect::skillDescriptionManager;
 
 const Array<String> mainSkillSound = {
 	L"shot", L"grenade1", L"grenade2", L"laser1", L"laser2", L"reflection", L"flame"
@@ -18,8 +18,8 @@ bool SkillSelect::isLoaded = false;
 
 void SkillSelect::init() {
 	// スキル説明動画回り
-	movetoUp[0][0] = movetoUp[1][1] = true;
-	movetoUp[0][1] = movetoUp[1][0] = false;
+	moveToUp[0][0] = moveToUp[1][1] = true;
+	moveToUp[0][1] = moveToUp[1][0] = false;
 
 	playerPos[1][0] = playerPos[0][1] = Vec2(140, Window::Height() / 2);
 	playerPos[1][1] = playerPos[0][0] = Vec2(1100, Window::Height() / 2);
@@ -65,7 +65,7 @@ void SkillSelect::init() {
 		while (descReader.readLine(str)) {
 			lane++;
 			if (lane == 1)continue;
-			skillDescriptManager.AddDescript(str);
+			skillDescriptionManager.AddDescript(str);
 		}
 
 		Rect rect[4];
@@ -74,8 +74,8 @@ void SkillSelect::init() {
 		for (int i = 0; i < 4; i++) {
 			rect[i] = SmartUI::Get(S12).region(strings[i]);
 			img[i].resize(rect[i].size);
-			SmartUI::Get(S12).overwrite(img[i], strings[i], { 0, 0 }, Color(L"#ffffff"));
-			rotatedDescript[i] = Texture(img[i]);
+			SmartUI::Get(S12).overwrite(img[i], strings[i], { 0, 0 }, Color(L"#fff"));
+			rotatedDescription[i] = Texture(img[i]);
 		}
 
 		for (auto i : step(5)) {
@@ -114,37 +114,36 @@ void SkillSelect::update() {
 	// 機体の処理
 	for (int isLeft = 0; isLeft < 2; isLeft++) {
 		for (int i = 0; i < 2; i++) {
-			if (i == 1 && judgementTime[isLeft] != 0) continue;
-			if (movetoUp[isLeft][i]) {
+			if (i == 1 && judgmentTime[isLeft] != 0) continue;
+			if (moveToUp[isLeft][i]) {
 				playerPos[isLeft][i] -= Vec2(0, 3);
-				if (playerPos[isLeft][i].y < Window::Height()/5) {
-					movetoUp[isLeft][i] = false;
-					playerPos[isLeft][i].y = Window::Height()/5;
+				if (playerPos[isLeft][i].y < (int)(Window::Height() / 5)) {
+					moveToUp[isLeft][i] = false;
+					playerPos[isLeft][i].y = (int)(Window::Height() / 5);
 				}
 			}
 			else {
 				playerPos[isLeft][i] += Vec2(0, 3);
-				if (playerPos[isLeft][i].y > Window::Height()*4/5) {
-					movetoUp[isLeft][i] = true;
-					playerPos[isLeft][i].y = Window::Height()*4/5;
+				if (playerPos[isLeft][i].y > (int)(Window::Height() * 4 / 5)) {
+					moveToUp[isLeft][i] = true;
+					playerPos[isLeft][i].y = (int)(Window::Height() * 4 / 5);
 				}
 			}
 		}
 	}
 
 	for(int player = 0; player < 2; player++){
-		bool isLeft;
-		if(player) isLeft = 1;
-		else isLeft = 0;
+		bool isLeft = !!player;
+
 		Player* PLAYER = &(isLeft ? Data::LPlayer : Data::RPlayer);
 
 		// Skill選択操作
 		if(isLeft ? !LReady : !RReady){
-			if(PLAYER->skillSelect())	goingTowhiteout[isLeft] = true;
+			if(PLAYER->skillSelect())	goingToBlackOut[isLeft] = true;
 		}
 
 		// 説明動画: 弾
-		if (judgementTime[isLeft] == 0) {
+		if (judgmentTime[isLeft] == 0) {
 			for (auto itr = bullets[isLeft].begin(); itr != bullets[isLeft].end();) {
 				Vec2 ppos = playerPos[isLeft][0];
 				Vec2 opps = playerPos[isLeft][1];
@@ -157,12 +156,12 @@ void SkillSelect::update() {
 				}
 			}
 		} else {
-			if (judgementTime[isLeft] % 10 == 0) {
+			if (judgmentTime[isLeft] % 10 == 0) {
 				Bullet* bullet = new Shot(playerPos[isLeft][0], isLeft);
 				bullet->shrink(bulletArea[isLeft]);
 				bullets[isLeft].push_back(bullet);
 			}
-			judgementTime[isLeft]--;
+			judgmentTime[isLeft]--;
 		}
 
 		// INVERSION_RECOVERY
@@ -173,7 +172,7 @@ void SkillSelect::update() {
 				coolDownTime[isLeft] = 0;
 				isLeft ? playerPos[1][0] : playerPos[0][1] = Vec2(140, Window::Height() / 2);
 				isLeft ? playerPos[1][1] : playerPos[0][0] = Vec2(1100, Window::Height() / 2);
-				movetoUp[isLeft][0] = true; movetoUp[isLeft][1] = false;
+				moveToUp[isLeft][0] = true; moveToUp[isLeft][1] = false;
 				for (auto itr : bullets[isLeft]) {
 					delete itr;
 				}
@@ -204,16 +203,16 @@ void SkillSelect::update() {
 		}
 
 		// 上半分のブラックアウト処理
-		if(goingTowhiteout[isLeft]){
+		if(goingToBlackOut[isLeft]){
 			blackOutTime[isLeft]++;
 			if(blackOutTime[isLeft]>=BLACKOUT_TIME){
 				// 真っ暗になったタイミング = 表示させるスキルを切り替えるタイミング
-				goingTowhiteout[isLeft] = false;
+				goingToBlackOut[isLeft] = false;
 				skillsDisplayed[isLeft][0] = PLAYER->whatMainSkill;
 				skillsDisplayed[isLeft][1] = PLAYER->whatSubSkill;
 				skillsDisplayed[isLeft][2] = PLAYER->whatSpecialSkill;
 				skillTypeDisplayed[isLeft] = PLAYER->selectedType;
-				goingTowhiteout[isLeft] = false;
+				goingToBlackOut[isLeft] = false;
 
 				for(auto itr : bullets[isLeft]) {
 					delete itr;
@@ -221,8 +220,8 @@ void SkillSelect::update() {
 				bullets[isLeft].clear();
 				coolDownTime[isLeft] = 0;
 
-				movetoUp[isLeft][0] = true; movetoUp[isLeft][1] = false;
-				judgementTime[isLeft] = 0;
+				moveToUp[isLeft][0] = true; moveToUp[isLeft][1] = false;
+				judgmentTime[isLeft] = 0;
 				timerCount[isLeft] = 0;
 				isLeft ? playerPos[1][0] : playerPos[0][1] = Vec2(140, Window::Height() / 2);
 				isLeft ? playerPos[1][1] : playerPos[0][0] = Vec2(1100, Window::Height() / 2);
@@ -237,63 +236,77 @@ void SkillSelect::update() {
 			Vec2 opps = playerPos[isLeft][1];
 			Bullet* bullet;
 			switch (skillTypeDisplayed[isLeft]) {
-			case 0://Main
+			case 0: { // Main
 				switch (skillsDisplayed[isLeft][0]) {
-				case SHOT://Shot
+				case SHOT: {
 					bullet = new Shot(ppos, isLeft);
 					coolDownTime[isLeft] = 6;
 					break;
-				case GRENADE:
+				}
+				case GRENADE: {
 					bullet = new Grenade(ppos, isLeft);
 					coolDownTime[isLeft] = 20;
 					break;
-				case LASER:
+				}
+				case LASER: {
 					bullet = new VLaser(ppos, isLeft);
 					coolDownTime[isLeft]++;
 					break;
-				case REFLECTION:
+				}
+				case REFLECTION: {
 					bullet = new Reflection(ppos, isLeft);
 					coolDownTime[isLeft] = 30;
 					break;
-				case FLAME:
+				}
+				case FLAME: {
 					bullet = new Flame(ppos, isLeft);
 					coolDownTime[isLeft] = 20;
 					break;
-				default: bullet = new Shot(ppos, isLeft); break;
+				}
+				default:
+					bullet = new Shot(ppos, isLeft); break;
 				}
 				break;
-			case 1://Sub
+			}
+
+			case 1: { // Sub
 				switch (skillsDisplayed[isLeft][1]) {
-				case JUMP:
-					if (movetoUp[isLeft][0]) {
+				case JUMP: {
+					if (moveToUp[isLeft][0]) {
 						playerPos[isLeft][0].y -= 160;
-						if (playerPos[isLeft][0].y < Window::Height()/5) {
-							movetoUp[isLeft][0] = false;
-							playerPos[isLeft][0].y = Window::Height()/5;
+						if (playerPos[isLeft][0].y < Window::Height() / 5) {
+							moveToUp[isLeft][0] = false;
+							playerPos[isLeft][0].y = Window::Height() / 5;
 						}
 					}
 					else {
 						playerPos[isLeft][0].y += 160;
-						if (playerPos[isLeft][0].y > Window::Height()*4/5) {
-							movetoUp[isLeft][0] = true;
-							playerPos[isLeft][0].y = Window::Height()*4/5;
+						if (playerPos[isLeft][0].y > Window::Height() * 4 / 5) {
+							moveToUp[isLeft][0] = true;
+							playerPos[isLeft][0].y = Window::Height() * 4 / 5;
 						}
 					}
 
 					coolDownTime[isLeft] = 80;
 					bullet = new Jump(ppos, isLeft);
 					break;
-				case SHIELD:
-					if(bullets[isLeft].size()==0) bullet = new Shield(ppos, isLeft);
+				}
+
+				case SHIELD: {
+					if (bullets[isLeft].empty()) bullet = new Shield(ppos, isLeft);
 					else bullet = new Shot(opps, !isLeft);
 					coolDownTime[isLeft] = 6;
 					break;
-				case MISSILE:
+				}
+
+				case MISSILE: {
 					bullet = new Missile(ppos, isLeft);
 					coolDownTime[isLeft] = 40;
 					break;
-				case BOMB:
-					for(int i = 0; i < 3; i++){
+				}
+
+				case BOMB: {
+					for (int i = 0; i < 3; i++) {
 						Bullet* subBul = new Bomb(ppos, isLeft);
 						subBul->shrink(bulletArea[isLeft]);
 						bullets[isLeft].push_back(subBul);
@@ -301,12 +314,17 @@ void SkillSelect::update() {
 					bullet = new Bomb(ppos, isLeft);
 					coolDownTime[isLeft] = 240;
 					break;
-				default: bullet = new Shot(ppos, isLeft); break;
+				}
+
+				default:
+					bullet = new Shot(ppos, isLeft); break;
 				}
 				break;
-			case 2://Special
+			}
+
+			case 2: { //Special
 				switch (skillsDisplayed[isLeft][2]) {
-				case LOCK_ON:
+				case LOCK_ON: {
 					for (int i = 0; i < 3; i++) {
 						bullet = new LockOn(ppos, isLeft, 30 * i);
 						if (i == 2)continue;
@@ -315,25 +333,34 @@ void SkillSelect::update() {
 					}
 					coolDownTime[isLeft] = 240;
 					break;
-				case SUMMON_PARTNER:
+				}
+
+				case SUMMON_PARTNER: {
 					bullet = new SummonPartner(ppos, isLeft);
 					coolDownTime[isLeft] = 150;
 					break;
-				case JUDGMENT_TIME:
-					judgementTime[isLeft] = 120;
+				}
+
+				case JUDGMENT_TIME: {
+					judgmentTime[isLeft] = 120;
 					coolDownTime[isLeft] = 300;
 					bullet = new Shot(ppos, isLeft);
 					break;
-				case INVERSION_RECOVERY:
+				}
+
+				case INVERSION_RECOVERY: {
 					bullet = new Shot(opps, !isLeft);
 					coolDownTime[isLeft] = 6;
 					break;
+				}
+
 				default:
 					bullet = new Shot(ppos, isLeft); break;
 				}
 				break;
 			default:
 				bullet = new Shot(ppos, isLeft); break;
+			}
 			}
 			bullet->shrink(bulletArea[isLeft]);
 			bullets[isLeft].push_back(bullet);
@@ -347,29 +374,28 @@ void SkillSelect::draw() const {
 
 	for (int isLeft = 0; isLeft <= 1; isLeft++) { // LPlayer, RPlayer
 
-
-		Player* PLAYER = &(isLeft ? Data::LPlayer : Data::RPlayer);
-		int selectingType = PLAYER->selectedType;
-		double alpha[3]      = { 0.5, 0.5, 0.5 };
-		alpha[selectingType] = 1.0;
-		String skillType[3]  = { L"main", L"sub", L"special" };
-		int    whatSkill[3]  = { PLAYER->whatMainSkill, PLAYER->whatSubSkill, PLAYER->whatSpecialSkill };
-		int    skillNum[3]   = { MAIN_NUM - 1, SUB_NUM - 1, SPECIAL_NUM - 1 };
-		String skillColor[3] = { L"#7cfc00", L"#4169e1", L"#ffd000" };
+		Player* PLAYER           = &(isLeft ? Data::LPlayer : Data::RPlayer);
+		int selectingType        = PLAYER->selectedType;
+		double alpha[3]          = { 0.5, 0.5, 0.5 };
+		alpha[selectingType]     = 1.0;
+		String skillType[3]      = { L"main", L"sub", L"special" };
+		int    whatSkill[3]      = { PLAYER->whatMainSkill, PLAYER->whatSubSkill, PLAYER->whatSpecialSkill };
+		int    skillNum[3]       = { MAIN_NUM - 1, SUB_NUM - 1, SPECIAL_NUM - 1 };
+		String skillColor[3]     = { L"#7cfc00", L"#4169e1", L"#ffd000" };
 		String skillBackColor[3] = { L"#dfd", L"#ddf", L"#fed" };
 
-		SkillDescript descript = skillDescriptManager.skillDescription[skillTypeDisplayed[isLeft]][skillsDisplayed[isLeft][skillTypeDisplayed[isLeft]]];
+		SkillDescript description = skillDescriptionManager.skillDescription[skillTypeDisplayed[isLeft]][skillsDisplayed[isLeft][skillTypeDisplayed[isLeft]]];
 
-		// JudgementTimeの凍結背景描写
-		if (judgementTime[isLeft]) {
-			Rect(bulletArea[isLeft]).draw(ColorF(L"#336699").setAlpha((0.6 - (120 - judgementTime[isLeft]) * (120 - judgementTime[isLeft]) / 28800.0)));
+		// JudgmentTimeの凍結背景描写
+		if (judgmentTime[isLeft]) {
+			Rect(bulletArea[isLeft]).draw(ColorF(L"#336699").setAlpha((0.6 - (120 - judgmentTime[isLeft]) * (120 - judgmentTime[isLeft]) / 28800.0)));
 		}
 
 		// Skillの名前
-		SmartUI::Get(S24)(descript.name).draw({ (!isLeft) * Window::Width() / 2 + 30, 20 }, Color(L"#ffffff"));
+		SmartUI::Get(S24)(description.name).draw({ (!isLeft) * Window::Width() / 2 + 30, 20 }, Color(L"#fff"));
 
 		// 説明文
-		SmartUI::Get(S18)(descript.descript).draw({ (!isLeft) * Window::Width() / 2 + 30, 300 }, ColorF(L"#ffffff"));
+		SmartUI::Get(S18)(description.descript).draw({ (!isLeft) * Window::Width() / 2 + 30, 300 }, ColorF(L"#fff"));
 
 
 		// 動画エリアの背景
@@ -382,74 +408,76 @@ void SkillSelect::draw() const {
 
 		if (skillTypeDisplayed[isLeft] == 0) {
 			Array<Vec2> chartPos = {
-				{ (!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y - chartSize },
-				{ (!isLeft) * Window::Width() / 2 + chartCenter.x + chartSize, chartCenter.y },
-				{ (!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y + chartSize },
-				{ (!isLeft) * Window::Width() / 2 + chartCenter.x - chartSize, chartCenter.y }
+				{ (double)(!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y - chartSize },
+				{ (double)(!isLeft) * Window::Width() / 2 + chartCenter.x + chartSize, chartCenter.y },
+				{ (double)(!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y + chartSize },
+				{ (double)(!isLeft) * Window::Width() / 2 + chartCenter.x - chartSize, chartCenter.y }
 			};
 			Quad(chartPos[0], chartPos[1], chartPos[2], chartPos[3]).draw(ColorF(L"#00bfff").setAlpha(0.4));
-			Line((!isLeft) * Window::Width() / 2 + chartCenter.x - chartSize, chartCenter.y, (!isLeft) * Window::Width() / 2 + chartCenter.x + chartSize, chartCenter.y).draw();
-			Line((!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y - chartSize, (!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y + chartSize).draw();
+			Line(
+				(double)(!isLeft) * Window::Width() / 2 + chartCenter.x - chartSize,
+				chartCenter.y,
+				(double)(!isLeft) * Window::Width() / 2 + chartCenter.x + chartSize,
+				chartCenter.y
+			).draw();
+			Line(
+				(double)(!isLeft) * Window::Width() / 2 + chartCenter.x,
+				chartCenter.y - chartSize,
+				(double)(!isLeft) * Window::Width() / 2 + chartCenter.x,
+				chartCenter.y + chartSize
+			).draw();
 
 
 			Array<Vec2> linePos = {
-				{ (!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y - chartSize * descript.status[0] / 10 },
-				{ (!isLeft) * Window::Width() / 2 + chartCenter.x + chartSize * descript.status[1] / 10, chartCenter.y },
-				{ (!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y + chartSize * descript.status[2] / 10 },
-				{ (!isLeft) * Window::Width() / 2 + chartCenter.x - chartSize * descript.status[3] / 10, chartCenter.y },
-				{ (!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y - chartSize * descript.status[0] / 10 }
+				{ (double)(!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y - chartSize * description.status[0] / 10 },
+				{ (double)(!isLeft) * Window::Width() / 2 + chartCenter.x + chartSize * description.status[1] / 10, chartCenter.y },
+				{ (double)(!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y + chartSize * description.status[2] / 10 },
+				{ (double)(!isLeft) * Window::Width() / 2 + chartCenter.x - chartSize * description.status[3] / 10, chartCenter.y },
+				{ (double)(!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y - chartSize * description.status[0] / 10 }
 			};
-			LineString(linePos).draw(5, ColorF(L"#ffffff").setAlpha(0.9));
+			LineString(linePos).draw(5, ColorF(L"#fff").setAlpha(0.9));
 			// stats1
 
 			Vec2 data[4] = { {-30,15}, {-15,-30}, {35,-20}, {5,20} };
 			for (int i = 0; i < 4; i++) {
-				rotatedDescript[i].rotate(i%2 ? Pi/4 : -Pi/4).drawAt(Vec2(chartPos[i]) + data[i]);
+				rotatedDescription[i].rotate(i%2 ? Pi/4 : -Pi/4).drawAt(Vec2(chartPos[i]) + data[i]);
 			}
-			/*SmartUI::Get(S12)(L"瞬間ダメージ").drawAt({
-				(!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y - chartSize - 10
-			}, Color(L"#ffffff"));
-			rotatedDescript[0].rotate(Pi/4).drawAt(Vec2(
-				(!isLeft) * Window::Width() / 2 + chartCenter.x + chartSize + 15, chartCenter.y
-			) - Vec2(15, 15));
-			SmartUI::Get(S12)(L"使いやすさ").drawAt({
-				(!isLeft)* Window::Width() / 2 + chartCenter.x, chartCenter.y + chartSize + 10
-			});
-			(!isLeft)* Window::Width() / 2 + chartCenter.x, chartCenter.y - chartSize;*/
 		}
 		else {
 			chartCenter += Vec2((!isLeft) * Window::Width() / 2, 0);
 			Triangle(chartCenter, chartSize*sqrt(3), 0_deg).draw(ColorF(L"#00bfff").setAlpha(0.4));
-			Vec2 posOftriangle[3] = {
+			Vec2 posTriangle[3] = {
 				{chartCenter - Vec2(0, chartSize)},
 				{chartCenter + Vec2(chartSize, 0).rotated(Pi * 5 / 6)},
 				{chartCenter + Vec2(chartSize, 0).rotated(Pi * 1 / 6)},
 			};
-			String descriptStr[3] = {L"瞬間ダメージ", L"クールダウン", L"扱いやすさ"};
+			String descriptionStr[3] = {L"瞬間ダメージ", L"クールダウン", L"扱いやすさ"};
 			Vec2 data[3] = { {0,-10}, {0,15}, {0,15} };
 			for (int i = 0; i < 3; i++) {
-				Line(chartCenter, posOftriangle[i]).draw();
-				SmartUI::Get(S12)(descriptStr[i]).drawAt( Point(posOftriangle[i].x, posOftriangle[i].y) +data[i]);
+				Line(chartCenter, posTriangle[i]).draw();
+				SmartUI::Get(S12)(descriptionStr[i]).drawAt( Point(posTriangle[i].x, posTriangle[i].y) +data[i]);
 			}
 
 			LineString(
 				{
-					{chartCenter - Vec2(0, chartSize * descript.status[0] / 10)},
-					{chartCenter + Vec2(chartSize * descript.status[1] / 10, 0).rotated(Pi * 5 / 6)},
-					{chartCenter + Vec2(chartSize * descript.status[2] / 10, 0).rotated(Pi * 1 / 6)},
-					{chartCenter - Vec2(0, chartSize * descript.status[0] / 10)}
+					{chartCenter - Vec2(0, chartSize * description.status[0] / 10)},
+					{chartCenter + Vec2(chartSize * description.status[1] / 10, 0).rotated(Pi * 5 / 6)},
+					{chartCenter + Vec2(chartSize * description.status[2] / 10, 0).rotated(Pi * 1 / 6)},
+					{chartCenter - Vec2(0, chartSize * description.status[0] / 10)}
 				}
-			).draw(5, ColorF(L"#ffffff").setAlpha(0.9));
+			).draw(5, ColorF(L"#fff").setAlpha(0.9));
 		}
 
 		// ブラックアウト処理
-		Rect({ 15 + (!isLeft) * Window::Width() / 2, 10 }, { 610 + (!isLeft) * Window::Width() / 2, 290 }).draw(ColorF(L"#000000").setAlpha((double)blackOutTime[isLeft] / BLACKOUT_TIME));
+		Rect({ 15 + (!isLeft) * Window::Width() / 2, 10 }, { 610 + (!isLeft) * Window::Width() / 2, 290 })
+			.draw(ColorF(L"#000").setAlpha((double)blackOutTime[isLeft] / BLACKOUT_TIME));
 
 
 		for (int type = 0; type < 3; type++) { // mainSkill, subSkill, specialSkill
 
 			// 選択中のskillの枠
-			Rect(720 + (190 * type) - (640 * isLeft), 470, 100).draw(ColorF(skillBackColor[type]).setAlpha(0.7)).drawFrame(0, 4, ColorF(skillColor[type]).setAlpha(alpha[type]));
+			Rect(720 + (190 * type) - (640 * isLeft), 470, 100).draw(ColorF(skillBackColor[type]).setAlpha(0.7))
+				.drawFrame(0, 4, ColorF(skillColor[type]).setAlpha(alpha[type]));
 
 			// skillIconの描画
 			for (int i = -1; i <= 1; i++) { // -1:前 0:選択中 1:後
