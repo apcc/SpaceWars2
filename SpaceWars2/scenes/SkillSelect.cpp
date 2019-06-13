@@ -159,7 +159,7 @@ void SkillSelect::update() {
 		// 説明動画: 弾の当たり判定
 
 		for (auto b : bullets[isLeft]) {
-			b->getDamage(getHitCircle(shrinkVec2(playerPos[isLeft][1], isLeft)));
+			b->getDamage(getHitCircle(shrinkVec2(playerPos[isLeft][!(b->isLeft^isLeft)], isLeft), isLeft));
 		}
 
 		// 上半分のブラックアウト処理
@@ -192,6 +192,7 @@ void SkillSelect::update() {
 		// 動画: 各スキルの発動
 		if (coolDownTime[isLeft] == 0) {
 			Vec2 ppos = playerPos[isLeft][0];
+			Vec2 opps = playerPos[isLeft][1];
 			Bullet* bullet;
 			switch (skillTypeDisplayed[isLeft]) {
 			case 0://Main
@@ -241,7 +242,10 @@ void SkillSelect::update() {
 					bullet = new Jump(ppos, isLeft);
 					break;
 				case SHIELD:
-					bullet = new Shield(ppos, isLeft); break;
+					if(bullets[isLeft].size()==0) bullet = new Shield(ppos, isLeft);
+					else bullet = new Shot(opps, !isLeft);
+					coolDownTime[isLeft] = 6;
+					break;
 				case MISSILE:
 					bullet = new Missile(ppos, isLeft);
 					coolDownTime[isLeft] = 40;
@@ -313,7 +317,7 @@ void SkillSelect::draw() const {
 
 		// JudgementTimeの凍結背景描写
 		if (judgementTime[isLeft]) {
-			Rect(bulletArea[isLeft]).draw(ColorF(L"#336699").setAlpha((0.6 - (140 - judgementTime[isLeft]) * (140 - judgementTime[isLeft]) / 28800.0)));
+			Rect(bulletArea[isLeft]).draw(ColorF(L"#336699").setAlpha((0.6 - (120 - judgementTime[isLeft]) * (120 - judgementTime[isLeft]) / 28800.0)));
 		}
 
 		// Skillの名前

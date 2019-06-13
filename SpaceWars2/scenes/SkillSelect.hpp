@@ -35,7 +35,10 @@ private:
 	int judgementTime[2] = {};
 	Vec2 shrinkVec2(Vec2, int) const;
 
-	Circle getHitCircle(Vec2 _pos) {
+	Circle getHitCircle(Vec2 _pos, bool isLeft) {
+		if(skillTypeDisplayed[isLeft] == 1 && skillsDisplayed[isLeft][1] == 1) {
+			return Circle(_pos, 200*shrinkRate);
+		}
 		return Circle(_pos, 30*0.4);
 	}
 
