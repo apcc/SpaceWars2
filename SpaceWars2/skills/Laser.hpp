@@ -41,6 +41,7 @@ public:
 			++(isLeft ? Data::LPlayer : Data::RPlayer).mainSkillCnt;
 			chargeSound = Sound(L"/8203");
 			laserSound = Sound(L"/8204");
+			chargeSound.setVolume(Config::MASTER_VOLUME * Config::CURSOR_VOLUME);
 			chargeSound.play();
 		}
 	}

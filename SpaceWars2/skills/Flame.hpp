@@ -28,6 +28,7 @@ public:
 	Flame(Vec2 p, bool left) : Bullet(p, left) {
 		vel = Vec2(bulletSpeed * (left ? 1 : -1), 0)/*.rotate(Radians(Random(-5, 5)))*/;
 		ppos = p;
+		SoundAsset(L"flame").setVolume(Config::MASTER_VOLUME * Config::EFFECT_VOLUME);
 		SoundAsset(L"flame").playMulti(0.4);
 	}
 

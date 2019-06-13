@@ -155,10 +155,13 @@ void Game::update() {
 			else
 				sound = false;
 			selecting = Clamp(selecting, 0, 2);
-			if (sound)
+			if (sound) {
+				SoundAsset(L"cursor1").setVolume(Config::MASTER_VOLUME * Config::CURSOR_VOLUME);
 				SoundAsset(L"cursor1").playMulti();
+			}
 
 			if (Data::KeyEnter.repeat(0, true)){
+				SoundAsset(L"click2").setVolume(Config::MASTER_VOLUME * Config::CURSOR_VOLUME);
 				SoundAsset(L"click2").playMulti();
 				switch (selecting) {
 				case 0: 

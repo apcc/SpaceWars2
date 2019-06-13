@@ -8,6 +8,7 @@ private:
 public:
 	Missile(Vec2 p, bool left) : Bullet(p, left) {
 		vel = Vec2(bulletSpeed * (left ? 1 : -1), 0).rotate(Radians(Random(-5, 5)));
+		SoundAsset(L"missile").setVolume(Config::MASTER_VOLUME * Config::EFFECT_VOLUME);
 		SoundAsset(L"missile").playMulti(0.8);
 		// vel.rotate(Radians(((System::FrameCount() % 20 == 0) ? 1 : -1) * 10.0));
 		/*angle += 7;

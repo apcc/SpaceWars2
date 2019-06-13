@@ -3,7 +3,10 @@
 bool Grenade::update(Vec2 _myPos, Vec2 _oppPos) {
 	if (fuse == 0) return true;
 	if (fuse <= EXPLODE_TIMING) vel.set(0,0);
-	if (fuse == EXPLODE_TIMING) SoundAsset(L"grenade2").playMulti();
+	if (fuse == EXPLODE_TIMING) {
+		SoundAsset(L"grenade2").setVolume(Config::MASTER_VOLUME * Config::CURSOR_VOLUME);
+		SoundAsset(L"grenade2").playMulti();
+		}
 	--fuse;
 	return Bullet::update(_myPos, _oppPos);
 }
