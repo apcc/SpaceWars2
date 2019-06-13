@@ -491,7 +491,7 @@ void SkillSelect::draw() const {
 		}
 
 		if (skillTypeDisplayed[isLeft] == 2 && skillsDisplayed[isLeft][2] == 3)
-			drawHPGauge(isLeft, playerHP[isLeft]);
+			drawHPGauge(!!isLeft, playerHP[isLeft]);
 	}
 
 	if (LReady) {
@@ -529,6 +529,7 @@ Vec2 SkillSelect::shrinkVec2(Vec2 _d, int isLeft) const {
 
 void SkillSelect::drawHPGauge(bool _isLeft, int HP) const {
 	Rect area = bulletArea[_isLeft];
-	Rect(area.x, area.y, area.w, 60 * shrinkRate).draw(Color(L"#f99"));
-	Rect(area.x, area.y, (double)area.w * HP / 1000, 60 * shrinkRate).draw(Color(L"#f11"));
+	int height = (int)(60 * shrinkRate);
+	Rect(area.x, area.y, area.w, height).draw(Color(L"#f99"));
+	Rect(area.x, area.y, area.w * HP / 1000, height).draw(Color(L"#f11"));
 }
