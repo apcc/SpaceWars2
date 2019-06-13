@@ -12,7 +12,7 @@ private:
 	bool inRecovery;
 	Player* PLAYER;
 
-	const int TRICKING_TIME = 90;
+	const int TRICKING_TIME = 120;
 
 public:
 	InversionRecovery(Vec2 _pos, bool _isLeft) : Bullet(_pos, _isLeft) {
