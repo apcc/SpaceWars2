@@ -21,7 +21,7 @@ void SkillSelect::init() {
 	movetoUp[0][0] = movetoUp[1][1] = true;
 	movetoUp[0][1] = movetoUp[1][0] = true;
 
-	playerPos[1][0] = playerPos[0][1] = Vec2(160, Window::Height() / 2);
+	playerPos[1][0] = playerPos[0][1] = Vec2(140, Window::Height() / 2);
 	playerPos[1][1] = playerPos[0][0] = Vec2(1100, Window::Height() / 2);
 
 	bulletArea[0] = Rect({ 290 + Window::Size().x / 2 , 90 }, 16 * 19, 9 * 19); //Right
@@ -31,7 +31,7 @@ void SkillSelect::init() {
 	RReady = false;
 
 	// Player init
-	Data::LPlayer.init(Vec2(160, Config::HEIGHT / 2), true);  //円の半径
+	Data::LPlayer.init(Vec2(140, Config::HEIGHT / 2), true);  //円の半径
 	Data::RPlayer.init(Vec2(1100, Config::HEIGHT / 2), false); //WIDTH-円の半径
 
 	// Dataの読み込み
@@ -176,7 +176,7 @@ void SkillSelect::update() {
 
 				movetoUp[isLeft][0] = movetoUp[isLeft][1] = true;
 				judgementTime[isLeft] = 0;
-				isLeft ? playerPos[1][0] : playerPos[0][1] = Vec2(160, Window::Height() / 2);
+				isLeft ? playerPos[1][0] : playerPos[0][1] = Vec2(140, Window::Height() / 2);
 				isLeft ? playerPos[1][1] : playerPos[0][0] = Vec2(1100, Window::Height() / 2);
 			}
 		}else{
