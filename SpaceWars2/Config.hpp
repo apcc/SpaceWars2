@@ -17,8 +17,8 @@ namespace Config {
 	//各種音量
 	const double MASTER_VOLUME = 1.0;
 	const double EFFECT_VOLUME = 0.5;
-	const double    BGM_VOLUME = 1.0;
-	const double CURSOR_VOLUME = 0.3;
+	const double    BGM_VOLUME = 0.6;
+	const double CURSOR_VOLUME = 0.5;
 
 	// 背景色
 	const String BACKGROUND	   = L"#ffffff";
