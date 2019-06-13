@@ -35,6 +35,10 @@ private:
 	int judgementTime[2] = {};
 	Vec2 shrinkVec2(Vec2, int) const;
 
+	Circle getHitCircle(Vec2 _pos) {
+		return Circle(_pos, 30*0.4);
+	}
+
 	static SkillDescriptManager skillDescriptManager;
 public:
 	void init() override;

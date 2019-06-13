@@ -127,7 +127,7 @@ void SkillSelect::update() {
 		if(player) isLeft = 1;
 		else isLeft = 0;
 		Player* PLAYER = &(isLeft ? Data::LPlayer : Data::RPlayer);
-		
+
 		// Skill選択操作
 		if(isLeft ? !LReady : !RReady){
 			if(PLAYER->skillSelect())	goingTowhiteout[isLeft] = true;
@@ -154,6 +154,12 @@ void SkillSelect::update() {
 				bullets[isLeft].push_back(bullet);
 			}
 			judgementTime[isLeft]--;
+		}
+
+		// 説明動画: 弾の当たり判定
+
+		for (auto b : bullets[isLeft]) {
+			b->getDamage(getHitCircle(shrinkVec2(playerPos[isLeft][1], isLeft)));
 		}
 
 		// 上半分のブラックアウト処理
@@ -304,10 +310,10 @@ void SkillSelect::draw() const {
 		String skillBackColor[3] = { L"#dfd", L"#ddf", L"#fed" };
 
 		SkillDescript descript = skillDescriptManager.skillDescription[skillTypeDisplayed[isLeft]][skillsDisplayed[isLeft][skillTypeDisplayed[isLeft]]];
-		
+
 		// JudgementTimeの凍結背景描写
 		if (judgementTime[isLeft]) {
-			Rect(bulletArea[isLeft]).draw(ColorF(L"#336699").setAlpha((0.6 - (120 - judgementTime[isLeft]) * (120 - judgementTime[isLeft]) / 28800.0)));
+			Rect(bulletArea[isLeft]).draw(ColorF(L"#336699").setAlpha((0.6 - (140 - judgementTime[isLeft]) * (140 - judgementTime[isLeft]) / 28800.0)));
 		}
 
 		// Skillの名前
