@@ -68,6 +68,16 @@ void SkillSelect::init() {
 			skillDescriptManager.AddDescript(str);
 		}
 
+		Rect rect[4];
+		Image img[4];
+		String strings[4] = {L"ダメージ", L"発射間隔", L"使いやすさ", L"弾速"};
+		for (int i = 0; i < 4; i++) {
+			rect[i] = SmartUI::Get(S12).region(strings[i]);
+			img[i].resize(rect[i].size);
+			SmartUI::Get(S12).overwrite(img[i], strings[i], { 0, 0 }, Color(L"#ffffff"));
+			rotatedDescript[i] = Texture(img[i]);
+		}
+
 		for (auto i : step(5)) {
 			TextureAsset::Register(L"mainBullet"    + Format(i), L"/810" + Format(i));
 			TextureAsset::Register(L"subBullet"     + Format(i), L"/811" + Format(i));
@@ -363,32 +373,49 @@ void SkillSelect::draw() const {
 
 
 		// 動画エリアの背景
-		Rect({290 + (!isLeft ? Window::Size().x : 0)/2 , 90}, 16*19, 9*19).draw(ColorF(L"#0000dd"));
+		bulletArea[isLeft].drawFrame(0, 4);
+		TextureAsset(L"background").resize(bulletArea[isLeft].w, bulletArea[isLeft].h).drawAt(bulletArea[isLeft].center);
 
 		// グラフ描画
 		Vec2 chartCenter = Vec2(150, 175);
 		const double chartSize = 85;
 
 		if (skillTypeDisplayed[isLeft] == 0) {
-			Quad(
+			Array<Vec2> chartPos = {
 				{ (!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y - chartSize },
 				{ (!isLeft) * Window::Width() / 2 + chartCenter.x + chartSize, chartCenter.y },
 				{ (!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y + chartSize },
 				{ (!isLeft) * Window::Width() / 2 + chartCenter.x - chartSize, chartCenter.y }
-			).draw(ColorF(L"#00bfff").setAlpha(0.4));
+			};
+			Quad(chartPos[0], chartPos[1], chartPos[2], chartPos[3]).draw(ColorF(L"#00bfff").setAlpha(0.4));
 			Line((!isLeft) * Window::Width() / 2 + chartCenter.x - chartSize, chartCenter.y, (!isLeft) * Window::Width() / 2 + chartCenter.x + chartSize, chartCenter.y).draw();
 			Line((!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y - chartSize, (!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y + chartSize).draw();
 
 
-			LineString(
-				{
-					{ (!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y - chartSize * descript.status[0] / 10 },
-					{ (!isLeft) * Window::Width() / 2 + chartCenter.x + chartSize * descript.status[1] / 10, chartCenter.y },
-					{ (!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y + chartSize * descript.status[2] / 10 },
-					{ (!isLeft) * Window::Width() / 2 + chartCenter.x - chartSize * descript.status[3] / 10, chartCenter.y },
-					{ (!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y - chartSize * descript.status[0] / 10 }
-				}
-			).draw(5, ColorF(L"#ffffff").setAlpha(0.9));
+			Array<Vec2> linePos = {
+				{ (!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y - chartSize * descript.status[0] / 10 },
+				{ (!isLeft) * Window::Width() / 2 + chartCenter.x + chartSize * descript.status[1] / 10, chartCenter.y },
+				{ (!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y + chartSize * descript.status[2] / 10 },
+				{ (!isLeft) * Window::Width() / 2 + chartCenter.x - chartSize * descript.status[3] / 10, chartCenter.y },
+				{ (!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y - chartSize * descript.status[0] / 10 }
+			};
+			LineString(linePos).draw(5, ColorF(L"#ffffff").setAlpha(0.9));
+			// stats1
+
+			Vec2 data[4] = { {-30,15}, {-15,-30}, {35,-20}, {5,20} };
+			for (int i = 0; i < 4; i++) {
+				rotatedDescript[i].rotate(i%2 ? Pi/4 : -Pi/4).drawAt(Vec2(chartPos[i]) + data[i]);
+			}
+			/*SmartUI::Get(S12)(L"瞬間ダメージ").drawAt({
+				(!isLeft) * Window::Width() / 2 + chartCenter.x, chartCenter.y - chartSize - 10
+			}, Color(L"#ffffff"));
+			rotatedDescript[0].rotate(Pi/4).drawAt(Vec2(
+				(!isLeft) * Window::Width() / 2 + chartCenter.x + chartSize + 15, chartCenter.y
+			) - Vec2(15, 15));
+			SmartUI::Get(S12)(L"使いやすさ").drawAt({
+				(!isLeft)* Window::Width() / 2 + chartCenter.x, chartCenter.y + chartSize + 10
+			});
+			(!isLeft)* Window::Width() / 2 + chartCenter.x, chartCenter.y - chartSize;*/
 		}
 		else {
 			chartCenter += Vec2((!isLeft) * Window::Width() / 2, 0);
@@ -398,8 +425,11 @@ void SkillSelect::draw() const {
 				{chartCenter + Vec2(chartSize, 0).rotated(Pi * 5 / 6)},
 				{chartCenter + Vec2(chartSize, 0).rotated(Pi * 1 / 6)},
 			};
+			String descriptStr[3] = {L"瞬間ダメージ", L"クールダウン", L"扱いやすさ"};
+			Vec2 data[3] = { {0,-10}, {0,15}, {0,15} };
 			for (int i = 0; i < 3; i++) {
 				Line(chartCenter, posOftriangle[i]).draw();
+				SmartUI::Get(S12)(descriptStr[i]).drawAt( Point(posOftriangle[i].x, posOftriangle[i].y) +data[i]);
 			}
 
 			LineString(

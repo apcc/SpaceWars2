@@ -1,8 +1,8 @@
 SkillType,SkillName,Description,Stats1,Stats2,Stats3,Stats4
-Main,Shot,拡散する弾を高速で連射する,10,4,10,5
-Main,Grenade,時間経過か着弾で爆発する弾を撃つ,6,8,5,4
-Main,Laser,チャージした後にレーザービームを放つ,12,7,4,9
-Main,Reflection,壁に当たると反射する弾を撃つ,8,3,7,12
+Main,Shot,拡散する弾を高速で連射する,4,10,5,10
+Main,Grenade,時間経過か着弾で爆発する弾を撃つ,8,5,4,6
+Main,Laser,チャージした後にレーザービームを放つ,7,4,9,15
+Main,Reflection,壁に当たると反射する弾を撃つ,3,7,10,8
 Main,Flame,大きくて弾道が燃える弾を撃つ,4,9,5,7
 Sub,Jump,瞬時に中距離移動し、弾をよける,5,7,4
 Sub,Shield,自身を守るシールドを周囲に展開する,9,2,10
