@@ -15,7 +15,7 @@ private:
 	Circle getShape() { return Circle(pos, 100); }
 public:
 	Shield(Vec2 _pos, bool _isLeft) : Bullet(_pos, _isLeft) {
-		SoundAsset(L"shield").setVolume(Config::masterVolume*Config::effectSoundVolume);
+		SoundAsset(L"shield").setVolume(Config::MASTER_VOLUME * Config::EFFECT_VOLUME);
 		SoundAsset(L"shield").playMulti(1.0);
 
 		if (isLeft ? isLDoing : isRDoing) {

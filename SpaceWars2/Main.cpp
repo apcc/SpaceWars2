@@ -66,7 +66,7 @@ void Main() {
 	manager.add<Game>(L"Game");
 
 	SoundAsset(L"BGM").setLoop(true);
-	SoundAsset(L"BGM").setVolume(Config::masterVolume*Config::bgmVolume);
+	SoundAsset(L"BGM").setVolume(Config::MASTER_VOLUME * Config::BGM_VOLUME);
 	SoundAsset(L"BGM").play();
 
 	while (System::Update()){

@@ -40,12 +40,12 @@ void SkillSelect::update() {
 
 	if (Data::LKeySelect.repeat(20, true) && !LContinue) {
 		LContinue = true;
-		SoundAsset(L"click1").setVolume(Config::masterVolume*Config::cursolSoundVolume);
+		SoundAsset(L"click1").setVolume(Config::MASTER_VOLUME * Config::CURSOR_VOLUME);
 		SoundAsset(L"click1").playMulti();
 	}
 	if (Data::RKeySelect.repeat(20, true) && !RContinue) {
 		RContinue = true;
-		SoundAsset(L"click1").setVolume(Config::masterVolume*Config::cursolSoundVolume);
+		SoundAsset(L"click1").setVolume(Config::MASTER_VOLUME * Config::CURSOR_VOLUME);
 		SoundAsset(L"click1").playMulti();
 	}
 

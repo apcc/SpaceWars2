@@ -10,7 +10,7 @@ private:
 public:
 	SummonPartner(Vec2 p, bool left) : Bullet(p, left) {
 		vel = Vec2(0,0);
-		SoundAsset(L"SP").setVolume(Config::masterVolume*Config::effectSoundVolume);
+		SoundAsset(L"SP").setVolume(Config::MASTER_VOLUME * Config::EFFECT_VOLUME);
 		SoundAsset(L"SP").playMulti();
 	}
 	bool update(Vec2 myPos, Vec2 oppPos) override;

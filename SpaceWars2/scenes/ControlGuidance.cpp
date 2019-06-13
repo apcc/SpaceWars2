@@ -16,13 +16,13 @@ void ControlGuidance::update() {
 		} else {
 			changeScene(L"ScreenGuidance", 250);
 		}
-		SoundAsset(L"move1").setVolume(Config::masterVolume*Config::cursolSoundVolume);
+		SoundAsset(L"move1").setVolume(Config::MASTER_VOLUME * Config::CURSOR_VOLUME);
 		SoundAsset(L"move1").playMulti();
 	}
 	if (Data::KeyBack.repeat(20)) {
 		if (status != KEY) {
 			status = (ControlType)(status - 1);
-			SoundAsset(L"move1").setVolume(Config::masterVolume*Config::cursolSoundVolume);
+			SoundAsset(L"move1").setVolume(Config::MASTER_VOLUME * Config::CURSOR_VOLUME);
 			SoundAsset(L"move1").playMulti();
 		}
 	}
