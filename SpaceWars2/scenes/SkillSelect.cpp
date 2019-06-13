@@ -531,27 +531,4 @@ void SkillSelect::drawHPGauge(bool _isLeft, int HP) const {
 	Rect area = bulletArea[_isLeft];
 	Rect(area.x, area.y, area.w, 60 * shrinkRate).draw(Color(L"#f99"));
 	Rect(area.x, area.y, (double)area.w * HP / 1000, 60 * shrinkRate).draw(Color(L"#f11"));
-	Vec2 pos(0, 40); // hidariue
-	/*
-	double width; // haba
-	int reflectionX; //
-	const int dist = 90;
-	if (_isLeft) {
-		width = Data::LPlayer.HP / 1000.0 * 360;
-		pos.x = Window::Center().x - dist - width;
-		reflectionX = Window::Center().x - dist - 360;
-	}
-	else {
-		width = Data::RPlayer.HP / 1000.0 * 360;
-		pos.x = Window::Center().x + dist - 15;
-		reflectionX = Window::Center().x + dist - 12;
-	}
-
-	// 背景
-	RoundRect({ reflectionX, pos.y }, { 360 + 12, 15 }, 7.5)
-		.draw(ColorF(L"#f99").setAlpha(0.25));
-
-	// 外周
-	RoundRect(pos.asPoint(), { width + 15, 15 }, 7.5)
-		.drawShadow({}, 8, 3, Color(L"#f22"));*/
 }
