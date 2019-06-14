@@ -110,8 +110,8 @@ void SkillSelect::update() {
 		SoundAsset(L"click1").setVolume(Config::MASTER_VOLUME * Config::CURSOR_VOLUME);
 		SoundAsset(L"click1").playMulti();
 	}
-	if (Data::LKeySelect.repeat(20, true)) LReady = true;
-	if (Data::RKeySelect.repeat(20, true)) RReady = true;
+	if (Data::LKeyBack.repeat(20, true)) LReady = false;
+	if (Data::RKeyBack.repeat(20, true)) RReady = false;
 
 	// 機体の処理
 	for (int isLeft = 0; isLeft < 2; isLeft++) {
