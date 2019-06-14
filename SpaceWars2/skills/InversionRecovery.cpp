@@ -6,7 +6,8 @@
 bool InversionRecovery::update(Vec2 _myPos, Vec2 _oppPos) {
 	if ((time > TRICKING_TIME) && !inRecovery){
 		inRecovery = true;
-		recoverAmount = (int)(PLAYER->recoveryDamage * 2.3);
+		recoverAmount = (int)(PLAYER->recoveryDamage * recoverEfficiency);
+		recoverAmount = Clamp(recoverAmount, 0, (int)(initHP * recoverEfficiency * (1.5)));
 		PLAYER->inAbsorption = false;
 		SoundAsset(L"IR").setVolume(Config::MASTER_VOLUME * Config::EFFECT_VOLUME);
 		SoundAsset(L"IR").playMulti();
