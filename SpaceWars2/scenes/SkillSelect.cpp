@@ -68,16 +68,6 @@ void SkillSelect::init() {
 			skillDescriptionManager.AddDescript(str);
 		}
 
-		Rect rect[4];
-		Image img[4];
-		String strings[4] = {L"ダメージ", L"発射間隔", L"使いやすさ", L"弾速"};
-		for (int i = 0; i < 4; i++) {
-			rect[i] = SmartUI::Get(S12).region(strings[i]);
-			img[i].resize(rect[i].size);
-			SmartUI::Get(S12).overwrite(img[i], strings[i], { 0, 0 }, Color(L"#fff"));
-			rotatedDescription[i] = Texture(img[i]);
-		}
-
 		for (auto i : step(5)) {
 			TextureAsset::Register(L"mainBullet"    + Format(i), L"/810" + Format(i));
 			TextureAsset::Register(L"subBullet"     + Format(i), L"/811" + Format(i));
@@ -88,6 +78,16 @@ void SkillSelect::init() {
 		TextureAsset::Register(L"subTriangle"    , L"/7411");
 		TextureAsset::Register(L"specialTriangle", L"/7412");
 		isLoaded = true;
+	}
+
+	Rect rect[4];
+	Image img[4];
+	String strings[4] = { L"ダメージ", L"発射間隔", L"使いやすさ", L"弾速" };
+	for (int i = 0; i < 4; i++) {
+		rect[i] = SmartUI::Get(S12).region(strings[i]);
+		img[i].resize(rect[i].size);
+		SmartUI::Get(S12).overwrite(img[i], strings[i], { 0, 0 }, Color(L"#fff"));
+		rotatedDescription[i] = Texture(img[i]);
 	}
 }
 
