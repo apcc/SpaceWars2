@@ -5,7 +5,7 @@ bool Reflection::update(Vec2 myPos, Vec2 oppPos) {
 }
 
 void Reflection::draw() {
-	getShape().draw(Color(isLeft ? L"#00ffff" : L"#0000ff"));
+	getShape().draw(Color(isLeft ? L"#00ffff" : L"#00ff00"));
 }
 
 bool Reflection::isVisible() {
