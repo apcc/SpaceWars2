@@ -20,11 +20,9 @@ void Game::init() {}
 void Game::update() {
 	changeScene(Debug::InputFnKey(), 100);
 
-#	ifdef _DEBUG
 	if (Input::KeyF5.pressed) status = COUNT_DOWN_INIT;
 	if (Input::KeyF6.pressed) status = GAME_INIT;
 	if (Input::KeyF7.pressed) status = FINISH_INIT;
-#	endif
 
 	switch(status) {
 		case COUNT_DOWN_INIT: {
