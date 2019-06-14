@@ -8,11 +8,12 @@ class InversionRecovery : public Bullet {
 private:
 	int initHP;
 	int time = 0;
-	int recoverAmount = 1;
+	int recoverAmount = 0; //回復量
+	int recoverEfficiency = 2; //回復量の受けたダメージに対する割合 実際に回復する量はこれから1を引いたものとなる
 	bool inRecovery;
 	Player* PLAYER;
 
-	const int TRICKING_TIME = 120;
+	const int TRICKING_TIME = 150;
 
 public:
 	InversionRecovery(Vec2 _pos, bool _isLeft) : Bullet(_pos, _isLeft) {

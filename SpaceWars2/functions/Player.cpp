@@ -159,13 +159,19 @@ bool Player::skillSelect() {
 	bool returnFlag = false;
 
 	if (selectedType != 2) {
-		if (KeyRight.repeat(20, true)) {
+		if (
+			KeyRight.repeat(20, true) ||
+			 (isLeft ? Data::LKeySelect.repeat(20, true) : Data::RKeySelect.repeat(20, true))
+			) {
 			++selectedType;
 			returnFlag = true;
 		}
 	}
 	if (selectedType != 0) {
-		if (KeyLeft.repeat(20, true)) {
+		if (
+			KeyLeft.repeat(20, true) ||
+			 (isLeft ? Data::LKeyBack.repeat(20, true) : Data::RKeyBack.repeat(20, true))
+			) {
 			--selectedType;
 			returnFlag = true;
 		}

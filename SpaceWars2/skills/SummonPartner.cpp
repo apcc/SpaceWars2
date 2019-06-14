@@ -8,7 +8,7 @@ bool SummonPartner::update(Vec2 myPos, Vec2 oppPos) {
 	LifeTime--;
 	if (!(LifeTime % 30)) {
 		Bullet* bul = new Grenade(shrinkVec2(pos, activeField, Rect(0, 0, Window::Width(), Window::Height())), isLeft);
-		bul->shrink(activeField);
+		if(shrinkRate!=1) bul->shrink(activeField);
 		bullets.push_back(bul);
 	}
 	for(auto itr = bullets.begin(); itr != bullets.end();){

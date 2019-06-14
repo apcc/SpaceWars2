@@ -23,7 +23,7 @@ private:
 	int nextStageTime = 0;
 	bool LReady = false;
 	bool RReady = false;
-	Texture rotatedDescription[4] = {};
+	Texture rotatedDescription[4];
 	Vec2 playerPos[2][2] = {};
 	bool moveToUp[2][2] = {};
 	int skillsDisplayed[2][3] = {}; //[isLeft][skillType]
