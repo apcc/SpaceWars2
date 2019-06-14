@@ -2,6 +2,7 @@
 #include "Config.hpp"
 #include "CommonData.hpp"
 #include "functions/Asset.hpp"
+#include "functions/Utils.hpp"
 
 // Scenes
 #include "scenes/Title.hpp"
@@ -72,5 +73,6 @@ void Main() {
 	while (System::Update()){
 		manager.updateAndDraw();
 		Debug::DebugModeWarning();
+		Utils::ChangeFullScreen();
 	}
 }
