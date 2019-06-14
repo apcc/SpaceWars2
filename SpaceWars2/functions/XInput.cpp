@@ -78,10 +78,12 @@ void GamePad::SetButton() {
 
 	// 操作
 	input.addButton(L"KeyEnter",    s3d::Input::KeyEnter    | s3d::Input::KeyEnter);
-	input.addButton(L"L_KeyBack",   s3d::Input::KeyLControl | s3d::Input::KeyBackspace | s3d::Input::KeyEnd | XInput(0).buttonB);
-	input.addButton(L"R_KeyBack",   s3d::Input::KeyRControl | s3d::Input::KeyBackspace | s3d::Input::KeyEnd | XInput(1).buttonB);
+	input.addButton(L"L_KeyBack",   s3d::Input::KeyLControl | s3d::Input::KeyBackspace);
+	input.addButton(L"R_KeyBack",   s3d::Input::KeyRControl | s3d::Input::KeyBackspace);
 	input.addButton(L"L_KeySelect", s3d::Input::KeyLShift   | XInput(0).buttonA);
 	input.addButton(L"R_KeySelect", s3d::Input::KeyRShift   | XInput(1).buttonA);
+	input.addButton(L"L_KeyCancel", s3d::Input::KeyLControl | s3d::Input::KeyEnd | XInput(0).buttonB);
+	input.addButton(L"R_KeyCancel", s3d::Input::KeyRControl | s3d::Input::KeyEnd | XInput(1).buttonB);
 }
 
 
@@ -125,8 +127,8 @@ bool GamePad::Key(bool _isLeft, const String& _name) {
 	if(_name == L"KeyRight")
 		return input.button(lr + L"_KeyRight").pressed || input.axis(lr + L"_CtrlX") > 0.8;
 
-	if (_name == L"KeyBack")
-		return input.button(lr + L"_KeyBack").pressed 
+	if (_name == L"KeyCancel")
+		return input.button(lr + L"_KeyCancel").pressed 
 			|| XInput((int)!_isLeft). leftTrigger > 0.5 
 			|| XInput((int)!_isLeft).rightTrigger > 0.5 
 			|| s3d::Input::KeyBackspace.pressed;
@@ -150,8 +152,8 @@ bool GamePad::Key(const String& _name) {
 	if (_name == L"KeyRight")
 		return input.button(L"L_KeyBack").pressed || input.button(L"R_KeyBack").pressed || input.axis(L"L_CtrlX") > 0.8 || input.axis(L"R_CtrlX") > 0.8;
 
-	if (_name == L"KeyBack")
-		return input.button(L"L_KeyBack").pressed || input.button(L"R_KeyBack").pressed || XInput(0).leftTrigger > 0.5 || XInput(0).rightTrigger > 0.5 || XInput(0).leftTrigger > 0.5 || XInput(0).rightTrigger > 0.5;
+	if (_name == L"KeyCancel")
+		return input.button(L"L_KeyCancel").pressed || input.button(L"R_KeyCancel").pressed || XInput(0).leftTrigger > 0.5 || XInput(0).rightTrigger > 0.5 || XInput(0).leftTrigger > 0.5 || XInput(0).rightTrigger > 0.5;
 
 	if (input.hasButton(L"L_" + _name) && input.hasButton(L"R_" + _name))
 		return input.button(L"L_" + _name).pressed || input.button(L"R_" + _name).pressed;

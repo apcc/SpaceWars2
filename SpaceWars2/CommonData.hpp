@@ -21,6 +21,8 @@ namespace Data {
 	extern KeyRepeat RKeyBack;
 	extern KeyRepeat LKeySelect;
 	extern KeyRepeat RKeySelect;
+	extern KeyRepeat LKeyCancel;
+	extern KeyRepeat RKeyCancel;
 	extern KeyRepeat KeyUp;
 	extern KeyRepeat KeyLeft;
 	extern KeyRepeat KeyDown;

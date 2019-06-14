@@ -170,7 +170,7 @@ bool Player::skillSelect() {
 	if (selectedType != 0) {
 		if (
 			KeyLeft.repeat(20, true) ||
-			 (isLeft ? Data::LKeyBack.repeat(20, true) : Data::RKeyBack.repeat(20, true))
+			 (isLeft ? Data::LKeyCancel.repeat(20, true) : Data::RKeyCancel.repeat(20, true))
 			) {
 			--selectedType;
 			returnFlag = true;
