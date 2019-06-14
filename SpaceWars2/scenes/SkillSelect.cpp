@@ -100,18 +100,18 @@ void SkillSelect::update() {
 	if (LReady && RReady) ++nextStageTime;
 	else nextStageTime = 0;
 
-	if (Data::LKeySelect.repeat(20, true) && !LReady) {
+	if (Data::LPlayer.selectedType == 2 && !LReady && Data::LKeySelect.repeat(20, true)) {
 		LReady = true;
 		SoundAsset(L"click1").setVolume(Config::MASTER_VOLUME * Config::CURSOR_VOLUME);
 		SoundAsset(L"click1").playMulti();
 	}
-	if (Data::RKeySelect.repeat(20, true) && !RReady) {
+	if (Data::RPlayer.selectedType == 2 && !RReady && Data::RKeySelect.repeat(20, true)) {
 		RReady = true;
 		SoundAsset(L"click1").setVolume(Config::MASTER_VOLUME * Config::CURSOR_VOLUME);
 		SoundAsset(L"click1").playMulti();
 	}
-	if (Data::LKeyBack.repeat(20, true)) LReady = false;
-	if (Data::RKeyBack.repeat(20, true)) RReady = false;
+	if (LReady && Data::LKeyBack.repeat(20, true)) LReady = false;
+	if (RReady && Data::RKeyBack.repeat(20, true)) RReady = false;
 
 	// 機体の処理
 	for (int isLeft = 0; isLeft < 2; isLeft++) {
