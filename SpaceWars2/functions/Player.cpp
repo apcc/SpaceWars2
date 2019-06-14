@@ -160,7 +160,7 @@ bool Player::skillSelect() {
 
 	if (selectedType != 2) {
 		if (
-			KeyRight.repeat(20, true) || 
+			KeyRight.repeat(20, true) ||
 			 (isLeft ? Data::LKeySelect.repeat(20, true) : Data::RKeySelect.repeat(20, true))
 			) {
 			++selectedType;
@@ -169,7 +169,7 @@ bool Player::skillSelect() {
 	}
 	if (selectedType != 0) {
 		if (
-			KeyLeft.repeat(20, true) || 
+			KeyLeft.repeat(20, true) ||
 			 (isLeft ? Data::LKeyBack.repeat(20, true) : Data::RKeyBack.repeat(20, true))
 			) {
 			--selectedType;

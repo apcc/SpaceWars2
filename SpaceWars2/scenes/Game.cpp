@@ -97,6 +97,14 @@ void Game::update() {
 						++itr;
 					}
 				}
+			} else {
+				for (auto itr = bullets.begin(); itr != bullets.end();) {
+					if (!(**itr).isVisible()) {
+						delete* itr;
+						itr = bullets.erase(itr);
+					}
+					else { ++itr; }
+				}
 			}
 
 			if (Data::LPlayer.isHPRunOut() || Data::RPlayer.isHPRunOut())
