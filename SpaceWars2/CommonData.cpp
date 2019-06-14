@@ -14,4 +14,6 @@ namespace Data {
 	KeyRepeat KeyLeft	 = KeyRepeat(L"KeyLeft");
 	KeyRepeat KeyDown	 = KeyRepeat(L"KeyDown");
 	KeyRepeat KeyRight	 = KeyRepeat(L"KeyRight");
-};
+	KeyRepeat KeySelectUp = KeyRepeat(L"KeySelectUp");
+	KeyRepeat KeySelectDown = KeyRepeat(L"KeySelectDown");
+}

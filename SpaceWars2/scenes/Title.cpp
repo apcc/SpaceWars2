@@ -12,12 +12,12 @@ void Title::init() {
 void Title::update(){
 	changeScene(Debug::InputFnKey(), 100);
 
-	if (Data::KeyUp.repeat(20, true) && selecting > 0) {
+	if (Data::KeySelectUp.repeat(20, true) && selecting > 0) {
 		--selecting;
 		SoundAsset(L"cursor1").setVolume(Config::MASTER_VOLUME * Config::CURSOR_VOLUME);
 		SoundAsset(L"cursor1").playMulti();
 	}
-	if (Data::KeyDown.repeat(20, true) && selecting < 3) {
+	if (Data::KeySelectDown.repeat(20, true) && selecting < 3) {
 		++selecting;
 		SoundAsset(L"cursor1").setVolume(Config::MASTER_VOLUME * Config::CURSOR_VOLUME);
 		SoundAsset(L"cursor1").playMulti();

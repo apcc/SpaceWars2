@@ -25,4 +25,6 @@ namespace Data {
 	extern KeyRepeat KeyLeft;
 	extern KeyRepeat KeyDown;
 	extern KeyRepeat KeyRight;
-};
+	extern KeyRepeat KeySelectUp;
+	extern KeyRepeat KeySelectDown;
+}

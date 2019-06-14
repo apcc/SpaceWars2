@@ -72,6 +72,10 @@ void GamePad::SetButton() {
 	input.addButton(L"R_KeyDown",  s3d::Input::KeyL | s3d::Input::KeyDown | XInput(1).buttonDown);
 	input.addButton(L"R_KeyRight", s3d::Input::KeySemicolon | s3d::Input::KeyRight | XInput(1).buttonRight);
 
+	// SkillSelect
+	input.addButton(L"KeySelectUp",   s3d::Input::KeyW | s3d::Input::KeyO | s3d::Input::KeyUp);
+	input.addButton(L"KeySelectDown", s3d::Input::KeyS | s3d::Input::KeyL | s3d::Input::KeyDown);
+
 	// 操作
 	input.addButton(L"KeyEnter", s3d::Input::KeyEnter | XInput(0).buttonA | XInput(1).buttonA);
 	input.addButton(L"L_KeyBack", s3d::Input::KeyLControl | s3d::Input::KeyBackspace | s3d::Input::KeyEnd | XInput(0).buttonB);
