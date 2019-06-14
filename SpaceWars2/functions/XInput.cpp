@@ -77,11 +77,11 @@ void GamePad::SetButton() {
 	input.addButton(L"KeySelectDown", s3d::Input::KeyS | s3d::Input::KeyL | s3d::Input::KeyDown);
 
 	// 操作
-	input.addButton(L"KeyEnter", s3d::Input::KeyEnter | XInput(0).buttonA | XInput(1).buttonA);
-	input.addButton(L"L_KeyBack", s3d::Input::KeyLControl | s3d::Input::KeyBackspace | s3d::Input::KeyEnd | XInput(0).buttonB);
-	input.addButton(L"R_KeyBack", s3d::Input::KeyRControl | s3d::Input::KeyBackspace | s3d::Input::KeyEnd | XInput(1).buttonB);
-	input.addButton(L"L_KeySelect", s3d::Input::KeyLShift | XInput(0).buttonA);
-	input.addButton(L"R_KeySelect", s3d::Input::KeyRShift | XInput(1).buttonA);
+	input.addButton(L"KeyEnter",    s3d::Input::KeyEnter    | s3d::Input::KeyEnter);
+	input.addButton(L"L_KeyBack",   s3d::Input::KeyLControl | s3d::Input::KeyBackspace | s3d::Input::KeyEnd | XInput(0).buttonB);
+	input.addButton(L"R_KeyBack",   s3d::Input::KeyRControl | s3d::Input::KeyBackspace | s3d::Input::KeyEnd | XInput(1).buttonB);
+	input.addButton(L"L_KeySelect", s3d::Input::KeyLShift   | XInput(0).buttonA);
+	input.addButton(L"R_KeySelect", s3d::Input::KeyRShift   | XInput(1).buttonA);
 }
 
 
