@@ -178,6 +178,7 @@
     <ClCompile Include="functions\SkillDescription.cpp" />
     <ClCompile Include="functions\SpecialSkill.cpp" />
     <ClCompile Include="functions\SubSkill.cpp" />
+    <ClCompile Include="functions\Utils.cpp" />
     <ClCompile Include="functions\Vec2Utils.cpp" />
     <ClCompile Include="functions\XInput.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -319,6 +320,7 @@
     <ClInclude Include="functions\MainSkill.hpp" />
     <ClInclude Include="functions\Player.hpp" />
     <ClInclude Include="functions\SkillDescription.hpp" />
+    <ClInclude Include="functions\Utils.hpp" />
     <ClInclude Include="functions\Vec2Utils.hpp" />
     <ClInclude Include="functions\XInput.hpp" />
     <ClInclude Include="scenes\Include.hpp" />
