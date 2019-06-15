@@ -5,6 +5,9 @@
 bool Laser::isLShooting = false;
 bool Laser::isRShooting = false;
 
+Optional<Sound> Laser::chargeSound[2];
+Optional<Sound> Laser::laserSound[2];
+
 bool Laser::update(Vec2 _myPos, Vec2 _oppPos) {
 	myPos = _myPos;
 	if (!(isLeft ? isLInvalid : isRInvalid)) {
@@ -14,9 +17,9 @@ bool Laser::update(Vec2 _myPos, Vec2 _oppPos) {
 				(isLeft ? Data::LPlayer : Data::RPlayer).temperature += 6;
 			}
 			else {
-				chargeSound.stop();
-				laserSound.setVolume(Config::MASTER_VOLUME * Config::EFFECT_VOLUME);
-				laserSound.play();
+				chargeSound[isLeft]->stop();
+				laserSound[isLeft]->setVolume(Config::MASTER_VOLUME * Config::EFFECT_VOLUME);
+				laserSound[isLeft]->play();
 				isCharging = false;
 			}
 		}
