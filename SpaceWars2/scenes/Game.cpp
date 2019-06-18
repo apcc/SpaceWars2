@@ -294,7 +294,10 @@ void Game::draw() const {
 				int    whatSkill[3] = { PLAYER->whatMainSkill, PLAYER->whatSubSkill, PLAYER->whatSpecialSkill };
 				int	   skillsCnt[3] = { PLAYER->mainSkillCnt, PLAYER->subSkillCnt, PLAYER->specialSkillCnt };
 				String skillColor[3] = { L"#0c0", L"#00c", L"#ffd000" };
+				String backColor[3] = { L"#8ecc8e", L"#8e8ecc", L"#ffefb2" };
 				for (auto type : step(3)) { // mainSkill, subSkill, specialSkill
+					Rect(670 + (60 * type) - (220 * isLeft), sy + 2, 50, 50).draw(ColorF(backColor[type]).setAlpha(0.5));
+
 					TextureAsset(skillType[type] + Format((int)whatSkill[type])).resize(50, 50)
 						.draw(670 + (60 * type) - (220 * isLeft), sy + 2);
 
