@@ -4,7 +4,8 @@
 
 MIT License
 
-Copyright (c) 2018-2019 APCC
+Copyright (c) 2018-2019 APCC:  
+subaru2003, yamahi1610, Takeno-hito, Hujiko, michiya, kuroame
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
