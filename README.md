@@ -21,8 +21,7 @@ MIT License
 [LICENSE.md]
 
 ## Used Library / 使用ライブラリ
-- Siv3D Engine August 2016 v2 (x64)
-- HamFramework
+- [Siv3D Engine August 2016 v2 (x64)]
 - [AscInput]
 - [FontPlus]
 
@@ -39,6 +38,7 @@ MIT License
 
 [APCC公式HP]: https://apcc.jp/products/
 
+[Siv3D Engine August 2016 v2 (x64)]: https://github.com/Siv3D/Reference-JP/wiki
 [AscInput]: https://github.com/ChunChunMorning/AscInput
 [FontPlus]: https://github.com/subaru2003/FontPlus
 
