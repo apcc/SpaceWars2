@@ -23,28 +23,28 @@ void GamePad::SetAxis() {
 
 	// Left
 	input.addAxis(L"L_CtrlX",
-		asc::Axis(Input::KeyD, Input::KeyA) 
-		| asc::Axis(asc::Axis(LGamePad, asc::XInputAxis::LeftThumbX)) 
-		| asc::Axis(asc::Axis(LGamePad, asc::XInputAxis::RightThumbX))
+		asc::Axis(Input::KeyD, Input::KeyA)
+		| asc::Axis(LGamePad, asc::XInputAxis::LeftThumbX)
+		| asc::Axis(LGamePad, asc::XInputAxis::RightThumbX)
 	);
-	input.addAxis(L"L_CtrlY", 
-		asc::Axis(Input::KeyW, Input::KeyS) 
-		| asc::Axis(asc::Axis(LGamePad, asc::XInputAxis::LeftThumbY)) 
-		| asc::Axis(asc::Axis(LGamePad, asc::XInputAxis::RightThumbY))
+	input.addAxis(L"L_CtrlY",
+		asc::Axis(Input::KeyW, Input::KeyS)
+		| asc::Axis(LGamePad, asc::XInputAxis::LeftThumbY)
+		| asc::Axis(LGamePad, asc::XInputAxis::RightThumbY)
 	);
 
 	// Right
-	input.addAxis(L"R_CtrlX", 
+	input.addAxis(L"R_CtrlX",
 		asc::Axis(Input::KeySemicolon, Input::KeyK)
 		| asc::Axis(Input::KeyRight, Input::KeyLeft)
-		| asc::Axis(asc::Axis(RGamePad, asc::XInputAxis::LeftThumbX)) 
-		| asc::Axis(asc::Axis(RGamePad, asc::XInputAxis::RightThumbX))
+		| asc::Axis(RGamePad, asc::XInputAxis::LeftThumbX)
+		| asc::Axis(RGamePad, asc::XInputAxis::RightThumbX)
 	);
 	input.addAxis(L"R_CtrlY", 
 		asc::Axis(Input::KeyO, Input::KeyL)
 		| asc::Axis(Input::KeyUp, Input::KeyDown)
-		| asc::Axis(asc::Axis(RGamePad, asc::XInputAxis::LeftThumbY)) 
-		| asc::Axis(asc::Axis(RGamePad, asc::XInputAxis::RightThumbY))
+		| asc::Axis(RGamePad, asc::XInputAxis::LeftThumbY)
+		| asc::Axis(RGamePad, asc::XInputAxis::RightThumbY)
 	);
 }
 
@@ -123,9 +123,9 @@ bool GamePad::Key(bool _isLeft, const String& _name) {
 		return input.button(lr + L"_KeyRight").pressed || input.axis(lr + L"_CtrlX") > 0.8;
 
 	if (_name == L"KeyBack")
-		return input.button(lr + L"_KeyBack").pressed 
-			|| XInput((int)!_isLeft). leftTrigger > 0.5 
-			|| XInput((int)!_isLeft).rightTrigger > 0.5 
+		return input.button(lr + L"_KeyBack").pressed
+			|| XInput((int)!_isLeft). leftTrigger > 0.5
+			|| XInput((int)!_isLeft).rightTrigger > 0.5
 			|| s3d::Input::KeyBackspace.pressed;
 
 	if (_name == L"SubSkill")
@@ -158,7 +158,7 @@ bool GamePad::Key(const String& _name) {
 
 	if (input.hasButton(L"L_" + _name) && input.hasButton(L"R_" + _name))
 		return input.button(L"L_" + _name).pressed || input.button(L"R_" + _name).pressed;
-	
+
 	LOG_ERROR(L"GamePad::Key() で指定された ", _name, L" は存在しません。");
 	if (!isErrorCalled) {
 		com = MessageBox::Show(L"Fatal Error", L"GamePad::Key() で存在しない名前が指定されました。\n終了します。詳細はlog.htmlを参照してください。", MessageBoxStyle::Ok, 0);
