@@ -1,8 +1,10 @@
-SPACE WARS 2
+# SpaceWars 2 Licenses
+
+## SpaceWars 2
 
 MIT License
 
-Copyright (c) 2018 APCC
+Copyright (c) 2018-2019 APCC
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +29,7 @@ SOFTWARE.
 
 MIT License
 
-Copyright (c) 2008-2018 Ryo Suzuki
+Copyright (c) 2008-2018 Ryo Suzuki  
 Copyright (c) 2016-2018 OpenSiv3D Project
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -55,7 +57,7 @@ SOFTWARE.
 
 許諾者は、この使用許諾（以下「本契約」といいます。）に定める条件の下で、許諾プログラム（1条に定義するところによります。）を提供します。受領者（1条に定義するところによります。）が、許諾プログラムを使用し、複製し、または頒布する行為、その他、本契約に定める権利の利用を行った場合、受領者は本契約に同意したものと見なします。
 
-第1条　用語の定義
+#### 第1条　用語の定義
 
 本契約において、次の各号に掲げる用語は、当該各号に定めるところによります。
 
@@ -68,7 +70,7 @@ SOFTWARE.
 7.「複製その他の利用」とは、複製、譲渡、頒布、貸与、公衆送信、上映、展示、翻案その他の利用をいいます。
 8.「受領者」とは、許諾プログラムを本契約の下で受領した人をいい、受領者から許諾プログラムを受領した人を含みます。
 
-第２条 使用許諾の付与
+#### 第２条 使用許諾の付与
 
 許諾者は受領者に対し、本契約の条項に従い、すべての国で、許諾プログラムを使用することを許諾します。ただし、許諾プログラムに存在する一切の権利はすべて許諾者が保有しています。本契約は、本契約で明示的に定められている場合を除き、いかなる意味においても、許諾者が保有する許諾プログラムに関する一切の権利および、いかなる商標、商号、もしくはサービス・マークに関する権利をも受領者に移転するものではありません。
 
@@ -80,7 +82,7 @@ SOFTWARE.
 6.受領者は、3条2項の定めに従い、商用・非商用を問わず、許諾プログラムをそのままの状態で改変することなく複製して第三者への譲渡し、公衆送信し、その他の方法で再配布することができます(以下、「再配布」といいます。)。
 7.受領者は、上記の許諾プログラムについて定められた条件と同様の条件に従って、派生プログラムを作成し、使用し、複製し、再配布することができます。ただし、受領者が派生プログラムを再配布する場合には、3条1項の定めに従うものとします。
 
-第３条　制限
+#### 第３条　制限
 
 前条により付与された使用許諾は、以下の制限に服します。
 
@@ -99,12 +101,12 @@ SOFTWARE.
 3.許諾プログラムは、現状有姿で提供されており、許諾プログラムまたは派生プログラムについて、許諾者は一切の明示または黙示の保証（権利の所在、非侵害、商品性、特定目的への適合性を含むがこれに限られません）を行いません。いかなる場合にも、その原因を問わず、契約上の責任か厳格責任か過失その他の不法行為責任かにかかわらず、また事前に通知されたか否かにかかわらず、許諾者は、許諾プログラムまたは派生プログラムのインストール、使用、複製その他の利用または本契約上の権利の行使によって生じた一切の損害（直接・間接・付随的・特別・拡大・懲罰的または結果的損害）（商品またはサービスの代替品の調達、システム障害から生じた損害、現存するデータまたはプログラムの紛失または破損、逸失利益を含むがこれに限られません）について責任を負いません。
 4.許諾プログラムまたは派生プログラムのインストール、使用、複製その他の利用に関して、許諾者は技術的な質問や問い合わせ等に対する対応その他、いかなるユーザ・サポートをも行う義務を負いません。
 
-第４条　契約の終了
+#### 第４条　契約の終了
 
 1.本契約の有効期間は、受領者が許諾プログラムを受領した時に開始し、受領者が許諾プログラムを何らかの方法で保持する限り続くものとします。
 2.前項の定めにかかわらず、受領者が本契約に定める各条項に違反したときは、本契約は、何らの催告を要することなく、自動的に終了し、当該受領者はそれ以後、許諾プログラムおよび派生プログラムを一切使用しまたは複製その他の利用をすることができないものとします。ただし、かかる契約の終了は、当該違反した受領者から許諾プログラムまたは派生プログラムの配布を受けた受領者の権利に影響を及ぼすものではありません。
 
-第５条　準拠法
+#### 第５条　準拠法
 
 1.IPAは、本契約の変更バージョンまたは新しいバージョンを公表することができます。その場合には、受領者は、許諾プログラムまたは派生プログラムの使用、複製その他の利用または再配布にあたり、本契約または変更後の契約のいずれかを選択することができます。その他、上記に記載されていない条項に関しては日本の著作権法および関連法規に従うものとします。
 2.本契約は、日本法に基づき解釈されます。
@@ -113,7 +115,7 @@ SOFTWARE.
 
 The Licensor provides the Licensed Program (as defined in Article 1 below) under the terms of this license agreement (“Agreement”).  Any use, reproduction or distribution of the Licensed Program, or any exercise of rights under this Agreement by a Recipient (as defined in Article 1 below) constitutes the Recipient's acceptance of this Agreement. 
 
-Article 1 (Definitions)
+#### Article 1 (Definitions)
 1.“Digital Font Program” shall mean a computer program containing, or used to render or display fonts.
 2.“Licensed Program” shall mean a Digital Font Program licensed by the Licensor under this Agreement.
 3.“Derived Program” shall mean a Digital Font Program created as a result of a modification, addition, deletion, replacement or any other adaptation to or of a part or all of the Licensed Program, and includes a case where a Digital Font Program newly created by retrieving font information from a part or all of the Licensed Program or Embedded Fonts from a Digital Document File with or without modification of the retrieved font information. 
@@ -123,7 +125,7 @@ Article 1 (Definitions)
 7.“Reproduction and Other Exploitation” shall mean reproduction, transfer, distribution, lease, public transmission, presentation, exhibition, adaptation and any other exploitation.
 8.“Recipient” shall mean anyone who receives the Licensed Program under this Agreement, including one that receives the Licensed Program from a Recipient.
 
-Article 2 (Grant of License)
+#### Article 2 (Grant of License)
 The Licensor grants to the Recipient a license to use the Licensed Program in any and all countries in accordance with each of the provisions set forth in this Agreement. However, any and all rights underlying in the Licensed Program shall be held by the Licensor. In no sense is this Agreement intended to transfer any right relating to the Licensed Program held by the Licensor except as specifically set forth herein or any right relating to any trademark, trade name, or service mark to the Recipient.
 
 1.The Recipient may install the Licensed Program on any number of Computers and use the same in accordance with the provisions set forth in this Agreement.
@@ -134,7 +136,7 @@ The Licensor grants to the Recipient a license to use the Licensed Program in an
 6.The Recipient may reproduce the Licensed Program as is without modification and transfer such copies, publicly transmit or otherwise redistribute the Licensed Program to a third party for commercial or non-commercial purposes (“Redistribute”), in accordance with the provisions set forth in Article 3 Paragraph 2.
 7.The Recipient may create, use, reproduce and/or Redistribute a Derived Program under the terms stated above for the Licensed Program: provided, that the Recipient shall follow the provisions set forth in Article 3 Paragraph 1 when Redistributing the Derived Program. 
 
-Article 3 (Restriction)
+#### Article 3 (Restriction)
 The license granted in the preceding Article shall be subject to the following restrictions:
 
 1.If a Derived Program is Redistributed pursuant to Paragraph 4 and 7 of the preceding Article, the following conditions must be met :
@@ -152,11 +154,11 @@ The license granted in the preceding Article shall be subject to the following r
 3.THIS LICENSED PROGRAM IS PROVIDED BY THE LICENSOR “AS IS” AND ANY EXPRESSED OR IMPLIED WARRANTY AS TO THE LICENSED PROGRAM OR ANY DERIVED PROGRAM, INCLUDING, BUT NOT LIMITED TO, WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY, OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED.  IN NO EVENT SHALL THE LICENSOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXTENDED, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO; PROCUREMENT OF SUBSTITUTED GOODS OR SERVICE; DAMAGES ARISING FROM SYSTEM FAILURE; LOSS OR CORRUPTION OF EXISTING DATA OR PROGRAM; LOST PROFITS), HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE INSTALLATION, USE, THE REPRODUCTION OR OTHER EXPLOITATION OF THE LICENSED PROGRAM OR ANY DERIVED PROGRAM OR THE EXERCISE OF ANY RIGHTS GRANTED HEREUNDER, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 4.The Licensor is under no obligation to respond to any technical questions or inquiries, or provide any other user support in connection with the installation, use or the Reproduction and Other Exploitation of the Licensed Program or Derived Programs thereof.
 
-Article 4 (Termination of Agreement)
+#### Article 4 (Termination of Agreement)
 1.The term of this Agreement shall begin from the time of receipt of the Licensed Program by the Recipient and shall continue as long as the Recipient retains any such Licensed Program in any way.
 2.Notwithstanding the provision set forth in the preceding Paragraph, in the event of the breach of any of the provisions set forth in this Agreement by the Recipient, this Agreement shall automatically terminate without any notice. In the case of such termination, the Recipient may not use or conduct Reproduction and Other Exploitation of the Licensed Program or a Derived Program: provided that such termination shall not affect any rights of any other Recipient receiving the Licensed Program or the Derived Program from such Recipient who breached this Agreement.
 
-Article 5 (Governing Law)
+#### Article 5 (Governing Law)
 1.IPA may publish revised and/or new versions of this License.  In such an event, the Recipient may select either this Agreement or any subsequent version of the Agreement in using, conducting the Reproduction and Other Exploitation of, or Redistributing the Licensed Program or a Derived Program. Other matters not specified above shall be subject to the Copyright Law of Japan and other related laws and regulations of Japan.
 2.This Agreement shall be construed under the laws of Japan.
 
@@ -188,11 +190,11 @@ with Reserved Font Name Cica
         - DejaVu Sans Mono : https://dejavu-fonts.github.io/
 
 
-## SIL Open Font License
+### SIL Open Font License
 
 Version 1.1 - 26 February 2007
 
-PREAMBLE
+#### PREAMBLE
 The goals of the Open Font License (OFL) are to stimulate worldwide
 development of collaborative font projects, to support the font creation
 efforts of academic and linguistic communities, and to provide a free and
@@ -208,7 +210,7 @@ however, cannot be released under any other type of license. The
 requirement for fonts to remain under this license does not apply
 to any document created using the fonts or their derivatives.
 
-DEFINITIONS
+#### DEFINITIONS
 "Font Software" refers to the set of files released by the Copyright
 Holder(s) under this license and clearly marked as such. This may
 include source files, build scripts and documentation.
@@ -227,7 +229,7 @@ new environment.
 "Author" refers to any designer, engineer, programmer, technical
 writer or other person who contributed to the Font Software.
 
-PERMISSION & CONDITIONS
+#### PERMISSION & CONDITIONS
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of the Font Software, to use, study, copy, merge, embed, modify,
 redistribute, and sell modified and unmodified copies of the Font
@@ -260,11 +262,11 @@ distributed under any other license. The requirement for fonts to
 remain under this license does not apply to any document created
 using the Font Software.
 
-TERMINATION
+#### TERMINATION
 This license becomes null and void if any of the above conditions are
 not met.
 
-DISCLAIMER
+#### DISCLAIMER
 THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
 MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
@@ -276,7 +278,7 @@ FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
 OTHER DEALINGS IN THE FONT SOFTWARE.
 
 
-## MIT License
+### MIT License
 
 Copyright (c) 2018 Takahiro Minami
 
@@ -299,7 +301,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
-## BITSTREAM VERA LICENSE
+### BITSTREAM VERA LICENSE
 
 Copyright (c) 2003 by Bitstream, Inc. All Rights Reserved. Bitstream Vera is a
 trademark of Bitstream, Inc.
