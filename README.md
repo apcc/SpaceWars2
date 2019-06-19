@@ -4,6 +4,7 @@ Copyright (c) 2018-2019 APCC:
 
 ## Overview / 概要
 AFes72の展示`AZABU GAME CENTER`のシューティングゲーム、`SpaceWars 2`の配布版です。  
+このゲームは昨年度`SPACE WARS`のリメイク版です。
 
 当日はメイン展示として多くの方に遊んでいただきました。  
 この場を借りて感謝申し上げます。ありがとうございました！
