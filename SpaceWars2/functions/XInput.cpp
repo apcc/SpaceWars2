@@ -1,6 +1,7 @@
 #include "XInput.hpp"
 
 #define BORDER 0.1
+#define FOUR_BUTTONS(num) XInput(num).buttonA|XInput(num).buttonB|XInput(num).buttonX|XInput(num).buttonY
 
 using asc::XInput;
 
@@ -22,35 +23,35 @@ void GamePad::SetAxis() {
 
 	// Left
 	input.addAxis(L"L_CtrlX",
-		asc::Axis(Input::KeyD, Input::KeyA) 
-		| asc::Axis(asc::Axis(LGamePad, asc::XInputAxis::LeftThumbX)) 
-		| asc::Axis(asc::Axis(LGamePad, asc::XInputAxis::RightThumbX))
+		asc::Axis(Input::KeyD, Input::KeyA)
+		| asc::Axis(LGamePad, asc::XInputAxis::LeftThumbX)
+		| asc::Axis(LGamePad, asc::XInputAxis::RightThumbX)
 	);
-	input.addAxis(L"L_CtrlY", 
-		asc::Axis(Input::KeyW, Input::KeyS) 
-		| asc::Axis(asc::Axis(LGamePad, asc::XInputAxis::LeftThumbY)) 
-		| asc::Axis(asc::Axis(LGamePad, asc::XInputAxis::RightThumbY))
+	input.addAxis(L"L_CtrlY",
+		asc::Axis(Input::KeyW, Input::KeyS)
+		| asc::Axis(LGamePad, asc::XInputAxis::LeftThumbY)
+		| asc::Axis(LGamePad, asc::XInputAxis::RightThumbY)
 	);
 
 	// Right
-	input.addAxis(L"R_CtrlX", 
+	input.addAxis(L"R_CtrlX",
 		asc::Axis(Input::KeySemicolon, Input::KeyK)
 		| asc::Axis(Input::KeyRight, Input::KeyLeft)
-		| asc::Axis(asc::Axis(RGamePad, asc::XInputAxis::LeftThumbX)) 
-		| asc::Axis(asc::Axis(RGamePad, asc::XInputAxis::RightThumbX))
+		| asc::Axis(RGamePad, asc::XInputAxis::LeftThumbX)
+		| asc::Axis(RGamePad, asc::XInputAxis::RightThumbX)
 	);
 	input.addAxis(L"R_CtrlY", 
 		asc::Axis(Input::KeyO, Input::KeyL)
 		| asc::Axis(Input::KeyUp, Input::KeyDown)
-		| asc::Axis(asc::Axis(RGamePad, asc::XInputAxis::LeftThumbY)) 
-		| asc::Axis(asc::Axis(RGamePad, asc::XInputAxis::RightThumbY))
+		| asc::Axis(RGamePad, asc::XInputAxis::LeftThumbY)
+		| asc::Axis(RGamePad, asc::XInputAxis::RightThumbY)
 	);
 }
 
 void GamePad::SetButton() {
 	// MainSkill
-	input.addButton(L"L_MainSkill", s3d::Input::KeyQ | XInput(0).buttonB);
-	input.addButton(L"R_MainSkill", s3d::Input::KeyI | s3d::Input::KeySlash | XInput(1).buttonB);
+	input.addButton(L"L_MainSkill", s3d::Input::KeyQ | FOUR_BUTTONS(0));
+	input.addButton(L"R_MainSkill", s3d::Input::KeyI | s3d::Input::KeySlash | FOUR_BUTTONS(1));
 
 	// SubSkill
 	input.addButton(L"L_SubSkill", s3d::Input::KeyE | XInput(0).buttonLB);
@@ -76,8 +77,8 @@ void GamePad::SetButton() {
 	input.addButton(L"KeyEnter", s3d::Input::KeyEnter | XInput(0).buttonA | XInput(1).buttonA);
 	input.addButton(L"L_KeyBack", s3d::Input::KeyLControl | s3d::Input::KeyBackspace | s3d::Input::KeyEnd | XInput(0).buttonB);
 	input.addButton(L"R_KeyBack", s3d::Input::KeyRControl | s3d::Input::KeyBackspace | s3d::Input::KeyEnd | XInput(1).buttonB);
-	input.addButton(L"L_KeySelect", s3d::Input::KeyLShift | XInput(0).buttonA);
-	input.addButton(L"R_KeySelect", s3d::Input::KeyRShift | XInput(1).buttonA);
+	input.addButton(L"L_KeySelect", s3d::Input::KeyLShift | FOUR_BUTTONS(0));
+	input.addButton(L"R_KeySelect", s3d::Input::KeyRShift | FOUR_BUTTONS(1));
 }
 
 
@@ -122,10 +123,16 @@ bool GamePad::Key(bool _isLeft, const String& _name) {
 		return input.button(lr + L"_KeyRight").pressed || input.axis(lr + L"_CtrlX") > 0.8;
 
 	if (_name == L"KeyBack")
-		return input.button(lr + L"_KeyBack").pressed 
-			|| XInput((int)!_isLeft). leftTrigger > 0.5 
-			|| XInput((int)!_isLeft).rightTrigger > 0.5 
+		return input.button(lr + L"_KeyBack").pressed
+			|| XInput((int)!_isLeft). leftTrigger > 0.5
+			|| XInput((int)!_isLeft).rightTrigger > 0.5
 			|| s3d::Input::KeyBackspace.pressed;
+
+	if (_name == L"SubSkill")
+		return input.button(lr + L"_SubSkill").pressed || XInput((int)!_isLeft).leftTrigger > 0.8;
+
+	if (_name == L"SpecialSkill")
+		return input.button(lr + L"_SpecialSkill").pressed || XInput((int)!_isLeft).rightTrigger > 0.8;
 
 	return input.button(lr + L"_" + _name).pressed;
 }
@@ -151,7 +158,7 @@ bool GamePad::Key(const String& _name) {
 
 	if (input.hasButton(L"L_" + _name) && input.hasButton(L"R_" + _name))
 		return input.button(L"L_" + _name).pressed || input.button(L"R_" + _name).pressed;
-	
+
 	LOG_ERROR(L"GamePad::Key() で指定された ", _name, L" は存在しません。");
 	if (!isErrorCalled) {
 		com = MessageBox::Show(L"Fatal Error", L"GamePad::Key() で存在しない名前が指定されました。\n終了します。詳細はlog.htmlを参照してください。", MessageBoxStyle::Ok, 0);
