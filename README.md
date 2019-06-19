@@ -15,8 +15,6 @@ AFes72の展示`AZABU GAME CENTER`のシューティングゲーム、`SpaceWars
   
 また[APCC公式HP]から他のゲームもダウンロードできます。ぜひ遊んでみてください。
 
-展示版は[SpaceWars2_Exhibition/Releases]からダウンロードできます（主に部内向けであり、正式な配布ではありません）。
-
 ## License / ライセンス
 MIT License  
 [LICENSE.md]
