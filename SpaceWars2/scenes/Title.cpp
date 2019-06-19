@@ -62,8 +62,8 @@ void Title::draw() const{
 		SmartUI::Get(S28)(name[i]).draw({ 980, 398 + 70 * i }, (i == selecting ? Color(L"#fff") : Color(L"#ccc")));
 	}
 
-	Rect(0, 690, 220, 30).draw(ColorF(L"#000").setAlpha(0.5));
-	CicaR::Get(C12)(Config::VERSION, L" / ", Config::VER_NUM).draw({ 10, 695 });
+	Rect(0, 690, 240, 30).draw(ColorF(L"#000").setAlpha(0.5));
+	CicaR::Get(C12)(Config::VERSION, L" / ", Config::VER_NUM).draw(Arg::topRight, { 225, 695 });
 
 	Vec2 buttonPos(1165, 692);
 
