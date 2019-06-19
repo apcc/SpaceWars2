@@ -20,7 +20,7 @@ AFes72の展示`AZABU GAME CENTER`のシューティングゲーム、`SpaceWars
 
 ## License / ライセンス
 MIT License  
-[LICENSE.md]
+[LICENSE]
 
 ## Used Library / 使用ライブラリ
 - [Siv3D Engine August 2016 v2 (x64)]
@@ -36,7 +36,7 @@ MIT License
 
 [Releases]: https://github.com/subaru2003/SpaceWars2/releases
 [SpaceWars2_Exhibition/Releases]: https://github.com/subaru-apcc/SpaceWars2_Exhibition/releases
-[LICENSE.md]: https://github.com/subaru2003/SpaceWars2/blob/master/LICENSE.md
+[LICENSE]: https://github.com/subaru2003/SpaceWars2/blob/master/LICENSE.md
 
 [APCC公式HP]: https://apcc.jp/products/
 
