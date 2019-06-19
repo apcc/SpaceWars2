@@ -36,7 +36,7 @@ MIT License
 
 [Releases]: https://github.com/subaru2003/SpaceWars2/releases
 [SpaceWars2_Exhibition/Releases]: https://github.com/subaru-apcc/SpaceWars2_Exhibition/releases
-[LICENSE]: https://github.com/subaru2003/SpaceWars2/blob/master/LICENSE.md
+[LICENSE]: https://github.com/subaru2003/SpaceWars2/blob/master/LICENSE
 
 [APCC公式HP]: https://apcc.jp/products/
 
