@@ -1,4 +1,7 @@
 # SpaceWars 2
+
+![SpaceWars 2](screenshot.png)
+
 Copyright (c) 2018-2019 APCC:  
 [subaru2003], [yamahi1610], [Takeno-hito], Hujiko, michiya, kuroame
 
